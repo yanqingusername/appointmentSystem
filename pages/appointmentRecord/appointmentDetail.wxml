@@ -1,0 +1,141 @@
+<!--pages/myOrder/myOrder.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{false}}" isCustom="{{true}}">
+  <view slot="content">预约详情</view>
+</cu-custom>
+
+<view class="page" style="background-color:#F6F6F6;">
+  <view class="P1" style="height:620rpx">
+    <view id="color_style_1" style="background-color:{{onlineFlagNum==0? '#418BE4' : '#E06596' }};">
+      <view id="design_1">
+        <image id="jingdong_image" wx:if="{{payment_channel=='jingdong'}}" src="../../images/icon_jd.png"></image>
+        <image id="meituan_image" wx:if="{{payment_channel=='meituan'}}" src="../../images/icon_meituan.png"></image>
+        <image id="wechat_image" wx:if="{{payment_channel=='wechat'}}" src="../../images/icon_wechat.png"></image>
+      </view>
+      <view id="font_1">{{hint_font_1}}</view>
+    </view>
+    <view class="font_view_1" style="background-color:{{onlineFlagNum==0? '#418BE4' : '#E06596' }}">
+      <view id="font_2">
+        <text>{{hint_font_2}}</text>
+      </view>
+    </view>
+    <view class="hr"></view>
+    <view class="template_flex">
+      <view id="orange_hint">请向工作人员出示信息码</view>
+    </view>
+    <view id="barcode1" catchtouchmove='true'>
+      <!-- <image id="canvas_img" src="{{imgSrc}}" /> -->
+      <canvas id="barcode2" canvas-id="barcode"></canvas>
+    </view>
+    <view class="template_flex">
+      <view id="barcode_num">{{appointment_num}}</view>
+    </view>
+    <view class="template_flex" hidden="{{yysj1==''?'hidden':''}}">
+      <view id="pink_hint" style="margin: 240rpx 0 0 0;color: #333333;">预约时间：{{yysj1}}</view>
+    </view>
+    <view class="template_flex" bindtap="goYYJL">
+      <view id="pink_hint" style="margin: 275rpx 0 0 0;">可进入预约记录查看报告</view>
+    </view>
+  </view>
+  <swiper wx:if="{{movies.length>0}}" class="swiper" indicator-dots="true" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000">
+    <block wx:for="{{movies}}" wx:for-index="index">
+      <swiper-item>
+        <image src="{{item.href}}" class="slide-image" bindtap="swipclick" mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="P1">
+    <view class="P2 app_font" bindtap="toInfo" data-id="{{item.id}}" data-type="{{item.type}}">
+      <view class="bold_font">
+        预约信息
+      </view>
+      <view wx:if="{{name}}" class="P2_1 app_flex">
+        <view class="P2_1_3">姓名</view>
+        <view class="P2_1_2">{{name}}</view>
+      </view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">证件类型</view>
+        <view class="P2_1_2">{{card_type}}</view>
+      </view>
+      <view wx:if="{{id_card}}" class="P2_1 app_flex">
+        <view class="P2_1_3">证件号</view>
+        <view class="P2_1_2">{{id_card}}</view>
+      </view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">手机号</view>
+        <view class="P2_1_2">{{phone}}</view>
+      </view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">检测类型</view>
+        <view class="P2_1_2">{{test_type}}</view>
+      </view>
+      <view class="P2_1 app_flex" hidden="{{yysj2==''?'hidden':''}}">
+        <view class="P2_1_3">预约时间</view>
+        <view class="P2_1_2">{{yysj2}}</view>
+      </view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">采样点</view>
+        <view class="P2_1_2" style="position:relative;left:10rpx">{{channel_name}}</view>
+        <view data-channelname="{{channel_name}}" data-latitude="{{latitude}}" data-longitude="{{longitude}}" bindtap="openMap" style="margin:10rpx 30rpx 0 0">
+          <image id="pink_position" src="../../images/icon_position_red.png"></image>
+        </view>
+
+      </view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3"></view>
+        <view class="P2_1_2" style="font-size:24rpx">
+          <view wx:for="{{workingTimeArr}}">
+            <view class="P2_1_2" style="font-size:24rpx"><text wx:if="{{index==0}}">营业时间</text></view>
+            <view class="P2_1_2" style="font-size:24rpx"> {{item}}</view>
+            <!-- <view class="P2_1_2" style="font-size:24rpx">4小时内特急检服务 08:00-21:00</view>
+              <view class="P2_1_2" style="font-size:24rpx">8小时内加急检服务 08:00-00:00</view> -->
+          </view>
+        </view>
+      </view>
+      <!-- <view class="P2_1 app_flex">
+        <view class="P2_1_3"></view>
+        <view class="P2_1_2" style="font-size:24rpx">
+          <view id="orange_hint_2">请直接到该采样点排队，无需预约</view>
+        </view>
+      </view> -->
+    </view>
+  </view>
+  <view class="P1">
+    <view class="P2 app_font" bindtap="toInfo" data-id="{{item.id}}" data-type="{{item.type}}">
+      <view class="bold_font">
+        支付信息
+      </view>
+
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">付款方式</view>
+        <view class="P2_1_2">{{payment_way}}</view>
+      </view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">付款金额</view>
+        <view class="P2_1_2">¥{{payment_amount}}</view>
+      </view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">下单时间</view>
+        <view class="P2_1_2">{{create_time}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="P1" style="margin-bottom:100rpx">
+    <view class="P2 app_font" bindtap="toInfo" data-id="{{item.id}}" data-type="{{item.type}}">
+      <view class="common_flex">
+        <view class="bold_font">
+          联系客服
+        </view>
+        <view data-phone="{{item.cstn}}" bindtap="phoneCall">
+          <image id="pink_phone" src="../../images/icon_phone_red.png"></image>
+        </view>
+      </view>
+      <view id="service_hint" class="P2_1 app_flex">
+        如您有任何疑问，敬请您致电客服电话，我们真诚地期待为您提供服务
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{continueFlag}}" class="bottom_white">
+    <button class="button-bottom_1" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBackIndex">返回首页</button>
+    <button class="button-bottom_2" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBack">继续预约下一人</button>
+  </view>
+</view>

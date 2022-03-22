@@ -1,0 +1,27 @@
+<view class="page">
+  <canvas canvas-id="shareCanvas" class="mycanvas"></canvas>
+
+  <view bindlongpress='saveInviteCard' class="mask">
+    <view style="position: relative;width: 100%;">
+      <image src="{{preview_url}}" class="mbbig" mode="widthFix"></image>
+    <view class="child child2" wx:if="{{value==''}}">
+    </view>
+    <view wx:else class="child">
+      <image src="{{value}}" mode="widthFix" style="width: 90%;"></image>
+    </view>
+
+    </view>
+
+    <text>\n</text>
+    <view class="bottomx">
+      <!-- <image src="../../images/2022ny/download.png" bindtap="scpaf" style="width: 100%;height: 100%;" mode="widthFix"></image>
+      <image src="../../images/2022ny/close@3x.png" bindtap="closeCanvas" style="width: 50rpx;height: 50rpx;position: absolute;left: 110%;top: 25%;" mode="scaleToFill"></image> -->
+
+      <button class="bcxc" bindtap="scpaf" style="width: 45%;">保存到相册</button>
+      <button open-type="share" class="zfpy" style="width: 45%;">分享给好友</button>
+    </view>
+    <loading hidden="{{hidden}}">
+      正在生成平安帖...
+    </loading>
+  </view>
+</view>

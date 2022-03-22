@@ -1,0 +1,8 @@
+<!--pages/index/mainPage.wxml-->
+<view class="page">
+<view class="image_column">
+  <image src="../../images/onsiteAppointment.png"></image>
+  <image src="../../images/checkRegister.png"></image>
+  <image src="../../images/appointmentRecord.png"></image>
+</view>
+</view>

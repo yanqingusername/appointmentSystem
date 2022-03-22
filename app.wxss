@@ -1,0 +1,166 @@
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
+
+/* 字体 下载地址 https://en.m.fontke.com/font/ */
+
+
+/* 阴影将ps数值转换成css数值 
+将#--> rgb  https://www.fontke.com/tool/rgb/dddddd/
+开始转换 https://psd2css.mezw.com/
+eg: 阴影： 颜色 距离 大小 角度 不透明度  **注意设计师提供的 距离和大小可能顺序颠倒
+*/
+/* http://www.nicetool.net/app/css_triangle_generator.html 三角形 */
+
+page{
+	background-color: #FFFFFF;
+  font-size: 16px;
+	font-family: "Microsoft YaHei";
+	color: #333333;
+}
+
+/* 小程序字体 */
+.app_font{
+	font-family: "Microsoft YaHei";
+    font-size: 30rpx;
+    color: #333333;
+}
+/* 用于表单 */
+.app_input_font{
+  	font-family: "Microsoft YaHei";
+    font-size: 32rpx;
+    color: #999999;
+}
+/* 用于登录中的描述 */
+.app_login_desc_font{
+	font-family: "Microsoft YaHei";
+    font-size: 26rpx;
+	color: #333333;
+	text-align: center;
+	margin-top: 10rpx;
+	margin-bottom: 10rpx;
+}
+/* 居左 */
+.app_login_desc_font_left{
+	font-family: "Microsoft YaHei";
+    font-size: 26rpx;
+	color: #333333;
+	text-align: left;
+	margin: 10rpx 30rpx;
+}
+/* 按钮样式需要自行设置高度和宽度 */
+.app_btn{
+	border-radius: 29rpx;
+	background-color:#327FF6;
+	opacity:1.0;
+	display: flex;
+  Justify-content:center;
+	align-items:center;	
+	font-family: "Microsoft YaHei";
+	color: #ffffff;
+	font-size: 32rpx;
+}
+/* 控件一行,且不换行 */
+.app_flex{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+}
+/* 卡片 */
+.app_card{
+	border-radius: 29rpx;
+    box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+}
+.app_card_font{
+	font-family: "Microsoft YaHei";
+    font-size: 26rpx;
+	color: #ffffff;
+}
+/* 没有任何信息 */
+.app_noinfo_img{
+	width: 150rpx;
+	height: auto;
+	margin: 50rpx 300rpx 30rpx 300rpx;
+}
+.app_noinfo_desc{
+	width: 100%;
+	text-align: center;
+	color: #999999;
+	font-size: 30rpx;
+}
+/* 标题 */
+.app_title{
+    width: 690rpx;
+	margin: 10rpx 30rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.app_title_icon{
+    width: 80rpx;
+    margin-right: 20rpx;
+    height: auto;
+}
+.app_title_info{
+    width: 590rpx;
+    text-align: left;
+    height: auto;
+    font-size: 36rpx;
+    font-weight: bold;
+}
+/* 头像 */
+.app_userAvatarUrl{
+	width: 150rpx;
+  	height:150rpx;
+  	border-radius:50%;
+  	display: flex;
+  	overflow:hidden;
+  	text-align: center;
+}
+/* 顶部导航栏 */
+.app_nav{
+	background-color: #FFFFFF;
+	position: fixed;
+    width: 750rpx;
+    height: 110rpx;
+    padding: 20rpx 30rpx 0 30rpx;
+	top:0;
+	text-align: center;
+    /* 空白段落不换行 */
+    white-space:nowrap;
+}
+.app_nav_item{
+	height: 90rpx;
+	display: inline-block;
+	line-height: 90rpx;
+	margin: 0 40rpx;
+	padding: 0 20rpx;
+}
+.app_nav_item_select{
+	color: #0081ff;
+	border-bottom: 4rpx solid;
+}
+.app_nav_bottom_info{
+	height: 120rpx;
+	width: 750rpx;
+}
+/* 底部留白 */
+.app_bottom_view{
+	width: 750rpx;
+	height: 100rpx;
+}
+/* .container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+	width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}  */

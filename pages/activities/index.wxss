@@ -1,0 +1,320 @@
+page {
+  /* height: 100%; */
+  width: 100%;
+  height: 100%;
+  font-family: PingFangSC-Regular;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 1500rpx;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-image: url('https://cloud.coyotebio-lab.com/a/bg1_3x.jpg');
+}
+
+.mt {
+  height: 832rpx;
+  width: 610rpx;
+  margin: auto;
+  border-radius: 25rpx;
+  position: relative;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-image: url('https://cloud.coyotebio-lab.com/a/dxk_3x.png');
+
+}
+
+.title {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 80rpx;
+  width: 90%;
+  margin: auto;
+}
+
+.Foka {
+  height: 100%;
+}
+
+.child {
+  height: 130rpx;
+  position: absolute;
+  left: 0rpx;
+  top: 2%;
+  right: 0;
+  bottom: 550rpx;
+}
+
+.scroll-view_H {
+  white-space: nowrap;
+  height: 110rpx;
+  width: 500rpx;
+  margin: auto;
+}
+
+.my_br {
+  width: 20rpx;
+  display: inline-block;
+}
+
+.layer4 {
+  height: 110rpx;
+  width: 110rpx;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 17rpx;
+  display: inline-block;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  position: relative;
+}
+
+
+
+
+.arrow {
+  display: inline-block;
+  border: 6px solid transparent;
+  border-top-color: #000;
+  margin-left: 8px;
+  position: relative;
+  top: 6rpx;
+}
+
+/* ---------------------------- */
+/*模态框*/
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.modal-cancel {
+  position: absolute;
+  z-index: 2000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.bottom-dialog-body {
+  width: 100%;
+  position: absolute;
+  z-index: 3000;
+  bottom: 0;
+  left: 0;
+  background: #dfdede;
+}
+
+/*动画前初始位置*/
+.bottom-positon {
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+
+/* 底部弹出框 */
+.bottom-positon {
+  text-align: center;
+}
+
+.Mselect {
+  font-size: 28rpx;
+  text-align: left;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 20rpx;
+}
+
+.Mselect view {
+  padding: 20rpx 0;
+  background: #fff;
+}
+
+.Mselect view:not(:last-of-type) {
+  border-bottom: 1px solid #ECECEC;
+}
+
+.pnt_bnt {
+  height: 170rpx;
+  width: 610rpx;
+  margin: auto;
+  border-radius: 100rpx;
+  text-align: center;
+  position: relative;
+}
+
+.bnt_child {
+  /* width: 300rpx; */
+  height: 30rpx;
+  position: absolute;
+  /* left: 220rpx;
+  top: 1130rpx; */
+  width: 100%;
+  /* top: 77%; */
+  bottom: 75rpx;
+  font-size: 18rpx;
+  /* right: 0; */
+  /* bottom: 550rpx; */
+  /* margin: auto; */
+  text-align: center;
+  color: #E35F5F;
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: #FE9362;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  -moz-opacity: 0.7;
+  opacity: 1;
+  filter: alpha(opacity=70);
+}
+
+.title_word_before {
+
+  width: 90%;
+  margin: auto;
+}
+
+.title_word {
+
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  color: #FFFFFF;
+  line-height: 32rpx;
+  font-weight: 400;
+
+}
+
+.title_line {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.titledata {
+  width: 90%;
+  position: absolute;
+  left: 5%;
+}
+
+.titledata2 {
+  color: white;
+  font-size: 22rpx;
+  line-height: 40rpx;
+}
+
+.mbbig {
+  border-radius: 25rpx;
+  width: 93%;
+  height: 93%;
+  left: 50%;
+  margin-left: -46.5%;
+  top: 3.5%;
+}
+
+.xl_view {
+  overflow: auto;
+  border-radius: 32rpx 32rpx 0 0;
+}
+
+.zfytext {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  font-size: 22rpx;
+  color: white;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.50);
+  font-weight: 600;
+  top: 10%;
+}
+
+.title_right {
+  margin-left: auto;
+}
+
+.child_2 {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.s_url {
+  width: 86%;
+  height: 86%;
+  left: 7%;
+  top: 6%;
+  border-radius: 12rpx;
+}
+
+.s_text {
+  font-size: 22rpx;
+  color: white;
+  position: absolute;
+  left: 30%;
+  top: 60%;
+}
+
+.buton1_3x {
+  width: 100%;
+  height: 100%;
+}
+
+.inner_block {
+  display: -webkit-inline-box;
+}
+
+.hdgz_icon {
+  width: 34rpx;
+  height: 34rpx;
+  left: 38%;
+  position: absolute;
+}
+
+.hdgz_view {
+  width: 500rpx;
+  height: 40rpx;
+  margin: auto;
+  text-align: center;
+  font-size: 22rpx;
+}
+
+.hzgz_text {
+  color: #FFCEAF;
+  font-size: 26rpx;
+  position: absolute;
+  left: 45%;
+}
+
+.modalName21 {
+  border-radius: 50rpx;
+  background-color: white;
+  color: #777777;
+}
+
+.modalName2_content {
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.modalName2_content2 {
+  font-size: 24rpx;
+  text-align: -webkit-auto;
+}
+
+.zfy_img {
+  width: 90%;
+  top: 40%;
+}

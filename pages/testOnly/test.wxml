@@ -1,0 +1,6 @@
+<view bindtap="bindOCR" class="gray_radius" style="margin:30rpx auto;margin-bottom:0;">
+  <view style="margin-left:150rpx;position:relative;top:4rpx;right:20rpx">
+    <image style="width:36rpx;height:34rpx" src="../../images/icon_camera.png"></image>
+  </view>
+  <view style="margin-right:130rpx;font-weight:500;font-size:30rpx">拍摄文字识别</view>
+</view>

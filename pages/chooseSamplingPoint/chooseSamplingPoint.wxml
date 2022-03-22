@@ -1,0 +1,100 @@
+<!--pages/myOrder/myOrder.wxml-->
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">选择采样点</view>
+</cu-custom>
+<view class="search_border">
+  <view class='search'>
+  <view class="search_left" bindtap="chooseDistrict">
+  <text id="district_font">{{sampling_place}}</text>
+        <image class="right_arrow" src="../../images/rightArrow.png"></image>
+  </view>
+    <input id="search_checked" type='text' placeholder='请输入采样点名称' confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' ></input>
+  <view class="weui-icon-clear" wx:if="{{searchText}}" bindtap="clearSearchHandle">
+    <icon type="clear" size="20" />
+  </view>
+  
+  </view>
+</view>
+<view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
+  <view class="P1" style="margin-top:160rpx">
+    <block wx:if="{{flag1}}" wx:for="{{channelList}}">
+      <view class="P2 app_font" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}"   data-id="{{item.channel_id}}" bindtap="bindCheckSamplingPoint">
+        <view class="app_flex">
+          <view class="bold_font">{{item.channel_name}}</view>
+          <view wx:if="{{hiddenFlag==false}}" class="bold_font_2">{{item.distance}}</view>
+        </view>
+        <view wx:for="{{item.workingTimeArr}}" wx:for-index="textIndex" wx:for-item="timeItem">
+          <view class="P2_1 app_flex">
+            <view class="P2_1_1" ><text wx:if="{{textIndex==0}}">营业时间</text></view>
+            <view class="P2_1_2" >{{timeItem}}</view>
+          </view>
+        </view>
+        <view class="P2_1 app_flex" style="margin-top:6rpx">
+            <view class="P2_1_1" ></view>
+            <view class="P2_1_2">{{item.work_time_remarks}}</view>
+        </view>
+        <view class="P2_1 app_flex">
+          <view class="P2_1_1" style="width:70%;color:#A3A3A3;margin-top:12rpx">{{item.site_description}}</view>
+          <view catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" class="icon_view_1">
+          <image class="icon_1" src="../../images/icon_positon_gray.png"></image>
+          </view>
+          <view class="icon_view_2" data-phone="{{item.cstn}}" catchtap="phoneCall">
+          <image class="icon_2" src="../../images/icon_phone.png"></image>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{flag2}}" wx:for="{{channelListPlus}}" >
+      <view class="P2 app_font" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}"bindtap="bindCheckSamplingPoint">
+        <view class="app_flex">
+          <view class="bold_font">{{item.channel_name}}</view>
+          <view wx:if="{{hiddenFlag==false}}" class="bold_font_2">{{item.distance}}</view>
+        </view>
+        <view wx:for="{{item.workingTimeArr}}" wx:for-index="textIndex" wx:for-item="timeItem">
+          <view class="P2_1 app_flex">
+            <view class="P2_1_1" ><text wx:if="{{textIndex==0}}">营业时间</text></view>
+            <view class="P2_1_2" >{{timeItem}}</view>
+          </view>
+          
+        </view>
+        <view class="P2_1 app_flex" style="margin-top:6rpx">
+            <view class="P2_1_1" ></view>
+            <view class="P2_1_2">{{item.work_time_remarks}}</view>
+        </view>
+        <!-- <view class="P2_1 app_flex">
+          <view class="P2_1_1" >营业时间</view>
+          <view class="P2_1_2" >普通检测:24小时</view>
+        </view>
+        <view class="P2_1 app_flex">
+          <view class="P2_1_1" ></view>
+          <view class="P2_1_2" >2-4小时加急检测：08:00-21:00</view>
+        </view>
+        <view class="P2_1 app_flex">
+          <view class="P2_1_1" ></view>
+          <view class="P2_1_2" >6-8小时加急检测：08:00-00:00</view>
+        </view> -->
+        <view class="P2_1 app_flex">
+          <view class="P2_1_1" style="width:70%;color:#A3A3A3;margin-top:12rpx">{{item.site_description}}</view>
+          <view catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" class="icon_view_1">
+          <image class="icon_1" src="../../images/icon_positon_gray.png"></image>
+          </view>
+          <view class="icon_view_2" data-phone="{{item.cstn}}" catchtap="phoneCall">
+          <image class="icon_2" src="../../images/icon_phone.png"></image>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view style="display:flex;justify-content:center">
+      <view  ><!-- wx:if="{{alreadyChecked==true}}" -->
+        <!-- <image  class="app_noinfo_img" src="../../image/nodata.png" mode="widthFix"></image> -->
+        <view class="app_noinfo_desc">{{tip}}</view>
+      </view>
+      <view  wx:if="{{alreadyChecked_temp==true}}">
+        <!-- <image class="app_noinfo_img" src="../../image/nodata.png" mode="widthFix"></image> -->
+        <view class="app_noinfo_desc">{{tip_temp}}</view>
+      </view>
+    </view>
+  </view>
+</view>

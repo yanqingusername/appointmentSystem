@@ -1,0 +1,33 @@
+<!--pages/index/mainPage.wxml-->
+<cu-custom isBack="{{false}}" bgColor="bg-white">
+  <view slot="backText"></view>
+  <view slot="content">卡尤迪核酸检测服务</view>
+</cu-custom>
+<view class="page">
+  <swiper wx:if="{{movies.length>0}}" class="swiper" indicator-dots="true" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000">
+    <block wx:for="{{movies}}" wx:for-index="index">
+      <swiper-item>
+        <image src="{{item.href}}" class="slide-image" bindtap="swipclick" mode="widthFix" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- <view wx:if="{{bannerPic==true}}">
+    <image src="../../images/bt_personalAppointment.png"></image>
+  </view> -->
+  <view class="image_column">
+    <view bindtap="bindOnsite" data-type="0">
+      <image src="../../images/bt_personalAppointment.png"></image>
+    </view>
+    <!-- <view hidden bindtap="bindOnsite" data-type="1">
+      <image src="../../images/bt_checkRegister@2x.png"></image>
+    </view> -->
+    <view bindtap="bindAppointment">
+      <image src="../../images/appointmentRecord.png"></image>
+    </view>
+  </view>
+
+  <view bindtap="bindCoupon" id="coupon_bottom">
+    <image style="width:58rpx;height:49rpx" src="../../images/coupon@3x.png"></image>
+    <view id="coupon_text">我的卡券</view>
+  </view>
+</view>

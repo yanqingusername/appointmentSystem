@@ -1,0 +1,31 @@
+<!--pages/coupon/coupon.wxml-->
+<cu-custom isBack="{{false}}" bgColor="bg-white" isCustom="{{true}}">
+  <view slot="backText"></view>
+  <view slot="content">我的卡券</view>
+</cu-custom>
+<view class="page">
+  <view wx:for="{{couponArr}}">
+    <view class="medWhite" >
+    <view class="sampleSite">
+      <view class="coupon_left">
+        <view><text class="left_top_leftfont">¥</text><text class="left_top_rightfont">{{item.account}}</text></view>
+        <view class="coupon_left_font">优惠券</view>
+      </view>
+     <view class="coupon_middle">
+      <view class="coupon_middle_topfont">{{item.name}}</view>
+      <view class="coupon_middle_middlefont">{{item.coupon_remark}}</view>
+      <view class="coupon_middle_bottomfont">{{item.end_time}} 到期</view>
+     </view>
+     <view style="width: 22%;">
+      <button wx:if="{{item.award_status==0&&item.overdueFlag==false}}" class="use_button" style="width:120rpx" bindtap="bindAppointment">去使用</button>
+     </view>
+     <image wx:if="{{item.award_status==1}}" style="width:100rpx;height:96rpx" mode="aspectFit" src="../../images/used@3x.png"></image>
+     <image wx:elif="{{item.award_status==0&&item.overdueFlag==true}}" style="width:100rpx;height:96rpx" mode="aspectFit" src="../../images/overdue@3x.png"></image>
+    </view>
+    </view> 
+
+  </view>
+  <view wx:if="{{couponArr.length==0}}" class="template_flex">
+    <view style="margin-top:100rpx">您暂无优惠券</view>
+  </view>
+</view>

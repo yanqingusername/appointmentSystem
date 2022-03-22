@@ -1,0 +1,332 @@
+<!--pages/createOrder/createOrder.wxml-->
+<cu-custom isBack="{{false}}" bgColor="bg-white" isCustom="{{true}}">
+  <view slot="backText"></view>
+  <view slot="content">卡尤迪新冠检测预约</view>
+</cu-custom>
+
+<view wx:if="{{showModal_2==false}}" class="page">
+  <form>
+    <swiper  wx:if="{{movies.length>0}}" indicator-dots="true" class="swiper" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000">
+      <block wx:for="{{movies}}" wx:for-index="index">
+        <swiper-item>
+          <image src="{{item.href}}" bindtap="swipclick" mode="widthFix" />
+        </swiper-item>
+      </block>
+    </swiper>
+
+    
+    <view>
+
+      <view style="height:2rpx;background-color:#F5F5F5"></view>
+      <view class="medWhite" bindtap="chooseChannel">
+        <view class="sampleSite">
+          <view style="position:relative;">
+            <image class="red_position" src="../../images/icon_position_red.png"></image>
+          </view>
+          <view style="width:80%">
+            <view class="font_1">{{channel.channel_name}}</view>
+
+            <view wx:for="{{workingTimeArr}}" wx:for-index="workIndex">
+              <view class="font_2"><text wx:if="{{workIndex==0}}" hidden="{{hiddenFlag}}">距离您{{channel.distance}}</text> <text wx:if="{{workIndex==0}}"> 营业时间 </text></view>
+
+              <view class="font_2"> {{item}}</view>
+            </view>
+            <view class="font_2">{{work_time_remarks}}</view>
+            <!-- <view  class="font_2"><text hidden="{{hiddenFlag}}">距离您{{channel.distance}}</text> 营业时间 普通检测：24h</view>
+        <view class="font_2">4小时内特急检服务 08:00-21:00</view>
+        <view class="font_2"> 8小时内加急检服务 08:00-00:00</view> -->
+          </view>
+          <view style="position:relative;">
+            <image class="right_arrow" src="../../images/rightArrow.png"></image>
+          </view>
+        </view>
+      </view>
+      <view id="module_1" class="P5 app_flex">
+        <view bindtap="changeOnlineFlag" id="module_2{{onlineid==1?'active':''}}" data-onlineid='1' class="P5_1 app_font">线上绑定身份</view>
+        <view bindtap="changeOnlineFlag" id="module_2{{onlineid==2?'active':''}}" data-onlineid='2' class="P5_1 app_font">线下刷身份证</view>
+      </view>
+      <view class="medWhite">
+
+        <view class="P5 app_flex" wx:if="{{onlineFlag==true&cardIndex==0}}">
+          <view bindtap="bindOCR" class="gray_radius" style="margin:30rpx auto;margin-bottom:0;">
+            <view style="margin-left:150rpx;position:relative;top:4rpx;right:20rpx">
+              <image style="width:36rpx;height:34rpx" src="../../images/icon_camera.png"></image>
+            </view>
+            <view style="margin-right:130rpx;font-weight:500;font-size:30rpx">拍摄身份证识别</view>
+          </view>
+        </view>
+        <view wx:if="{{onlineFlag==true}}" class="P5 app_flex">
+          <view class="P5_1 app_font">姓名</view>
+          <input class="P5_2 app_font" placeholder="请填写与证件一致的姓名" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="50" value="{{name}}"></input>
+        </view>
+        <view wx:if="{{onlineFlag==true}}" class="P5 app_flex">
+          <view class="P5_1 app_font">证件类型</view>
+          <view class="section" style="width: 70%;height:84rpx;margin-left:18rpx;font-size:30rpx">
+            <picker style="height:100%;margin-top:20rpx" bindchange="bindPickerChangeCard" value="{{cardIndex}}" range="{{cardList}}">
+              <view class="picker">
+                {{cardList[cardIndex]}}
+              </view>
+            </picker>
+          </view>
+          <view style="margin-right:26rpx">
+            <image class="right_arrow" src="../../images/rightArrow.png"></image>
+          </view>
+        </view>
+        <view wx:if="{{cardIndex!=0&&onlineFlag==true}}" class="P5 app_flex">
+          <view class="P5_1 app_font">性别</view>
+          <view class="section" style="width: 70%;height:84rpx;margin-left:18rpx;font-size:30rpx">
+            <picker style="height:100%;margin-top:20rpx" bindchange="bindPickerChangeGender" value="{{genderIndex}}" range="{{genderList}}">
+              <view class="picker">
+                {{genderList[genderIndex]}}
+              </view>
+            </picker>
+          </view>
+          <view style="margin-right:26rpx">
+            <image class="right_arrow" src="../../images/rightArrow.png"></image>
+          </view>
+        </view>
+        <view wx:if="{{cardIndex!=0&&onlineFlag==true}}" class="P5 app_flex">
+          <view class="P5_1 app_font" style="width:20%">年龄</view>
+          <input class="P5_2 " style="position:relative;right:-14rpx" type="number" placeholder="请输入年龄" placeholder-class="place_style" bindinput="bindAge" maxlength="3" value="{{age}}"></input>
+          <view style="padding:8rpx">
+            <!-- <image class="icon_clear" src="../../images/icon_clear.png"></image> -->
+          </view>
+        </view>
+        <view wx:if="{{onlineFlag==true}}" class="P5 app_flex">
+          <view class="P5_1 app_font">证件号</view>
+          <input class="P5_2 " style="position:relative;right:20rpx" type="{{keyboard_type}}" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" maxlength="{{keyboard_type_limit_num}}" value="{{idcard}}"></input>
+          <view id="clear_1" style="padding:16rpx" wx:if="{{idcard}}" bindtap="clearidcard">
+            <image class="icon_clear" src="../../images/icon_clear.png"></image>
+          </view>
+        </view>
+        <view class="P5 app_flex" id="{{onlineid==2?'phone_style_1':''}}">
+          <view class="P5_1 app_font">手机号</view>
+          <input class='P5_2 ' type="number" style="width:42%;" placeholder='请输入手机号码' placeholder-class="place_style" bindinput="bindPhone" maxlength="11" value="{{phone}}"></input>
+          <view id="the_second_clear" wx:if="{{phone}}" bindtap="clearPhone">
+            <image class="icon_clear" style="margin-right:0" src="../../images/icon_clear.png"></image>
+          </view>
+          <view class=" P3_code" bindtap="getCode" disabled="{{codeBtState}}" style="{{codeBtState?'color:#CCCCCC':'color:#E16898'}}">{{codeBtText}}</view>
+        </view>
+        <view class="P5 app_flex">
+          <view class="P5_1 app_font">验证码</view>
+          <input class='P5_2' style="position:relative;right:20rpx" type="number" placeholder='请输入验证码' placeholder-class="place_style" bindinput="bindCode" maxlength="4" value="{{code}}"></input>
+          <view id="the_third_clear" wx:if="{{code}}" bindtap="clearCode">
+            <image class="icon_clear" src="../../images/icon_clear.png"></image>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{choose_type==0}}">
+        <view class="medWhite">
+          <view class="title_1">
+            <view class="title_bold">检测类型</view>
+            <view class="title_right" bindtap="showPriceModal" hidden="{{sfgz_show==0?'hidden':''}}">查看收费规则详情</view>
+            <view style="align-self:center">
+              <image id="the_third_arrow" class="right_arrow" src="../../images/rightArrow.png"></image>
+            </view>
+          </view>
+          <view wx:for="{{detectionTypeArr}}">
+            <view style="{{item.grayFlag==true?'color:#D3D3D3':'black'}}" class="gray_radius {{typeid==item.id?'active':''}}" data-urgent='{{item.urgent}}' data-money='{{item.money}}' data-text='{{item.text}}' data-id='{{item.id}}' data-workingtime='{{item.working_time}}' bindtap="changeTestType">
+              <view>{{item.text}}</view>
+              <view>¥{{item.money}}.00</view>
+            </view>
+            <!-- <view class="gray_radius {{typeid==2?'active':''}}"  data-typeid='2' bindtap="changeTestType">
+          <view>6-8小时加急（8小时内出报告）</view>
+          <view>¥158.00</view>
+        </view>
+        <view class="gray_radius {{typeid==3?'active':''}}"  data-typeid='3' bindtap="changeTestType">
+          <view>2-4小时加急（4小时内出报告）</view>
+          <view>¥258.00</view>
+        </view> -->
+          </view>
+          <view style="height:10rpx"></view>
+        </view>
+        <view class="medWhite" hidden="{{channel.appointment_open=='0'?'hidden':''}}">
+          <view class="title_1">
+            <view class="title_bold" style="width:30%">预约时间</view>
+            <view style="width: 70%;display: inline-flex;justify-content: flex-end;">
+              <!-- <view id="pay_font" class="title_right" style="width: unset">10:00-24:00</view> -->
+              <picker mode="multiSelector" class="title_right" style="width: unset;margin-left:unset;color: #555555;font-size: 28rpx;" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{MultiArray}}">
+                <view class="picker">
+                  {{objectMultiArray[multiIndex[0]].date}} {{objectMultiArray[multiIndex[0]].time[multiIndex[1]].time_section}}
+                </view>
+              </picker>
+              <view style="align-self:center">
+                <image id="the_third_arrow" class="right_arrow" src="../../images/rightArrow.png"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view bindtap="bindCouponCheck" class="medWhite">
+          <view class="title_1">
+            <view class="title_bold" style="width:30%">优惠券</view>
+            <view wx:if="{{coupon_payment!='不使用'&&coupon_payment!='无'}}" id="coupon_payment">-¥{{coupon_payment}}</view>
+            <view wx:else id="coupon_payment">{{coupon_payment}}</view>
+            <view style="align-self:center">
+              <image id="the_third_arrow" class="right_arrow" src="../../images/rightArrow.png"></image>
+            </view>
+          </view>
+        </view>
+        <view class="medWhite">
+          <view class="title_1">
+            <view class="title_bold" style="width:30%">支付方式</view>
+            <view style="align-self:center;width:60%;direction:rtl;">
+              <image id="wechat_pay" class="right_arrow" src="../../images/icon_wechat.png"></image>
+            </view>
+            <view id="pay_font" class="title_right">微信支付</view>
+          </view>
+        </view>
+      </view>
+      <view>
+        <view wx:if="{{choose_type==1}}" class="medWhite">
+          <view class="title_1">
+            <view class="title_bold">购买渠道</view>
+          </view>
+          <view style="display:flex">
+            <view class="gray_radius_channel {{num==1?'active':''}}" data-num='1' bindtap="changeType">
+              <view>美团</view>
+            </view>
+            <view class="gray_radius_channel {{num==2?'active':''}}" data-num='2' bindtap="changeType">
+              <view>京东</view>
+            </view>
+          </view>
+          <view wx:if="{{num==1}}" class="P5 app_flex">
+            <view class="P5_1 app_font">核销码</view>
+            <input class="P5_2 app_font" style="padding-left:10rpx" placeholder="请输入核销码" placeholder-class="place_style" bindinput="bindVerificationCode" maxlength="50" value="{{verificationCode}}"></input>
+          </view>
+          <view style="height:10rpx"></view>
+        </view>
+      </view>
+      <view class="div_policy">
+        <checkbox-group bindchange="changePolicy">
+          <checkbox class='round pink' checked="{{policyChecked}}" id="privacy_radio"></checkbox>
+
+          <label for="privacy_radio" id="privacy_policy">
+            已阅读并同意 <text class="underline_gray" catchtap="bindYYXZ" hidden="{{yyxz_show==0?'hidden':''}}">预约须知</text><text hidden="{{yyxz_show==0?'hidden':''}}">、</text><text class="underline_gray" catchtap="bindUserProtocol">用户服务协议</text> 和 <text class="underline_gray" catchtap="bindPrivacyPolicy">隐私政策</text>
+          </label>
+        </checkbox-group>
+      </view>
+    </view>
+    <!-- 提交按钮 -->
+    <view id="button_whole" class="flex margin-bottom text-center">
+      <view wx:if="{{choose_type==0&&(coupon_payment=='不使用'||coupon_payment=='无')}}" id="button_left" class="basis-lg bg-grey  ">应付 ¥{{payment_amount}}.00</view>
+      <view wx:if="{{choose_type==0&&coupon_payment!='不使用'&&coupon_payment!='无'}}" id="button_left_coupon" class="basis-lg bg-grey  ">
+        <view wx:if="{{coupon_payment!=34.99}}" id="coupon_font_top">应付 ¥{{payment_amount-coupon_payment}}.00</view>
+        <view wx:if="{{coupon_payment==34.99}}" id="coupon_font_top">应付 ¥0.01</view>
+        <view id="coupon_font_bottom">已优惠¥{{coupon_payment}}</view>
+      </view>
+      <view wx:if="{{choose_type==1}}" id="button_left" style="padding-left:48rpx" class="basis-lg bg-grey  ">{{pay_channel}}</view>
+      <view id="button_right" bindtap="submitBuffer" class="basis-sm bg-grey">提交订单</view>
+    </view>
+
+    <view style="height:200rpx"></view>
+  </form>
+</view>
+
+<modalView show="{{showModal}}" noCancel="{{true}}" title="收费规则" bindcancel="modalCancel" bindconfirm='modalConfirm' confirmText='好的，我知道了' cancelText='自定义取消'>
+  <view class='modal-content'>
+    <scroll-view scroll-y class='main-content' id="main-content-1">
+      <!-- <view class="modal_font1">为了满足旅客出行需要和缓解火车站、机场等交通枢纽旅客滞留的压力和不同需求，卡尤迪的核酸检测服务分为三类，请您根据自己的需求选择购买：</view>
+        <view class="modal_font2">1. 普通检测：采样后24小时内出具核酸检测报告，检测费35元；</view>
+        <view class="modal_font3">2. 加急检测：采样后8小时内出具核酸检测报告，共计135元=35元检测费+100元加急服务费；</view>
+        <view class="modal_font3">3. 特急检测：采样后4小时内出具核酸检测报告，共计235元=35元检测费+200元特急服务费。</view> -->
+      <!-- <view class="modal_font2">为严格贯彻北京市医保局、市卫生健康委、市发展改革委、市财政局联合印发的《关于进一步规范本市新型冠状病毒核酸检测收费行为的通知》(京医保发〔2022〕4号)文件，即日起，卡尤迪北京核酸采样站停止收取“加急”费用，统一定价35元。</view> -->
+      <image src="{{sfgz_url}}" mode="widthFix" style="width: 100%;"></image>
+
+    </scroll-view>
+  </view>
+</modalView>
+<modalView show="{{showModal_2}}" noCancel="{{true}}" title="流行病学调查" bindcancel="modalCancel" bindconfirm='modalConfirm_2' confirmText='提交' cancelText='自定义取消'>
+  <view class='modal-content'>
+    <scroll-view scroll-y class='main-content'>
+      <view id="modal2_font1">14天内近期概况</view>
+      <form>
+        <radio-group class="block" bindchange="RadioChange1">
+          <view class="modal2_font2">1.{{surveyArr[0].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A1'?'checked':''" :checked="radio=='A1'?true:false" value="A1" data-val="1"></radio>是　　　　　
+            </label>
+            <label>
+              <radio class="pink" :class="radio=='A2'?'checked':''" checked="{{true}}" :checked="radio=='A2'?true:false" value="A2" data-val="0"></radio>否　
+            </label>　　　　
+          </view>
+        </radio-group>
+        <radio-group class="block" bindchange="RadioChange2">
+          <view class="modal2_font2">2.{{surveyArr[1].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A3'?'checked':''" :checked="radio=='A3'?true:false" value="A3" data-val="1"></radio>是　　　　　
+            </label>
+            <label>
+              <radio class="pink" :class="radio=='A4'?'checked':''" checked="{{true}}" :checked="radio=='A4'?true:false" value="A4" data-val="0"></radio>否
+            </label>
+          </view>
+        </radio-group>
+        <radio-group class="block" bindchange="RadioChange3">
+          <view class="modal2_font2">3.{{surveyArr[2].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A5'?'checked':''" :checked="radio=='A5'?true:false" value="A5" data-val="1"></radio>是　　
+            </label>　　　
+            <label>
+              <radio class="pink" :class="radio=='A6'?'checked':''" checked="{{true}}" :checked="radio=='A6'?true:false" value="A6" data-val="0"></radio>否
+            </label>
+          </view>
+        </radio-group>
+        <radio-group class="block" bindchange="RadioChange4">
+          <view class="modal2_font2">4.{{surveyArr[3].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A7'?'checked':''" :checked="radio=='A7'?true:false" value="A7" data-val="1"></radio>是　　
+            </label>　　　
+            <label>
+              <radio class="pink" :class="radio=='A8'?'checked':''" checked="{{true}}" :checked="radio=='A8'?true:false" value="A8" data-val="0"></radio>否
+            </label>
+          </view>
+        </radio-group>
+        <radio-group class="block" bindchange="RadioChange5">
+          <view class="modal2_font2">5.{{surveyArr[4].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A9'?'checked':''" :checked="radio=='A9'?true:false" value="A9" data-val="1"></radio>是　　
+            </label>　　　
+            <label>
+              <radio class="pink" :class="radio=='A10'?'checked':''" checked="{{true}}" :checked="radio=='A10'?true:false" value="A10" data-val="0"></radio>否
+            </label>
+          </view>
+        </radio-group>
+        <radio-group class="block" bindchange="RadioChange6">
+          <view class="modal2_font2">6.{{surveyArr[5].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A11'?'checked':''" :checked="radio=='A11'?true:false" value="A11" data-val="1"></radio>是　　
+            </label>　　　
+            <label>
+              <radio class="pink" :class="radio=='A12'?'checked':''" checked="{{true}}" :checked="radio=='A12'?true:false" value="A12" data-val="0"></radio>否
+            </label>
+          </view>
+        </radio-group>
+      </form>
+    </scroll-view>
+  </view>
+</modalView>
+<modalView show="{{showModal_3}}" noCancel="{{false}}" title="急检服务下单须知" bindcancel="modalCancel_3" bindconfirm='modalConfirm_3' confirmText='同意并继续' cancelText='返回上一步'>
+  <view class='modal-content'>
+    <scroll-view scroll-y class='main-content' id="main-content-1">
+
+      <!-- <view wx:if="{{timeModalFlag}}">
+          <view class="modal_font2">特别提醒：</view>
+          <view class="modal_font1">{{channel.channel_name}} {{payment_text}}<text style="color:#E06596">营业时间：{{payment_working_time}}，</text>请在营业时间内前往排队采样，避免无法检测影响您的行程。</view>
+          <view class="modal_font2">价格说明：</view>
+        </view> -->
+      <!-- <view class="modal_font1">为了满足旅客出行需要和缓解火车站、机场等交通枢纽旅客滞留的压力和不同需求，卡尤迪的核酸检测服务分为三类，请您根据自己的需求选择购买：</view>
+        <view class="modal_font2">1. 普通检测：采样后24小时内出具核酸检测报告，检测费35元；</view>
+        <view class="modal_font3">2. 加急检测：采样后8小时内出具核酸检测报告，共计135元=35元检测费+100元加急服务费；</view>
+        <view class="modal_font3">3. 特急检测：采样后4小时内出具核酸检测报告，共计235元=35元检测费+200元特急服务费。</view> -->
+      <view class="modal_font2">为严格贯彻北京市医保局、市卫生健康委、市发展改革委、市财政局联合印发的《关于进一步规范本市新型冠状病毒核酸检测收费行为的通知》(京医保发〔2022〕4号)文件，即日起，卡尤迪北京核酸采样站停止收取“加急”费用，统一定价35元。</view>
+
+    </scroll-view>
+  </view>
+</modalView>
+
+<timePicker pickerShow="{{startIsPickerShow}}" id="picker" wx:if="{{startIsPickerRender}}" bind:hidePicker="start_time_hide" bind:setPickerTime="set_start_time" config="{{pickerConfig}}"></timePicker>

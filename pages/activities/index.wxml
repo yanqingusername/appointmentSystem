@@ -1,0 +1,112 @@
+<view class="page">
+
+  <view class="title_word_before">
+    <text class="title_word">{{title_word}}</text>
+  </view>
+  <view class="title" bindtap="goNext">
+    <image src="{{dl_num>0?'../../images/2022ny/f2_3x.png':'../../images/2022ny/f1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>1?'../../images/2022ny/f2_3x.png':'../../images/2022ny/f1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>2?'../../images/2022ny/t2_3x.png':'../../images/2022ny/t1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>3?'../../images/2022ny/t2_3x.png':'../../images/2022ny/t1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>4?'../../images/2022ny/g2_3x.png':'../../images/2022ny/g1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>5?'../../images/2022ny/d2_3x.png':'../../images/2022ny/d1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>6?'../../images/2022ny/n2_3x.png':'../../images/2022ny/n1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <view class="title_right" >
+      <image src="{{tz_url}}" class="Foka" mode="heightFix"></image>
+      <image src="../../images/2022ny/arrow1_3x.png" class="Foka" mode="heightFix"></image>
+    </view>
+  </view>
+  <view class="title_line">
+    <image src="../../images/2022ny/jx.png" style="width: 100%;" mode="widthFix"></image>
+    <view class="titledata">
+      <text class="titledata2" style="float: left;">已有<text style="color: #FFFF00;">{{pat_num}}</text>份平安帖被送出</text>
+      <text class="titledata2" style="float: right;">已有<text style="color: #FFFF00;">{{get_pat_p_num}}</text>份平安礼被领取</text>
+    </view>
+  </view>
+  <view class="mt">
+    <image src="{{mb_data[m_index].m_url}}" mode="aspectFit" class="mbbig" bindtouchstart="startEvent" bindtouchend="endEvent">
+    </image>
+    <view class="child child_2" wx:if="{{value==''}}" >
+      <!-- <text>添加我的祝福语</text> -->
+      <image src="../../images/2022ny/zfy_3x.png" class="Foka" mode="heightFix" bindtap="getZFY"></image>
+    </view>
+    <view wx:else class="child" style="text-align: center;">
+      <!-- <text bindtap="getZFY"></text> -->
+      <image src="{{value}}" bindtap="getZFY" mode="widthFix" class="zfy_img"></image>
+    </view>
+  </view>
+  <scroll-view class="scroll-view_H" scroll-x="true">
+    <block wx:for="{{mb_data}}" wx:for-item="m" wx:for-index='windex'>
+
+      <view class="layer4" style="background-image: url({{m.m_bk}})" data-index="{{windex}}" bindtap="changeImage">
+
+        <image src="{{m.s_url}}" mode="widthFix" class="s_url">
+        </image>
+        <text class="s_text">{{m.s_text}}</text>
+      </view>
+      <view class="my_br"></view>
+    </block>
+  </scroll-view>
+  <text>\n</text>
+  <view class="pnt_bnt" bindtap="sq_tips">
+    <!-- <view>送出平安帖</view> -->
+    <image src="https://cloud.coyotebio-lab.com/a/buton1_3x.png" class="buton1_3x" mode="aspectFit"></image>
+    <view wx:if="{{remainTime>0}}" class="bnt_child">
+      <view class="inner_block">
+        <text>距活动结束:</text>
+      </view>
+      <view class="inner_block">
+        <view wx:if="{{countDownTxt.day>0}}"><text decode="{{true}}">{{countDownTxt.day}}&nbsp;天&nbsp;</text></view>
+        <view wx:else> </view>
+        <text decode="{{true}}">{{countDownTxt.hou}}&nbsp;时&nbsp;</text>
+        <text decode="{{true}}">{{countDownTxt.min}}&nbsp;分&nbsp;</text>
+        <text decode="{{true}}">{{countDownTxt.sec}}&nbsp;秒&nbsp;</text>
+      </view>
+    </view>
+    <view wx:else class="bnt_child">
+      <text>该活动已结束</text>
+    </view>
+  </view>
+  <view class="hdgz_view">
+    <image src="../../images/2022ny/hdgz.png" class="hdgz_icon"></image>
+
+    <text bindtap="showhdgz" class="hzgz_text">活动规则</text>
+  </view>
+
+  <view class="wrap">
+    <!-- modal -->
+    <view class="modal modal-bottom-dialog" bindtap="hideZFY" hidden="{{hideFlag}}" >
+      <view class="modal-cancel"></view>
+      <view class="bottom-dialog-body bottom-positon xl_view" animation="{{animationData}}" style="background-color: white;">
+        <!-- -->
+        <view class='Mselect'>
+          <view wx:for="{{zfy}}" wx:key="unique" data-value='{{item.p_url}}' data-id='{{item.id}}' data-text='{{item.text}}' catchtap='getOption' style="color: #777777;">
+            {{item.text}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="cu-modal {{modalName=='Modal'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">{{mz_text.title}}</view>
+        <view class="action" bindtap="hideModal"> <text class="cuIcon-close text-red"></text> </view>
+      </view>
+      <view class="padding-xl"> {{mz_text.content}}</view>
+    </view>
+  </view>
+  <view class="cu-modal {{modalName2=='Modal'?'show':''}}">
+    <view class="cu-dialog" style="border-radius: 50rpx; background-color: white;color: #777777;">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content" style="font-size: 36rpx;font-weight: 600;">{{hdgz.title}}</view>
+        <view class="action" bindtap="hideModal2"> <text class="cuIcon-close text-red"></text> </view>
+      </view>
+      <view class="padding-xl" style="font-size: 24rpx;text-align: -webkit-auto;">
+        <scroll-view scroll-y style='height:700rpx'>
+          <image src='{{hdgz.content}}' mode="widthFix"></image>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</view>

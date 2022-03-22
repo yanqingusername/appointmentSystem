@@ -1,0 +1,75 @@
+/* pages/createOrder/createOrder.wxss */
+/**index.wxss**/
+page{
+  background-color: #F5F5F5;
+}
+.page {
+  width: 100%;
+}
+.app_flex {
+  justify-content: initial;
+}
+.P5 {
+  width: 670rpx;
+  margin: 30rpx 30rpx 30rpx 6rpx;
+  height: auto;
+  /* border-bottom: 1px solid #F9F9F9; */
+  /* color: #BBBBBB; */
+}
+.P5_1 {
+  width: 25%;
+  padding: 20rpx 0 20rpx 20rpx;
+  height: 80rpx;
+  color: #080808;
+}
+.P5_2 {
+  width: 65%;
+  /* padding: 20rpx; */
+  height: 80rpx;
+  color: #555555;
+  position:relative;
+  right:20rpx;
+  text-align: initial;
+  font-family: "Microsoft YaHei";
+  font-size: 30rpx;
+  padding-left: 20rpx;
+}
+
+.medWhite {
+  background-color: #fff;
+  height: auto;
+  z-index: 999;
+  position: relative;
+  top: -27%;
+  width: 90%;
+  left: 5%;
+  right: 5%;
+  border-radius: 20rpx;
+  margin: 30rpx 30rpx 30rpx 0;
+  /* box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.06); */
+}
+
+.place_style {
+  color: #B1B1B1;
+  text-align: -webkit-left;
+  font-family: "Microsoft YaHei";
+  font-size: 30rpx;
+}
+#button_whole {
+  margin: auto;
+  width: 90%;
+}
+#button_right {
+  margin: auto;
+  background-color: #E06596;
+  padding: 26rpx;
+  border-radius: 50rpx;
+}
+
+.app_font{
+  color: #555555;
+}
+
+.basis-sm {
+  flex-basis: 60%;
+}

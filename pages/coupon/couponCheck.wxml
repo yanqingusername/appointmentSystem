@@ -1,0 +1,37 @@
+<!--pages/coupon/coupon.wxml-->
+<!-- <cu-custom isBack="{{false}}" bgColor="bg-white" isCustom="{{true}}">
+  <view slot="backText"></view>
+  <view slot="content">我的卡券</view>
+</cu-custom> -->
+<view class="page">
+  <radio-group bindchange="changeCoupon"  class="radio_flex" >
+  <view wx:for="{{couponArr}}" >
+  
+    <label>
+    <view  class="medWhite" data-payment="{{item.account}}" >
+    <view class="sampleSite">
+      <view class="coupon_left">
+        <view><text class="left_top_leftfont" style="{{item.grayFlag==true?'color:#D3D3D3':'#E56F9E'}}">¥</text><text class="left_top_rightfont" style="{{item.grayFlag==true?'color:#D3D3D3':'#E56F9E'}}">{{item.account}}</text></view>
+        <view class="coupon_left_font" style="{{item.grayFlag==true?'color:#D3D3D3':'#E56F9E'}}">优惠券</view>
+      </view>
+     <view class="coupon_middle">
+      <view class="coupon_middle_topfont" style="{{item.grayFlag==true?'color:#D3D3D3':'black'}}" >{{item.name}}</view>
+      <view class="coupon_middle_middlefont" style="{{item.grayFlag==true?'color:#D3D3D3':'#B5B5B5'}}" >{{item.coupon_remark}}</view>
+      <view class="coupon_middle_bottomfont" style="{{item.grayFlag==true?'color:#D3D3D3':'#B5B5B5'}}" >{{item.end_time}} 到期</view>
+     </view>
+     <view style="width: 16%;text-align: center;">
+      <radio value="{{item.account}}+{{item.coupon_id}}"  class='pink' checked='{{item.coupon_id==old_coupon_id?true:false}}'></radio>
+     </view>
+    </view>
+    </view> 
+   </label>
+  </view>
+</radio-group>
+  <view  class="bottom_white" >
+    <button class="button-bottom_1" style="margin-bottom:{{isIphoneX?40:20}}rpx" bindtap="bindBackIndex">不使用</button>
+    <button class="button-bottom_2" style="margin-bottom:{{isIphoneX?40:20}}rpx" bindtap="bindBack">确认</button>
+  </view>
+  <view wx:if="{{couponArr.length==0}}" class="template_flex">
+    <view style="margin-top:100rpx">您暂无优惠券</view>
+  </view>
+</view>

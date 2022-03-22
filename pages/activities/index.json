@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "福福帖帖过大年",
+  "usingComponents": {
+  },
+  "navigationBarBackgroundColor":"#FE9362",
+  "disableScroll":false,
+  "navigationStyle":"default",
+  "navigationBarTextStyle": "white",
+  "backgroundTextStyle": "light"
+}

@@ -1,0 +1,28 @@
+<view class="page">
+  <view style="height:2rpx;background-color:#F5F5F5"></view>
+  <view class="medWhite">
+    <view class="P5 app_flex">
+      <view class="P5_1 app_font">汇报上级</view>
+      <input class="P5_2" type="text" placeholder="请输入汇报上级" placeholder-class="place_style" bindinput="bindReportPerson" maxlength="100" value="{{reportPerson}}"></input>
+    </view>
+
+    <view class="P5 app_flex">
+      <view class="P5_1 app_font">姓名</view>
+      <input class="P5_2" type="text" placeholder="请输入姓名" placeholder-class="place_style" bindinput="bindName" maxlength="100" value="{{name}}"></input>
+    </view>
+    <view class="P5 app_flex">
+      <view class="P5_1 app_font">手机号</view>
+      <input class="P5_2" type="number" placeholder="请输入手机号" placeholder-class="place_style" bindinput="bindPhone" maxlength="11" value="{{phone}}"></input>
+    </view>
+    <view class="P5 app_flex">
+      <view class="P5_1 app_font">公司邮箱</view>
+      <input class="P5_2" type="text" placeholder="请输入公司邮箱" placeholder-class="place_style" bindinput="bindEmail" maxlength="100" value="{{email}}"></input>
+    </view>
+  </view>
+  <text>\n</text>
+  <text>\n</text>
+  <view id="button_whole" class="flex margin-bottom text-center">
+    <view id="button_right" bindtap="submitData" class="basis-sm bg-grey">提交信息</view>
+  </view>
+
+</view>

@@ -1,0 +1,16 @@
+<view class="page">
+<view class="page2">
+  <image src="{{hb_url}}" class="mbbig" mode="widthFix"></image>
+  <image src="{{zfy_url}}" class="mbbig" style="  top: 14%;width: 90%;left: 5%;" mode="widthFix"></image>
+</view>
+
+<view class="bottom1">
+    <view class="bottom2">{{text1}}<text style="color: #FFE179;">{{num}}</text>{{text2}}</view>
+    <view class="bottom3">送平安帖 赢平安礼 卡尤迪陪您福福帖帖过大年！</view>
+  </view>
+<text>\n</text>
+  <view style="text-align: center;">
+    <image src="../../images/2022ny/wys.png" mode="widthFix" bindtap="goNext" style="width: 70%;"></image>
+  </view>
+  <text>\n</text>
+</view>

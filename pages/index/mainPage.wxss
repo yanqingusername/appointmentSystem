@@ -1,0 +1,16 @@
+/* pages/index/mainPage.wxss */
+.page{
+  width:100%;
+  overflow-x:hidden;
+}
+.image_column{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+}
+image{
+  margin: auto;
+  height: 260rpx;
+  width: 100%;
+}

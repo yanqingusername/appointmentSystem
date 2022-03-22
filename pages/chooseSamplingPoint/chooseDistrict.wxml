@@ -1,0 +1,17 @@
+<!--pages/chooseSamplingPoint/chooseDistrict.wxml-->
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">选择所在地区</view>
+</cu-custom>
+<view class="p1">
+  <view class="p1_1">
+  北京
+  </view>
+  <view class="p1_2">
+    <view class="district_arr" wx:for="{{arr}}" data-sp="{{item.sampling_place}}" bindtap="bindBackToChannel">
+    {{item.sampling_place}}　　　　　　　　　　{{item.num}}
+    <view class="hr"></view>
+    </view>
+    
+  </view>
+</view>

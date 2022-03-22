@@ -1,0 +1,6 @@
+<!--pages/invoice/invoice.wxml-->
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">开发票系统</view>
+</cu-custom>
+<web-view src="{{url}}"></web-view>
