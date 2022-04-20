@@ -1,0 +1,262 @@
+page{
+  background-color: #F5F5F5;
+  width:100%;
+  overflow-x:hidden;
+}
+
+.page{
+  width:100%;
+  overflow-x:hidden;
+  /* height: 100%; */
+  background-color: #F5F5F5;
+}
+
+.app_flex{
+  justify-content: initial;
+}
+
+.P5{
+  width: 670rpx;
+  margin: 30rpx 30rpx 30rpx 6rpx;
+  height:auto;
+  /* border-bottom: 1px solid #F9F9F9; */
+  /* color: #BBBBBB; */
+}
+.P5_1{
+  width: 25%;
+  padding: 20rpx 0 20rpx 20rpx;
+  height: 80rpx;
+  color: #080808;
+}
+.P5_2{
+  width: 65%;
+  /* padding: 20rpx; */
+  height: 80rpx;
+  color: #555555; 
+  
+  text-align: initial;
+  font-family: "Microsoft YaHei";
+    font-size: 30rpx;
+    padding-left: 20rpx;
+}
+
+
+.active{
+  text-align: center;
+  background-color: #1673EC;
+  color:#FFFFFF;
+  /* position: absolute; */
+  width: 160rpx;
+  margin: 10rpx;
+  display: inline-block;
+  height: 60rpx;
+  border: 8rpx solid #1673EC;
+  border-radius: 15rpx;
+}
+
+.medWhite{
+  background-color: #fff;
+  height: auto;
+  z-index: 999;
+  position: relative;
+  top: -27%;
+  width: 90%;
+  left: 5%;
+  right: 5%;
+  border-radius: 20rpx;
+  margin: 30rpx 30rpx 30rpx 0;
+  /* box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.06); */
+}
+.medWhite.active{
+  background-color: #fff;
+  height: auto;
+  z-index: 999;
+  position: relative;
+  top: -27%;
+  width: 90%;
+  left: 5%;
+  right: 5%;
+  border-radius: 20rpx;
+  margin: 30rpx 30rpx 30rpx 0;
+  pointer-events: none;
+  /* box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.06); */
+}
+
+.right_arrow{
+  height: 50rpx;
+  width: 60rpx;
+}
+
+
+
+.P3_code{
+  align-self: center;
+  width:37%;
+  text-align: right;
+  font-size: 30rpx;
+  padding-right: 30rpx;
+  /* bottom: 2rpx; */
+}
+.app_font{
+  color: #555555;
+}
+.place_style{
+  color: #B1B1B1; 
+  text-align: -webkit-left;
+  font-family: "Microsoft YaHei";
+  font-size: 30rpx;
+}
+
+.gray_radius{
+  background-color: #F5F5F5;
+  border-radius: 10rpx;
+  margin:0 26rpx 26rpx 26rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx 0rpx;
+  color: #555555;
+  font-size: 28rpx;
+  border:4rpx solid #F5F5F5;
+}
+.gray_radius.active{
+  background-color: #F5F5F5;
+  border-radius: 10rpx;
+  margin:0 26rpx 26rpx 26rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx 0rpx;
+  color: #555555;
+  font-size: 28rpx;
+  border:4rpx solid #E06596;
+}
+.icon_clear{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 30rpx;
+}
+#the_second_clear{
+  padding: 16rpx;
+  position: absolute;
+  /* top: 496rpx; */
+  right: 200rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 111;
+}
+
+
+#module_1{
+  left: 5%;
+  position: relative;
+  border-radius: 20rpx;
+  background-color: #E1E1E1;
+}
+#module_2{
+  width: 50%;
+  background-color: #E1E1E1;
+  border-radius: 20rpx;
+  color: #787878;
+  text-align: center;
+}
+#module_2active{
+  width: 50%;
+  background-color: #E06596;
+  border-radius: 20rpx;
+  color: white;
+  text-align: center;
+  
+}
+#phone_style_1{
+  padding-top: 20rpx;
+}
+
+
+
+
+
+
+#clear_1{
+  padding: 8rpx;
+  position:absolute;
+  right: -10rpx;
+
+}
+#the_third_clear{
+  padding: 16rpx;
+  position:absolute;
+  right: -20rpx;
+}
+
+.button_gray{
+  margin-top: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 670rpx;
+height: 88rpx;
+background: #E26396;
+border-radius: 44rpx;
+opacity: 0.6;
+border: 1px solid #E06596;
+font-size: 34rpx;
+font-weight: 500;
+color: #FFFFFF;
+left: 5%;
+    position: relative;
+}
+
+.button_submit{
+  margin-top: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 670rpx;
+height: 88rpx;
+background: #E26396;
+border-radius: 44rpx;
+border: 1px solid #E06596;
+font-size: 34rpx;
+font-weight: 500;
+color: #FFFFFF;
+left: 5%;
+    position: relative;
+}
+
+.notice_view{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin: 30rpx 30rpx 30rpx 0;
+    padding: 30rpx 0rpx 30rpx 30rpx;
+    left: 5%;
+    right: 5%;
+    position: relative;
+}
+
+.notice_left{
+  display: flex;
+  align-items: center;
+}
+
+.notice_left_img{
+  width: 28rpx;
+  height: 36rpx;
+}
+
+.notice_left_title{
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  color: #E0694D;
+}
+
+.button_delete{
+  margin-top: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+font-weight: 400;
+color: #666666;
+}

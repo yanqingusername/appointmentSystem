@@ -1,7 +1,7 @@
 
 <!--components/model/model.wxml-->
 <view class='modal-mask' wx:if='{{show}}'  >
-  <view class='modal-content'>
+  <view class='modal-content' wx:if="{{types == 0}}">
     <view class='main-content'>
       <view class="main-title">{{title}}</view>
       <scroll-view scroll-y>
@@ -10,7 +10,15 @@
     </view>
     <view class='modal-footer'>
       <view wx:if='{{!noCancel}}' class='cancel-btn' bindtap='cancel'>{{cancelText}}</view>
-      <view class='confirm-btn' bindtap='confirm'>{{confirmText}}</view>
+      <view class='confirm-btn' style="margin-left:{{!noCancel ? '26' : '0'}}rpx;" bindtap='confirm'>{{confirmText}}</view>
     </view>
   </view>
+  <view class="concent" wx:if="{{types == 1}}">
+		<view class="title">{{datas.title}} </view>
+		<view class="explain">{{datas.titles}}</view>
+		<view class="details">
+			<view class="cancel" bind:tap="dialogCancel">{{datas.cancel||"取消"}}</view>
+			<view class="sure" bind:tap="dialogSure">{{datas.sure||"确认"}}</view>
+		</view>
+	</view>
 </view>

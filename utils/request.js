@@ -6,7 +6,7 @@
 
 // 参数配置
 //var apiurl = 'http://localhost:8080/flash20AppletBackend'         // 本地测试
-//var apiurl = 'https://store.coyotebio-lab.com:8443/lis_appointment'    // 测试服务器
+// var apiurl = 'https://store.coyotebio-lab.com:8443/lis_appointment'    // 测试服务器
 //var apiurl = 'http://xmr.coyotebio-lab.com/lis_appointment'    // 测试服务器
 //var apiurl = 'https://cloud.coyotebio-lab.com:8443/lis_appointment'    // 服务器
 //8.130.48.31

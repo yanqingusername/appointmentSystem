@@ -28,6 +28,13 @@ Component({
       type: String,
       value: '提交'
     },
+    types: {
+      type: String,
+      value: "0"
+    },
+    datas: { //----展示参数
+      type: Object
+    },
   },
  
   /**
@@ -55,6 +62,14 @@ Component({
     confirm() {
       // this.setData({ show: false })
       this.triggerEvent('confirm')
-    }
+    },
+    dialogCancel() {
+      this.setData({ show: false })
+      this.triggerEvent('dialogCancel', '')
+    },
+    dialogSure() {
+      this.setData({ show: false })
+      this.triggerEvent('dialogSure', '')
+    },
   }
 })

@@ -46,8 +46,9 @@
           <!-- <web-view src="https://mp.weixin.qq.com/s/q-ns2FxMhsDqrFa-L4vtsA">hhh</web-view> -->
           <button id="button_1" wx:if="{{item.sendbutn==1}}" catchtap="bpa">给亲友报平安</button>
           <button hidden wx:if="{{item.use_status==4}}" id="button_1" catchtap="bindInvoice">开发票</button>
-          <button wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" id="button_1" catchtap="bindRefund">申请退款</button>
+          <button wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindRefund">申请退款</button>
           <!-- <button id="button_2">升级快检</button> -->
+          <button id="button_2" wx:if="{{item.use_status==1}}">查看信息码</button>
           <button wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</button>
         </view>
       </view>
@@ -79,8 +80,9 @@
           <!-- <web-view src="https://mp.weixin.qq.com/s/q-ns2FxMhsDqrFa-L4vtsA">hhh</web-view> -->
           <button id="button_1" wx:if="{{item.sendbutn==1}}" catchtap="bpa">给亲友报平安</button>
           <button hidden wx:if="{{item.use_status==4}}" id="button_1" catchtap="bindInvoice">开发票</button>
-          <button wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" id="button_1" catchtap="bindRefund">申请退款</button>
+          <button wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindRefund">申请退款</button>
           <!-- <button id="button_2">升级快检</button> -->
+          <button id="button_2" wx:if="{{item.use_status==1}}">查看信息码</button>
           <button wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</button>
         </view>
       </view>

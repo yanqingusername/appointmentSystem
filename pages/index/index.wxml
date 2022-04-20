@@ -15,14 +15,14 @@
     <image src="../../images/bt_personalAppointment.png"></image>
   </view> -->
   <view class="image_column">
-    <view bindtap="bindOnsite" data-type="0">
-      <image src="../../images/bt_personalAppointment.png"></image>
+    <view bindtap="bindOnsite" data-type="0" class="view_item">
+      <image src="../../images/bt_personalAppointment.png" class="view_img"></image>
     </view>
     <!-- <view hidden bindtap="bindOnsite" data-type="1">
       <image src="../../images/bt_checkRegister@2x.png"></image>
     </view> -->
-    <view bindtap="bindAppointment">
-      <image src="../../images/appointmentRecord.png"></image>
+    <view bindtap="bindAppointment"  class="view_item" style="padding: 0rpx 0rpx 20rpx 0rpx;">
+      <image src="../../images/appointmentRecord.png" class="view_img"></image>
     </view>
   </view>
 

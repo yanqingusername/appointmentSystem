@@ -113,7 +113,7 @@ getAppointmentInfo: function () {
           that.setData({
             payment_way:'线上支付（公众号）'
           })
-        }else if(info.payment_type==1){
+        }else if(info.payment_type==5){
           that.setData({
             payment_way:'核销码（美团）'
           })
@@ -159,7 +159,9 @@ getAppointmentInfo: function () {
           latitude:info.latitude,
           longitude:info.longitude,
           yysj1:info.yysj1,
-          yysj2:info.yysj2
+          yysj2:info.yysj2,
+          verification_code: info.verification_code,
+          payment_type: info.payment_type
         })
         console.log('creator_id' + that.data.creator_id)
         console.log('app.globalData.userInfo.id' + app.globalData.userInfo.id)

@@ -9,7 +9,7 @@
   top: 0;
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
-  z-index: 999;
+  z-index: 1002;
 }
 /*遮罩内容*/
 .modal-content{
@@ -69,4 +69,71 @@
 .main-title{
   font-weight: 500;
   font-size: 34rpx;
+}
+
+.concent {
+  width: 590rpx;
+  background-color: #ffffff;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60rpx 0rpx 0rpx;
+  position: relative;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 1.5;
+  width: 80%;
+  text-align: center;
+}
+
+.explain {
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  margin: 40rpx 70rpx 0rpx;
+  justify-content: center;
+  text-align: center;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40rpx;
+  width: 100%;
+}
+
+.cancel {
+  width: 50%;
+  height: 88rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #666666;
+  border-top: 1px solid #E9E9E9;
+  border-right: 1px solid #E9E9E9;
+  line-height: 88rpx;
+}
+
+.sure {
+  width: 50%;
+  height: 88rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #E06596;
+  border-top: 1px solid #E9E9E9;
+  line-height: 88rpx;
 }

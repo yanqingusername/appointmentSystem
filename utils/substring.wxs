@@ -1,0 +1,49 @@
+ // 截取字符串长度
+ var subStringName = function (val) {
+    if (!val) {
+      return false
+    }
+    return val.length > 1 ? val.substring(0,1) : val
+  }
+
+  var monthString = function (timeString) {
+    if (!timeString) {  //2022-03-08 15:23:99
+      return false
+    }
+    var month = timeString.substring(5,10)
+    return month
+  }
+
+  var timeString = function (timeString) {
+    if (!timeString) {  //2022-03-08 15:23:99
+      return false
+    }
+    var time = timeString.substring(11,16)
+    return time
+  }
+
+  var centerPhoneTrim = function(params){
+    if (!params) {  // 18798799876
+    return ""
+    }
+    var param = params.replace(getRegExp('(\d{3})(.*)(\d{4})','g'), '$1 $2 $3')
+      return param
+  }
+
+  var centerIdCardTrim = function(params){
+    if (!params) {  // 18798799876
+    return ""
+    }
+    var param = params.replace(getRegExp('(\d{6})(.*)(\d{4})','g'), '$1 $2 $3')
+      return param
+  }
+  
+
+
+  module.exports = {
+    subStringName: subStringName,
+    monthString: monthString,
+    timeString: timeString,
+    centerPhoneTrim: centerPhoneTrim,
+    centerIdCardTrim: centerIdCardTrim
+}

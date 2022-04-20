@@ -18,7 +18,9 @@
     "pages/index/mainPage",
     "pages/checkRegister/checkRegister",
     "pages/logs/logs",
-    "pages/employee/employeeInfo"
+    "pages/employee/employeeInfo",
+    "pages/addSubject/index",
+    "pages/selectSubject/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

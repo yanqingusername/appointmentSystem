@@ -1,4 +1,6 @@
 <!--pages/createOrder/createOrder.wxml-->
+<wxs src="../../utils/substring.wxs" module="tools" />
+
 <cu-custom isBack="{{false}}" bgColor="bg-white" isCustom="{{true}}">
   <view slot="backText"></view>
   <view slot="content">卡尤迪新冠检测预约</view>
@@ -18,6 +20,16 @@
     <view>
 
       <view style="height:2rpx;background-color:#F5F5F5"></view>
+
+      <!-- 公告 -->
+      <view class="notice_view" bind:tap="bindNoticeClick" wx:if="{{is_promise == 1}}">
+        <view class="notice_left">
+          <image class="notice_left_img" src="../../images/icon_notice_slices.png"></image>
+          <view class="notice_left_title">卡尤迪绝不向用户收取任何形式“加急费”</view>
+        </view>
+        <image class="right_arrow" src="../../images/rightArrow.png"></image>
+      </view>
+
       <view class="medWhite" bindtap="chooseChannel">
         <view class="sampleSite">
           <view style="position:relative;">
@@ -32,6 +44,7 @@
               <view class="font_2"> {{item}}</view>
             </view>
             <view class="font_2">{{work_time_remarks}}</view>
+            <view style="height:10rpx;"></view>
             <!-- <view  class="font_2"><text hidden="{{hiddenFlag}}">距离您{{channel.distance}}</text> 营业时间 普通检测：24h</view>
         <view class="font_2">4小时内特急检服务 08:00-21:00</view>
         <view class="font_2"> 8小时内加急检服务 08:00-00:00</view> -->
@@ -41,7 +54,28 @@
           </view>
         </view>
       </view>
-      <view id="module_1" class="P5 app_flex">
+
+      <!-- 添加受检人 -->
+      <view class="subject_view" bind:tap="bindAddSubject" wx:if="{{isAddSubject == 0}}">
+        <view class="subject_view_red"></view>
+        <view class="subject_view_white"><image  class="icon_add" src="../../images/icon_add.png"/>添加受检人</view>
+      </view>
+
+      <view class="subject_view" bind:tap="bindSelectSubject" wx:if="{{isAddSubject == 1}}">
+        <view class="subject_view_red" style="height: 230rpx;"></view>
+        <view class="subject_view_bg">
+            <view style="width:90%">
+              <view class="subject_title">{{name ? name : '-'}}</view>
+              <view class="subject_text" style="margin-top:20rpx;">{{card_name}} {{idcard?tools.centerIdCardTrim(idcard):'-'}}</view>
+              <view class="subject_text" style="margin-top:22rpx;">手机号 {{tools.centerPhoneTrim(phone)}}</view>
+            </view>
+            <view style="position:relative;">
+              <image class="right_arrow" src="../../images/rightArrow.png"></image>
+            </view>
+        </view>
+      </view>
+
+      <!-- <view id="module_1" class="P5 app_flex">
         <view bindtap="changeOnlineFlag" id="module_2{{onlineid==1?'active':''}}" data-onlineid='1' class="P5_1 app_font">线上绑定身份</view>
         <view bindtap="changeOnlineFlag" id="module_2{{onlineid==2?'active':''}}" data-onlineid='2' class="P5_1 app_font">线下刷身份证</view>
       </view>
@@ -89,7 +123,6 @@
           <view class="P5_1 app_font" style="width:20%">年龄</view>
           <input class="P5_2 " style="position:relative;right:-14rpx" type="number" placeholder="请输入年龄" placeholder-class="place_style" bindinput="bindAge" maxlength="3" value="{{age}}"></input>
           <view style="padding:8rpx">
-            <!-- <image class="icon_clear" src="../../images/icon_clear.png"></image> -->
           </view>
         </view>
         <view wx:if="{{onlineFlag==true}}" class="P5 app_flex">
@@ -114,20 +147,23 @@
             <image class="icon_clear" src="../../images/icon_clear.png"></image>
           </view>
         </view>
-      </view>
-      <view wx:if="{{choose_type==0}}">
+      </view> -->
+
+      <view>
         <view class="medWhite">
           <view class="title_1">
             <view class="title_bold">检测类型</view>
-            <view class="title_right" bindtap="showPriceModal" hidden="{{sfgz_show==0?'hidden':''}}">查看收费规则详情</view>
-            <view style="align-self:center">
-              <image id="the_third_arrow" class="right_arrow" src="../../images/rightArrow.png"></image>
+            <view class="title_view">
+              <view class="title_right" style="margin-left: 0rpx;" bindtap="showPriceModal" hidden="{{sfgz_show==0?'hidden':''}}">查看收费规则详情</view>
+              <view style="align-self:center">
+                <image id="the_third_arrow" class="right_arrow" src="../../images/rightArrow.png"></image>
+              </view>
             </view>
           </view>
           <view wx:for="{{detectionTypeArr}}">
-            <view style="{{item.grayFlag==true?'color:#D3D3D3':'black'}}" class="gray_radius {{typeid==item.id?'active':''}}" data-urgent='{{item.urgent}}' data-money='{{item.money}}' data-text='{{item.text}}' data-id='{{item.id}}' data-workingtime='{{item.working_time}}' bindtap="changeTestType">
+            <view style="{{item.grayFlag==true?'color:#D3D3D3':'black'}}" class="gray_radius {{(typeid==item.id && detectionTypeArr.length > 1)?'active':''}}" data-urgent='{{item.urgent}}' data-money='{{item.money}}' data-text='{{item.text}}' data-id='{{item.id}}' data-workingtime='{{item.working_time}}' bindtap="changeTestType">
               <view>{{item.text}}</view>
-              <view>¥{{item.money}}.00</view>
+              <view>¥{{item.money}}</view>
             </view>
             <!-- <view class="gray_radius {{typeid==2?'active':''}}"  data-typeid='2' bindtap="changeTestType">
           <view>6-8小时加急（8小时内出报告）</view>
@@ -156,17 +192,19 @@
             </view>
           </view>
         </view>
-        <view bindtap="bindCouponCheck" class="medWhite">
+        <view bindtap="bindCouponCheck" class="medWhite" wx:if="{{choose_type==0}}">
           <view class="title_1">
             <view class="title_bold" style="width:30%">优惠券</view>
-            <view wx:if="{{coupon_payment!='不使用'&&coupon_payment!='无'}}" id="coupon_payment">-¥{{coupon_payment}}</view>
-            <view wx:else id="coupon_payment">{{coupon_payment}}</view>
-            <view style="align-self:center">
-              <image id="the_third_arrow" class="right_arrow" src="../../images/rightArrow.png"></image>
+            <view class="title_view">
+              <view wx:if="{{coupon_payment!='不使用'&&coupon_payment!='无'}}" id="coupon_payment">-¥{{coupon_payment}}</view>
+              <view wx:else id="coupon_payment">{{coupon_payment}}</view>
+              <view style="align-self:center">
+                <image id="the_third_arrow" class="right_arrow" src="../../images/rightArrow.png"></image>
+              </view>
             </view>
           </view>
         </view>
-        <view class="medWhite">
+        <!-- <view class="medWhite">
           <view class="title_1">
             <view class="title_bold" style="width:30%">支付方式</view>
             <view style="align-self:center;width:60%;direction:rtl;">
@@ -174,9 +212,43 @@
             </view>
             <view id="pay_font" class="title_right">微信支付</view>
           </view>
-        </view>
+        </view> -->
       </view>
       <view>
+        <view class="medWhite">
+          <view class="title_1">
+            <view class="title_bold">支付方式</view>
+          </view>
+          <view style="display:flex;align-items: center;justify-content: space-evenly;">
+            <view class="new_gray_radius {{num==0?'active':''}}" data-num='0' bindtap="changeType">
+              <image class="icon_img" src="../../images/icon_wechat_new.png"></image>
+              <view class="icon_title">微信支付</view>
+              <image wx:if="{{num==0}}" class="icon_select_img" src="../../images/bala_current_cz.png"></image>
+            </view>
+            <view class="new_gray_radius {{num==1?'active':''}}" data-num='1' bindtap="changeType">
+              <image class="icon_img" src="../../images/icon_meituan_new.png"></image>
+              <view class="icon_title">美团</view>
+              <image wx:if="{{num==1}}" class="icon_select_img" src="../../images/bala_current_cz.png"></image>
+            </view>
+            <view class="new_gray_radius {{num==2?'active':''}}" data-num='2' bindtap="changeType">
+              <image class="icon_img" src="../../images/icon_jd_new.png"></image>
+              <view class="icon_title">京东</view>
+              <image wx:if="{{num==2}}" class="icon_select_img" src="../../images/bala_current_cz.png"></image>
+            </view>
+          </view>
+          <view wx:if="{{num==1 || num==2}}" class="P5 app_flex" style="margin-bottom: 0rpx;">
+            <view class="P5_1 app_font">核销码</view>
+            <input class="P5_2 app_font" style="padding-left:10rpx" placeholder="请输入核销码" placeholder-class="place_style" bindinput="bindVerificationCode" maxlength="50" value="{{verification_code}}"></input>
+            <view class="clear_ver_vode" wx:if="{{verification_code}}" catch:tap="clearVerificationCode">
+              <image class="icon_clear" style="margin-right:0" src="../../images/icon_clear_new.png"></image>
+            </view>
+          </view>
+          <view wx:if="{{num==1 || num==2}}" style="height: 1px;width: 620rpx;background: #DDDDDD;margin: 0rpx 28rpx;"></view>
+          <view style="height:30rpx"></view>
+        </view>
+      </view>
+
+      <!-- <view>
         <view wx:if="{{choose_type==1}}" class="medWhite">
           <view class="title_1">
             <view class="title_bold">购买渠道</view>
@@ -195,7 +267,7 @@
           </view>
           <view style="height:10rpx"></view>
         </view>
-      </view>
+      </view> -->
       <view class="div_policy">
         <checkbox-group bindchange="changePolicy">
           <checkbox class='round pink' checked="{{policyChecked}}" id="privacy_radio"></checkbox>
@@ -206,19 +278,21 @@
         </checkbox-group>
       </view>
     </view>
-    <!-- 提交按钮 -->
-    <view id="button_whole" class="flex margin-bottom text-center">
-      <view wx:if="{{choose_type==0&&(coupon_payment=='不使用'||coupon_payment=='无')}}" id="button_left" class="basis-lg bg-grey  ">应付 ¥{{payment_amount}}.00</view>
-      <view wx:if="{{choose_type==0&&coupon_payment!='不使用'&&coupon_payment!='无'}}" id="button_left_coupon" class="basis-lg bg-grey  ">
-        <view wx:if="{{coupon_payment!=34.99}}" id="coupon_font_top">应付 ¥{{payment_amount-coupon_payment}}.00</view>
-        <view wx:if="{{coupon_payment==34.99}}" id="coupon_font_top">应付 ¥0.01</view>
-        <view id="coupon_font_bottom">已优惠¥{{coupon_payment}}</view>
-      </view>
-      <view wx:if="{{choose_type==1}}" id="button_left" style="padding-left:48rpx" class="basis-lg bg-grey  ">{{pay_channel}}</view>
-      <view id="button_right" bindtap="submitBuffer" class="basis-sm bg-grey">提交订单</view>
-    </view>
+    <view style="height:150rpx"></view>
 
-    <view style="height:200rpx"></view>
+    <!-- 提交按钮 -->
+    <view class="fixed_view">
+      <view id="button_whole" class="flex margin-bottom text-center">
+        <view wx:if="{{choose_type==0&&(coupon_payment=='不使用'||coupon_payment=='无')}}" id="button_left" class="basis-lg bg-grey  ">应付 ¥{{payment_amount}}</view>
+        <view wx:if="{{choose_type==0&&coupon_payment!='不使用'&&coupon_payment!='无'}}" id="button_left_coupon" class="basis-lg bg-grey  ">
+          <view wx:if="{{coupon_payment!=24.89}}" id="coupon_font_top">应付 ¥{{payment_amount-coupon_payment}}</view>
+          <view wx:if="{{coupon_payment==24.89}}" id="coupon_font_top">应付 ¥0.01</view>
+          <view id="coupon_font_bottom">已优惠¥{{coupon_payment}}</view>
+        </view>
+        <view wx:if="{{choose_type==1 || choose_type==2}}" id="button_left" style="padding-left:48rpx" class="basis-lg bg-grey  ">{{pay_channel}}</view>
+        <view id="button_right" bindtap="submitBuffer" class="basis-sm bg-grey">{{(choose_type==1 || choose_type==2) ? "提交信息":"提交订单"}}</view>
+      </view>
+    </view>
   </form>
 </view>
 
@@ -323,10 +397,30 @@
         <view class="modal_font2">1. 普通检测：采样后24小时内出具核酸检测报告，检测费35元；</view>
         <view class="modal_font3">2. 加急检测：采样后8小时内出具核酸检测报告，共计135元=35元检测费+100元加急服务费；</view>
         <view class="modal_font3">3. 特急检测：采样后4小时内出具核酸检测报告，共计235元=35元检测费+200元特急服务费。</view> -->
-      <view class="modal_font2">为严格贯彻北京市医保局、市卫生健康委、市发展改革委、市财政局联合印发的《关于进一步规范本市新型冠状病毒核酸检测收费行为的通知》(京医保发〔2022〕4号)文件，即日起，卡尤迪北京核酸采样站停止收取“加急”费用，统一定价35元。</view>
+      <view class="modal_font2">为严格贯彻北京市医保局、市卫生健康委、市发展改革委、市财政局联合印发的《关于进一步规范本市新型冠状病毒核酸检测收费行为的通知》(京医保发〔2022〕16号)文件，即日起，卡尤迪北京核酸采样站停止收取“加急”费用，统一定价24.9元。</view>
 
     </scroll-view>
   </view>
 </modalView>
 
 <timePicker pickerShow="{{startIsPickerShow}}" id="picker" wx:if="{{startIsPickerRender}}" bind:hidePicker="start_time_hide" bind:setPickerTime="set_start_time" config="{{pickerConfig}}"></timePicker>
+
+<!-- 公告弹框 -->
+<modalView show="{{showNotice}}" noCancel="{{true}}" title="{{promise_title}}" bindcancel="modalCancel" bindconfirm='noticeConfirm' confirmText='我知道了' cancelText='自定义取消'>
+  <view class='modal-content'>
+    <scroll-view scroll-y class='main-content' id="main-content-1">
+      <image src="{{promise_url}}" mode="widthFix" style="width: 100%;"></image>
+    </scroll-view>
+  </view>
+</modalView>
+
+<modalView show="{{isShowTime}}" noCancel="{{true}}" title="{{timeTitle}}" bindcancel="modalCancel" bindconfirm='submitConfirm' confirmText='好的，我知道了' cancelText='自定义取消'>
+  <view class='modal-content'>
+    <scroll-view scroll-y class='main-content' id="main-content-1">
+      <view class="modal_font1">{{timeTips}}</view>
+       
+      <view class="modal_font2">{{timeBusinessTime}}</view>
+
+    </scroll-view>
+  </view>
+</modalView>

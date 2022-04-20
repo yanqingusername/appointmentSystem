@@ -1,0 +1,27 @@
+<wxs src="../../utils/substring.wxs" module="tools" />
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">{{title}}</view>
+</cu-custom>
+
+<view class="page">
+     <view class="subject_view" bind:tap="bindAddSubject">
+        <view class="subject_view_white"><image  class="icon_add" src="../../images/icon_add.png"/>添加受检人</view>
+      </view>
+
+      <block wx:for="{{dataList}}" wx:key="index">
+        <view class="subject_item" bind:tap="bindSelectSubject" data-item="{{item}}">
+          <view class="subject_view_bg">
+              <view style="width:90%">
+                <view class="subject_title">{{item.name ? item.name : '-'}}</view>
+                <view class="subject_text" style="margin-top:20rpx;">{{item.card_type == 1 ? '护照' : item.card_type == 2 ? '港澳台通行证' : '身份证'}} {{item.id_card ? tools.centerIdCardTrim(item.id_card) : '-'}}</view>
+                <view class="subject_text" style="margin-top:22rpx;">手机号 {{tools.centerPhoneTrim(item.phone)}}</view>
+              </view>
+              <view style="position:relative;" catch:tap="bindEditSubject" data-online="{{item.onlineFlag}}" data-item="{{item}}">
+                <image class="right_arrow" src="../../images/icon_detail_edit_gray.png"></image>
+              </view>
+          </view>
+        </view>
+      </block>
+      <view style="height:50rpx;"></view>
+</view>

@@ -1,0 +1,118 @@
+<!--pages/addSubject/addSubject.wxml-->
+<wxs src="../../utils/substring.wxs" module="tools" />
+
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">{{title}}</view>
+</cu-custom>
+
+<view class="page">
+      <view id="module_1" class="P5 app_flex" wx:if="{{isAddSub != 2}}">
+        <view bindtap="changeOnlineFlag" id="module_2{{onlineid==1?'active':''}}" data-onlineid='1' class="P5_1 app_font">手动填写信息</view>
+        <view bindtap="changeOnlineFlag" id="module_2{{onlineid==2?'active':''}}" data-onlineid='2' class="P5_1 app_font">使用实体身份证</view>
+      </view>
+
+      <!-- 使用实体身份证 -->
+      <view class="notice_view" wx:if="{{onlineid==2}}">
+        <view class="notice_left">
+          <image class="notice_left_img" src="../../images/icon_notice_slices.png"></image>
+          <view class="notice_left_title">需携带身份证到登记窗口向工作人员出示</view>
+        </view>
+      </view>
+
+      <view class="medWhite">
+
+        <view class="P5 app_flex" style="margin: 0rpx;justify-content: center;" wx:if="{{onlineFlag==true&cardIndex==0}}">
+          <view bindtap="bindOCR" class="gray_radius" style="margin:30rpx 20rpx;margin-bottom:0;width: 100%;border: none;justify-content: center;">
+            <view style="margin-left:150rpx;position:relative;top:4rpx;right:20rpx">
+              <image style="width:36rpx;height:34rpx" src="../../images/icon_camera.png"></image>
+            </view>
+            <view style="margin-right:130rpx;font-weight:500;font-size:30rpx">拍摄身份证识别</view>
+          </view>
+        </view>
+        <view wx:if="{{onlineFlag==true}}" class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">姓名</view>
+          <input class="P5_2 app_font" placeholder="请填写与证件一致的姓名" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="50" value="{{name}}"></input>
+        </view>
+        <view wx:if="{{onlineFlag==true}}" style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view wx:if="{{onlineFlag==true}}" class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">证件类型</view>
+          <view class="section" style="width: 70%;height:84rpx;margin-left:12rpx;font-size:30rpx">
+            <picker style="height:100%;margin-top:20rpx" bindchange="bindPickerChangeCard" value="{{cardIndex}}" range="{{cardList}}">
+              <view class="picker">
+                {{cardList[cardIndex]}}
+              </view>
+            </picker>
+          </view>
+          <view style="margin-right:0rpx">
+            <image class="right_arrow" src="../../images/rightArrow.png"></image>
+          </view>
+        </view>
+        <view wx:if="{{onlineFlag==true}}" style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view wx:if="{{onlineFlag==true}}" class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">证件号</view>
+          <!-- <input class="P5_2 " style="position:relative;right:20rpx" type="{{keyboard_type}}" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" maxlength="{{keyboard_type_limit_num}}" value="{{idcard}}"></input> -->
+          <input class="P5_2 " style="position:relative;right:20rpx" type="{{keyboard_type}}" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" value="{{tools.centerIdCardTrim(idcard)}}"></input>
+          <view id="clear_1" style="padding:16rpx;right: -20rpx;" wx:if="{{idcard}}" catch:tap="clearidcard">
+            <image class="icon_clear" src="../../images/icon_clear.png"></image>
+          </view>
+        </view>
+        <view wx:if="{{onlineFlag==true}}" style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view wx:if="{{cardIndex!=0&&onlineFlag==true}}" class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">性别</view>
+          <view class="section" style="width: 70%;height:84rpx;margin-left:18rpx;font-size:30rpx">
+            <picker style="height:100%;margin-top:20rpx" bindchange="bindPickerChangeGender" value="{{genderIndex}}" range="{{genderList}}">
+              <view class="picker">
+                {{genderList[genderIndex]}}
+              </view>
+            </picker>
+          </view>
+          <view style="margin-right:26rpx">
+            <image class="right_arrow" src="../../images/rightArrow.png"></image>
+          </view>
+        </view>
+        <view wx:if="{{cardIndex!=0&&onlineFlag==true}}" style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view wx:if="{{cardIndex!=0&&onlineFlag==true}}" class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font" style="width:20%">年龄</view>
+          <input class="P5_2 " style="position:relative;right:-14rpx" type="number" placeholder="请输入年龄" placeholder-class="place_style" bindinput="bindAge" maxlength="3" value="{{age}}"></input>
+          <view style="padding:8rpx">
+            <!-- <image class="icon_clear" src="../../images/icon_clear.png"></image> -->
+          </view>
+        </view>
+        <view wx:if="{{cardIndex!=0&&onlineFlag==true}}" style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" id="{{onlineid==2?'phone_style_1':''}}" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">手机号</view>
+          <input class='P5_2 ' type="number" style="width:52%;" placeholder='请输入受检者手机号' placeholder-class="place_style" bindinput="bindPhone" value="{{tools.centerPhoneTrim(phone)}}"></input>
+          <view id="the_second_clear" wx:if="{{phone}}" catch:tap="clearPhone">
+            <image class="icon_clear" style="margin-right:0" src="../../images/icon_clear.png"></image>
+          </view>
+          <view class=" P3_code" bindtap="getCode" disabled="{{codeBtState}}" style="{{codeBtState?'color:#CCCCCC':'color:#E16898'}};padding-right: 24rpx;">{{codeBtText}}</view>
+        </view>
+        <view style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">验证码</view>
+          <input class='P5_2' style="position:relative;right:20rpx" type="number" placeholder='请输入验证码' placeholder-class="place_style" bindinput="bindCode" maxlength="4" value="{{code}}"></input>
+          <view id="the_third_clear" wx:if="{{code}}" catch:tap="clearCode">
+            <image class="icon_clear" src="../../images/icon_clear.png"></image>
+          </view>
+        </view>
+
+        <view style="height: 10rpx;"></view>
+      </view>
+
+      <view class="button_gray" wx:if="{{submitState}}">保存</view>
+
+      <view class="button_submit" wx:else bind:tap="submitBuffer">保存</view>
+
+      <view class="button_delete" wx:if="{{isAddSub == 2}}" bind:tap="bindDeleteClick">删除</view>
+</view>
+
+<!-- 删除弹框 -->
+<modalView show="{{showDialog}}"  datas="{{dialogData}}" bind:dialogCancel="dialogCancel" bind:dialogSure="dialogSure" types="1" />
+ 

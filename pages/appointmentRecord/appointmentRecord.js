@@ -374,37 +374,51 @@ Page({
     })
   },
   bindRefund: function (e) {
-    var that = this;
-    console.log(e.currentTarget.dataset.appointmentnum)
-    wx.showModal({
-      title: '确认退款吗？',
-      content: '退款后如若需要新冠核酸检测，需重新预约',
-      showCancel: true, //是否显示取消按钮
-      success: function (res) {
-        if (res.cancel) {
-
-        } else {
-          request.request_get('/coyoteRefund/refund.hn', {
-            appointment_num: e.currentTarget.dataset.appointmentnum,
-          }, function (res) {
-            console.info('回调', res)
-            if (res) {
-              if (res.success) {
-                var info = res.msg;
-                that.getAppointmentList();
-                box.showToast('退款申请成功');
-              } else {
-                box.showToast(res.msg);
-              }
-            } else {
-              box.showToast("网络不稳定，请重试");
-            }
-          })
-
+    let paytype = e.currentTarget.dataset.paytype;
+    if(paytype == 5 || paytype == 6){
+      wx.showModal({
+        title: '温馨提示',
+        content: "申请退款请到购买处退款",
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击了确定')
+          }
         }
-      },
-      fail: function (res) {},
-    })
+      })
+    }else{
+      var that = this;
+      console.log(e.currentTarget.dataset.appointmentnum)
+      wx.showModal({
+        title: '确认退款吗？',
+        content: '退款后如若需要新冠核酸检测，需重新预约',
+        showCancel: true, //是否显示取消按钮
+        success: function (res) {
+          if (res.cancel) {
+
+          } else {
+            request.request_get('/coyoteRefund/refund.hn', {
+              appointment_num: e.currentTarget.dataset.appointmentnum,
+            }, function (res) {
+              console.info('回调', res)
+              if (res) {
+                if (res.success) {
+                  var info = res.msg;
+                  that.getAppointmentList();
+                  box.showToast('退款申请成功');
+                } else {
+                  box.showToast(res.msg);
+                }
+              } else {
+                box.showToast("网络不稳定，请重试");
+              }
+            })
+
+          }
+        },
+        fail: function (res) {},
+      })
+    }
   },
   getBannerList: function () {
     var that = this;

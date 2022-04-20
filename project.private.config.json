@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -16,6 +17,20 @@
           "pathName": "pages/index/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "addSubject",
+          "pathName": "pages/addSubject/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "selectSubject",
+          "pathName": "pages/selectSubject/index",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
         }
       ]
     }
