@@ -25,7 +25,7 @@
       <view class="notice_view" bind:tap="bindNoticeClick" wx:if="{{is_promise == 1}}">
         <view class="notice_left">
           <image class="notice_left_img" src="../../images/icon_notice_slices.png"></image>
-          <view class="notice_left_title">卡尤迪绝不向用户收取任何形式“加急费”</view>
+          <view class="notice_left_title">{{promise_announcement}}</view>
         </view>
         <image class="right_arrow" src="../../images/rightArrow.png"></image>
       </view>
@@ -204,7 +204,7 @@
             </view>
           </view>
         </view>
-        <!-- <view class="medWhite">
+        <view class="medWhite">
           <view class="title_1">
             <view class="title_bold" style="width:30%">支付方式</view>
             <view style="align-self:center;width:60%;direction:rtl;">
@@ -212,9 +212,9 @@
             </view>
             <view id="pay_font" class="title_right">微信支付</view>
           </view>
-        </view> -->
+        </view>
       </view>
-      <view>
+      <!-- <view>
         <view class="medWhite">
           <view class="title_1">
             <view class="title_bold">支付方式</view>
@@ -246,7 +246,7 @@
           <view wx:if="{{num==1 || num==2}}" style="height: 1px;width: 620rpx;background: #DDDDDD;margin: 0rpx 28rpx;"></view>
           <view style="height:30rpx"></view>
         </view>
-      </view>
+      </view> -->
 
       <!-- <view>
         <view wx:if="{{choose_type==1}}" class="medWhite">

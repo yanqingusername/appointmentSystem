@@ -301,25 +301,35 @@ text-align: center;
 }
 #button_1{
   /* right: -200rpx; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width:160rpx;
   height: 54rpx;
-  border:1rpx solid #E06596;
+  border:1px solid #E06596;
   font-size: 24rpx;
-  padding: 4rpx 0 0 0;
+  padding: 0rpx 0 0 0;
   color: #E06596;
   font-weight: 400;
+  margin: 16rpx 0rpx 16rpx 0rpx;
+  /* margin-right: 30rpx; */
+  border-radius: 10rpx;
 }
 #button_2{
   /* right: -200rpx; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width:160rpx;
   height: 54rpx;
-  border:1rpx solid #E06596;
+  border:1px solid #E06596;
   font-size: 24rpx;
-  padding: 4rpx 0 0 0;
+  padding: 0rpx 0 0 0;
   color: white;
   background-color: #E06596;
-  
+  margin: 16rpx 0rpx 16rpx 0rpx;
   font-weight: 400;
+  border-radius: 10rpx;
 }
 
 .swiper {
@@ -331,4 +341,27 @@ text-align: center;
   width: 100%;
 }
 
+.app_flex_new{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 38rpx;
+}
+
+.bold_font_new{ 
+  font-size: 28rpx;
+  /* margin: 10rpx 0 10rpx 38rpx; */
+  /* width: 70%; */
+}
+
+.bold_font_2_new{
+  color: #E787AC;
+  font-size: 28rpx;
+}
+
+.button_flex_new{
+  display: flex;
+  justify-content: space-evenly;
+  /* padding-right: 38rpx; */
+}
 

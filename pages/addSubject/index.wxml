@@ -54,7 +54,7 @@
         <view wx:if="{{onlineFlag==true}}" class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">证件号</view>
           <!-- <input class="P5_2 " style="position:relative;right:20rpx" type="{{keyboard_type}}" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" maxlength="{{keyboard_type_limit_num}}" value="{{idcard}}"></input> -->
-          <input class="P5_2 " style="position:relative;right:20rpx" type="{{keyboard_type}}" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" value="{{tools.centerIdCardTrim(idcard)}}"></input>
+          <input class="P5_2 " style="position:relative;right:20rpx" type="{{keyboard_type}}" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" maxlength="{{keyboard_type_limit_num}}" value="{{idcard}}"></input>
           <view id="clear_1" style="padding:16rpx;right: -20rpx;" wx:if="{{idcard}}" catch:tap="clearidcard">
             <image class="icon_clear" src="../../images/icon_clear.png"></image>
           </view>
@@ -87,7 +87,7 @@
 
         <view class="P5 app_flex" id="{{onlineid==2?'phone_style_1':''}}" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">手机号</view>
-          <input class='P5_2 ' type="number" style="width:52%;" placeholder='请输入受检者手机号' placeholder-class="place_style" bindinput="bindPhone" value="{{tools.centerPhoneTrim(phone)}}"></input>
+          <input class='P5_2 ' type="number" style="width:52%;" placeholder='请输入受检者手机号' placeholder-class="place_style" bindinput="bindPhone" maxlength="13" value="{{tools.centerPhoneTrim(phone)}}"></input>
           <view id="the_second_clear" wx:if="{{phone}}" catch:tap="clearPhone">
             <image class="icon_clear" style="margin-right:0" src="../../images/icon_clear.png"></image>
           </view>

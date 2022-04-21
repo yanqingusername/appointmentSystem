@@ -319,12 +319,34 @@ Page({
               }
               console.log('info--------------------------------------')
               console.log(info)
+
+              that.setData({
+                MultiArray: info.MultiArray,
+              })
+
+              if(info && info.objectMultiArray.length > 0 && info.objectMultiArray[0].time.length > 0){
+                let dataMultiArray=that.data.MultiArray;
+                let sec_data = [];
+                let timelist = info.objectMultiArray[0].time;
+                for (var i = 0; i < timelist.length; i++) {
+                  let timeTitle = '';
+                  if(timelist[i].can_use == 0){
+                    timeTitle = ' (已约满)';
+                  }
+                  sec_data.push(timelist[i].time_section+""+timeTitle);
+                }
+                dataMultiArray[1] = sec_data;
+                that.setData({
+                  MultiArray: dataMultiArray
+                })
+              }
+
               that.setData({
                 channel: channel,
                 hiddenFlag: false, //显示距离
                 workingTimeArr: workingTimeArr,
                 work_time_remarks: info.work_time_remarks,
-                MultiArray: info.MultiArray,
+                // MultiArray: info.MultiArray,
                 objectMultiArray: info.objectMultiArray,
                 multiIndex: [0, 0]
               })
@@ -378,12 +400,34 @@ Page({
                 //   workingTimeArr[i] = workingTimeArr[i].replace(workingTimeArr[i].substr((workingTimeArr[i].indexOf('-')+1),2),'次日'+ utils.formatNumber((workingTimeArr[i].substr((workingTimeArr[i].indexOf('-')+1),2)-24)))
                 // }
               }
+
+              that.setData({
+                MultiArray: info.MultiArray,
+              })
+
+              if(info && info.objectMultiArray.length > 0 && info.objectMultiArray[0].time.length > 0){
+                let dataMultiArray=that.data.MultiArray;
+                let sec_data = [];
+                let timelist = info.objectMultiArray[0].time;
+                for (var i = 0; i < timelist.length; i++) {
+                  let timeTitle = '';
+                  if(timelist[i].can_use == 0){
+                    timeTitle = ' (已约满)';
+                  }
+                  sec_data.push(timelist[i].time_section+""+timeTitle);
+                }
+                dataMultiArray[1] = sec_data;
+                that.setData({
+                  MultiArray: dataMultiArray
+                })
+              }
+
               that.setData({
                 channel: channel,
                 hiddenFlag: true,
                 workingTimeArr: workingTimeArr,
                 work_time_remarks: info.work_time_remarks,
-                MultiArray: info.MultiArray,
+                // MultiArray: info.MultiArray,
                 objectMultiArray: info.objectMultiArray,
                 multiIndex: [0, 0]
               })
@@ -446,12 +490,34 @@ Page({
                 //   workingTimeArr[i] = workingTimeArr[i].replace(workingTimeArr[i].substr((workingTimeArr[i].indexOf('-')+1),2),'次日'+ utils.formatNumber((workingTimeArr[i].substr((workingTimeArr[i].indexOf('-')+1),2)-24)))
                 // }
               }
+
+              that.setData({
+                MultiArray: channel.MultiArray,
+              })
+
+              if(channel && channel.objectMultiArray.length > 0 && channel.objectMultiArray[0].time.length > 0){
+                let dataMultiArray=that.data.MultiArray;
+                let sec_data = [];
+                let timelist = channel.objectMultiArray[0].time;
+                for (var i = 0; i < timelist.length; i++) {
+                  let timeTitle = '';
+                  if(timelist[i].can_use == 0){
+                    timeTitle = ' (已约满)';
+                  }
+                  sec_data.push(timelist[i].time_section+""+timeTitle);
+                }
+                dataMultiArray[1] = sec_data;
+                that.setData({
+                  MultiArray: dataMultiArray
+                })
+              }
+
               that.setData({
                 channel: channel,
                 hiddenFlag: false,
                 workingTimeArr: workingTimeArr,
                 work_time_remarks: channel.work_time_remarks,
-                MultiArray: channel.MultiArray,
+                // MultiArray: channel.MultiArray,
                 objectMultiArray: channel.objectMultiArray,
                 multiIndex: [0, 0]
               })
@@ -498,12 +564,34 @@ Page({
                 //   workingTimeArr[i] = workingTimeArr[i].replace(workingTimeArr[i].substr((workingTimeArr[i].indexOf('-')+1),2),'次日'+ utils.formatNumber((workingTimeArr[i].substr((workingTimeArr[i].indexOf('-')+1),2)-24)))
                 // }
               }
+              
+              that.setData({
+                MultiArray: channel.MultiArray,
+              })
+
+              if(channel && channel.objectMultiArray.length > 0 && channel.objectMultiArray[0].time.length > 0){
+                let dataMultiArray=that.data.MultiArray;
+                let sec_data = [];
+                let timelist = channel.objectMultiArray[0].time;
+                for (var i = 0; i < timelist.length; i++) {
+                  let timeTitle = '';
+                  if(timelist[i].can_use == 0){
+                    timeTitle = ' (已约满)';
+                  }
+                  sec_data.push(timelist[i].time_section+""+timeTitle);
+                }
+                dataMultiArray[1] = sec_data;
+                that.setData({
+                  MultiArray: dataMultiArray
+                })
+              }
+
               that.setData({
                 channel: channel,
                 hiddenFlag: true,
                 workingTimeArr: workingTimeArr,
                 work_time_remarks: channel.work_time_remarks,
-                MultiArray: channel.MultiArray,
+                // MultiArray: channel.MultiArray,
                 objectMultiArray: channel.objectMultiArray,
                 multiIndex: [0, 0]
 
@@ -813,7 +901,7 @@ Page({
     //   return
     // }
     if (this.data.userinfo_id == '') {
-      box.showToast("添加受检人");
+      box.showToast("请添加受检人");
       return
     } else if (detectionTypeArr.length == 1 && detectionTypeArr[0].grayFlag == true) {
       box.showToast("当前时间该采样点不在营业时间")
@@ -837,6 +925,13 @@ Page({
         return;
       }
 
+    }
+
+    if(this.data.choose_type ==1 || this.data.choose_type ==2){
+      if (this.data.verification_code == '') {
+        box.showToast("请输入核销码");
+        return
+      }
     }
 
     console.log("payment_amount=" + that.data.payment_amount)
@@ -1029,6 +1124,8 @@ Page({
         console.info('回调', res)
         if (res) {
           if (res.success) {
+            box.showToast("核销成功”，且跳转至预约详情页",'',1000);
+
             console.log(res)
             that.setData({
               appointment_num: res.msg,
@@ -1696,7 +1793,11 @@ Page({
       let sec_data = [];
       let timelist = this.data.objectMultiArray[e.detail.value].time;
       for (var i = 0; i < timelist.length; i++) {
-        sec_data.push(timelist[i].time_section);
+        let timeTitle = '';
+        if(timelist[i].can_use == 0){
+          timeTitle = ' (已约满)'
+        }
+        sec_data.push(timelist[i].time_section+""+timeTitle);
       }
       console.log('data.MultiArray[1]');
       console.log(data.MultiArray);
@@ -1748,7 +1849,8 @@ Page({
         yszz_url: msg.yszz_url,
         is_promise: msg.is_promise || 2, //是否显示公告 1-显示
         promise_title: msg.promise_title,
-        promise_url: msg.promise_url
+        promise_url: msg.promise_url,
+        promise_announcement: msg.promise_announcement
       })
 
     })

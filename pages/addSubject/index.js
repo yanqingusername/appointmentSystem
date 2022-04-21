@@ -566,7 +566,15 @@ Page({
         })
       }
       that.setData({
-        onlineFlag: false
+        onlineFlag: false,
+        gender: '男',
+        age: '',
+        cardIndex: 0,
+        name: '',
+        phone: '',
+        idcard: '',
+        card_name: '身份证',
+        onlineFlagNum: 1,
       })
     }
   },
