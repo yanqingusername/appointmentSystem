@@ -1804,6 +1804,19 @@ Page({
             that.setData({
               isAllSubject: 1
             })
+
+            let isAddSubjectNew = 0;
+            let userinfo_id_new = '';
+            for(let i = 0; i < res.msg.length; i++){
+              if(res.msg[i].id == that.data.userinfo_id){
+                isAddSubjectNew = 1;
+                userinfo_id_new = that.data.userinfo_id;
+              }
+            }
+            that.setData({
+              isAddSubject: isAddSubjectNew,
+              userinfo_id: userinfo_id_new
+            });
           } else {
             that.setData({
               isAllSubject: 0,
