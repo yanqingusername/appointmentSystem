@@ -89,6 +89,7 @@ Page({
     MultiArray: [],
     objectMultiArray: [],
     multiIndex: [0, 0],
+    new_payment_amount: 0,
     // 新增
     showNotice: false,
     isAddSubject: 0,  // 0-默认添加受检人   1-选择受检人
@@ -257,6 +258,20 @@ Page({
             payment_working_time: detectionTypeArr[0].working_time,
           })
           console.log(detectionTypeArr);
+
+          if (that.data.coupon_payment == '不使用'||that.data.coupon_payment == '无') {
+            that.setData({
+              new_payment_amount: that.data.payment_amount
+            })
+          } else {
+            let intPaymentAmount = that.data.payment_amount * 100;
+            let intCouponPayment = that.data.coupon_payment * 100;
+            let payment_amount = (parseInt(intPaymentAmount) - parseInt(intCouponPayment))/100;
+            that.setData({
+              new_payment_amount: payment_amount
+            })
+          }
+          
         } else {
           // box.showToast(res.msg);
         }
@@ -974,12 +989,22 @@ Page({
     var coupon_payment = that.data.coupon_payment;
     console.log(that.data.payment_amount)
     console.log(coupon_payment)
+    // if (that.data.coupon_payment == '不使用'||that.data.coupon_payment == '无') {
+    //   var payment_amount = that.data.payment_amount
+    // } else if (that.data.coupon_payment == 24.89) {
+    //   var payment_amount = 0.01
+    // } else {
+    //   var payment_amount = that.data.payment_amount - coupon_payment;
+    // }
     if (that.data.coupon_payment == '不使用'||that.data.coupon_payment == '无') {
       var payment_amount = that.data.payment_amount
-    } else if (that.data.coupon_payment == 24.89) {
-      var payment_amount = 0.01
     } else {
-      var payment_amount = that.data.payment_amount - coupon_payment;
+      let intPaymentAmount = that.data.payment_amount * 100
+      let intCouponPayment = coupon_payment * 100;
+      var payment_amount = (parseInt(intPaymentAmount) - parseInt(intCouponPayment))/100;
+      // this.setData({
+      //   payment_amount: payment_amount
+      // })
     }
     var coupon_id = that.data.coupon_id;
     console.log(id_card)
@@ -1179,6 +1204,20 @@ Page({
     console.log(that.data.payment_amount)
     console.log(that.data.coupon_payment)
     console.log("bindBackFlag=" + that.data.bindBackFlag)
+
+    if (that.data.coupon_payment == '不使用'||that.data.coupon_payment == '无') {
+      that.setData({
+        new_payment_amount: that.data.payment_amount
+      })
+    } else {
+      let intPaymentAmount = that.data.payment_amount * 100
+      let intCouponPayment = that.data.coupon_payment * 100;
+      let payment_amount = (parseInt(intPaymentAmount) - parseInt(intCouponPayment))/100;
+      that.setData({
+        new_payment_amount: payment_amount
+      })
+    }
+    
     if (that.data.bindBackFlag == true) {
       that.getFixedChannel(that.data.channel.channel_id); // 选中新采样点返回
       console.log('选中新采样点返回')
@@ -1369,6 +1408,20 @@ Page({
       payment_working_time: e.currentTarget.dataset.workingtime,
       coupon_payment: coupon_payment
     })
+
+    if (that.data.coupon_payment == '不使用'||that.data.coupon_payment == '无') {
+      that.setData({
+        new_payment_amount: that.data.payment_amount
+      })
+    } else {
+      let intPaymentAmount = that.data.payment_amount * 100
+      let intCouponPayment = that.data.coupon_payment * 100;
+      let payment_amount = (parseInt(intPaymentAmount) - parseInt(intCouponPayment))/100;
+      that.setData({
+        new_payment_amount: payment_amount
+      })
+    }
+
 
   },
   //显示地图

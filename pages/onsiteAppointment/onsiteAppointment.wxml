@@ -283,10 +283,11 @@
     <!-- 提交按钮 -->
     <view class="fixed_view">
       <view id="button_whole" class="flex margin-bottom text-center">
-        <view wx:if="{{choose_type==0&&(coupon_payment=='不使用'||coupon_payment=='无')}}" id="button_left" class="basis-lg bg-grey  ">应付 ¥{{payment_amount}}</view>
+        <view wx:if="{{choose_type==0&&(coupon_payment=='不使用'||coupon_payment=='无')}}" id="button_left" class="basis-lg bg-grey  ">应付 ¥{{new_payment_amount}}</view>
         <view wx:if="{{choose_type==0&&coupon_payment!='不使用'&&coupon_payment!='无'}}" id="button_left_coupon" class="basis-lg bg-grey  ">
-          <view wx:if="{{coupon_payment!=24.89}}" id="coupon_font_top">应付 ¥{{payment_amount-coupon_payment}}</view>
-          <view wx:if="{{coupon_payment==24.89}}" id="coupon_font_top">应付 ¥0.01</view>
+        <view id="coupon_font_top">应付 ¥{{new_payment_amount}}</view>
+          <!-- <view wx:if="{{coupon_payment!=24.89}}" id="coupon_font_top">应付 ¥{{payment_amount-coupon_payment}}</view>
+          <view wx:if="{{coupon_payment==24.89}}" id="coupon_font_top">应付 ¥0.01</view> -->
           <view id="coupon_font_bottom">已优惠¥{{coupon_payment}}</view>
         </view>
         <view wx:if="{{choose_type==1 || choose_type==2}}" id="button_left" style="padding-left:48rpx" class="basis-lg bg-grey  ">{{pay_channel}}</view>
