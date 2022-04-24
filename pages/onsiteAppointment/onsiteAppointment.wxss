@@ -547,9 +547,10 @@ checkbox{
   padding: 28rpx 0rpx 28rpx 30rpx;
   font-size: 32rpx;
   font-weight: 500;
-  position: absolute;
+  border-top: 10rpx solid #E26396;
+  /* position: absolute;
   top: 6rpx;
-  height: 230rpx;
+  height: 230rpx; */
 }
 
 .subject_title{

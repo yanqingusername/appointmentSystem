@@ -11,11 +11,15 @@
   font-size: 36rpx;
   color: #E16C9B;
 }
-p1_2{
+.p1_2{
   width: 70%;
 }
 .district_arr{
-  margin: 60rpx 0 60rpx 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx 30rpx;
+  border-bottom: 1rpx solid #F2F2F2;
 }
 .hr{
   border-bottom: 1rpx solid #F2F2F2;

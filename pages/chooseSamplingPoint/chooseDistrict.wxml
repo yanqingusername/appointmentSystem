@@ -9,9 +9,9 @@
   </view>
   <view class="p1_2">
     <view class="district_arr" wx:for="{{arr}}" data-sp="{{item.sampling_place}}" bindtap="bindBackToChannel">
-    {{item.sampling_place}}　　　　　　　　　　{{item.num}}
-    <view class="hr"></view>
+      <view> {{item.sampling_place}}</view>
+      <view >{{item.num}}</view>
     </view>
-    
+    <!-- <view class="hr"></view> -->
   </view>
 </view>

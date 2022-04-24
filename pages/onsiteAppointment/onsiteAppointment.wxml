@@ -62,7 +62,7 @@
       </view>
 
       <view class="subject_view" bind:tap="bindSelectSubject" wx:if="{{isAddSubject == 1}}">
-        <view class="subject_view_red" style="height: 230rpx;"></view>
+        <!-- <view class="subject_view_red" style="height: 230rpx;"></view> -->
         <view class="subject_view_bg">
             <view style="width:90%">
               <view class="subject_title">{{name ? name : '-'}}</view>

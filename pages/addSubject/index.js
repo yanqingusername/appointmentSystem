@@ -33,7 +33,7 @@ Page({
     keyboard_type_limit_num: 18,
     showDialog: false,
     dialogData: {
-      title: "确认解绑该受检人？",
+      title: "确认删除该受检人？",
       titles:  "删除后无法恢复",
       cancel: "取消",
       sure: "确认"
@@ -75,6 +75,18 @@ Page({
           cardIndex: jsonItem.card_type,
           userinfo_id: jsonItem.id
         });
+
+        if (jsonItem.card_type == 0) {
+          this.setData({
+            keyboard_type: 'idcard',
+            keyboard_type_limit_num: 18
+          })
+        } else {
+          this.setData({
+            keyboard_type: 'text',
+            keyboard_type_limit_num: 20
+          })
+        }
       }else {
         // 线上
         let jsonItem = JSON.parse(options.jsonItem);
@@ -105,6 +117,18 @@ Page({
               genderIndex: 1
             });
           }
+        }
+
+        if (jsonItem.card_type == 0) {
+          this.setData({
+            keyboard_type: 'idcard',
+            keyboard_type_limit_num: 18
+          })
+        } else {
+          this.setData({
+            keyboard_type: 'text',
+            keyboard_type_limit_num: 20
+          })
         }
       }
     }
@@ -377,24 +401,28 @@ Page({
         console.info('回调', res)
         if (res) {
           if (res.success) {
-            let pages = getCurrentPages(); 
-            let prevPage = pages[pages.length - 2];
-            prevPage.setData({
-              isAddSubject: 1,
-              userinfo_id: res.person_id,
-              gender: that.data.gender,
-              age: that.data.age,
-              cardIndex: that.data.cardIndex,
-              name: name,
-              phone: phone,
-              idcard: id_card,
-              card_name: that.data.card_name,
-              onlineFlag: that.data.onlineFlag,
-              onlineFlagNum: that.data.onlineFlagNum,
-            })
-            wx.navigateBack({
-              delta: 1, 
-            })
+            box.showToast('添加成功','',1000)
+
+            setTimeout(()=>{
+              let pages = getCurrentPages();
+              let prevPage = pages[pages.length - 2];
+              prevPage.setData({
+                isAddSubject: 1,
+                userinfo_id: res.person_id,
+                gender: that.data.gender,
+                age: that.data.age,
+                cardIndex: that.data.cardIndex,
+                name: name,
+                phone: phone,
+                idcard: id_card,
+                card_name: that.data.card_name,
+                onlineFlag: that.data.onlineFlag,
+                onlineFlagNum: that.data.onlineFlagNum,
+              })
+              wx.navigateBack({
+                delta: 1,
+              })
+            },1200);
           } else {
             box.showToast(res.msg);
           }
@@ -407,24 +435,28 @@ Page({
         console.info('回调', res)
         if (res) {
           if (res.success) {
-            let pages = getCurrentPages(); 
-            let prevPage = pages[pages.length - 3];
-            prevPage.setData({
-              isAddSubject: 1,
-              userinfo_id: res.person_id,
-              gender: that.data.gender,
-              age: that.data.age,
-              cardIndex: that.data.cardIndex,
-              name: name,
-              phone: phone,
-              idcard: id_card,
-              card_name: that.data.card_name,
-              onlineFlag: that.data.onlineFlag,
-              onlineFlagNum: that.data.onlineFlagNum,
-            })
-            wx.navigateBack({
-              delta: 2, 
-            })
+            box.showToast('添加成功','',1000)
+
+            setTimeout(()=>{
+              let pages = getCurrentPages();
+              let prevPage = pages[pages.length - 3];
+              prevPage.setData({
+                isAddSubject: 1,
+                userinfo_id: res.person_id,
+                gender: that.data.gender,
+                age: that.data.age,
+                cardIndex: that.data.cardIndex,
+                name: name,
+                phone: phone,
+                idcard: id_card,
+                card_name: that.data.card_name,
+                onlineFlag: that.data.onlineFlag,
+                onlineFlagNum: that.data.onlineFlagNum,
+              })
+              wx.navigateBack({
+                delta: 2,
+              })
+            },1200);
           } else {
             box.showToast(res.msg);
           }
@@ -438,24 +470,28 @@ Page({
         console.info('回调', res)
         if (res) {
           if (res.success) {
-            let pages = getCurrentPages(); 
-            let prevPage = pages[pages.length - 3];
-            prevPage.setData({
-              isAddSubject: 1,
-              userinfo_id: that.data.userinfo_id,
-              gender: that.data.gender,
-              age: that.data.age,
-              cardIndex: that.data.cardIndex,
-              name: name,
-              phone: phone,
-              idcard: id_card,
-              card_name: that.data.card_name,
-              onlineFlag: that.data.onlineFlag,
-              onlineFlagNum: that.data.onlineFlagNum,
-            })
-            wx.navigateBack({
-              delta: 2, 
-            })
+            box.showToast('编辑成功','',1000)
+
+            setTimeout(()=>{
+              let pages = getCurrentPages();
+              let prevPage = pages[pages.length - 3];
+              prevPage.setData({
+                isAddSubject: 1,
+                userinfo_id: that.data.userinfo_id,
+                gender: that.data.gender,
+                age: that.data.age,
+                cardIndex: that.data.cardIndex,
+                name: name,
+                phone: phone,
+                idcard: id_card,
+                card_name: that.data.card_name,
+                onlineFlag: that.data.onlineFlag,
+                onlineFlagNum: that.data.onlineFlagNum,
+              })
+              wx.navigateBack({
+                delta: 2,
+              })
+            },1200);
           } else {
             box.showToast(res.msg);
           }
