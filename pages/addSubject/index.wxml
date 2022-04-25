@@ -106,6 +106,16 @@
         <view style="height: 10rpx;"></view>
       </view>
 
+      <view class="div_policy">
+        <checkbox-group bindchange="changePolicy">
+          <checkbox class='round pink' checked="{{policyChecked}}" id="privacy_radio"></checkbox>
+
+          <label for="privacy_radio" id="privacy_policy">
+            已阅读并同意 <text class="underline_gray" catchtap="bindUserProtocol">用户服务协议</text> 和 <text class="underline_gray" catchtap="bindPrivacyPolicy">隐私政策</text>
+          </label>
+        </checkbox-group>
+      </view>
+
       <view class="button_gray" wx:if="{{submitState}}">保存</view>
 
       <view class="button_submit" wx:else bind:tap="submitBuffer">保存</view>

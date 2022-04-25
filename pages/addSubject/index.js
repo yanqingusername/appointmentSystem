@@ -42,12 +42,15 @@ Page({
     isAddSub: 0,  // 0-默认从个人预约-添加受检人跳转   1-从选择受检人-添加受检人跳转 2-从选择受检人-编辑受检人跳转
     showIDcardModal: false,
     card_name: '身份证', //身份证name
-    userinfo_id: ''
+    userinfo_id: '',
+    policyChecked: false,
   },
   onShow: function () {
     // this.bindHistoryInfo();
   },
   onLoad: function (options) {
+    this.getbaseData();
+    
     this.setData({
       isAddSub: options.isAddSub
     });
@@ -380,6 +383,11 @@ Page({
       })
     }
 
+      if (that.data.policyChecked == false) {
+        box.showToast("请阅读并勾选协议")
+        return
+      }
+
     var data = {
       open_id: openid,
       name: that.data.name,
@@ -703,6 +711,95 @@ Page({
        });
      }
    });
-  }
+  },
+  changePolicy(e) {
+    console.log(e)
+    this.setData({
+      policyChecked: !this.data.policyChecked
+    })
+    console.log(this.data.policyChecked)
+  },
+  bindUserProtocol: utils.throttle(function (e) {
+    var report_temp = this.data.fwxy_url
+    if (report_temp == '' || report_temp == undefined || report_temp == null) {
+      box.showToast('用户服务协议不存在，请联系客服')
+      return;
+    }
+    wx.downloadFile({
+      url: report_temp, //要预览的PDF的地址
+      filePath: wx.env.USER_DATA_PATH + '/用户服务协议.pdf',
+      success: function (res) {
+        console.log(res);
+        if (res.statusCode === 200) { //成功
+          var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
+          console.log(Path);
+          wx.openDocument({
+            filePath: Path,
+            showMenu: false,
+            success: function (res) {
+              console.log('打开用户服务协议成功');
+            }
+          })
+        }
+      },
+      fail: function (res) {
+        box.showToast('用户服务协议不存在，请联系客服')
+        console.log(res); //失败
+      }
+    })
+  }, 2000),
+  bindPrivacyPolicy: utils.throttle(function (e) {
+    var report_temp = this.data.yszz_url
+    if (report_temp == '' || report_temp == undefined || report_temp == null) {
+      box.showToast('隐私政策不存在，请联系客服')
+      return;
+    }
+    wx.downloadFile({
+      url: report_temp, //要预览的PDF的地址
+      filePath: wx.env.USER_DATA_PATH + '/隐私政策.pdf',
+      success: function (res) {
+        console.log(res);
+        if (res.statusCode === 200) { //成功
+          var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
 
+          wx.openDocument({
+            filePath: Path,
+            showMenu: false,
+            success: function (res) {
+              console.log('打开用户服务协议成功');
+            }
+          })
+        }
+      },
+      fail: function (res) {
+        box.showToast('隐私政策不存在，请联系客服')
+        console.log(res); //失败
+      }
+    })
+  }, 2000),
+  getbaseData: function () {
+    let that = this;
+    //获取用户服务协议
+    //获取隐私政策
+    let data = {}
+    request.request_get('/a/getbaseInfo.hn', data, function (res) {
+      console.log('getbaseData', res);
+      if (!res) {
+        box.showToast("网络不稳定，请重试");
+        return;
+      }
+      if (!res.success) {
+        console.log(res.msg);
+        box.showToast("网络不稳定，请重试");
+        return;
+      }
+      //加载数据
+      console.log(res.msg);
+      let msg = res.msg;
+      that.setData({
+        fwxy_url: msg.fwxy_url,
+        yszz_url: msg.yszz_url
+      })
+    })
+  },
 })

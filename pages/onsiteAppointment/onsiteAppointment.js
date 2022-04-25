@@ -926,9 +926,11 @@ Page({
     } else if (detectionTypeArr.length == 1 && detectionTypeArr[0].grayFlag == true) {
       box.showToast("当前时间该采样点不在营业时间")
       return
-    } else if (that.data.policyChecked == false) {
-      box.showToast("请阅读并勾选协议")
-      return
+    } else if (that.data.yyxz_show == 1) {
+      if (that.data.policyChecked == false) {
+        box.showToast("请阅读并勾选预约须知")
+        return
+      }
     } else if (that.data.channel.appointment_open == 1) {
 
       if (that.data.objectMultiArray[that.data.multiIndex[0]].time[that.data.multiIndex[1]].can_use == 0) {

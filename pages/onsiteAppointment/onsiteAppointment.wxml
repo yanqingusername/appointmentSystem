@@ -268,12 +268,21 @@
           <view style="height:10rpx"></view>
         </view>
       </view> -->
-      <view class="div_policy">
+      <!-- <view class="div_policy">
         <checkbox-group bindchange="changePolicy">
           <checkbox class='round pink' checked="{{policyChecked}}" id="privacy_radio"></checkbox>
 
           <label for="privacy_radio" id="privacy_policy">
             已阅读并同意 <text class="underline_gray" catchtap="bindYYXZ" hidden="{{yyxz_show==0?'hidden':''}}">预约须知</text><text hidden="{{yyxz_show==0?'hidden':''}}">、</text><text class="underline_gray" catchtap="bindUserProtocol">用户服务协议</text> 和 <text class="underline_gray" catchtap="bindPrivacyPolicy">隐私政策</text>
+          </label>
+        </checkbox-group>
+      </view> -->
+      <view class="div_policy" wx:if="{{yyxz_show==1}}">
+        <checkbox-group bindchange="changePolicy">
+          <checkbox class='round pink' checked="{{policyChecked}}" id="privacy_radio"></checkbox>
+
+          <label for="privacy_radio" id="privacy_policy">
+            已阅读并同意 <text class="underline_gray" catchtap="bindYYXZ">预约须知</text>
           </label>
         </checkbox-group>
       </view>
