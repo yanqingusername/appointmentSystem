@@ -783,23 +783,15 @@ Page({
     //获取隐私政策
     let data = {}
     request.request_get('/a/getbaseInfo.hn', data, function (res) {
-      console.log('getbaseData', res);
-      if (!res) {
-        box.showToast("网络不稳定，请重试");
-        return;
+      if(res){
+        if (res.success) {
+          let msg = res.msg;
+          that.setData({
+            fwxy_url: msg.fwxy_url,
+            yszz_url: msg.yszz_url
+          })
+        }
       }
-      if (!res.success) {
-        console.log(res.msg);
-        box.showToast("网络不稳定，请重试");
-        return;
-      }
-      //加载数据
-      console.log(res.msg);
-      let msg = res.msg;
-      that.setData({
-        fwxy_url: msg.fwxy_url,
-        yszz_url: msg.yszz_url
-      })
     })
   },
 })
