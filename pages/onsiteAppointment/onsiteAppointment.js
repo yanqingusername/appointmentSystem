@@ -1857,16 +1857,19 @@ Page({
 
     if (this.data.objectMultiArray[e.detail.value[0]].time[e.detail.value[1]].can_use == 0) {
       //提醒当前时间段不可预约
-      wx.showModal({
-        title: this.data.yyts_title,
-        content: this.data.yyts_text,
-        showCancel: false,
-        success(res) {
-          if (res.confirm) {
-            console.log('用户点击了确定')
-          }
-        }
-      })
+      // wx.showModal({
+      //   title: this.data.yyts_title,
+      //   content: this.data.yyts_text,
+      //   showCancel: false,
+      //   success(res) {
+      //     if (res.confirm) {
+      //       console.log('用户点击了确定')
+      //     }
+      //   }
+      // })
+      this.setData({
+        isShowCanUse: true
+      });
       return;
     }
 
