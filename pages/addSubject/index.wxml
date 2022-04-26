@@ -54,7 +54,8 @@
         <view wx:if="{{onlineFlag==true}}" class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">证件号</view>
           <!-- <input class="P5_2 " style="position:relative;right:20rpx" type="{{keyboard_type}}" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" maxlength="{{keyboard_type_limit_num}}" value="{{idcard}}"></input> -->
-          <input class="P5_2 " style="position:relative;right:20rpx" type="{{keyboard_type}}" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" maxlength="{{keyboard_type_limit_num}}" value="{{idcard}}"></input>
+          <input class="P5_2 " wx:if="{{cardIndex > 0}}" style="position:relative;right:20rpx" type="text" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" maxlength="20" value="{{idcard}}"></input>
+          <input class="P5_2 " wx:else style="position:relative;right:20rpx" type="idcard" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" maxlength="18" value="{{idcard}}"></input>
           <view id="clear_1" style="padding:16rpx;right: -20rpx;" wx:if="{{idcard}}" catch:tap="clearidcard">
             <image class="icon_clear" src="../../images/icon_clear.png"></image>
           </view>

@@ -176,7 +176,7 @@
           </view>
           <view style="height:10rpx"></view>
         </view>
-        <view class="medWhite" hidden="{{channel.appointment_open=='0'?'hidden':''}}">
+        <view class="medWhite" hidden="{{(channel.appointment_open=='0' || isXSH == 0)?'hidden':''}}">
           <view class="title_1">
             <view class="title_bold" style="width:30%">预约时间</view>
             <view style="width: 70%;display: inline-flex;justify-content: flex-end;">
@@ -431,6 +431,14 @@
        
       <view class="modal_font2">{{timeBusinessTime}}</view>
 
+    </scroll-view>
+  </view>
+</modalView>
+
+<modalView show="{{isShowXSH}}" noCancel="{{true}}" title="温馨提示" bindcancel="modalCancel" bindconfirm='submitConfirmXSH' confirmText='好的，我知道了' cancelText='自定义取消'>
+  <view class='modal-content'>
+    <scroll-view scroll-y class='main-content' id="main-content-1">
+      <view class="modal_font1">当前时间为非营业时间，无法预约，为避免影响您的行程，请预约其他采样站</view>
     </scroll-view>
   </view>
 </modalView>

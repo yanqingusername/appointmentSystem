@@ -97,6 +97,8 @@ Page({
     userinfo_id: '',
     isAllSubject: 0, // 判断是否有受检人
     isShowTime: false, // 是否在营业时间内
+    isXSH: 0, // 0 不显示  1 显示
+    isShowXSH: false
   },
   onLoad: function (options) {
     var that = this;
@@ -368,7 +370,8 @@ Page({
                 work_time_remarks: info.work_time_remarks,
                 // MultiArray: info.MultiArray,
                 objectMultiArray: info.objectMultiArray,
-                multiIndex: [0, 0]
+                multiIndex: [0, 0],
+                isXSH: info.isXSH
               })
               that.getDetectionType();
               that.getbaseData(channel)
@@ -449,7 +452,8 @@ Page({
                 work_time_remarks: info.work_time_remarks,
                 // MultiArray: info.MultiArray,
                 objectMultiArray: info.objectMultiArray,
-                multiIndex: [0, 0]
+                multiIndex: [0, 0],
+                isXSH: info.isXSH
               })
               that.getDetectionType()
               that.getbaseData(channel)
@@ -539,7 +543,8 @@ Page({
                 work_time_remarks: channel.work_time_remarks,
                 // MultiArray: channel.MultiArray,
                 objectMultiArray: channel.objectMultiArray,
-                multiIndex: [0, 0]
+                multiIndex: [0, 0],
+                isXSH: channel.isXSH
               })
               that.getDetectionType();
               that.getbaseData(channel)
@@ -613,8 +618,8 @@ Page({
                 work_time_remarks: channel.work_time_remarks,
                 // MultiArray: channel.MultiArray,
                 objectMultiArray: channel.objectMultiArray,
-                multiIndex: [0, 0]
-
+                multiIndex: [0, 0],
+                isXSH: channel.isXSH
               })
               that.getDetectionType()
               that.getbaseData(channel)
@@ -954,6 +959,19 @@ Page({
         box.showToast("请输入核销码");
         return
       }
+    }
+
+    /**
+     * appointment_open  是否开启预约  1 开启  0 未开启
+     * isXSH 0 不显示   1 显示
+     * 根据只开一天预约并且只能预约当天的时间,时间过期了提示
+     */
+    if(this.data.channel.appointment_open == '1' && this.data.isXSH == 0){
+      // box.showToast("当前时间为非营业时间，无法预约，为避免影响您的行程，请预约其他采样站",'',2000);
+      this.setData({
+        isShowXSH: true
+      });
+      return
     }
 
     console.log("payment_amount=" + that.data.payment_amount)
@@ -2041,4 +2059,9 @@ Page({
       }
     })
   },
+  submitConfirmXSH(){
+    this.setData({
+      isShowXSH: false
+    });
+  }
 })
