@@ -352,7 +352,7 @@ Page({
       box.showToast("请获取验证码")
       return
     } else if (phoneCode[0] != phone) {
-      box.showToast("验证码过期")
+      box.showToast("手机号和验证码不匹配")
       return
     } else if (phoneCode[1] != code) {
       box.showToast("验证码错误")
