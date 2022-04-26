@@ -98,7 +98,8 @@ Page({
     isAllSubject: 0, // 判断是否有受检人
     isShowTime: false, // 是否在营业时间内
     isXSH: 0, // 0 不显示  1 显示
-    isShowXSH: false
+    isShowXSH: false,
+    isShowCanUse: false
   },
   onLoad: function (options) {
     var that = this;
@@ -940,16 +941,19 @@ Page({
 
     if (that.data.channel.appointment_open == 1) {
       if (that.data.objectMultiArray[that.data.multiIndex[0]].time[that.data.multiIndex[1]].can_use == 0) {
-        wx.showModal({
-          title: that.data.yyts_title,
-          content: that.data.yyts_text,
-          showCancel: false,
-          success(res) {
-            if (res.confirm) {
-              console.log('用户点击了确定')
-            }
-          }
-        })
+        // wx.showModal({
+        //   title: that.data.yyts_title,
+        //   content: that.data.yyts_text,
+        //   showCancel: false,
+        //   success(res) {
+        //     if (res.confirm) {
+        //       console.log('用户点击了确定')
+        //     }
+        //   }
+        // })
+        that.setData({
+          isShowCanUse: true
+        });
         return;
       }
 
@@ -2064,5 +2068,10 @@ Page({
     this.setData({
       isShowXSH: false
     });
-  }
+  },
+  submitConfirmCanUse(){
+    this.setData({
+      isShowCanUse: false
+    });
+  },
 })

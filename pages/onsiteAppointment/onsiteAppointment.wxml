@@ -442,3 +442,11 @@
     </scroll-view>
   </view>
 </modalView>
+
+<modalView show="{{isShowCanUse}}" noCancel="{{true}}" title="{{yyts_title}}" bindcancel="modalCancel" bindconfirm='submitConfirmCanUse' confirmText='好的，我知道了' cancelText='自定义取消'>
+  <view class='modal-content'>
+    <scroll-view scroll-y class='main-content' id="main-content-1">
+      <view class="modal_font1">{{yyts_text}}</view>
+    </scroll-view>
+  </view>
+</modalView>
