@@ -936,8 +936,9 @@ Page({
         box.showToast("请阅读并勾选预约须知")
         return
       }
-    } else if (that.data.channel.appointment_open == 1) {
+    }
 
+    if (that.data.channel.appointment_open == 1) {
       if (that.data.objectMultiArray[that.data.multiIndex[0]].time[that.data.multiIndex[1]].can_use == 0) {
         wx.showModal({
           title: that.data.yyts_title,
