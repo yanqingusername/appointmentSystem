@@ -686,11 +686,13 @@ Page({
               })
               if (userinfo.gender == '男') {
                 that.setData({
-                  genderIndex: 0
+                  genderIndex: 0,
+                  gender: userinfo.gender
                 })
               } else if (userinfo.gender == '女') {
                 that.setData({
-                  genderIndex: 1
+                  genderIndex: 1,
+                  gender: userinfo.gender
                 })
               }
             }

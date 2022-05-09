@@ -19,7 +19,7 @@
 <view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
   <view class="P1" style="margin-top:160rpx">
     <block wx:if="{{flag1}}" wx:for="{{channelList}}">
-      <view class="P2 app_font" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}"   data-id="{{item.channel_id}}" bindtap="bindCheckSamplingPoint">
+      <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}"   data-id="{{item.channel_id}}" bindtap="bindCheckSamplingPoint">
         <view class="app_flex">
           <view class="bold_font">{{item.channel_name}}</view>
           <view wx:if="{{hiddenFlag==false}}" class="bold_font_2">{{item.distance}}</view>
@@ -47,7 +47,7 @@
     </block>
 
     <block wx:if="{{flag2}}" wx:for="{{channelListPlus}}" >
-      <view class="P2 app_font" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}"bindtap="bindCheckSamplingPoint">
+      <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}"bindtap="bindCheckSamplingPoint">
         <view class="app_flex">
           <view class="bold_font">{{item.channel_name}}</view>
           <view wx:if="{{hiddenFlag==false}}" class="bold_font_2">{{item.distance}}</view>
