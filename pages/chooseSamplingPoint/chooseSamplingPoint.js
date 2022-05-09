@@ -3,7 +3,10 @@ const app = getApp()
 var request = require('../../utils/request.js')
 var box = require('../../utils/box.js')
 const utils = require('../../utils/utils.js')
-
+var a_channel_id_plus;
+var a_channel_id;
+var a_channel_id_plus_old;
+var a_channel_id_old;
 Page({
 
   /**
@@ -16,6 +19,8 @@ Page({
     overflowFlag:false,
     TabCur: 0,
     status: 0,
+    channelListPlusOld:[],//采样点列表（最开始数据）
+    channelListOld:[],//采样点列表（最开始数据）
     channelList: [],       //采样点列表（未模糊查询）
     channelListPlus:[], 
     statusList: [ '调拨出库','领用出库'],
@@ -29,7 +34,9 @@ Page({
     flag1:true,
     flag2:false,
     sampling_place:'全城区',
-    hiddenFlag:false
+    hiddenFlag:false,
+    isFirst: 1,
+    isFirstPlus: 1
   },
   getLocationAuth(){
     wx.getSetting({//获取用户已授权的信息
@@ -145,9 +152,28 @@ getChannelList:function(){
               // }
 
             }
+            // channelList[i].title = channelList[i].channel_name;
+            channelList[i].id = parseInt(channelList[i].channel_id);
+            channelList[i].iconPath = '../../images/icon_position_red.png';
+            channelList[i].width = 20;
+            channelList[i].height = 24;
+
+            // channelList[i].callout = {
+            //   content: channelList[i].channel_name,
+            //   color: '#ff0000',
+            //   fontSize: 14,
+            //   borderWidth: 2,
+            //   borderRadius: 10,
+            //   borderColor: '#fff',
+            //   bgColor: '#fff',
+            //   padding: 5,
+            //   display: 'ALWAYS',
+            //   textAlign: 'center'
+            // }
           } 
             that.setData({
               channelList: channelList,
+              channelListOld: channelList,
               hiddenFlag:false
             })
           }else{
@@ -192,9 +218,28 @@ getChannelList:function(){
               //   channelList[i].workingTimeArr[y] = channelList[i].workingTimeArr[y].replace(channelList[i].workingTimeArr[y].substr((channelList[i].workingTimeArr[y].indexOf('-')+1),2),'次日'+ utils.formatNumber((channelList[i].workingTimeArr[y].substr((channelList[i].workingTimeArr[y].indexOf('-')+1),2)-24)))
               // }
               }
+              // channelList[i].title = channelList[i].channel_name;
+              channelList[i].id = parseInt(channelList[i].channel_id);
+              channelList[i].iconPath = '../../images/icon_position_red.png';
+              channelList[i].width = 20;
+              channelList[i].height = 24;
+
+              // channelList[i].callout = {
+              //   content: channelList[i].channel_name,
+              //   color: '#ff0000',
+              //   fontSize: 14,
+              //   borderWidth: 2,
+              //   borderRadius: 10,
+              //   borderColor: '#fff',
+              //   bgColor: '#fff',
+              //   padding: 5,
+              //   display: 'ALWAYS',
+              //   textAlign: 'center'
+              // }
             }
             that.setData({
               channelList: channelList,
+              channelListOld: channelList,
               hiddenFlag:true
             })
           }else{
@@ -344,7 +389,7 @@ bindDetail:function(e){
     console.log("input-----"+e.detail.value)
     var value = e.detail.value;
     var that = this;
-    var channelList = that.data.channelList;
+    var channelList = that.data.channelListOld;
     var channelListPlus = that.data.channelListPlus
     if (value == '' || value == null) {
       that.setData({
@@ -371,7 +416,8 @@ bindDetail:function(e){
         }
         console.log(arr);
         that.setData({
-          channelListPlus: arr
+          channelListPlus: arr,
+          channelListPlusOld: arr
         });
         if(that.data.channelListPlus.length == 0){
           console.log(arr);
@@ -430,5 +476,123 @@ bindDetail:function(e){
         scale: 18,
         name:e.currentTarget.dataset.channelname
       })
+    },
+    //显示对话框
+    showModal1: function(event) {
+      console.log(event.markerId);
+      let channel_id = event.markerId;
+      if(channel_id){
+        a_channel_id_plus = channel_id;
+        let channelListPlusOld = this.data.channelListPlusOld;
+        let channelData = [];
+        if(channelListPlusOld && channelListPlusOld.length > 0){
+          channelData = channelListPlusOld.filter((item)=>{
+            return item.channel_id == channel_id;
+          })
+        }
+        if(a_channel_id_plus == a_channel_id_plus_old){
+          if(this.data.isFirstPlus == 1){
+            this.setData({
+              channelListPlus: channelData,
+              isFirstPlus: 2
+            });
+            a_channel_id_plus_old = channel_id;
+          }else{
+            this.setData({
+              channelListPlus: this.data.channelListPlusOld,
+              isFirstPlus: 1
+            });
+            a_channel_id_plus_old = channel_id;
+          }
+        }else{
+          this.setData({
+            channelListPlus: channelData,
+            isFirstPlus: 2
+          });
+          a_channel_id_plus_old = channel_id;
+        }
+      }
+    },
+  showModal: function(event) {
+    let channel_id = event.markerId;
+    if(channel_id){
+      a_channel_id = channel_id;
+      let channelListOld = this.data.channelListOld;
+      let channelData = [];
+      if(channelListOld && channelListOld.length > 0){
+        channelData = channelListOld.filter((item)=>{
+          return item.channel_id == channel_id;
+        })
+      }
+      if(a_channel_id == a_channel_id_old){
+        if(this.data.isFirst == 1){
+          this.setData({
+            channelList: channelData,
+            isFirst: 2,
+          });
+          a_channel_id_old = channel_id;
+        }else{
+          this.setData({
+            channelList: this.data.channelListOld,
+            isFirst: 1
+          })
+          a_channel_id_old = channel_id;
+        }
+      }else{
+        this.setData({
+          channelList: channelData,
+          isFirst: 2
+        })
+        a_channel_id_old = channel_id;
+      }
     }
+    
+    
+    // if(channelData && channelData.length > 0){
+    //   this.setData({
+    //     myall: channelData[0]
+    //   });
+
+    //   // 显示遮罩层
+    //   var animation = wx.createAnimation({
+    //     duration: 200,
+    //     timingFunction: "linear",
+    //     delay: 0
+    //   })
+    //   this.animation = animation
+    //   animation.translateY(300).step()
+    //   this.setData({
+    //     animationData: animation.export(),
+    //     showModalStatus: true
+    //   })
+    //   setTimeout(function() {
+    //     animation.translateY(0).step()
+    //     this.setData({
+    //       animationData: animation.export()
+    //     })
+    //   }.bind(this), 200)
+    // }
+  },
+  //隐藏对话框
+  hideModal: function() {
+    // 隐藏遮罩层
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData: animation.export(),
+    })
+    setTimeout(function() {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        showModalStatus: false
+      })
+    }.bind(this), 200)
+  },
+
 })

@@ -99,7 +99,8 @@ Page({
     isShowTime: false, // 是否在营业时间内
     isXSH: 0, // 0 不显示  1 显示
     isShowXSH: false,
-    isShowCanUse: false
+    isShowCanUse: false,
+    is_promise: 2 //是否显示公告 1-显示  2-隐藏
   },
   onLoad: function (options) {
     var that = this;
@@ -1950,7 +1951,7 @@ Page({
         yyts_text: msg.yyts_text,
         fwxy_url: msg.fwxy_url,
         yszz_url: msg.yszz_url,
-        is_promise: msg.is_promise || 2, //是否显示公告 1-显示
+        is_promise: msg.is_promise, //是否显示公告 1-显示
         promise_title: msg.promise_title,
         promise_url: msg.promise_url,
         promise_announcement: msg.promise_announcement

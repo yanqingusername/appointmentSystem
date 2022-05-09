@@ -9,7 +9,7 @@
   <text id="district_font">{{sampling_place}}</text>
         <image class="right_arrow" src="../../images/rightArrow.png"></image>
   </view>
-    <input id="search_checked" type='text' placeholder='请输入采样点名称' confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' ></input>
+    <input id="search_checked" style="width:{{sampling_place=='北京清河站'? '62':'72'}}%;" type='text' placeholder='请输入采样点名称' confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' ></input>
   <view class="weui-icon-clear" wx:if="{{searchText}}" bindtap="clearSearchHandle">
     <icon type="clear" size="20" />
   </view>
@@ -18,8 +18,100 @@
 </view>
 <view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
   <view class="P1" style="margin-top:160rpx">
+
+  <block wx:if="{{flag1 && channelListOld.length > 0}}">
+  <view style="height:800rpx;"  wx:if="{{flag1 && channelListOld.length > 0}}">
+  <map id="map"
+    wx:if="{{flag1 && channelListOld.length > 0}}"
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    markers="{{channelListOld}}" 
+    bindmarkertap="showModal" 
+    data-id="{{channelListOld}}"
+    show-location
+    style="width: 100%; height: 100%;"
+    scale="13">
+
+    <!--屏幕背景变暗的背景  -->
+    <!-- <cover-view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></cover-view>
+    <cover-view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+      <cover-view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;" data-name="{{myall.channel_name}}"  data-distance="{{myall.distance}}"   data-id="{{myall.channel_id}}" bindtap="bindCheckSamplingPoint">
+        <cover-view class="app_flex">
+          <cover-view class="bold_font">{{myall.channel_name}}</cover-view>
+          <cover-view wx:if="{{hiddenFlag==false}}" class="bold_font_2">{{myall.distance}}</cover-view>
+        </cover-view>
+        <cover-view wx:for="{{myall.workingTimeArr}}" wx:for-index="textIndex" wx:for-item="timeItem">
+          <cover-view class="P2_1 app_flex">
+            <cover-view class="P2_1_1" ><cover-view wx:if="{{textIndex==0}}">营业时间</cover-view></cover-view>
+            <cover-view class="P2_1_2" >{{timeItem}}</cover-view>
+          </cover-view>
+        </cover-view>
+        <cover-view class="P2_1 app_flex" style="margin-top:6rpx">
+            <cover-view class="P2_1_1" ></cover-view>
+            <cover-view class="P2_1_2">{{myall.work_time_remarks}}</cover-view>
+        </cover-view>
+        <cover-view class="P2_1 app_flex">
+          <cover-view class="P2_1_1" style="width:70%;color:#A3A3A3;margin-top:12rpx;white-space: break-spaces;">{{myall.site_description}}</cover-view>
+          <cover-view catchtap="openMap" data-channelname="{{myall.channel_name}}" data-latitude="{{myall.latitude}}" data-longitude="{{myall.longitude}}" class="icon_view_1">
+          <cover-image class="icon_1" src="../../images/icon_positon_gray.png"></cover-image>
+          </cover-view>
+          <cover-view class="icon_view_2" data-phone="{{myall.cstn}}" catchtap="phoneCall">
+          <cover-image class="icon_2" src="../../images/icon_phone.png"></cover-image>
+          </cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>  -->
+  </map>
+  </view>
+</block>
+
+<block wx:if="{{flag2 && channelListPlusOld.length > 0}}">
+  <view style="height:800rpx;" wx:if="{{flag2 && channelListPlusOld.length > 0}}">
+  <map id="map1"
+    wx:if="{{flag2 && channelListPlusOld.length > 0}}"
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    markers="{{channelListPlusOld}}" 
+    bindmarkertap="showModal1" 
+    data-id="{{channelListPlusOld}}"
+    show-location 
+    style="width: 100%; height: 100%;"
+    scale="13">
+
+    <!--屏幕背景变暗的背景  -->
+    <!-- <cover-view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></cover-view>
+    <cover-view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+      <cover-view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;" data-name="{{myall.channel_name}}"  data-distance="{{myall.distance}}"   data-id="{{myall.channel_id}}" bindtap="bindCheckSamplingPoint">
+        <cover-view class="app_flex">
+          <cover-view class="bold_font">{{myall.channel_name}}</cover-view>
+          <cover-view wx:if="{{hiddenFlag==false}}" class="bold_font_2">{{myall.distance}}</cover-view>
+        </cover-view>
+        <cover-view wx:for="{{myall.workingTimeArr}}" wx:for-index="textIndex" wx:for-item="timeItem">
+          <cover-view class="P2_1 app_flex">
+            <cover-view class="P2_1_1" ><cover-view wx:if="{{textIndex==0}}">营业时间</cover-view></cover-view>
+            <cover-view class="P2_1_2" >{{timeItem}}</cover-view>
+          </cover-view>
+        </cover-view>
+        <cover-view class="P2_1 app_flex" style="margin-top:6rpx">
+            <cover-view class="P2_1_1" ></cover-view>
+            <cover-view class="P2_1_2">{{myall.work_time_remarks}}</cover-view>
+        </cover-view>
+        <cover-view class="P2_1 app_flex">
+          <cover-view class="P2_1_1" style="width:70%;color:#A3A3A3;margin-top:12rpx;white-space: break-spaces;">{{myall.site_description}}</cover-view>
+          <cover-view catchtap="openMap" data-channelname="{{myall.channel_name}}" data-latitude="{{myall.latitude}}" data-longitude="{{myall.longitude}}" class="icon_view_1">
+          <cover-image class="icon_1" src="../../images/icon_positon_gray.png"></cover-image>
+          </cover-view>
+          <cover-view class="icon_view_2" data-phone="{{myall.cstn}}" catchtap="phoneCall">
+          <cover-image class="icon_2" src="../../images/icon_phone.png"></cover-image>
+          </cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>  -->
+  </map>
+  </view>
+</block>
     <block wx:if="{{flag1}}" wx:for="{{channelList}}">
-      <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}"   data-id="{{item.channel_id}}" bindtap="bindCheckSamplingPoint">
+      <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;margin-top:20rpx;" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}"   data-id="{{item.channel_id}}" bindtap="bindCheckSamplingPoint">
         <view class="app_flex">
           <view class="bold_font">{{item.channel_name}}</view>
           <view wx:if="{{hiddenFlag==false}}" class="bold_font_2">{{item.distance}}</view>
@@ -47,7 +139,7 @@
     </block>
 
     <block wx:if="{{flag2}}" wx:for="{{channelListPlus}}" >
-      <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}"bindtap="bindCheckSamplingPoint">
+      <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;margin-top:20rpx;" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}"bindtap="bindCheckSamplingPoint">
         <view class="app_flex">
           <view class="bold_font">{{item.channel_name}}</view>
           <view wx:if="{{hiddenFlag==false}}" class="bold_font_2">{{item.distance}}</view>
