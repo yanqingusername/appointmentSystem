@@ -177,7 +177,7 @@
         </view>
       </view>
     </block>
-    <view style="display:flex;justify-content:center;padding: 50rpx 0rpx 30rpx;">
+    <view style="display:flex;justify-content:center;padding: 50rpx 0rpx 30rpx;" wx:if="{{(flag1 && channelList.length == 0) || (flag2 && channelListPlus.length == 0)}}">
       <view  ><!-- wx:if="{{alreadyChecked==true}}" -->
         <image  class="app_noinfo_img" src="../../images/nodata.png" mode="widthFix"></image>
         <view class="app_noinfo_desc">{{tip}}</view>
