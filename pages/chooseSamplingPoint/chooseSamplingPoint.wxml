@@ -65,15 +65,15 @@
   </view>
 </block>
 
-<block wx:if="{{flag2 && channelListOld.length > 0}}">
-  <view style="height:800rpx;" wx:if="{{flag2 && channelListOld.length > 0}}">
+<block wx:if="{{flag2 && channelListPlusOld.length > 0}}">
+  <view style="height:800rpx;" wx:if="{{flag2 && channelListPlusOld.length > 0}}">
   <map id="map1"
-    wx:if="{{flag2 && channelListOld.length > 0}}"
+    wx:if="{{flag2 && channelListPlusOld.length > 0}}"
     longitude="{{longitude}}"
     latitude="{{latitude}}"
-    markers="{{channelListOld}}" 
+    markers="{{channelListPlusOld}}" 
     bindmarkertap="showModal1" 
-    data-id="{{channelListOld}}"
+    data-id="{{channelListPlusOld}}"
     show-location 
     style="width: 100%; height: 100%;"
     scale="13">
