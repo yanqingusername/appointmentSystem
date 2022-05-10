@@ -229,6 +229,18 @@ button{
   padding: 20rpx;
 }
 
+.app_noinfo_img{
+	width: 150rpx;
+	height: auto;
+	margin: 50rpx 300rpx 30rpx 300rpx;
+}
+.app_noinfo_desc{
+	width: 750rpx;
+	text-align: center;
+	color: #999999;
+	font-size: 30rpx;
+}
+
 /*
 *
 */

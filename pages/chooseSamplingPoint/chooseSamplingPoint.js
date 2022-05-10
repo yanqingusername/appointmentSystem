@@ -560,71 +560,136 @@ bindDetail:function(e){
       }
     },
   showModal: function(event) {
-    let channel_id = event.markerId;
-    if(channel_id){
-      a_channel_id = channel_id;
-      let channelListOld = this.data.channelListOld;
-      let channelData = [];
-      let index = -1;
-      if(channelListOld && channelListOld.length > 0){
-        for(let i = 0; i < channelListOld.length; i++){
-          if(channelListOld[i].channel_id == channel_id){
-            channelData.push(channelListOld[i]);
-            index = i;
-          }
-        }
-        // channelData = channelListOld.filter((item)=>{
-        //   return item.channel_id == channel_id;
-        // })
-      }
-
-      if(a_channel_id == a_channel_id_old){
-        // if(this.data.isFirst == 1){
-        //   this.setData({
-        //     channelList: channelData,
-        //     isFirst: 2,
-        //   });
-        //   a_channel_id_old = channel_id;
-        // }else{
-
+    if(this.data.flag1){
+      let channel_id = event.markerId;
+      if(channel_id){
+        a_channel_id = channel_id;
+        let channelListOld = this.data.channelListOld;
+        let channelData = [];
+        let index = -1;
+        if(channelListOld && channelListOld.length > 0){
           for(let i = 0; i < channelListOld.length; i++){
-            this.data.channelListOld[i].iconPath = '../../images/icon_position_red.png';
-            this.data.channelListOld[i].width = 20;
-            this.data.channelListOld[i].height = 24;
-            this.data.channelListOld[i].zIndex = 0;
+            if(channelListOld[i].channel_id == channel_id){
+              channelData.push(channelListOld[i]);
+              index = i;
+            }
           }
+          // channelData = channelListOld.filter((item)=>{
+          //   return item.channel_id == channel_id;
+          // })
+        }
+
+        if(a_channel_id == a_channel_id_old){
+          // if(this.data.isFirst == 1){
+          //   this.setData({
+          //     channelList: channelData,
+          //     isFirst: 2,
+          //   });
+          //   a_channel_id_old = channel_id;
+          // }else{
+
+            for(let i = 0; i < channelListOld.length; i++){
+              this.data.channelListOld[i].iconPath = '../../images/icon_position_red.png';
+              this.data.channelListOld[i].width = 20;
+              this.data.channelListOld[i].height = 24;
+              this.data.channelListOld[i].zIndex = 0;
+            }
+
+            this.setData({
+              channelList: this.data.channelListOld,
+              isFirst: 1,
+              channelListOld: this.data.channelListOld
+            })
+            a_channel_id_old = -1;
+          // }
+        }else{
+          for(let i = 0; i < channelListOld.length; i++){
+            if(channelListOld[i].channel_id == a_channel_id_old){
+              this.data.channelListOld[i].iconPath = '../../images/icon_position_red.png';
+              this.data.channelListOld[i].width = 20;
+              this.data.channelListOld[i].height = 24;
+              this.data.channelListOld[i].zIndex = 0;
+            }
+          }
+          
+          this.data.channelListOld[index].iconPath = '../../images/position.png';
+          this.data.channelListOld[index].width = 30;
+          this.data.channelListOld[index].height = 30;
+          this.data.channelListOld[index].zIndex = 9999;
 
           this.setData({
-            channelList: this.data.channelListOld,
-            isFirst: 1,
+            channelList: channelData,
+            isFirst: 2,
             channelListOld: this.data.channelListOld
           })
-          a_channel_id_old = -1;
-        // }
-      }else{
-        for(let i = 0; i < channelListOld.length; i++){
-          if(channelListOld[i].channel_id == a_channel_id_old){
-            this.data.channelListOld[i].iconPath = '../../images/icon_position_red.png';
-            this.data.channelListOld[i].width = 20;
-            this.data.channelListOld[i].height = 24;
-            this.data.channelListOld[i].zIndex = 0;
-          }
+          a_channel_id_old = channel_id;
         }
-        
-        this.data.channelListOld[index].iconPath = '../../images/position.png';
-        this.data.channelListOld[index].width = 30;
-        this.data.channelListOld[index].height = 30;
-        this.data.channelListOld[index].zIndex = 9999;
+      }
+    }else{
+      let channel_id = event.markerId;
+      if(channel_id){
+        a_channel_id_plus = channel_id;
+        let channelListPlusOld = this.data.channelListPlusOld;
+        let channelData = [];
+        let index = -1;
+        if(channelListPlusOld && channelListPlusOld.length > 0){
+          for(let i = 0; i < channelListPlusOld.length; i++){
+            if(channelListPlusOld[i].channel_id == channel_id){
+              channelData.push(channelListPlusOld[i]);
+              index = i;
+            }
+          }
+          // channelData = channelListPlusOld.filter((item)=>{
+          //   return item.channel_id == channel_id;
+          // })
+        }
+        if(a_channel_id_plus == a_channel_id_plus_old){
+          // if(this.data.isFirstPlus == 1){
+          //   this.setData({
+          //     channelListPlus: channelData,
+          //     isFirstPlus: 2
+          //   });
+          //   a_channel_id_plus_old = channel_id;
+          // }else{
 
-        this.setData({
-          channelList: channelData,
-          isFirst: 2,
-          channelListOld: this.data.channelListOld
-        })
-        a_channel_id_old = channel_id;
+            for(let i = 0; i < channelListPlusOld.length; i++){
+              this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_red.png';
+              this.data.channelListPlusOld[i].width = 20;
+              this.data.channelListPlusOld[i].height = 24;
+              this.data.channelListPlusOld[i].zIndex = 0;
+            }
+            this.setData({
+              channelListPlus: this.data.channelListPlusOld,
+              isFirstPlus: 1,
+              channelListPlusOld: this.data.channelListPlusOld
+            });
+            a_channel_id_plus_old = -1;
+          // }
+        }else{
+          for(let i = 0; i < channelListPlusOld.length; i++){
+            if(channelListPlusOld[i].channel_id == a_channel_id_plus_old){
+              this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_red.png';
+              this.data.channelListPlusOld[i].width = 20;
+              this.data.channelListPlusOld[i].height = 24;
+              this.data.channelListPlusOld[i].zIndex = 0;
+            }
+          }
+          
+          this.data.channelListPlusOld[index].iconPath = '../../images/position.png';
+          this.data.channelListPlusOld[index].width = 30;
+          this.data.channelListPlusOld[index].height = 30;
+          this.data.channelListPlusOld[index].zIndex = 9999;
+
+          this.setData({
+            channelListPlus: channelData,
+            isFirstPlus: 2,
+            channelListPlusOld: this.data.channelListPlusOld
+          });
+          a_channel_id_plus_old = channel_id;
+        }
       }
     }
-    
+
     
     // if(channelData && channelData.length > 0){
     //   this.setData({
@@ -685,9 +750,9 @@ bindDetail:function(e){
           channelListOld: this.data.channelListOld
         });
       }
-      this.setData({
-        channelListPlusOld: []
-      });
+      // this.setData({
+      //   channelListPlusOld: []
+      // });
 
       a_channel_id_plus = -1;
       a_channel_id = -1;
