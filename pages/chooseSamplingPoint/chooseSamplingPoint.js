@@ -547,7 +547,7 @@ bindDetail:function(e){
           
           this.data.channelListPlusOld[index].iconPath = '../../images/position.png';
           this.data.channelListPlusOld[index].width = 30;
-          this.data.channelListPlusOld[index].height = 34;
+          this.data.channelListPlusOld[index].height = 30;
           this.data.channelListPlusOld[index].zIndex = 9999;
 
           this.setData({
@@ -613,7 +613,7 @@ bindDetail:function(e){
         
         this.data.channelListOld[index].iconPath = '../../images/position.png';
         this.data.channelListOld[index].width = 30;
-        this.data.channelListOld[index].height = 34;
+        this.data.channelListOld[index].height = 30;
         this.data.channelListOld[index].zIndex = 9999;
 
         this.setData({
