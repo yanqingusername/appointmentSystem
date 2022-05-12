@@ -100,7 +100,11 @@ Page({
     isXSH: 0, // 0 不显示  1 显示
     isShowXSH: false,
     isShowCanUse: false,
-    is_promise: 2 //是否显示公告 1-显示  2-隐藏
+    is_promise: 2, //是否显示公告 1-显示  2-隐藏
+    showModal_4: false,
+    is_paynotice: 2,//是否显示付款须知 1-显示  2-隐藏
+    paynotice_title: '',
+    paynotice_url: '',
   },
   onLoad: function (options) {
     var that = this;
@@ -1954,7 +1958,10 @@ Page({
         is_promise: msg.is_promise, //是否显示公告 1-显示
         promise_title: msg.promise_title,
         promise_url: msg.promise_url,
-        promise_announcement: msg.promise_announcement
+        promise_announcement: msg.promise_announcement,
+        is_paynotice: msg.is_paynotice,//是否显示付款须知 1-显示  2-隐藏
+        paynotice_title: msg.paynotice_title,
+        paynotice_url: msg.paynotice_url,
       })
 
     })
@@ -2045,7 +2052,8 @@ Page({
     that.setData({
       isShowTime: false
     })
-    that.submit()
+    // that.submit()
+    that.bindshowModal_4();
   }, 2000),
   getCheckTime(){
     let that = this;
@@ -2056,7 +2064,8 @@ Page({
       console.info('回调', res)
       if (res) {
           if (res.during_business_hours){
-            that.submit();
+            // that.submit();
+            that.bindshowModal_4();
           } else {
             that.setData({
               isShowTime: true,
@@ -2079,5 +2088,30 @@ Page({
     this.setData({
       isShowCanUse: false
     });
+  },
+  bindshowModal_4: function () {
+    if(this.data.is_paynotice == 1){
+      this.setData({
+        showModal_4: true
+      });
+    }else{
+      this.setData({
+        showModal_4: false
+      });
+      this.submit()
+    }
+  },
+  modalConfirm_4: utils.throttle(function () {
+    var that = this
+    that.setData({
+      showModal_4: false
+    })
+    that.submit()
+  }, 2000),
+  modalCancel_4: function () {
+    var that = this
+    that.setData({
+      showModal_4: false
+    })
   },
 })

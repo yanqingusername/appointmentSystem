@@ -450,3 +450,11 @@
     </scroll-view>
   </view>
 </modalView>
+
+<modalView show="{{showModal_4}}" noCancel="{{false}}" title="{{paynotice_title}}" bindcancel="modalCancel_4" bindconfirm='modalConfirm_4' confirmText='同意并继续' cancelText='返回上一步'>
+  <view class='modal-content'>
+    <scroll-view scroll-y class='main-content' id="main-content-1">
+      <image src="{{paynotice_url}}" mode="widthFix" style="width: 100%;"></image>
+    </scroll-view>
+  </view>
+</modalView>
