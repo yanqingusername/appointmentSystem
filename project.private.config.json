@@ -29,6 +29,13 @@
           "name": "selectSubject",
           "pathName": "pages/selectSubject/index",
           "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "specialServices",
+          "pathName": "pages/specialServices/index",
+          "query": "",
           "scene": null,
           "launchMode": "default"
         }

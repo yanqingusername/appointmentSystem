@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "modalView":"../../colorui/components/modalView/modalView"
+  },
+  "disableScroll":false
+}

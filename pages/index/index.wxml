@@ -24,6 +24,10 @@
     <view bindtap="bindAppointment"  class="view_item" style="padding: 0rpx 0rpx 20rpx 0rpx;">
       <image src="../../images/appointmentRecord.png" class="view_img"></image>
     </view>
+
+    <view bindtap="bindSpecialServices"  class="view_item" style="padding: 0rpx 0rpx 20rpx 0rpx;">
+      <image src="../../images/icon_special_services_05_19.png" class="view_img"></image>
+    </view>
   </view>
 
   <view bindtap="bindCoupon" id="coupon_bottom">

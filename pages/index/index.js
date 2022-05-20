@@ -191,6 +191,13 @@ Page({
         url: '/pages/index/article'
       })
     }
-  }
-
+  },
+  /**
+   * 专项服务
+   */
+  bindSpecialServices:function(){
+    wx.navigateTo({
+      url: '/pages/specialServices/index'
+    })
+  },
 })
