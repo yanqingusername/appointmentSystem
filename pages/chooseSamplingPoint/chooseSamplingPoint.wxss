@@ -405,5 +405,30 @@ page{
   font-size: 24rpx;
 }
  
+.icon_1_new{
+  width: 132rpx;
+  height: 56rpx;
+}
+.icon_2_new{
+  width: 132rpx;
+  height: 56rpx;
+  margin-left: 20rpx;
+}
+.icon_view_1_new{
+  display: flex;
+  align-items: center;
+}
 
+.map_view{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 20rpx 10rpx 20rpx;
+}
 
+.map_view_title{
+  /* width:70%; */
+  color:#A3A3A3;
+  padding: 6rpx;
+    font-size: 26rpx;
+}

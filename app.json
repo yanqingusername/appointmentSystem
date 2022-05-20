@@ -21,6 +21,7 @@
     "pages/employee/employeeInfo",
     "pages/addSubject/index",
     "pages/selectSubject/index",
+    "pages/chooseSamplingPointMap/index",
     "pages/specialServices/index"
   ],
   "window": {

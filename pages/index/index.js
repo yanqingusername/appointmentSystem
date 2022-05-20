@@ -192,6 +192,11 @@ Page({
       })
     }
   },
+  bindChooseMap:function(){
+    wx.navigateTo({
+      url: '/pages/chooseSamplingPointMap/index',
+    })
+  },
   /**
    * 专项服务
    */

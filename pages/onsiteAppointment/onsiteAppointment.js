@@ -149,7 +149,23 @@ Page({
       })
       that.getFixedChannel(options.fix_channel_id); // 固定采样点
     } else {
-      that.getChannelList();
+      let choMap = options.choMap || 0;
+      if (choMap == 1) {
+        let jsonItem = options.channel;
+        let channel = JSON.parse(jsonItem);
+        console.log('---->:',channel)
+        that.setData({
+          channel: channel
+        });
+        that.getFixedChannel(that.data.channel.channel_id); // 选中新采样点返回
+        console.log('选中新采样点返回')
+        var channel_id = that.data.channel.channel_id;
+        that.setData({
+          channel_id: channel_id,
+        })
+      }else{
+        that.getChannelList();
+      }
       console.log('小程序进入')
     }
 
