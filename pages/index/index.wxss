@@ -37,12 +37,14 @@ image{
 display: flex;
 bottom: 60rpx;
 position: absolute;
-left:280rpx;
+align-items: center;
+justify-content: center;
+width: 100%;
+/* left:280rpx; */
 /* justify-content: center; */
 }
 #coupon_text{
   color: #5E5E5E;
-  padding: 20rpx;
   font-size: 32rpx;
 }
 .swiper {

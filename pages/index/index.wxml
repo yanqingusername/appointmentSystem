@@ -26,8 +26,14 @@
     </view>
   </view>
 
-  <view bindtap="bindCoupon" id="coupon_bottom">
-    <image style="width:58rpx;height:49rpx" src="../../images/coupon@3x.png"></image>
-    <view id="coupon_text">我的卡券</view>
+  <view id="coupon_bottom">
+    <view bindtap="bindChooseMap"  style="display: flex;align-items: center;justify-content: center;padding: 20rpx;background:#F5F5F5;">
+      <image style="width:48rpx;height:48rpx" src="../../images/icon_map_05_20.png"></image>
+      <view id="coupon_text" style="margin-left:20rpx;">采样点地图</view>
+    </view>
+    <view bindtap="bindCoupon"  style="display: flex;align-items: center;justify-content: center;padding: 20rpx;background:#F5F5F5;margin-left:30rpx;">
+      <image style="width:58rpx;height:49rpx" src="../../images/coupon@3x.png"></image>
+      <view id="coupon_text" style="margin-left:20rpx;">我的卡券</view>
+    </view>
   </view>
 </view>

@@ -405,6 +405,27 @@ page{
   font-size: 24rpx;
 }
  
+.P2_1_new{
+  padding: 6rpx;
+  margin-left: 20rpx;
+  /* text-align-last: justify; */
+  /* height: 80rpx; */
+  color: #FFFFFF;
+  font-size: 26rpx;
+  background: #09C09C;
+}
+.P2_2_new{
+  padding: 6rpx;
+  margin-left: 20rpx;
+/* margin-right: 5%; */
+text-align: left;
+/* padding-left: 10rpx; */
+word-break: break-all;
+color: #F3773D;
+font-size: 26rpx;
+background: #FFC288;
+}
+
 .icon_1_new{
   width: 132rpx;
   height: 56rpx;
@@ -432,4 +453,3 @@ page{
   padding: 6rpx;
     font-size: 26rpx;
 }
-

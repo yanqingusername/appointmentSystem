@@ -20,7 +20,8 @@
     "pages/logs/logs",
     "pages/employee/employeeInfo",
     "pages/addSubject/index",
-    "pages/selectSubject/index"
+    "pages/selectSubject/index",
+    "pages/chooseSamplingPointMap/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

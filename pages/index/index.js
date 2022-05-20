@@ -191,6 +191,11 @@ Page({
         url: '/pages/index/article'
       })
     }
-  }
+  },
+  bindChooseMap:function(){
+    wx.navigateTo({
+      url: '/pages/chooseSamplingPointMap/index',
+    })
+  },
 
 })
