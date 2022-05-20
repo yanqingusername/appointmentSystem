@@ -21,11 +21,11 @@
 
   <block wx:if="{{flag1 || flag2 }}">
   <view style="height:800rpx;"  wx:if="{{flag1 || flag2}}">
+    <!-- bindmarkertap="showModal"  -->
   <map id="map"
     longitude="{{longitude}}"
     latitude="{{latitude}}"
     markers="{{flag1 ? channelListOld : channelListPlusOld}}" 
-    bindmarkertap="showModal" 
     data-id="{{flag1 ? channelListOld : channelListPlusOld}}"
     show-location
     style="width: 100%; height: 100%;"

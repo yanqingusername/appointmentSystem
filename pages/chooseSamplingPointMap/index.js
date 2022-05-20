@@ -760,13 +760,14 @@ bindDetail:function(e){
       a_channel_id = -1;
       a_channel_id_plus_old = -1;
       a_channel_id_old = -1;
+
+      a_channel_id_map = -1;
+      a_channel_id_old_map = -1;
+      a_channel_id_plus_map = -1;
+      a_channel_id_plus_old_map = -1;
   },
   bindCheckMap(e){
     console.log(e.currentTarget.dataset.latitude,e.currentTarget.dataset.longitude)
-    this.setData({
-      latitude: e.currentTarget.dataset.latitude,
-      longitude: e.currentTarget.dataset.longitude
-    })
     
     if(this.data.flag1){
       let channel_id = e.currentTarget.dataset.id;
@@ -800,6 +801,11 @@ bindDetail:function(e){
             // a_channel_id_old_map = -1;
           
         }else{
+          this.setData({
+            latitude: e.currentTarget.dataset.latitude,
+            longitude: e.currentTarget.dataset.longitude
+          })
+
           for(let i = 0; i < channelListOld.length; i++){
             if(channelListOld[i].channel_id == a_channel_id_old_map){
               this.data.channelListOld[i].iconPath = '../../images/icon_position_red.png';
@@ -855,6 +861,11 @@ bindDetail:function(e){
             // a_channel_id_plus_old_map = -1;
           
         }else{
+          this.setData({
+            latitude: e.currentTarget.dataset.latitude,
+            longitude: e.currentTarget.dataset.longitude
+          })
+          
           for(let i = 0; i < channelListPlusOld.length; i++){
             if(channelListPlusOld[i].channel_id == a_channel_id_plus_old_map){
               this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_red.png';
