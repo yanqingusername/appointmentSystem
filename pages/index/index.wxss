@@ -35,8 +35,8 @@ image{
 }
 #coupon_bottom{
 display: flex;
-bottom: 60rpx;
-position: absolute;
+/* bottom: 60rpx; */
+/* position: absolute; */
 align-items: center;
 justify-content: center;
 width: 100%;

@@ -42,7 +42,7 @@
         </view>
       </view>
 
-      <view class="tips_view" bindchange="changePolicy">
+      <view class="tips_view" bindchange="changePolicy" wx:if="{{urgent == 0}}">
         <image class="tips_position" src="../../images/icon_tips_05_19.png"></image>
         <view class="tips_title">温馨提示：上门区域限北京四环内及部分四环外，点击查看</view>
       </view>

@@ -34,7 +34,8 @@ Page({
     swiperCurrent:0,
     movies:[],
     yysj1:'',
-    yysj2:''
+    yysj2:'',
+    isSpecialServices: 2   // 1--个人预约   2--vip上门
   },
 
   onShow:function(){
