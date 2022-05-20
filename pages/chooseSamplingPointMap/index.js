@@ -772,7 +772,7 @@ bindDetail:function(e){
     if(this.data.flag1){
       let channel_id = e.currentTarget.dataset.id;
       if(channel_id){
-        a_channel_id_map = channel_id;
+        a_channel_id = channel_id;
         let channelListOld = this.data.channelListOld;
         let channelData = [];
         let index = -1;
@@ -785,20 +785,19 @@ bindDetail:function(e){
           }
         }
 
-        if(a_channel_id_map == a_channel_id_old_map){
-            // for(let i = 0; i < channelListOld.length; i++){
-            //   this.data.channelListOld[i].iconPath = '../../images/icon_position_red.png';
-            //   this.data.channelListOld[i].width = 20;
-            //   this.data.channelListOld[i].height = 24;
-            //   this.data.channelListOld[i].zIndex = 0;
-            // }
+        if(a_channel_id == a_channel_id_old){
+            for(let i = 0; i < channelListOld.length; i++){
+              this.data.channelListOld[i].iconPath = '../../images/icon_position_red.png';
+              this.data.channelListOld[i].width = 20;
+              this.data.channelListOld[i].height = 24;
+              this.data.channelListOld[i].zIndex = 0;
+            }
 
-            // this.setData({
-            //   channelList: this.data.channelListOld,
-            //   isFirst: 1,
-            //   channelListOld: this.data.channelListOld
-            // })
-            // a_channel_id_old_map = -1;
+            this.setData({
+              // channelList: this.data.channelListOld,
+              channelListOld: this.data.channelListOld
+            })
+            a_channel_id_old = -1;
           
         }else{
           this.setData({
@@ -807,7 +806,7 @@ bindDetail:function(e){
           })
 
           for(let i = 0; i < channelListOld.length; i++){
-            if(channelListOld[i].channel_id == a_channel_id_old_map){
+            if(channelListOld[i].channel_id == a_channel_id_old){
               this.data.channelListOld[i].iconPath = '../../images/icon_position_red.png';
               this.data.channelListOld[i].width = 20;
               this.data.channelListOld[i].height = 24;
@@ -822,16 +821,15 @@ bindDetail:function(e){
 
           this.setData({
             // channelList: channelData,
-            // isFirst: 2,
             channelListOld: this.data.channelListOld
           })
-          a_channel_id_old_map = channel_id;
+          a_channel_id_old = channel_id;
         }
       }
     }else{
       let channel_id = e.currentTarget.dataset.id;
       if(channel_id){
-        a_channel_id_plus_map = channel_id;
+        a_channel_id_plus = channel_id;
         let channelListPlusOld = this.data.channelListPlusOld;
         let channelData = [];
         let index = -1;
@@ -842,23 +840,19 @@ bindDetail:function(e){
               index = i;
             }
           }
-          // channelData = channelListPlusOld.filter((item)=>{
-          //   return item.channel_id == channel_id;
-          // })
         }
-        if(a_channel_id_plus_map == a_channel_id_plus_old_map){
-            // for(let i = 0; i < channelListPlusOld.length; i++){
-            //   this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_red.png';
-            //   this.data.channelListPlusOld[i].width = 20;
-            //   this.data.channelListPlusOld[i].height = 24;
-            //   this.data.channelListPlusOld[i].zIndex = 0;
-            // }
-            // this.setData({
-            //   channelListPlus: this.data.channelListPlusOld,
-            //   isFirstPlus: 1,
-            //   channelListPlusOld: this.data.channelListPlusOld
-            // });
-            // a_channel_id_plus_old_map = -1;
+        if(a_channel_id_plus == a_channel_id_plus_old){
+            for(let i = 0; i < channelListPlusOld.length; i++){
+              this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_red.png';
+              this.data.channelListPlusOld[i].width = 20;
+              this.data.channelListPlusOld[i].height = 24;
+              this.data.channelListPlusOld[i].zIndex = 0;
+            }
+            this.setData({
+              // channelListPlus: this.data.channelListPlusOld,
+              channelListPlusOld: this.data.channelListPlusOld
+            });
+            a_channel_id_plus_old = -1;
           
         }else{
           this.setData({
@@ -867,7 +861,7 @@ bindDetail:function(e){
           })
           
           for(let i = 0; i < channelListPlusOld.length; i++){
-            if(channelListPlusOld[i].channel_id == a_channel_id_plus_old_map){
+            if(channelListPlusOld[i].channel_id == a_channel_id_plus_old){
               this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_red.png';
               this.data.channelListPlusOld[i].width = 20;
               this.data.channelListPlusOld[i].height = 24;
@@ -882,10 +876,9 @@ bindDetail:function(e){
 
           this.setData({
             // channelListPlus: channelData,
-            // isFirstPlus: 2,
             channelListPlusOld: this.data.channelListPlusOld
           });
-          a_channel_id_plus_old_map = channel_id;
+          a_channel_id_plus_old = channel_id;
         }
       }
     }

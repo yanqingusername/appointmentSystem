@@ -25,6 +25,7 @@
   <map id="map"
     longitude="{{longitude}}"
     latitude="{{latitude}}"
+    bindmarkertap="showModal"
     markers="{{flag1 ? channelListOld : channelListPlusOld}}" 
     data-id="{{flag1 ? channelListOld : channelListPlusOld}}"
     show-location

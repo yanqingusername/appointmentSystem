@@ -412,7 +412,7 @@ page{
   /* height: 80rpx; */
   color: #FFFFFF;
   font-size: 26rpx;
-  background: #09C09C;
+  background: #50BE8B;
 }
 .P2_2_new{
   padding: 6rpx;
@@ -421,9 +421,9 @@ page{
 text-align: left;
 /* padding-left: 10rpx; */
 word-break: break-all;
-color: #F3773D;
+color: #E0694D;
 font-size: 26rpx;
-background: #FFC288;
+background: #FFF5F3;
 }
 
 .icon_1_new{
