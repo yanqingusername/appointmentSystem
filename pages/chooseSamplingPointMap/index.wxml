@@ -1,7 +1,7 @@
 <!--pages/myOrder/myOrder.wxml-->
 <cu-custom isBack="{{true}}" bgColor="bg-white">
   <view slot="backText" bindtap="bindBack"></view>
-  <view slot="content">选择采样点</view>
+  <view slot="content">采样点地图</view>
 </cu-custom>
 <view class="search_border">
   <view class='search'>
