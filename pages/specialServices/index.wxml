@@ -48,9 +48,9 @@
 
       <view>
         <view class="medWhite">
-          <view class="title_1">
+          <view class="title_2">
             <view class="title_bold">服务类型</view>
-            <view class="title_view"></view>
+            <view class="title_view" style="margin-left:6rpx;"><image class="tips_img" src="../../images/icon_img_05_31.jpg"></image></view>
           </view>
           <view wx:for="{{detectionTypeArrList}}">
             <view style="color:#333333;" class="gray_radius {{(service_type==item.service_type)?'active':''}}" data-item='{{item}}' bindtap="changeTestType">
@@ -79,7 +79,7 @@
           <view class="title_1" style="align-items: center;">
             <view class="title_bold" style="width:30%">受检人数</view>
             <view style="display: flex;justify-content: flex-end;align-items: center;margin-right: 0rpx;position:relative;">
-                <view style="position: absolute;left: -102px;padding: 10px 0px 10px 10px;display: flex;" catch:tap="bindReduce">
+                <view style="padding: 10px 0px 10px 10px;display: flex;" catch:tap="bindReduce">
                   <image class="icon_btn_img" src="../../images/icon_btn_reduce_05_19.png"></image>
                 </view>
                 <view class="cla_number">
