@@ -139,6 +139,9 @@ Page({
     } else if (vip_phone == '') {
       box.showToast("请填写手机号码");
       return
+    } else if (!utils.checkPhone(vip_phone)) {
+      box.showToast("手机号码格式不正确")
+      return
     } else if (addressregion == '') {
       box.showToast("请选择所在地区")
       return
