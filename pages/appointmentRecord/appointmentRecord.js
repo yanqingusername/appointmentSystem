@@ -37,7 +37,7 @@ Page({
     //获取全局openid，如果获取不到，则重新授权一次
     let openid = app.globalData.openid;
     console.log(openid);
-    if (openid == '' || typeof (openid) == 'undefined') {
+    if (openid == '' || typeof (openid) == 'undefined' || openid == undefined) {
       wx.login({
         success: (res) => {
           var code = res.code;
