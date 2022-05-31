@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "modalView":"../../colorui/components/modalView/modalView"
+    "modalView":"../../colorui/components/modalView/modalView",
+    "dialog-select": "../../colorui/components/dialog-select/index"
   },
   "disableScroll":false
 }

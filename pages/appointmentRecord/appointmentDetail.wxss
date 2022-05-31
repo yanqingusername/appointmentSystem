@@ -227,3 +227,19 @@
   height: 100%;
   width: 100%;
 }
+
+.P2_1_2_new{
+
+  /* margin-right: 5%; */
+  width: 75%;
+  /* text-align: right; */
+  /* padding-left: 10rpx; */
+  /* word-break: break-all; */
+}
+
+.app_flex_new{
+  display: flex;
+    /* align-items: center; */
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}

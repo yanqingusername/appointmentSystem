@@ -22,7 +22,9 @@
     "pages/addSubject/index",
     "pages/selectSubject/index",
     "pages/chooseSamplingPointMap/index",
-    "pages/specialServices/index"
+    "pages/specialServices/index",
+    "pages/addressAdd/index",
+    "pages/addressSelect/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

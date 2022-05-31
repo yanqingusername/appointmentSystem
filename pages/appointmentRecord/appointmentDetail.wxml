@@ -147,15 +147,21 @@
   <view class="P1">
     <view id="color_style_1">
       <view id="design_1">
-        <image id="jingdong_image" wx:if="{{payment_type== 6}}" src="../../images/icon_jd_new.png"></image>
-        <image id="meituan_image" wx:if="{{payment_type==5}}" src="../../images/icon_meituan_new.png"></image>
-        <image id="wechat_image" wx:if="{{payment_type==3}}" src="../../images/icon_wechat_new.png"></image>
+        <image id="wechat_image" src="../../images/icon_wechat_new.png"></image>
       </view>
-      <view id="font_1" style="color:#333333;">{{'等待预约'}}</view>
+      <view wx:if="{{appointment_vip_status==0}}" id="font_1" style="color:#333333;">{{'等待预约'}}</view>
+      <view wx:if="{{appointment_vip_status==1}}" id="font_1" style="color:#333333;">{{'待采样'}}</view>
+      <view wx:if="{{appointment_vip_status==2}}" id="font_1" style="color:#333333;">{{'已完成'}}</view>
+      <view wx:if="{{appointment_vip_status==3}}" id="font_1" style="color:#333333;">{{'已结束'}}</view>
+      <view wx:if="{{appointment_vip_status==4}}" id="font_1" style="color:#333333;">{{'退款成功'}}</view>
     </view>
-    <view style="display: flex;justify-content: center;text-align: center;">
-      <view id="font_2" style="color:#AFAFAF;">
-        <text>{{'已下单，等待为您安排护士上门'}}</text>
+    <view style="display: flex;justify-content: center;text-align: center;margin-top:10rpx;">
+      <view id="font_2" style="color:#AFAFAF;padding-left: 30rpx;padding-right: 30rpx;">
+        <text wx:if="{{appointment_vip_status==0}}">{{'已下单，等待为您安排护士上门'}}</text>
+        <text wx:if="{{appointment_vip_status==1}}">{{'已安排护士，请在预约时间内保持电话畅通'}}</text>
+        <text wx:if="{{appointment_vip_status==2}}">{{'采样后4-6小时出报告，关注公众号【卡尤迪医学检验实验室】，底部菜单“售后服务”-“报告查询”中查看'}}</text>
+        <text wx:if="{{appointment_vip_status==3}}">{{'护士在途或到达后，客户临时取消/无法联系，不予退款'}}</text>
+        <text wx:if="{{appointment_vip_status==4}}">{{'退款已完成，欢迎您下次选择卡尤迪核酸检测服务'}}</text>
       </view>
     </view>
   </view>
@@ -164,55 +170,33 @@
       <view class="bold_font">
         预约信息
       </view>
-      <view wx:if="{{name}}" class="P2_1 app_flex">
-        <view class="P2_1_3">姓名</view>
-        <view class="P2_1_2">{{name}}</view>
-      </view>
-      <view class="P2_1 app_flex">
-        <view class="P2_1_3">证件类型</view>
-        <view class="P2_1_2">{{card_type}}</view>
-      </view>
-      <view wx:if="{{id_card}}" class="P2_1 app_flex">
-        <view class="P2_1_3">证件号</view>
-        <view class="P2_1_2">{{id_card}}</view>
+      <view wx:if="{{vip_person}}" class="P2_1 app_flex">
+        <view class="P2_1_3">联系人</view>
+        <view class="P2_1_2" style="width: 75%;">{{vip_person}}</view>
       </view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">手机号</view>
-        <view class="P2_1_2">{{phone}}</view>
+        <view class="P2_1_2" style="width: 75%;">{{vip_phone}}</view>
+      </view>
+      <view class="P2_1 app_flex_new">
+        <view class="P2_1_3" style="padding:0rpx 2rpx 0rpx 24rpx;">上门地址</view>
+        <view class="P2_1_2_new">{{address}}</view>
+        <!-- <view data-channelname="{{channel_name}}" data-latitude="{{latitude}}" data-longitude="{{longitude}}" bindtap="openMap" style="margin:10rpx 30rpx 0 0">
+          <image id="pink_position" src="../../images/icon_position_red.png"></image>
+        </view> -->
       </view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">检测类型</view>
-        <view class="P2_1_2">{{test_type}}</view>
+        <view class="P2_1_2" style="width: 75%;">{{test_type}}</view>
       </view>
-      <view class="P2_1 app_flex" hidden="{{yysj2==''?'hidden':''}}">
+      <view class="P2_1 app_flex">
         <view class="P2_1_3">预约时间</view>
-        <view class="P2_1_2">{{yysj2}}</view>
+        <view class="P2_1_2" style="width: 75%;">{{expect_date}} {{expect_time_bucket}}</view>
       </view>
       <view class="P2_1 app_flex">
-        <view class="P2_1_3">采样点</view>
-        <view class="P2_1_2" style="position:relative;left:10rpx">{{channel_name}}</view>
-        <view data-channelname="{{channel_name}}" data-latitude="{{latitude}}" data-longitude="{{longitude}}" bindtap="openMap" style="margin:10rpx 30rpx 0 0">
-          <image id="pink_position" src="../../images/icon_position_red.png"></image>
-        </view>
-
+        <view class="P2_1_3">受检人数</view>
+        <view class="P2_1_2" style="width: 75%;">{{inspection_person_num}}人</view>
       </view>
-      <view class="P2_1 app_flex">
-        <view class="P2_1_3"></view>
-        <view class="P2_1_2" style="font-size:24rpx">
-          <view wx:for="{{workingTimeArr}}">
-            <view class="P2_1_2" style="font-size:24rpx"><text wx:if="{{index==0}}">营业时间</text></view>
-            <view class="P2_1_2" style="font-size:24rpx"> {{item}}</view>
-            <!-- <view class="P2_1_2" style="font-size:24rpx">4小时内特急检服务 08:00-21:00</view>
-              <view class="P2_1_2" style="font-size:24rpx">8小时内加急检服务 08:00-00:00</view> -->
-          </view>
-        </view>
-      </view>
-      <!-- <view class="P2_1 app_flex">
-        <view class="P2_1_3"></view>
-        <view class="P2_1_2" style="font-size:24rpx">
-          <view id="orange_hint_2">请直接到该采样点排队，无需预约</view>
-        </view>
-      </view> -->
     </view>
   </view>
   <view class="P1">
@@ -223,19 +207,15 @@
 
       <view class="P2_1 app_flex">
         <view class="P2_1_3">付款方式</view>
-        <view class="P2_1_2">{{payment_way}}</view>
+        <view class="P2_1_2" style="width: 75%;">{{payment_channel == 0 ? '微信支付':'其他'}}</view>
       </view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">付款金额</view>
-        <view class="P2_1_2">¥{{payment_amount}}</view>
-      </view>
-      <view class="P2_1 app_flex" wx:if="{{verification_code}}">
-        <view class="P2_1_3">核销码</view>
-        <view class="P2_1_2">{{verification_code}}</view>
+        <view class="P2_1_2" style="width: 75%;">¥{{payment_amount}}</view>
       </view>
       <view class="P2_1 app_flex">
-        <view class="P2_1_3">{{verification_code ? '核销时间':'下单时间'}}</view>
-        <view class="P2_1_2">{{create_time}}</view>
+        <view class="P2_1_3">{{'付款时间'}}</view>
+        <view class="P2_1_2" style="width: 75%;">{{pay_time}}</view>
       </view>
     </view>
   </view>
@@ -253,9 +233,5 @@
         如您有任何疑问，敬请您致电客服电话，我们真诚地期待为您提供服务
       </view>
     </view>
-  </view>
-  <view wx:if="{{continueFlag}}" class="bottom_white">
-    <button class="button-bottom_1" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBackIndex">返回首页</button>
-    <button class="button-bottom_2" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBack">继续预约下一人</button>
   </view>
 </view>

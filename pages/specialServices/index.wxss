@@ -662,5 +662,5 @@ color: #999999;
 height: 60rpx;
 border: 1px solid #DDDDDD;
 position: absolute;
-    right: 60rpx;
+    right: 84rpx;
 }

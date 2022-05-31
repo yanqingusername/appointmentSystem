@@ -1,7 +1,8 @@
 // pages/myOrder/myOrder.js
 const app = getApp()
 var request = require('../../utils/request.js')
-var box = require('../../utils/box.js')
+var box = require('../../utils/box.js');
+const utils = require('../../utils/utils.js');
 Page({
 
   /**
@@ -73,8 +74,9 @@ Page({
   },
   toInfo: function (e) {
     var that = this;
+    let isSpecialServices = e.currentTarget.dataset.stringstatus;
     wx.navigateTo({
-      url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + e.currentTarget.dataset.num + '&onlineFlagNum=' + e.currentTarget.dataset.onlineflagnum,
+      url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + e.currentTarget.dataset.num + '&onlineFlagNum=' + e.currentTarget.dataset.onlineflagnum + '&isSpecialServices=' + isSpecialServices,
     })
   },
   bindDetail: function (e) {
@@ -155,7 +157,7 @@ Page({
     var data = {
       open_id: open_id
     }
-    request.request_get('/a/getTestRecords.hn', data, function (res) {
+    request.request_get('/avip/getVIPTestRecords.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
@@ -420,6 +422,39 @@ Page({
       })
     }
   },
+  bindVipRefund: utils.throttle(function (e) {
+    var that = this;
+      console.log(e.currentTarget.dataset.appointmentnum)
+      wx.showModal({
+        title: '确认退款吗？',
+        content: '退款后如若需要新冠核酸检测，需重新预约',
+        showCancel: true, //是否显示取消按钮
+        success: function (res) {
+          if (res.cancel) {
+
+          } else {
+            request.request_get('/vippayRefund/refund.hn', {
+              appointment_num: e.currentTarget.dataset.appointmentnum,
+            }, function (res) {
+              console.info('回调', res)
+              if (res) {
+                if (res.success) {
+                  var info = res.msg;
+                  that.getAppointmentList();
+                  box.showToast('退款申请成功');
+                } else {
+                  box.showToast(res.msg);
+                }
+              } else {
+                box.showToast("网络不稳定，请重试");
+              }
+            })
+
+          }
+        },
+        fail: function (res) {},
+      })
+  },1500),
   getBannerList: function () {
     var that = this;
     console.log('open_id=' + app.globalData.openid)

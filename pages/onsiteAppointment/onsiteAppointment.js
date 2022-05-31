@@ -1172,7 +1172,7 @@ Page({
                     console.log('complete:' + res);
                     console.log(res);
                     wx.navigateTo({
-                      url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + that.data.appointment_num + '&continueFlag=true' + '&onlineFlagNum=' + that.data.onlineFlagNum + '&dynamicTimeFlag=' + that.data.dynamicTimeFlag,
+                      url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + that.data.appointment_num + '&continueFlag=true' + '&onlineFlagNum=' + that.data.onlineFlagNum + '&dynamicTimeFlag=' + that.data.dynamicTimeFlag + '&isSpecialServices=1',
                     })
                   }
                 })
@@ -1232,7 +1232,7 @@ Page({
                 console.log('complete:' + res);
                 console.log(res);
                 wx.navigateTo({
-                  url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + that.data.appointment_num + '&continueFlag=true' + '&onlineFlagNum=' + that.data.onlineFlagNum + '&dynamicTimeFlag=' + that.data.dynamicTimeFlag,
+                  url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + that.data.appointment_num + '&continueFlag=true' + '&onlineFlagNum=' + that.data.onlineFlagNum + '&dynamicTimeFlag=' + that.data.dynamicTimeFlag + '&isSpecialServices=1',
                 })
               }
             })

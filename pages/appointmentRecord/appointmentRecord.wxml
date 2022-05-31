@@ -20,7 +20,7 @@
   </swiper>
   <view class="P1">
     <block wx:if="{{flag1}}" wx:for="{{appointmentList}}" wx:key="index">
-      <view class="P2 app_font" wx:if="{{index!=0}}" bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
+      <view class="P2 app_font" wx:if="{{item.service_status !=1}}" bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}" data-stringstatus="1">
         <view class="app_flex_new">
           <view class="bold_font_new">{{item.create_time}}</view>
           <view wx:if="{{item.use_status!=4&&item.use_status!=5&&item.use_status!=7}}" class="bold_font_2_new">{{item.status}}</view>
@@ -52,18 +52,19 @@
           <view wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</view>
         </view>
       </view>
-      <view class="P2 app_font" wx:else bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
+      <view class="P2 app_font" wx:else bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}" data-stringstatus="2">
         <view class="app_flex_new">
           <view class="bold_font_new">{{item.create_time}}</view>
-          <view wx:if="{{item.use_status!=4&&item.use_status!=5&&item.use_status!=7}}" class="bold_font_2_new">{{item.status}}</view>
-          <view wx:if="{{item.use_status==4}}" class="bold_font_2_new" style="color:#00A451">{{item.status}}</view>
-          <view wx:if="{{item.use_status==5}}" class="bold_font_2_new" style="color:#B8321E">{{item.status}}</view>
-          <view wx:if="{{item.use_status==7}}" class="bold_font_2_new" style="color:#444940">{{item.status}}</view>
+          <view wx:if="{{item.appointment_vip_status==0}}" class="bold_font_2_new" style="color:#444940">{{'等待预约'}}</view>
+          <view wx:if="{{item.appointment_vip_status==1}}" class="bold_font_2_new">{{'待采样'}}</view>
+          <view wx:if="{{item.appointment_vip_status==2}}" class="bold_font_2_new" style="color:#444940">{{'已完成'}}</view>
+          <view wx:if="{{item.appointment_vip_status==3}}" class="bold_font_2_new" style="color:#444940">{{'已结束'}}</view>
+          <view wx:if="{{item.appointment_vip_status==4}}" class="bold_font_2_new" style="color:#444940">{{'退款成功'}}</view>
         </view>
         <view class="hr"></view>
         <view class="P2_1 app_flex">
           <view class="P2_1_1">检测类型</view>
-          <view class="P2_1_2">{{'VIP上门检测（5人以内）'}}</view>
+          <view class="P2_1_2">{{item.test_type}}</view>
         </view>
         <view wx:if="{{item.name}}" class="P2_1 app_flex">
           <view class="P2_1_1">联系人</view>
@@ -73,22 +74,22 @@
           <view class="P2_1_1">手机号</view>
           <view class="P2_1_2">{{item.phone}}</view>
         </view>
-        <view wx:if="{{item.phone}}" class="P2_1" style="display: flex;justify-content: space-between;flex-wrap: nowrap;">
+        <view wx:if="{{item.address}}" class="P2_1" style="display: flex;justify-content: space-between;flex-wrap: nowrap;">
           <view class="P2_1_1" style="padding-top:0rpx;">上门地址</view>
-          <view class="P2_1_2">北京丰台区马连道北里8号楼1单元205号</view>
+          <view class="P2_1_2" style="width:67%;">{{item.address}}</view>
         </view>
-        <view wx:if="{{item.create_time}}" class="P2_1 app_flex">
+        <view wx:if="{{item.expect_date || item.expect_time_bucket}}" class="P2_1 app_flex">
           <view class="P2_1_1">预约时间</view>
-          <view class="P2_1_2">{{item.create_time}}</view>
+          <view class="P2_1_2">{{item.expect_date}} {{item.expect_time_bucket}}</view>
         </view>
         <view class="button_flex_new">
-          <view wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindRefund">申请退款</view>
-          <view id="button_2" wx:if="{{item.use_status==1}}">查看详情</view>
+          <view wx:if="{{item.appointment_vip_status==0}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindVipRefund">申请退款</view>
+          <view id="button_2" >查看详情</view>
         </view>
       </view>
     </block>
     <block wx:if="{{flag2}}" wx:for="{{appointmentListPlus}}">
-      <view class="P2 app_font" wx:if="{{index!=0}}" bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
+      <view class="P2 app_font" wx:if="{{item.service_status !=1}}" bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}" data-stringstatus="1">
         <view class="app_flex_new">
           <view class="bold_font_new">{{item.create_time}}</view>
           <view wx:if="{{item.use_status!=4&&item.use_status!=5&&item.use_status!=7}}" class="bold_font_2_new">{{item.status}}</view>
@@ -120,18 +121,19 @@
           <view wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</view>
         </view>
       </view>
-      <view class="P2 app_font" wx:else bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
+      <view class="P2 app_font" wx:else bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}" data-stringstatus="2">
         <view class="app_flex_new">
           <view class="bold_font_new">{{item.create_time}}</view>
-          <view wx:if="{{item.use_status!=4&&item.use_status!=5&&item.use_status!=7}}" class="bold_font_2_new">{{item.status}}</view>
-          <view wx:if="{{item.use_status==4}}" class="bold_font_2_new" style="color:#00A451">{{item.status}}</view>
-          <view wx:if="{{item.use_status==5}}" class="bold_font_2_new" style="color:#B8321E">{{item.status}}</view>
-          <view wx:if="{{item.use_status==7}}" class="bold_font_2_new" style="color:#444940">{{item.status}}</view>
+          <view wx:if="{{item.appointment_vip_status==0}}" class="bold_font_2_new" style="color:#444940">{{'等待预约'}}</view>
+          <view wx:if="{{item.appointment_vip_status==1}}" class="bold_font_2_new">{{'待采样'}}</view>
+          <view wx:if="{{item.appointment_vip_status==2}}" class="bold_font_2_new" style="color:#444940">{{'已完成'}}</view>
+          <view wx:if="{{item.appointment_vip_status==3}}" class="bold_font_2_new" style="color:#444940">{{'已结束'}}</view>
+          <view wx:if="{{item.appointment_vip_status==4}}" class="bold_font_2_new" style="color:#444940">{{'退款成功'}}</view>
         </view>
         <view class="hr"></view>
         <view class="P2_1 app_flex">
           <view class="P2_1_1">检测类型</view>
-          <view class="P2_1_2">{{'VIP上门检测（5人以内）'}}</view>
+          <view class="P2_1_2">{{item.test_type}}</view>
         </view>
         <view wx:if="{{item.name}}" class="P2_1 app_flex">
           <view class="P2_1_1">联系人</view>
@@ -141,17 +143,17 @@
           <view class="P2_1_1">手机号</view>
           <view class="P2_1_2">{{item.phone}}</view>
         </view>
-        <view wx:if="{{item.phone}}" class="P2_1" style="display: flex;justify-content: space-between;flex-wrap: nowrap;">
+        <view wx:if="{{item.address}}" class="P2_1" style="display: flex;justify-content: space-between;flex-wrap: nowrap;">
           <view class="P2_1_1" style="padding-top:0rpx;">上门地址</view>
-          <view class="P2_1_2">北京丰台区马连道北里8号楼1单元205号</view>
+          <view class="P2_1_2" style="width:67%;">{{item.address}}</view>
         </view>
-        <view wx:if="{{item.create_time}}" class="P2_1 app_flex">
+        <view wx:if="{{item.expect_date || item.expect_time_bucket}}" class="P2_1 app_flex">
           <view class="P2_1_1">预约时间</view>
-          <view class="P2_1_2">{{item.create_time}}</view>
+          <view class="P2_1_2">{{item.expect_date}} {{item.expect_time_bucket}}</view>
         </view>
         <view class="button_flex_new">
-          <view wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindRefund">申请退款</view>
-          <view id="button_2" wx:if="{{item.use_status==1}}">查看详情</view>
+          <view wx:if="{{item.appointment_vip_status==0}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindVipRefund">申请退款</view>
+          <view id="button_2" >查看详情</view>
         </view>
       </view>
     </block>

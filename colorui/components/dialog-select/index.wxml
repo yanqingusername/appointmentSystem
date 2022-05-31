@@ -1,0 +1,24 @@
+<view catchtouchmove="preventD" hidden="{{!pickerShow}}">
+  <view class="picker-container {{pickerShow?'show_picker':'hide_picker'}}" animation="{{animationData}}">
+
+    <!-- <view class="btn-box">
+      <view class="pick_btn" bindtap="hideModal">取消</view>
+      <view class='pick_btn' style="color: #999999">请选择编辑方式</view>
+      <view class='pick_btn' style="color: #307FF5" bindtap="onConfirm">确定</view>
+    </view> -->
+
+    <view class="new_view">
+        <!-- <view class="new_view_item">请选择</view> -->
+        <!-- <view class="new_view_item" style="color: {{instrumentIndex == 1 ? '#333333;':''}}" bindtap="bindSelect" data-number='1'>修改信息</view> -->
+        <!-- <view class="new_view_item" style="color: {{instrumentIndex == 2 ? '#333333;':''}}" bindtap="bindSelect" data-number='2'>转移</view> -->
+        <view class="new_view_item1">
+          <div class="call_btn" bindtap="hideModalCall">拨打客服电话 <text style="color:#50BE8B;margin-left:6rpx;">400-869-3888</text>转<text style="color:#50BE8B;margin-left:6rpx;">5</text></div>
+        </view>
+        <view class="new_view_item" bindtap="hideModal">取消</view>
+    </view>
+    
+
+  </view>
+  <!-- 遮罩 -->
+  <view class="sensorType-screen" bindtap="hideModal" animation="{{animationOpacity}}"/>
+</view>

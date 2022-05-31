@@ -1,0 +1,90 @@
+.picker-item{
+    line-height: 50px;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .picker-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+  
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    bottom: -320px;
+    left: 0;
+    /* height: 0; */
+    transition: height 0.5s;
+    z-index: 2000;
+    background: white;
+    border-top: 1px solid #EFEFF4;
+    /* border-radius: 30rpx 30rpx 0px 0px; */
+  }
+  .sensorType-screen{
+    width: 100vw;
+    /* height:400rpx; */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    opacity: 0;
+    overflow: hidden;
+    z-index: 1999;
+    color: #fff;
+  }
+
+  .btn-box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 118rpx;
+  }
+  .pick_btn{
+    padding: 7px 15px;
+    font-size: 32rpx;
+color: #999999;
+    /* background-color: #159; */
+  }
+
+  .new_view{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+  }
+
+  .new_view_item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 108rpx;
+    width: 100%;
+    /* border-top: 1px solid #DDDDDD; */
+    font-size: 32rpx;
+color: #999999;
+  }
+
+  .call_btn{
+    margin-top: 60rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 670rpx;
+    height: 88rpx;
+    background: #FFFFFF;
+    border-radius: 44rpx;
+    /* opacity: 0.6; */
+    border: 1px solid #50BE8B;
+    font-size: 34rpx;
+    font-weight: 500;
+    color: #999999;
+    /* left: 5%;
+    position: relative; */
+  }

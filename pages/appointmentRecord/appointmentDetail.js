@@ -35,7 +35,7 @@ Page({
     movies:[],
     yysj1:'',
     yysj2:'',
-    isSpecialServices: 2   // 1--个人预约   2--vip上门
+    isSpecialServices: 1   // 1--个人预约   2--vip上门
   },
 
   onShow:function(){
@@ -55,38 +55,49 @@ Page({
 },
 onLoad:function(options){
   var that = this;
-  that.getBannerList();
-  var appointment_num = options.appointment_num;
-  var onlineFlagNum = options.onlineFlagNum;
-  var continueFlag = options.continueFlag;
-  var dynamicTimeFlag = options.dynamicTimeFlag;
-  console.log(appointment_num)
-  console.log(onlineFlagNum)
-  console.log(continueFlag)
-  // var support_id = app.globalData.userInfo.id;
-  
-  wxbarcode.barcode('barcode', appointment_num, 490, 160); //注意在wxml中设置一个如代码id为barcode的wxml容器
-  if(onlineFlagNum==0){
+  this.setData({
+    isSpecialServices: options.isSpecialServices
+  });
+  if(this.data.isSpecialServices == 1){
+    that.getBannerList();
+    var appointment_num = options.appointment_num;
+    var onlineFlagNum = options.onlineFlagNum;
+    var continueFlag = options.continueFlag;
+    var dynamicTimeFlag = options.dynamicTimeFlag;
+    console.log(appointment_num)
+    console.log(onlineFlagNum)
+    console.log(continueFlag)
+    // var support_id = app.globalData.userInfo.id;
+    
+    wxbarcode.barcode('barcode', appointment_num, 490, 160); //注意在wxml中设置一个如代码id为barcode的wxml容器
+    if(onlineFlagNum==0){
+      that.setData({
+        hint_font_1:'线上已绑定信息',
+        hint_font_2:'请到约定采样点进行采样'
+      })
+    }else{
+      that.setData({
+        hint_font_1:'刷卡身份证',
+        hint_font_2:'请向工作人员出示二代身份证证件'
+      })
+    }
     that.setData({
-      hint_font_1:'线上已绑定信息',
-      hint_font_2:'请到约定采样点进行采样'
+      appointment_num:appointment_num,
+      continueFlag:continueFlag,
+      onlineFlagNum:onlineFlagNum,
+      dynamicTimeFlag:dynamicTimeFlag,
+      "isIphoneX": this.isIphoneX()
     })
+    console.log(that.data.continueFlag)
+    console.log(that.data.isIphoneX)
+    that.getAppointmentInfo();
   }else{
     that.setData({
-      hint_font_1:'刷卡身份证',
-      hint_font_2:'请向工作人员出示二代身份证证件'
+      appointment_num:options.appointment_num
     })
+    that.getVIPTestRecordsDetail();
   }
-  that.setData({
-    appointment_num:appointment_num,
-    continueFlag:continueFlag,
-    onlineFlagNum:onlineFlagNum,
-    dynamicTimeFlag:dynamicTimeFlag,
-    "isIphoneX": this.isIphoneX()
-  })
-  console.log(that.data.continueFlag)
-  console.log(that.data.isIphoneX)
-  that.getAppointmentInfo();
+  
   // that.canvasToTempImage();
 },
 isIphoneX() {
@@ -336,5 +347,42 @@ bindBack:function(){
         url: '/pages/index/article'
       })
     }
-  }
+  },
+  getVIPTestRecordsDetail: function () {
+    var that = this;
+    var appointment_num = that.data.appointment_num;
+    var open_id = app.globalData.openid
+    console.info(appointment_num,open_id)
+    request.request_get('/avip/getVIPTestRecordsDetail.hn', {
+      appointment_vip_num: appointment_num,
+    }, function (res) {
+      console.info('回调', res)
+      if (res) {
+        if (res.success) {
+          if(res && res.result.length > 0){
+            var info = res.result[0];
+            
+            that.setData({
+              appointment_vip_status: info.appointment_vip_status,
+              vip_person:info.vip_person,
+              vip_phone:info.vip_phone,
+              address:info.address,
+              test_type: info.text,
+              expect_date: info.expect_date,
+              expect_time_bucket: info.expect_time_bucket,
+              inspection_person_num: info.inspection_person_num,
+              payment_channel: info.payment_channel,
+              payment_amount: info.payment_amount,
+              pay_time: info.pay_time
+            })
+          }
+  
+        } else {
+          box.showToast(res.msg);
+        }
+      }else{
+        box.showToast("网络不稳定，请重试");
+      }
+    })
+  },
 })
