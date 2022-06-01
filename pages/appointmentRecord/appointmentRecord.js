@@ -422,7 +422,7 @@ Page({
       })
     }
   },
-  bindVipRefund: utils.throttle(function (e) {
+  bindVipRefund: function (e) {
     var that = this;
       console.log(e.currentTarget.dataset.appointmentnum)
       wx.showModal({
@@ -454,7 +454,7 @@ Page({
         },
         fail: function (res) {},
       })
-  },1500),
+  },
   getBannerList: function () {
     var that = this;
     console.log('open_id=' + app.globalData.openid)
