@@ -242,8 +242,8 @@ Page({
     var data1 = {
       open_id: openid,
       service_type: service_type,
-      // payment_amount: that.data.new_payment_amount, //正式
-      payment_amount: "0.01", //测试
+      payment_amount: that.data.new_payment_amount, //正式
+      // payment_amount: "0.01", //测试
       channel: that.data.channel,  //vip渠道
       expect_date: expect_date,
       expect_time_bucket: expect_time_bucket,
