@@ -55,7 +55,7 @@
           <view wx:for="{{detectionTypeArrList}}">
             <view style="color:#333333;" class="gray_radius {{(service_type==item.service_type)?'active':''}}" data-item='{{item}}' bindtap="changeTestType">
               <view>{{item.service_title}}</view>
-              <view>{{item.service_text}} ¥{{item.service_price}}{{item.service_type == 1 ? ' 起':''}}</view>
+              <view>{{item.service_text}} ¥{{item.service_price}}{{' 起'}}</view>
             </view>
           </view>
           <view style="height:10rpx"></view>

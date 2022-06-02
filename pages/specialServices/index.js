@@ -38,8 +38,11 @@ Page({
     area: "",
     address: "",
     service_type: 0,
-    service_new_price:'',
-            service_price: "",
+    service_new_price:0,
+            service_price: 0,
+            service_price_two: 0,
+            service_price_three: 0,
+            mix_price: 0,
             price_info_img: "",
             disclaimer_img: "",
             service_title: "",
@@ -47,6 +50,7 @@ Page({
             peoplenumber: 1,
             area_img: "",
             single_price: 0,
+            single_price_new:0,
             channel:'',
             test_type:'',
             people_amount: 0,
@@ -98,6 +102,12 @@ Page({
             service_type: res.service_type_info[0].service_type,
             service_price: res.service_type_info[0].service_price,
             service_new_price: res.service_type_info[0].service_price,
+            
+            single_price_new: res.service_type_info[0].single_price,
+            service_price_two: res.service_type_info[0].service_price_two,
+            service_price_three: res.service_type_info[0].service_price_three,
+            mix_price: res.service_type_info[0].mix_price,
+
             price_info_img: res.service_type_info[0].price_info_img,
             disclaimer_img: res.service_type_info[0].disclaimer_img,
             service_title: res.service_type_info[0].service_title,
@@ -369,6 +379,12 @@ Page({
         service_type: item.service_type,
         service_price: item.service_price,
         service_new_price: item.service_price,
+
+        single_price_new: item.single_price,
+        service_price_two: item.service_price_two,
+        service_price_three: item.service_price_three,
+        mix_price: item.mix_price,
+
         price_info_img: item.price_info_img,
         disclaimer_img: item.disclaimer_img,
         service_title: item.service_title,
@@ -656,7 +672,7 @@ Page({
     let str = this.data.peoplenumber;
     let service_type = this.data.service_type;
     if(service_type == 1){
-      if(str > 100){
+      if(str > 20){
         str--;
         this.setData({
           peoplenumber: str
@@ -682,7 +698,7 @@ Page({
           peoplenumber: str
         });
     } else {
-      if(str < 5){
+      if(str < 10){
         str++;
         this.setData({
           peoplenumber: str
@@ -695,17 +711,51 @@ Page({
   setPrice(){
       let that = this;
 
-      if(that.data.service_type == 1){
-        let peopleSun = parseInt(that.data.peoplenumber);
-        if(peopleSun > 200){
-          let a = that.data.service_new_price * 100;
-          let e = ((peopleSun-1)/200);
-          let d = Math.floor(e);
-          let b = (1000 * d) * 100;
-          let c = (parseInt(a) + parseInt(b))/100;
+      // if(that.data.service_type == 1){
+      //   let peopleSun = parseInt(that.data.peoplenumber);
+      //   if(peopleSun > 200){
+      //     let a = that.data.service_new_price * 100;
+      //     let e = ((peopleSun-1)/200);
+      //     let d = Math.floor(e);
+      //     let b = (1000 * d) * 100;
+      //     let c = (parseInt(a) + parseInt(b))/100;
 
+      //     that.setData({
+      //       service_price: c
+      //     });
+      //   }else{
+      //     that.setData({
+      //       service_price: that.data.service_new_price
+      //     });
+      //   }
+      // }
+
+      if(that.data.service_type == 1){
+        if(20 <= that.data.peoplenumber  && that.data.peoplenumber <= 100){
           that.setData({
-            service_price: c
+            service_price: that.data.service_new_price,
+            single_price: that.data.single_price_new
+          });
+        } 
+        
+        if(100 < that.data.peoplenumber  && that.data.peoplenumber <= 200){
+          that.setData({
+            service_price: that.data.service_price_two,
+            single_price: that.data.single_price_new
+          });
+        }
+
+        if(200 < that.data.peoplenumber){
+          that.setData({
+            service_price: that.data.service_price_three,
+            single_price: that.data.mix_price
+          });
+        }
+
+      } else {
+        if(that.data.peoplenumber > 5){
+          that.setData({
+            service_price: that.data.service_price_two
           });
         }else{
           that.setData({
