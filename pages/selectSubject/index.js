@@ -20,8 +20,8 @@ Page({
     console.log(openid);
     if (openid == '' || typeof (openid) == 'undefined' || openid == undefined) {
       wx.login({
-        success: (res) => {
-          var code = res.code;
+        success: (resp) => {
+          var code = resp.code;
           console.log("获取code成功" + code);
           request.request_get('/a/getOpenid.hn', {
             code: code
@@ -38,8 +38,10 @@ Page({
             }
             app.globalData.openid = res.msg;
             console.log("获取的用户openid" + app.globalData.openid);
-            that.getAllSubject();
-          })
+            if(res.msg && res.msg != undefined && typeof (res.msg) != 'undefined'){
+              that.getAllSubject();
+            }
+          });
         },
         fail: () => {
           box.showToast("请求超时，请检查网络是否连接")
