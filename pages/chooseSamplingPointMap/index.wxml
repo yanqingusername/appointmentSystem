@@ -127,7 +127,7 @@
             <view class="P2_1_2">{{item.work_time_remarks}}</view>
         </view>
         <view class="P2_1 app_flex" style="margin-top:6rpx" wx:if="{{item.is_big_screen == 1}}">
-            <view class="P2_1_new" >大规模筛查</view>
+            <view class="P2_1_new" >常态化检测</view>
             <view class="P2_2_new">{{item.big_screen_text}}</view>
         </view>
         <view class="map_view">
@@ -170,7 +170,7 @@
           <view class="P2_1_2" >6-8小时加急检测：08:00-00:00</view>
         </view> -->
         <view class="P2_1 app_flex" style="margin-top:6rpx" wx:if="{{item.is_big_screen == 1}}">
-            <view class="P2_1_new" >大规模筛查</view>
+            <view class="P2_1_new" >常态化检测</view>
             <view class="P2_2_new">{{item.big_screen_text}}</view>
         </view>
         <view class="map_view">
