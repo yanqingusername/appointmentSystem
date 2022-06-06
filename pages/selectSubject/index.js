@@ -14,7 +14,40 @@ Page({
     dataList: []
   },
   onShow: function () {
-    this.getAllSubject();
+    let that = this;
+    //获取全局openid，如果获取不到，则重新授权一次
+    let openid = app.globalData.openid;
+    console.log(openid);
+    if (openid == '' || typeof (openid) == 'undefined' || openid == undefined) {
+      wx.login({
+        success: (res) => {
+          var code = res.code;
+          console.log("获取code成功" + code);
+          request.request_get('/a/getOpenid.hn', {
+            code: code
+          }, function (res) {
+            console.info('回调', res);
+            //判断为空时的逻辑
+            if (!res) {
+              box.showToast("网络不稳定，请重试");
+              return;
+            }
+            if (!res.success) {
+              box.showToast(res.msg);
+              return;
+            }
+            app.globalData.openid = res.msg;
+            console.log("获取的用户openid" + app.globalData.openid);
+            that.getAllSubject();
+          })
+        },
+        fail: () => {
+          box.showToast("请求超时，请检查网络是否连接")
+        }
+      })
+    } else {
+      that.getAllSubject();
+    }
   },
   onLoad: function () {
 
