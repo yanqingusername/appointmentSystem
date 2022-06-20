@@ -503,7 +503,8 @@ Page({
         })
         var data = {
           longitude: res.longitude,
-          latitude: res.latitude
+          latitude: res.latitude,
+          tag: ''
         }
         request.request_get('/a/getFixedSamplingPoint.hn', data, function (res) {
           console.log('getFixedSamplingPoint', res);
@@ -580,7 +581,9 @@ Page({
       },
       fail(res) {
         console.log('获取坐标失败')
-        var data = {}
+        var data = {
+          tag: ''
+        }
         request.request_get('/a/getFixedSamplingPoint.hn', data, function (res) {
           console.log('getFixedSamplingPoint', res);
           if (res) {

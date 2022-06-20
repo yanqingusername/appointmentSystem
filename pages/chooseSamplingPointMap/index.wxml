@@ -9,18 +9,27 @@
   <text id="district_font">{{sampling_place}}</text>
         <image class="right_arrow" src="../../images/rightArrow.png"></image>
   </view>
-    <input id="search_checked" style="width:{{sampling_place=='北京清河站'? '62':'72'}}%;" type='text' placeholder='请输入采样点名称' confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' ></input>
+    <input id="search_checked" style="width:{{sampling_place=='北京清河站'? '62':'72'}}%;" type='text' placeholder='请输入采样点或地址关键词' confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' ></input>
   <view class="weui-icon-clear" wx:if="{{searchText}}" bindtap="clearSearchHandle">
     <icon type="clear" size="20" />
   </view>
   
   </view>
+  <view class="lable_view" style="margin-top:10rpx">
+    <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex;">
+	 		<view style="display: flex;">
+        <text wx:for="{{lableList}}" catch:tap="bindLable" data-lableindex="{{index}}" data-lableid="{{item.id}}" wx:key="index" class="{{lableIndex == index ? 'lable_view_item_activety':'lable_view_item'}}">{{item.label_name}}</text>
+      </view>
+    </scroll-view>
+  </view>
 </view>
 <view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
-  <view class="P1" style="margin-top:160rpx">
+  
+
+  <view class="P1" style="margin-top:230rpx">
 
   <block wx:if="{{flag1 || flag2 }}">
-  <view style="height:800rpx;"  wx:if="{{flag1 || flag2}}">
+  <view style="height:552rpx;"  wx:if="{{flag1 || flag2}}">
     <!-- bindmarkertap="showModal"  -->
   <map id="map"
     longitude="{{longitude}}"
@@ -110,53 +119,101 @@
   <!-- </map>
   </view>
 </block> -->
-    <block wx:if="{{flag1}}" wx:for="{{channelList}}">
+    <block wx:if="{{flag1}}" wx:for="{{channelList}}" wx:key="index">
       <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;margin-top:20rpx;" data-id="{{item.channel_id}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" bindtap="bindCheckMap">
         <view class="app_flex">
           <view class="bold_font">{{item.channel_name}}</view>
-          <view wx:if="{{hiddenFlag==false}}" class="bold_font_2">{{item.distance}}</view>
+          <view wx:if="{{hiddenFlag==false}}" class="bold_font_2" style="display: flex;align-items: center;margin-right: 20rpx;"><view wx:if="{{index == 0}}" class="address_view">距离最近</view>{{item.distance}}</view>
         </view>
-        <view wx:for="{{item.workingTimeArr}}" wx:for-index="textIndex" wx:for-item="timeItem">
+
+        <view class="item_view" wx:if="{{item.tag_text.length > 0}}">
+          <view wx:for="{{item.tag_text}}" wx:for-index="tagIndex" wx:for-item="items" class="lable_view_item" style="display: inline-block;margin-bottom:10rpx;">{{items}}</view>
+        </view>
+
+        <view class="work_item_view">
+          <view class="lable_view_item" style="color: #FFFFFF;background: #E26B9B;display: inline-block;" wx:if="{{item.yingye == 0}}">{{'营业中'}}</view>
+          <view class="lable_view_item" style="color: #FFFFFF;background: #CCCCCC;display: inline-block;" wx:else>{{'准备中'}}</view>
+          <view class="work_item_view_1" style="margin-right:10rpx;" wx:if="{{item.sbusiness_time1 || item.xbusiness_time1}}">工作时间</view>
+          <view class="work_item_view_1" >{{item.sbusiness_time1}} {{item.xbusiness_time1}}</view>
+        </view>
+
+        <!-- <view wx:for="{{item.workingTimeArr}}" wx:for-index="textIndex" wx:for-item="timeItem">
           <view class="P2_1 app_flex">
-            <view class="P2_1_1" ><text wx:if="{{textIndex==0}}">营业时间</text></view>
+            <view class="P2_1_1" style="margin-left:24rpx;"><text wx:if="{{textIndex==0}}">营业时间</text></view>
             <view class="P2_1_2" >{{timeItem}}</view>
           </view>
-        </view>
-        <view class="P2_1 app_flex" style="margin-top:6rpx">
+        </view> -->
+        <!-- <view class="P2_1 app_flex" style="margin-top:6rpx" wx:if="{{item.work_time_remarks}}">
             <view class="P2_1_1" ></view>
             <view class="P2_1_2">{{item.work_time_remarks}}</view>
-        </view>
-        <view class="P2_1 app_flex" style="margin-top:6rpx" wx:if="{{item.is_big_screen == 1}}">
+        </view> -->
+        <!-- <view class="P2_1 app_flex" style="margin-top:6rpx" wx:if="{{item.is_big_screen == 1}}">
             <view class="P2_1_new" >常态化检测</view>
             <view class="P2_2_new">{{item.big_screen_text}}</view>
-        </view>
+        </view> -->
         <view class="map_view">
           <view class="map_view_title">{{item.site_description}}</view>
-          <view class="icon_view_1_new">
-            <image catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" class="icon_1_new" src="../../images/btn_nav_05_20.png"></image>
-            <image data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" catch:tap="bindCheckSamplingPoint" wx:if="{{item.is_big_screen == 0}}" class="icon_2_new" src="../../images/btn_order_05_20.png"></image>
+          <view class="icon_view_4_new" catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
+            <image class="icon_1_new" src="../../images/icon_position_05.png"></image>
+            <view class="text_1_new">导航</view>
+            <!-- <image data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" catch:tap="bindCheckSamplingPoint" wx:if="{{item.is_big_screen == 0}}" class="icon_2_new" src="../../images/btn_order_05_20.png"></image> -->
           </view>
+        </view>
+
+        <view class="map_view">
+          <view class="map_3_view_title" wx:if="{{item.is_big_screen == 0}}"><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{item.screen_text}}</view>
+          <view class="map_3_view_title" wx:else><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{item.screen_text}}<view style="color: #FF9900;font-size: 22rpx;padding-top:4rpx;margin-left:10rpx;">{{item.big_screen_text}}</view></view>
+          <view class="icon_view_3_new" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" catch:tap="bindCheckSamplingPoint" wx:if="{{item.is_big_screen == 0}}">马上预约</view>
         </view>
       </view>
     </block>
 
-    <block wx:if="{{flag2}}" wx:for="{{channelListPlus}}" >
+    <block wx:if="{{flag2}}" wx:for="{{channelListPlus}}"  wx:key="index">
       <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;margin-top:20rpx;" data-id="{{item.channel_id}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" bindtap="bindCheckMap">
         <view class="app_flex">
           <view class="bold_font">{{item.channel_name}}</view>
-          <view wx:if="{{hiddenFlag==false}}" class="bold_font_2">{{item.distance}}</view>
+          <view wx:if="{{hiddenFlag==false}}" class="bold_font_2" style="display: flex;align-items: center;margin-right: 20rpx;"><view wx:if="{{index == 0}}" class="address_view">距离最近</view>{{item.distance}}</view>
         </view>
-        <view wx:for="{{item.workingTimeArr}}" wx:for-index="textIndex" wx:for-item="timeItem">
+        <view class="item_view" wx:if="{{item.tag_text.length > 0}}">
+          <view wx:for="{{item.tag_text}}" wx:for-index="tagIndex" wx:for-item="items" class="lable_view_item" style="display: inline-block;margin-bottom:10rpx;">{{items}}</view>
+        </view>
+
+        <view class="work_item_view">
+          <view class="lable_view_item" style="color: #FFFFFF;background: #E26B9B;display: inline-block;" wx:if="{{item.yingye == 0}}">{{'营业中'}}</view>
+          <view class="lable_view_item" style="color: #FFFFFF;background: #CCCCCC;display: inline-block;" wx:else>{{'准备中'}}</view>
+          <view class="work_item_view_1" style="margin-right:10rpx;" wx:if="{{item.sbusiness_time1 || item.xbusiness_time1}}">工作时间</view>
+          <view class="work_item_view_1" >{{item.sbusiness_time1}} {{item.xbusiness_time1}}</view>
+        </view>
+
+        <!-- <view wx:for="{{item.workingTimeArr}}" wx:for-index="textIndex" wx:for-item="timeItem">
           <view class="P2_1 app_flex">
-            <view class="P2_1_1" ><text wx:if="{{textIndex==0}}">营业时间</text></view>
+            <view class="P2_1_1" style="margin-left:24rpx;"><text wx:if="{{textIndex==0}}">营业时间</text></view>
             <view class="P2_1_2" >{{timeItem}}</view>
           </view>
-          
-        </view>
-        <view class="P2_1 app_flex" style="margin-top:6rpx">
+        </view> -->
+        <!-- <view class="P2_1 app_flex" style="margin-top:6rpx" wx:if="{{item.work_time_remarks}}">
             <view class="P2_1_1" ></view>
             <view class="P2_1_2">{{item.work_time_remarks}}</view>
+        </view> -->
+        <!-- <view class="P2_1 app_flex" style="margin-top:6rpx" wx:if="{{item.is_big_screen == 1}}">
+            <view class="P2_1_new" >常态化检测</view>
+            <view class="P2_2_new">{{item.big_screen_text}}</view>
+        </view> -->
+        <view class="map_view">
+          <view class="map_view_title">{{item.site_description}}</view>
+          <view class="icon_view_4_new" catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
+            <image class="icon_1_new" src="../../images/icon_position_05.png"></image>
+            <view class="text_1_new">导航</view>
+            <!-- <image data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" catch:tap="bindCheckSamplingPoint" wx:if="{{item.is_big_screen == 0}}" class="icon_2_new" src="../../images/btn_order_05_20.png"></image> -->
+          </view>
         </view>
+
+        <view class="map_view">
+          <view class="map_3_view_title" wx:if="{{item.is_big_screen == 0}}"><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{item.screen_text}}</view>
+          <view class="map_3_view_title" wx:else><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{item.screen_text}}<view style="color: #FF9900;font-size: 22rpx;padding-top:4rpx;margin-left:10rpx;">{{item.big_screen_text}}</view></view>
+          <view class="icon_view_3_new" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" catch:tap="bindCheckSamplingPoint" wx:if="{{item.is_big_screen == 0}}">马上预约</view>
+        </view>
+
         <!-- <view class="P2_1 app_flex">
           <view class="P2_1_1" >营业时间</view>
           <view class="P2_1_2" >普通检测:24小时</view>
@@ -169,17 +226,7 @@
           <view class="P2_1_1" ></view>
           <view class="P2_1_2" >6-8小时加急检测：08:00-00:00</view>
         </view> -->
-        <view class="P2_1 app_flex" style="margin-top:6rpx" wx:if="{{item.is_big_screen == 1}}">
-            <view class="P2_1_new" >常态化检测</view>
-            <view class="P2_2_new">{{item.big_screen_text}}</view>
-        </view>
-        <view class="map_view">
-          <view class="map_view_title">{{item.site_description}}</view>
-          <view class="icon_view_1_new">
-            <image catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" class="icon_1_new" src="../../images/btn_nav_05_20.png"></image>
-            <image data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" catch:tap="bindCheckSamplingPoint" wx:if="{{item.is_big_screen == 0}}" class="icon_2_new" src="../../images/btn_order_05_20.png"></image>
-          </view>
-        </view>
+        
       </view>
     </block>
     <view style="display:flex;justify-content:center;padding: 50rpx 0rpx 30rpx;" wx:if="{{overflowFlag}}">

@@ -45,6 +45,9 @@ Page({
     isFirstPlus: 1,
     longitude: 116.39772, // 默认天安门广场
     latitude: 39.90323, // 默认天安门广场
+    lableList:[],
+    lableIndex: 0,
+    lableid: ''
   },
   getLocationAuth(){
     wx.getSetting({//获取用户已授权的信息
@@ -107,6 +110,34 @@ onLoad:function(){
   console.log(res.version)
   console.log(res.platform)
   // that.getChannelList();
+
+  that.gettagList();
+},
+gettagList: function (e) {
+  var that = this
+  var data = {
+    isbig: 1
+  }
+  request.request_get('/a/gettagList.hn', data, function (res) {
+    console.info('回调', res)
+    if (res) {
+      if (res.success) {
+        let list = res.msg;
+        let reagentHead = {
+          "id": "",
+          "is_allow_show": "0",
+          "label_name": "全部",
+          "status": "0"
+        }
+        list.unshift(reagentHead)
+        that.setData({
+          lableList: list
+        });
+      } else {
+        box.showToast(res.msg);
+      }
+    }
+  })
 },
 getChannelList:function(){
   var that = this;
@@ -129,7 +160,8 @@ getChannelList:function(){
       var data = {
         longitude : res.longitude,
         latitude : res.latitude,
-        sampling_place:sampling_place
+        sampling_place:sampling_place,
+        tag: that.data.lableid
       }
       request.request_get('/a/getAllFixedSamplingPoint.hn',data,function(res){
         console.log('getAllFixedSamplingPoint',res);
@@ -165,9 +197,13 @@ getChannelList:function(){
             }
             // channelList[i].title = channelList[i].channel_name;
             channelList[i].id = parseInt(channelList[i].channel_id);
-            channelList[i].iconPath = '../../images/icon_position_red.png';
-            channelList[i].width = 20;
-            channelList[i].height = 24;
+            if(channelList[i].yingye == 0){
+              channelList[i].iconPath = '../../images/icon_position_02.png';
+            }else{
+              channelList[i].iconPath = '../../images/icon_position_04.png';
+            }
+            channelList[i].width = 30;
+            channelList[i].height = 30;
             channelList[i].zIndex = 0;
 
             // channelList[i].callout = {
@@ -204,7 +240,8 @@ getChannelList:function(){
       console.log(res)
       console.log('---->:',that.data.longitude,that.data.latitude);
       var data = {
-        sampling_place:sampling_place
+        sampling_place:sampling_place,
+        tag: that.data.lableid
       }
       request.request_get('/a/getAllFixedSamplingPoint.hn',data,function(res){
         console.log('getAllFixedSamplingPoint',res);
@@ -237,9 +274,14 @@ getChannelList:function(){
               }
               // channelList[i].title = channelList[i].channel_name;
               channelList[i].id = parseInt(channelList[i].channel_id);
-              channelList[i].iconPath = '../../images/icon_position_red.png';
-              channelList[i].width = 20;
-              channelList[i].height = 24;
+              
+              if(channelList[i].yingye == 0){
+                channelList[i].iconPath = '../../images/icon_position_02.png';
+              }else{
+                channelList[i].iconPath = '../../images/icon_position_04.png';
+              }
+              channelList[i].width = 30;
+              channelList[i].height = 30;
               channelList[i].zIndex = 0;
 
               // channelList[i].callout = {
@@ -429,7 +471,7 @@ bindDetail:function(e){
         })
         var arr = [];
         for (var i = 0; i < channelList.length; i++) {
-          if (channelList[i].channel_name.indexOf(value) >= 0) {
+          if (channelList[i].channel_name.indexOf(value) >= 0 || channelList[i].site_description.indexOf(value) >= 0) {
             channelList[i].checked = false;
             arr.push(channelList[i]);
           }
@@ -446,6 +488,11 @@ bindDetail:function(e){
             overflowFlag:true //禁止y轴搜索
           //  flagCheck: true
           });
+        }else{
+          that.setData({
+            longitude:that.data.channelListPlus[0].longitude, //经度
+            latitude:that.data.channelListPlus[0].latitude //纬度
+          })
         }
       //}
     }
@@ -525,9 +572,13 @@ bindDetail:function(e){
           // }else{
 
             for(let i = 0; i < channelListPlusOld.length; i++){
-              this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_red.png';
-              this.data.channelListPlusOld[i].width = 20;
-              this.data.channelListPlusOld[i].height = 24;
+              if(this.data.channelListPlusOld[i].yingye == 0){
+                this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_02.png';
+              }else{
+                this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_04.png';
+              }
+              this.data.channelListPlusOld[i].width = 30;
+              this.data.channelListPlusOld[i].height = 30;
               this.data.channelListPlusOld[i].zIndex = 0;
             }
             this.setData({
@@ -540,16 +591,24 @@ bindDetail:function(e){
         }else{
           for(let i = 0; i < channelListPlusOld.length; i++){
             if(channelListPlusOld[i].channel_id == a_channel_id_plus_old){
-              this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_red.png';
-              this.data.channelListPlusOld[i].width = 20;
-              this.data.channelListPlusOld[i].height = 24;
+              if(this.data.channelListPlusOld[i].yingye == 0){
+                this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_02.png';
+              }else{
+                this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_04.png';
+              }
+              this.data.channelListPlusOld[i].width = 30;
+              this.data.channelListPlusOld[i].height = 30;
               this.data.channelListPlusOld[i].zIndex = 0;
             }
           }
           
-          this.data.channelListPlusOld[index].iconPath = '../../images/position.png';
-          this.data.channelListPlusOld[index].width = 30;
-          this.data.channelListPlusOld[index].height = 30;
+          if(this.data.channelListPlusOld[index].yingye == 0){
+            this.data.channelListPlusOld[index].iconPath = '../../images/icon_position_03.png';
+          }else{
+            this.data.channelListPlusOld[index].iconPath = '../../images/icon_position_01.png';
+          }
+          this.data.channelListPlusOld[index].width = 35;
+          this.data.channelListPlusOld[index].height = 35;
           this.data.channelListPlusOld[index].zIndex = 9999;
 
           this.setData({
@@ -591,9 +650,13 @@ bindDetail:function(e){
           // }else{
 
             for(let i = 0; i < channelListOld.length; i++){
-              this.data.channelListOld[i].iconPath = '../../images/icon_position_red.png';
-              this.data.channelListOld[i].width = 20;
-              this.data.channelListOld[i].height = 24;
+              if(this.data.channelListOld[i].yingye == 0){
+                this.data.channelListOld[i].iconPath = '../../images/icon_position_02.png';
+              }else{
+                this.data.channelListOld[i].iconPath = '../../images/icon_position_04.png';
+              }
+              this.data.channelListOld[i].width = 30;
+              this.data.channelListOld[i].height = 30;
               this.data.channelListOld[i].zIndex = 0;
             }
 
@@ -607,16 +670,24 @@ bindDetail:function(e){
         }else{
           for(let i = 0; i < channelListOld.length; i++){
             if(channelListOld[i].channel_id == a_channel_id_old){
-              this.data.channelListOld[i].iconPath = '../../images/icon_position_red.png';
-              this.data.channelListOld[i].width = 20;
-              this.data.channelListOld[i].height = 24;
+              if(this.data.channelListOld[i].yingye == 0){
+                this.data.channelListOld[i].iconPath = '../../images/icon_position_02.png';
+              }else{
+                this.data.channelListOld[i].iconPath = '../../images/icon_position_04.png';
+              }
+              this.data.channelListOld[i].width = 30;
+              this.data.channelListOld[i].height = 30;
               this.data.channelListOld[i].zIndex = 0;
             }
           }
           
-          this.data.channelListOld[index].iconPath = '../../images/position.png';
-          this.data.channelListOld[index].width = 30;
-          this.data.channelListOld[index].height = 30;
+          if(this.data.channelListOld[index].yingye == 0){
+            this.data.channelListOld[index].iconPath = '../../images/icon_position_03.png';
+          }else{
+            this.data.channelListOld[index].iconPath = '../../images/icon_position_01.png';
+          }
+          this.data.channelListOld[index].width = 35;
+          this.data.channelListOld[index].height = 35;
           this.data.channelListOld[index].zIndex = 9999;
 
           this.setData({
@@ -655,9 +726,13 @@ bindDetail:function(e){
           // }else{
 
             for(let i = 0; i < channelListPlusOld.length; i++){
-              this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_red.png';
-              this.data.channelListPlusOld[i].width = 20;
-              this.data.channelListPlusOld[i].height = 24;
+              if(this.data.channelListPlusOld[i].yingye == 0){
+                this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_02.png';
+              }else{
+                this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_04.png';
+              }
+              this.data.channelListPlusOld[i].width = 30;
+              this.data.channelListPlusOld[i].height = 30;
               this.data.channelListPlusOld[i].zIndex = 0;
             }
             this.setData({
@@ -670,16 +745,24 @@ bindDetail:function(e){
         }else{
           for(let i = 0; i < channelListPlusOld.length; i++){
             if(channelListPlusOld[i].channel_id == a_channel_id_plus_old){
-              this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_red.png';
-              this.data.channelListPlusOld[i].width = 20;
-              this.data.channelListPlusOld[i].height = 24;
+              if(this.data.channelListPlusOld[i].yingye == 0){
+                this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_02.png';
+              }else{
+                this.data.channelListPlusOld[i].iconPath = '../../images/icon_position_04.png';
+              }
+              this.data.channelListPlusOld[i].width = 30;
+              this.data.channelListPlusOld[i].height = 30;
               this.data.channelListPlusOld[i].zIndex = 0;
             }
           }
           
-          this.data.channelListPlusOld[index].iconPath = '../../images/position.png';
-          this.data.channelListPlusOld[index].width = 30;
-          this.data.channelListPlusOld[index].height = 30;
+          if(this.data.channelListPlusOld[index].yingye == 0){
+            this.data.channelListPlusOld[index].iconPath = '../../images/icon_position_03.png';
+          }else{
+            this.data.channelListPlusOld[index].iconPath = '../../images/icon_position_01.png';
+          }
+          this.data.channelListPlusOld[index].width = 35;
+          this.data.channelListPlusOld[index].height = 35;
           this.data.channelListPlusOld[index].zIndex = 9999;
 
           this.setData({
@@ -743,9 +826,13 @@ bindDetail:function(e){
     let channelListOld = this.data.channelListOld;
       if(channelListOld){
         for(let i = 0; i < channelListOld.length; i++){
-            this.data.channelListOld[i].iconPath = '../../images/icon_position_red.png';
-            this.data.channelListOld[i].width = 20;
-            this.data.channelListOld[i].height = 24;
+          if(this.data.channelListOld[i].yingye == 0){
+            this.data.channelListOld[i].iconPath = '../../images/icon_position_02.png';
+          }else{
+            this.data.channelListOld[i].iconPath = '../../images/icon_position_04.png';
+          }
+          this.data.channelListOld[i].width = 30;
+          this.data.channelListOld[i].height = 30;
             this.data.channelListOld[i].zIndex = 0;
         }
         this.setData({
@@ -882,5 +969,16 @@ bindDetail:function(e){
         }
       }
     }
+  },
+  bindLable(e){
+    let lableIndex = e.currentTarget.dataset.lableindex;
+    let lableid = e.currentTarget.dataset.lableid;
+    
+    this.setData({
+      lableIndex: lableIndex,
+      lableid: lableid
+    });
+
+    this.getChannelList();
   }
 })
