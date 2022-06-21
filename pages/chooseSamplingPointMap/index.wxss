@@ -553,3 +553,10 @@ margin: 6rpx 0rpx;
 .text_1_new{
   font-size: 22rpx;
 }
+
+.active {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: #F5F5F5 !important;
+}

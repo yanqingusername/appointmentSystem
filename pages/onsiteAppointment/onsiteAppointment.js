@@ -336,7 +336,9 @@ Page({
                 appointment_open: info.appointment_open,
                 channel_name: info.channel_name,
                 distance: info.distance,
-                working_time: info.working_time
+                working_time: info.working_time,
+                sbusiness_time1: info.sbusiness_time1,
+                xbusiness_time1: info.xbusiness_time1,
               }
               channel.distance = utils.setMorKm(channel.distance)
               var workingTimeArr = channel.working_time.split(',');
@@ -424,7 +426,9 @@ Page({
                 appointment_open: info.appointment_open,
                 channel_name: info.channel_name,
                 distance: '-m',
-                working_time: info.working_time
+                working_time: info.working_time,
+                sbusiness_time1: info.sbusiness_time1,
+                xbusiness_time1: info.xbusiness_time1,
               }
               var workingTimeArr = channel.working_time.split(',');
               for (var i = 0; i < workingTimeArr.length; i++) {

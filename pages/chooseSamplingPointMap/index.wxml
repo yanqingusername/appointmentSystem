@@ -35,8 +35,8 @@
     longitude="{{longitude}}"
     latitude="{{latitude}}"
     bindmarkertap="showModal"
-    markers="{{flag1 ? channelListOld : channelListPlusOld}}" 
-    data-id="{{flag1 ? channelListOld : channelListPlusOld}}"
+    markers="{{channelList}}" 
+    data-id="{{channelList}}"
     show-location
     style="width: 100%; height: 100%;"
     scale="13">
@@ -119,7 +119,7 @@
   <!-- </map>
   </view>
 </block> -->
-    <block wx:if="{{flag1}}" wx:for="{{channelList}}" wx:key="index">
+    <block wx:for="{{channelList}}" wx:key="index">
       <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;margin-top:20rpx;" data-id="{{item.channel_id}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" bindtap="bindCheckMap">
         <view class="app_flex">
           <view class="bold_font">{{item.channel_name}}</view>
@@ -168,7 +168,7 @@
       </view>
     </block>
 
-    <block wx:if="{{flag2}}" wx:for="{{channelListPlus}}"  wx:key="index">
+    <block wx:if="{{false}}" wx:for="{{channelListPlus}}"  wx:key="index">
       <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;margin-top:20rpx;" data-id="{{item.channel_id}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" bindtap="bindCheckMap">
         <view class="app_flex">
           <view class="bold_font">{{item.channel_name}}</view>
