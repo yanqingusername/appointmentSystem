@@ -223,7 +223,8 @@ getChannelList:function(){
             that.setData({
               channelList: channelList,
               // channelListOld: channelList,
-              hiddenFlag:false
+              hiddenFlag:false,
+              overflowFlag:false
             })
 
             if(that.data.searchText || that.data.lableid){
@@ -320,7 +321,8 @@ getChannelList:function(){
             that.setData({
               channelList: channelList,
               channelListOld: channelList,
-              hiddenFlag:false
+              hiddenFlag:false,
+              overflowFlag:false
             })
 
             if(that.data.searchText || that.data.lableid){
