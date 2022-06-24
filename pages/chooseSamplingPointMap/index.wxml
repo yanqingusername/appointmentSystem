@@ -161,7 +161,8 @@
         </view>
 
         <view class="map_view">
-          <view class="map_3_view_title" wx:if="{{item.is_big_screen == 0}}"><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{item.screen_text}}</view>
+          <!-- <view class="map_3_view_title" wx:if="{{item.is_big_screen == 0}}"><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{item.screen_text}}</view> -->
+          <view class="map_3_view_title" wx:if="{{item.is_big_screen == 0}}">{{''}}</view>
           <view class="map_3_view_title" wx:else><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{item.screen_text}}<view style="color: #FF9900;font-size: 22rpx;padding-top:4rpx;margin-left:10rpx;">{{item.big_screen_text}}</view></view>
           <view class="icon_view_3_new" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" catch:tap="bindCheckSamplingPoint" wx:if="{{item.is_big_screen == 0}}">马上预约</view>
         </view>
@@ -209,7 +210,8 @@
         </view>
 
         <view class="map_view">
-          <view class="map_3_view_title" wx:if="{{item.is_big_screen == 0}}"><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{item.screen_text}}</view>
+          <!-- <view class="map_3_view_title" wx:if="{{item.is_big_screen == 0}}"><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{item.screen_text}}</view> -->
+          <view class="map_3_view_title" wx:if="{{item.is_big_screen == 0}}">{{''}}</view>
           <view class="map_3_view_title" wx:else><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{item.screen_text}}<view style="color: #FF9900;font-size: 22rpx;padding-top:4rpx;margin-left:10rpx;">{{item.big_screen_text}}</view></view>
           <view class="icon_view_3_new" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" catch:tap="bindCheckSamplingPoint" wx:if="{{item.is_big_screen == 0}}">马上预约</view>
         </view>
