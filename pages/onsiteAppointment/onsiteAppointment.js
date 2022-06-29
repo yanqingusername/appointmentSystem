@@ -2109,7 +2109,7 @@ Page({
       test_type: that.data.typeid,
       channel_id: that.data.channel.channel_id
     }
-    request.request_get('/a/is_during_business_hours.hn', data, function (res) {
+    request.request_get('/a/is_during_business_hours1.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
           if (res.during_business_hours){
