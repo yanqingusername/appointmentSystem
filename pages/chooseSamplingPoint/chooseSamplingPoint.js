@@ -41,7 +41,10 @@ Page({
     latitude: 39.90323, // 默认天安门广场
     lableList:[],
     lableIndex: 0,
-    lableid: ''
+    lableid: '',
+    lableidList: [],
+    isbigscreen: '',
+    yingye: '',
   },
   getLocationAuth(){
     wx.getSetting({//获取用户已授权的信息
@@ -117,13 +120,17 @@ gettagList: function (e) {
     if (res) {
       if (res.success) {
         let list = res.msg;
-        let reagentHead = {
-          "id": "",
-          "is_allow_show": "0",
-          "label_name": "全部",
-          "status": "0"
+        for(let i = 0; i< list.length; i++){
+          list[i].isSelect = false;
         }
-        list.unshift(reagentHead)
+        // let reagentHead = {
+        //   "id": "0",
+        //   "is_allow_show": "0",
+        //   "label_name": "全部",
+        //   "status": "0",
+        //   "isSelect": false
+        // }
+        // list.unshift(reagentHead)
         that.setData({
           lableList: list
         });
@@ -156,7 +163,9 @@ getChannelList:function(){
         latitude : res.latitude,
         sampling_place:sampling_place,
         tag: that.data.lableid,
-        channelname: that.data.searchText
+        channelname: that.data.searchText,
+        isbigscreen: that.data.isbigscreen,
+        // yingye: that.data.yingye,
       }
       request.request_get('/a/getFixedSamplingPoint.hn',data,function(res){
         console.log('getFixedSamplingPoint',res);
@@ -222,7 +231,7 @@ getChannelList:function(){
               overflowFlag:false
             })
 
-            if(that.data.searchText || that.data.lableid){
+            if(that.data.searchText || that.data.lableid || that.data.isbigscreen){
               if(that.data.channelList.length == 0){
                 that.setData({
                   tip: '没有搜索到该采样点',
@@ -256,7 +265,9 @@ getChannelList:function(){
         latitude : that.data.latitude,
         sampling_place:sampling_place,
         tag: that.data.lableid,
-        channelname: that.data.searchText
+        channelname: that.data.searchText,
+        isbigscreen: that.data.isbigscreen,
+        // yingye: that.data.yingye,
       }
       request.request_get('/a/getFixedSamplingPoint.hn',data,function(res){
         console.log('getFixedSamplingPoint',res);
@@ -320,7 +331,7 @@ getChannelList:function(){
               overflowFlag:false
             })
 
-            if(that.data.searchText || that.data.lableid){
+            if(that.data.searchText || that.data.lableid || that.data.isbigscreen){
               if(that.data.channelList.length == 0){
                 that.setData({
                   tip: '没有搜索到该采样点',
@@ -893,12 +904,53 @@ bindDetail:function(e){
   bindLable(e){
     let lableIndex = e.currentTarget.dataset.lableindex;
     let lableid = e.currentTarget.dataset.lableid;
-    
+    let lableidList = this.data.lableidList;
+    if(lableid){
+      for(let i = 0; i < this.data.lableList.length; i++){
+        if(lableid == this.data.lableList[i].id){
+          if(this.data.lableList[i].isSelect){
+            this.data.lableidList.splice(this.data.lableidList.findIndex( index => index == lableid), 1)
+            this.data.lableList[i].isSelect = false;
+          }else{
+            lableidList.push(lableid);
+            this.data.lableList[i].isSelect = true;
+          }
+        }
+      }
+    }
     this.setData({
-      lableIndex: lableIndex,
-      lableid: lableid
+      lableList: this.data.lableList,
+      lableidList: lableidList,
+      // lableid: this.data.lableidList.join(',')
     });
+    
+    let yingyeParams = 1;
+    let isbigscreenParams = 2;
+    if(this.data.lableidList.indexOf(yingyeParams) != -1 || this.data.lableidList.indexOf(isbigscreenParams) != -1){
+      let arrSp = [];
+      let yingye = '';
+      let isbigscreen = '';
+      for(let i = 0; i < this.data.lableidList.length; i++){
+        if(this.data.lableidList[i] == yingyeParams){
+          yingye = 1;
+        }else if(this.data.lableidList[i] == isbigscreenParams){
+          isbigscreen = 1;
+        }else{
+          arrSp.push(this.data.lableidList[i]);
+        }
+      }
 
+      this.setData({
+        isbigscreen: isbigscreen,
+        yingye: yingye,
+        lableid: arrSp.join(',')
+      });
+    }else{
+      this.setData({
+        lableid: this.data.lableidList.join(',')
+      });
+      
+    }
     this.getChannelList();
   }
 })

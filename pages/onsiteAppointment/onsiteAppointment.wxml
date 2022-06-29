@@ -39,8 +39,8 @@
             <view class="font_1">{{channel.channel_name}}</view>
 
             <view>
-              <view class="font_2"><text hidden="{{hiddenFlag}}">距离您{{channel.distance}}</text> <text> 营业时间 </text></view>
-              <view class="font_2">{{channel.sbusiness_time1}} {{channel.xbusiness_time1}}</view>
+              <view class="font_2"><text hidden="{{hiddenFlag}}">距离您{{channel.distance}}</text></view>
+              <view class="font_2">营业时间 {{channel.sbusiness_time1}} {{channel.xbusiness_time1}}</view>
             </view>
 
             <!-- <view wx:for="{{workingTimeArr}}" wx:for-index="workIndex">

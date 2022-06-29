@@ -18,7 +18,8 @@
   <view class="lable_view" style="margin-top:10rpx">
     <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex;">
 	 		<view style="display: flex;">
-        <text wx:for="{{lableList}}" catch:tap="bindLable" data-lableindex="{{index}}" data-lableid="{{item.id}}" wx:key="index" class="{{lableIndex == index ? 'lable_view_item_activety':'lable_view_item'}}">{{item.label_name}}</text>
+        <!-- <text wx:for="{{lableList}}" catch:tap="bindLable" data-lableindex="{{index}}" data-lableid="{{item.id}}" wx:key="index" class="{{lableIndex == index ? 'lable_view_item_activety':'lable_view_item'}}">{{item.label_name}}</text> -->
+        <text wx:for="{{lableList}}" catch:tap="bindLable" data-lableindex="{{index}}" data-lableid="{{item.id}}" wx:key="index" class="{{item.isSelect ? 'lable_view_item_activety':'lable_view_item'}}">{{item.label_name}}</text>
       </view>
     </scroll-view>
   </view>
