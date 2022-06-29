@@ -118,7 +118,7 @@
   </view>
 </block> -->
     <block wx:for="{{channelList}}" wx:key="index">
-      <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;margin-top:20rpx;" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}"   data-id="{{item.channel_id}}" bindtap="bindCheckSamplingPoint">
+      <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;margin-top:20rpx;" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}"   data-id="{{item.channel_id}}" data-paytypetexts="{{item.paytypetexts}}" bindtap="bindCheckSamplingPoint">
         <view class="app_flex">
           <view class="bold_font">{{item.channel_name}}</view>
           <view wx:if="{{hiddenFlag==false}}" class="bold_font_2" style="display: flex;align-items: center;margin-right: 20rpx;"><view wx:if="{{index == 0}}" class="address_view">距离最近</view>{{item.distance}}</view>

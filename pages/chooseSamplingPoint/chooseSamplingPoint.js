@@ -550,10 +550,16 @@ bindDetail:function(e){
       var channel_name1 = e.currentTarget.dataset.name;
        var distance1 = e.currentTarget.dataset.distance;
        var id1 = e.currentTarget.dataset.id;
+       let paytypetexts = e.currentTarget.dataset.paytypetexts || [];
+       let typeid = -1;
+       if(paytypetexts.length > 0){
+        typeid = paytypetexts[0].id;
+       }
        var channel ={channel_name:channel_name1,distance:distance1,channel_id:id1}; 
        console.log(channel)             
       prevPage.setData({  
         channel: channel,
+        typeid: typeid,
         bindBackFlag:true
       })
       wx.navigateBack({
