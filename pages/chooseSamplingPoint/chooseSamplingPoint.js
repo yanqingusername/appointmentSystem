@@ -165,7 +165,7 @@ getChannelList:function(){
         tag: that.data.lableid,
         channelname: that.data.searchText,
         isbigscreen: that.data.isbigscreen,
-        // yingye: that.data.yingye,
+        yingye: that.data.yingye,
       }
       request.request_get('/a/getFixedSamplingPoint.hn',data,function(res){
         console.log('getFixedSamplingPoint',res);
@@ -267,7 +267,7 @@ getChannelList:function(){
         tag: that.data.lableid,
         channelname: that.data.searchText,
         isbigscreen: that.data.isbigscreen,
-        // yingye: that.data.yingye,
+        yingye: that.data.yingye,
       }
       request.request_get('/a/getFixedSamplingPoint.hn',data,function(res){
         console.log('getFixedSamplingPoint',res);
@@ -953,6 +953,8 @@ bindDetail:function(e){
       });
     }else{
       this.setData({
+        isbigscreen: '',
+        yingye: '',
         lableid: this.data.lableidList.join(',')
       });
       

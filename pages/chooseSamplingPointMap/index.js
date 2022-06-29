@@ -1098,6 +1098,8 @@ bindDetail:function(e){
       });
     }else{
       this.setData({
+        isbigscreen: '',
+        yingye: '',
         lableid: this.data.lableidList.join(',')
       });
       
