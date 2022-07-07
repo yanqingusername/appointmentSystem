@@ -1,0 +1,5 @@
+<!-- <cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">新冠自检</view>
+</cu-custom> -->
+<web-view src="{{url}}"></web-view>

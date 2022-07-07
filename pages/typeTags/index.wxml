@@ -1,0 +1,64 @@
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">样本检测进度</view>
+</cu-custom>
+
+<view class="page" style="background-color:#F6F6F6;">
+  
+  <view class="P1">
+    <view class="P2 app_font">
+      <view class="bold_font">采样信息</view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">样本编号</view>
+        <view class="P2_1_2">{{'3901221123314489'}}</view>
+      </view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">受检人</view>
+        <view class="P2_1_2">{{'李四'}}</view>
+      </view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">手机号</view>
+        <view class="P2_1_2">{{'123***7890'}}</view>
+      </view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">证件号</view>
+        <view class="P2_1_2">{{'110108********2082'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="type_view_flex">
+        <image class="type_icon_25" src="../../images/icon_position_06.png"></image>
+        <view class="type_title" style="font-size:36rpx;color:#333333;">检测进度</view>
+      </view>
+  
+  <view class="detail_container">
+    <view class='class_view'> 
+      <view> 
+        <block wx:for="{{service_result}}" wx:key="index"> 
+          <view class='view_container'> 
+            <view class='circle_container'> 
+              <view class='title_black'>{{item.time}}</view> 
+              <view class='title_gray'>{{item.date}}</view> 
+              <view class='line' wx:if="{{index != (service_result.length -1)}}" style='height: {{ H }}px'/>
+            </view> 
+              <view class='right_container' id='schedule'>
+                  <view class='title_black'>{{ item.title }}</view>
+                  <view class='title_gray' wx:if="{{item.text && item.type == 1}}" style="font-size: 26rpx;margin-left:20rpx;margin-top:4rpx;color:#E787AC;" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">{{ item.text }}</view>
+                  <view class='title_gray' wx:if="{{item.text && item.type != 1 }}" style="font-size: 26rpx;margin-left:20rpx;margin-top:4rpx;">{{ item.text }}</view>
+              </view> 
+          </view> 
+        </block>
+      </view> 
+    </view> 
+
+  </view>
+
+</view>
+
+
+
+
+
+
+

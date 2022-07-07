@@ -1,0 +1,73 @@
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+	<view slot="backText" bindtap="bindBack" />
+	<view slot="content">查询报告</view>
+</cu-custom>
+
+<view class="page">
+	<view class="page_view">
+		<view id="module_1" class="P5 app_flex">
+			<view
+			 bindtap="changeOnlineFlag"
+			 id="module_2{{selectTab==1?'active':''}}"
+			 data-onlineid='1'
+			 class="P5_1 app_font"
+			>样本编号查询</view>
+			<view
+			 bindtap="changeOnlineFlag"
+			 id="module_2{{selectTab==2?'active':''}}"
+			 data-onlineid='2'
+			 class="P5_1 app_font"
+			>受检人手机验证</view>
+		</view>
+
+		<view class="page_view" wx:if="{{selectTab == 1}}">
+      <view class="input_view">
+        <input
+        id="search_checked"
+        type='text'
+        placeholder='请输入样本编号'
+        placeholder-class="ph_class"
+        value="{{sample_number}}"
+        />
+      </view>
+
+      <view class="input_view">
+        <input
+        id="search_checked"
+        type='text'
+        placeholder='请输入受检人手机号'
+        placeholder-class="ph_class"
+        value="{{sample_phone}}"
+        />
+      </view>
+
+      <view class="btn_view" bind:tap="bindSelectResult">查询</view>
+    </view>
+
+    <view class="page_view" wx:if="{{selectTab == 2}}">
+      <view class="input_view">
+        <input
+        id="search_checked"
+        type='text'
+        placeholder='请输入受检人手机号'
+        placeholder-class="ph_class"
+        value="{{sample_number}}"
+        />
+      </view>
+
+      <view class="input_view_code">
+        <input
+        id="search_code"
+        type='text'
+        placeholder='短信验证码'
+        placeholder-class="ph_class"
+        value="{{sample_phone}}"
+        />
+        <view class="P3_code" bindtap="getCode" disabled="{{codeBtState}}" style="{{codeBtState?'color:#CCCCCC':'color:#E16898'}};padding-right: 24rpx;">{{codeBtText}}</view>
+      </view>
+
+      <view class="btn_view" bind:tap="bindSelectResult">查询</view>
+    </view>
+	</view>
+</view>
+

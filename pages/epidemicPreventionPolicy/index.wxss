@@ -1,0 +1,161 @@
+page{
+  background: #F5F5F5;
+}
+.P1 {
+  width: 690rpx;
+  margin: 30rpx;
+}
+
+.P2 {
+  border-radius: 29rpx;
+  width: 100%;
+  padding: 20rpx 0;
+  margin-bottom: 30rpx;
+  background-color: white;
+}
+
+.P2_1 {
+  width: 100%;
+  height: auto;
+  margin: 0 0 14rpx 14rpx;
+}
+
+.P2_1_1 {
+  /* width: 90%; */
+  color: #737373;
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  word-break:break-all;
+}
+
+.img {
+  width: 34rpx;
+  height: 35rpx;
+  margin-right: 11rpx;
+}
+
+.page {
+  width: 100%;
+  overflow-x: hidden;
+  height: 100%;
+  /* background-color: #FFFFFF; */
+  margin-top: -90rpx;
+}
+
+.hr {
+  border-bottom: 1rpx solid #F2F2F2;
+  margin: 20rpx 0rpx 16rpx 0rpx;
+}
+
+.app_flex {
+  justify-content: end;
+}
+
+.page.active {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: white;
+}
+
+#button_1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140rpx;
+  height: 56rpx;
+  border: 1px solid #8A8A8A;
+  font-size: 24rpx;
+  padding: 0rpx 0 0 0;
+  color: #8A8A8A;
+  font-weight: 400;
+  border-radius: 10rpx;
+  margin-right: 0rpx;
+  background: #FFFFFF;
+}
+
+#button_2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90rpx;
+  height: 54rpx;
+  border: 1px solid #E06596;
+  font-size: 24rpx;
+  padding: 0rpx 0 0 0;
+  color: white;
+  background-color: #E06596;
+  font-weight: 400;
+  border-radius: 10rpx;
+}
+
+.app_flex_new {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 30rpx;
+}
+
+.bold_font_new {
+  font-size: 32rpx;
+}
+
+.bold_font_2_new {
+  color: #8A8A8A;
+  font-size: 28rpx;
+}
+
+.button_flex_new_between {
+  display: flex;
+  justify-content: space-between;
+  padding: 14rpx 30rpx;
+  align-items: center;
+}
+
+.type_text_1 {
+  color: #737373;
+  font-size: 24rpx;
+}
+
+.policy_view{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #1673EC;
+  height: 280rpx;
+}
+
+.policy_view_1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.policy_view_1_1{
+  font-size: 32rpx;
+  color: #FFFFFF;
+}
+
+.policy_view_1_2{
+  background: #FCC883;
+  border-radius: 8rpx;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  padding: 4rpx 12rpx;
+  align-items: center;
+  justify-content: center;
+  border: 1px #FFFFFF solid;
+  margin-left: 12rpx;
+  display: inline-block;
+}
+
+.policy_view_2{
+  font-size: 20rpx;
+  color: #FFFFFF;
+  margin-top: 20rpx;
+}

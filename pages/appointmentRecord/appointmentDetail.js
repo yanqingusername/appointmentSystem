@@ -335,5 +335,10 @@ bindBack:function(){
         url: '/pages/index/article'
       })
     }
+  },
+  bindTypetags(){
+    wx.navigateTo({
+      url: "/pages/typeTags/index"
+    })
   }
 })

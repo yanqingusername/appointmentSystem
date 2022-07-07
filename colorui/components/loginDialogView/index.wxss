@@ -1,0 +1,111 @@
+/*遮罩层*/
+.modal-mask{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1002;
+}
+/*遮罩内容*/
+.modal-content{
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  background-color: #fff;
+  border-radius: 34rpx;
+  /* text-align: center; */
+}
+/*中间内容*/
+.main-content{
+      /* flex: 1; */
+      height: 100%;
+      padding: 80rpx 50rpx 50rpx 50rpx;
+      /* overflow-y: scroll; */
+      /* font-size: 26rpx; */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+}
+
+.confirm-btn {
+  background-color: #07c160;
+  color: white;
+  border-radius: 56rpx;
+  width: 300rpx;
+  font-size: 32rpx;
+  height: 70rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30rpx;
+}
+.main-title{
+  font-size: 32rpx;
+}
+
+.bottom {
+  width: 368rpx;
+  height: 80rpx;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  background: #07c160;
+  border-radius: 40rpx;
+  text-align: center;
+  color: white;
+  margin-top: 30rpx;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  /* margin-bottom: 300rpx; */
+}
+
+.bottom::after {
+  border: none;
+}
+
+/**
+*
+*/
+.div_policy{
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+}
+
+.privacy_policy{
+  color: #7D7D7D;
+  padding: 20rpx 20rpx 20rpx 0; /* 容易点击*/
+}
+
+.underline_gray{
+  text-decoration: underline;
+  color: #1673EC;
+}
+
+.round {
+  border-radius: 5000rpx;
+  bottom: 2rpx;
+  left: 0rpx;
+  transform: scale(0.7)
+}
+
+.icon_clear_view{
+  position: absolute;
+    right: 0rpx;
+    top: 0rpx;
+    padding: 20rpx;
+}
+
+.icon_clear{
+  width: 32rpx;
+  height: 32rpx;
+}

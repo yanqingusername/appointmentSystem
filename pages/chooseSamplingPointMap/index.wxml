@@ -1,5 +1,5 @@
 <!--pages/myOrder/myOrder.wxml-->
-<cu-custom isBack="{{true}}" bgColor="bg-white">
+<cu-custom isBack="{{true}}" bgColor="bg-gradual-blue">
   <view slot="backText" bindtap="bindBack"></view>
   <view slot="content">采样点地图</view>
 </cu-custom>
@@ -7,9 +7,9 @@
   <view class='search'>
   <view class="search_left" bindtap="chooseDistrict">
   <text id="district_font">{{sampling_place}}</text>
-        <image class="right_arrow" src="../../images/rightArrow.png"></image>
+        <image class="right_arrow" src="../../images/icon_0701_22.png"></image>
   </view>
-    <input id="search_checked" style="width:{{sampling_place=='北京清河站'? '62':'72'}}%;" type='text' placeholder='请输入采样点或地址关键词' confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' ></input>
+    <input id="search_checked" style="width:{{sampling_place=='北京清河站'? '62':'72'}}%;" type='text' placeholder='请输入采样点或地址关键词' confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" ></input>
   <view class="weui-icon-clear" wx:if="{{searchText}}" bindtap="clearSearchHandle">
     <icon type="clear" size="20" />
   </view>
@@ -120,54 +120,43 @@
   </view>
 </block> -->
     <block wx:for="{{channelList}}" wx:key="index">
-      <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;margin-top:20rpx;" data-id="{{item.channel_id}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" bindtap="bindCheckMap">
+      <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;margin-top:20rpx;position:relative;" data-id="{{item.channel_id}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" bindtap="bindCheckMap">
+        <image wx:if="{{hiddenFlag==false && index == 0}}" src="../../images/icon_0701_23.png" class="address_img"/>
+        
         <view class="app_flex">
-          <view class="bold_font">{{item.channel_name}}</view>
-          <view wx:if="{{hiddenFlag==false}}" class="bold_font_2" style="display: flex;align-items: center;margin-right: 20rpx;"><view wx:if="{{index == 0}}" class="address_view">距离最近</view>{{item.distance}}</view>
+          <view class="bold_font" style="width: 95%;margin-left:30rpx;">{{item.channel_name}}</view>
+          <!-- <view wx:if="{{hiddenFlag==false}}" class="bold_font_2" style="display: flex;align-items: center;margin-right: 20rpx;"><view wx:if="{{index == 0}}" class="address_view">距离最近</view>{{item.distance}}</view> -->
         </view>
 
-        <view class="item_view" wx:if="{{item.tag_text.length > 0}}">
-          <view wx:for="{{item.tag_text}}" wx:for-index="tagIndex" wx:for-item="items" class="lable_view_item" style="display: inline-block;margin-bottom:10rpx;">{{items}}</view>
+        <view class="map_view">
+          <view class="map_view_title"><text style="color:#0072FF;" wx:if="{{hiddenFlag==false}}">{{item.distance}}</text> |  {{item.site_description}}</view>
+          <view class="icon_view_4_new" catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
+            <image class="icon_24" src="../../images/icon_0701_24.png"></image>
+            <!-- <view class="text_1_new">导航</view> -->
+          </view>
         </view>
 
         <view class="work_item_view">
-          <view class="lable_view_item" style="color: #FFFFFF;background: #E26B9B;display: inline-block;" wx:if="{{item.yingye == 0}}">{{'营业中'}}</view>
-          <view class="lable_view_item" style="color: #FFFFFF;background: #CCCCCC;display: inline-block;" wx:else>{{'准备中'}}</view>
+          <view class="lable_view_red" wx:if="{{item.yingye == 0}}">{{'营业中'}}</view>
+          <view class="lable_view_yellow" wx:else>{{'准备中'}}</view>
           <view class="work_item_view_1" style="margin-right:10rpx;" wx:if="{{item.sbusiness_time1 || item.xbusiness_time1}}">工作时间</view>
           <view class="work_item_view_1" >{{item.sbusiness_time1}} {{item.xbusiness_time1}}</view>
         </view>
 
-        <!-- <view wx:for="{{item.workingTimeArr}}" wx:for-index="textIndex" wx:for-item="timeItem">
-          <view class="P2_1 app_flex">
-            <view class="P2_1_1" style="margin-left:24rpx;"><text wx:if="{{textIndex==0}}">营业时间</text></view>
-            <view class="P2_1_2" >{{timeItem}}</view>
-          </view>
-        </view> -->
-        <!-- <view class="P2_1 app_flex" style="margin-top:6rpx" wx:if="{{item.work_time_remarks}}">
-            <view class="P2_1_1" ></view>
-            <view class="P2_1_2">{{item.work_time_remarks}}</view>
-        </view> -->
-        <!-- <view class="P2_1 app_flex" style="margin-top:6rpx" wx:if="{{item.is_big_screen == 1}}">
-            <view class="P2_1_new" >常态化检测</view>
-            <view class="P2_2_new">{{item.big_screen_text}}</view>
-        </view> -->
-        <view class="map_view">
-          <view class="map_view_title">{{item.site_description}}</view>
-          <view class="icon_view_4_new" catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
-            <image class="icon_1_new" src="../../images/icon_position_05.png"></image>
-            <view class="text_1_new">导航</view>
-            <!-- <image data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" catch:tap="bindCheckSamplingPoint" wx:if="{{item.is_big_screen == 0}}" class="icon_2_new" src="../../images/btn_order_05_20.png"></image> -->
-          </view>
+        <view class="item_view" wx:if="{{item.tag_text.length > 0}}">
+          <view wx:for="{{item.tag_text}}" wx:for-index="tagIndex" wx:for-item="items" class="lable_view_item_tag" style="display: inline-block;">{{items}}</view>
         </view>
 
-
+        
+        <!-- <image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image> -->
         <view class="type_view">
-          <view class="map_view" style="width: 100%;padding: 0rpx;" wx:if="{{item.is_big_screen == 1}}">
-            <view class="map_3_view_title"><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{item.screen_text}}<view style="color: #FF9900;font-size: 22rpx;padding-top:4rpx;margin-left:10rpx;">{{item.big_screen_text}}</view></view>
+          <view class="map_view_type" style="width: 100%;padding: 12rpx 30rpx;margin-top: 20rpx;" wx:if="{{item.is_big_screen == 1}}">
+            <view class="map_3_view_title">{{item.screen_text}}</view>
+            <view style="color: #0870FF;font-size: 24rpx;padding-top:4rpx;margin-left:10rpx;">{{item.big_screen_text}}</view>
           </view>
 
-          <view class="map_view" style="padding: 0rpx;width: 100%;margin-top:20rpx;" wx:for="{{item.paytypetexts}}" wx:for-index="typeIndex" wx:for-item="typeItem">
-            <view class="map_3_view_title"><image class="icon_1_new" style="margin-right:10rpx;" src="../../images/icon_position_06.png"></image>{{typeItem.paytype_text}}</view>
+          <view class="map_view_type" style="padding: 12rpx 14rpx 12rpx 30rpx;width: 100%;margin-top:20rpx;" wx:for="{{item.paytypetexts}}" wx:for-index="typeIndex" wx:for-item="typeItem">
+            <view class="map_3_view_title">{{typeItem.paytype_text}}</view>
             <view class="icon_view_3_new" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" data-typeid="{{typeItem.id}}" catch:tap="bindCheckSamplingPoint">马上预约</view>
           </view>
         </view>

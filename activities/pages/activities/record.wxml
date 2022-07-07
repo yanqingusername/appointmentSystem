@@ -1,19 +1,19 @@
 <view class="page">
 
   <view class="title" bindtap="tips2">
-    <image src="{{dl_num>0?'../../images/2022ny/CardL_1a3x.png':'../../images/2022ny/CardL_1b3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>1?'../../images/2022ny/CardL_1a3x.png':'../../images/2022ny/CardL_1b3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>2?'../../images/2022ny/CardL_2a3x.png':'../../images/2022ny/CardL_2b3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>3?'../../images/2022ny/CardL_2a3x.png':'../../images/2022ny/CardL_2b3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>4?'../../images/2022ny/CardL_3a3x.png':'../../images/2022ny/CardL_3b3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>5?'../../images/2022ny/CardL_4a3x.png':'../../images/2022ny/CardL_4b3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>6?'../../images/2022ny/CardL_5a3x.png':'../../images/2022ny/CardL_5b3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>0?'../images/2022ny/CardL_1a3x.png':'../images/2022ny/CardL_1b3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>1?'../images/2022ny/CardL_1a3x.png':'../images/2022ny/CardL_1b3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>2?'../images/2022ny/CardL_2a3x.png':'../images/2022ny/CardL_2b3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>3?'../images/2022ny/CardL_2a3x.png':'../images/2022ny/CardL_2b3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>4?'../images/2022ny/CardL_3a3x.png':'../images/2022ny/CardL_3b3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>5?'../images/2022ny/CardL_4a3x.png':'../images/2022ny/CardL_4b3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>6?'../images/2022ny/CardL_5a3x.png':'../images/2022ny/CardL_5b3x.png'}}" class="Foka" mode="heightFix"></image>
 
   </view>
 
   <view wx:if="{{dl_num<4}}" class="dl_num_1">
     <view class="title" style="margin-top: 40rpx;">
-      <image src="../../images/2022ny/Slogan3x.png" class="dl_num_2" mode="aspectFit"></image>
+      <image src="../images/2022ny/Slogan3x.png" class="dl_num_2" mode="aspectFit"></image>
     </view>
     <view class="dl_num_3">
       <view class="dl_num_4">
@@ -55,7 +55,7 @@
       <view class="dl_num_17">
         <image src="https://cloud.coyotebio-lab.com/a/dhb.png" class="dl_num_18" mode="widthFix" bindtap="khb1">
         </image>
-        <!-- <image wx:if="{{hb1_status==0&&hb2_status==0}}" src="../../images/2022ny/x2.png" style="width: 10%;height: auto;position: absolute;left: 45%;top: 67%;" mode="widthFix">
+        <!-- <image wx:if="{{hb1_status==0&&hb2_status==0}}" src="../images/2022ny/x2.png" style="width: 10%;height: auto;position: absolute;left: 45%;top: 67%;" mode="widthFix">
         </image> -->
       </view>
     </view>
@@ -72,7 +72,7 @@
         </view>
         <!-- bindtap="khb_next" -->
         <view bindtap="update1_status" class="dl_num_24">
-          <!-- <image src="../../images/2022ny/zk1g.png" style="width: 70%;height: auto;" mode="widthFix"></image> -->
+          <!-- <image src="../images/2022ny/zk1g.png" style="width: 70%;height: auto;" mode="widthFix"></image> -->
           查看
         </view>
       </view>
@@ -83,10 +83,10 @@
       <view class="dl_num_25">
         <image src="{{hb1_data.picUrl}}" class="dl_num_26" mode="widthFix">
         </image>
-        <image src="../../images/2022ny/ylqz.png" class="dl_num_27" mode="widthFix"></image>
+        <image src="../images/2022ny/ylqz.png" class="dl_num_27" mode="widthFix"></image>
       </view>
       <view>
-        <image src="../../images/2022ny/kg.png" class="dl_num_28" mode="widthFix" bindtap="tips3">
+        <image src="../images/2022ny/kg.png" class="dl_num_28" mode="widthFix" bindtap="tips3">
         </image>
         <view class="dl_num_29">
           <text>
@@ -118,7 +118,7 @@
       <view class="dl_num_34">
         <image src="https://cloud.coyotebio-lab.com/a/dhb.png" class="dl_num_35" mode="widthFix" bindtap="khb1">
         </image>
-        <image src="../../images/2022ny/x2.png" class="dl_num_36" mode="widthFix">
+        <image src="../images/2022ny/x2.png" class="dl_num_36" mode="widthFix">
         </image>
       </view>
     </view>
@@ -131,7 +131,7 @@
           <view class="dl_num_41">领取成功</view>
           <view>已放入卡尤迪核酸检测小程序</view>
           <view>首页-我的卡券</view>
-          <image src="../../images/2022ny/zk1g.png" class="dl_num_42" mode="widthFix" bindtap="khb2"></image>
+          <image src="../images/2022ny/zk1g.png" class="dl_num_42" mode="widthFix" bindtap="khb2"></image>
         </view>
       </view>
     </view>
@@ -151,7 +151,7 @@
           <view>已放入卡尤迪核酸检测小程序</view>
           <view>首页-我的卡券</view>
           <view bindtap="update2_status" class="dl_num_49">
-            <!-- <image src="../../images/2022ny/zk1g.png" style="width: 70%;height: auto;" mode="widthFix"></image> -->
+            <!-- <image src="../images/2022ny/zk1g.png" style="width: 70%;height: auto;" mode="widthFix"></image> -->
             查看
           </view>
         </view>
@@ -166,11 +166,11 @@
       <view class="dl_num_50">
         <image src="{{hb1_data.picUrl}}" class="dl_num_51" mode="widthFix">
         </image>
-        <image src="../../images/2022ny/ylqz.png" class="dl_num_52" mode="widthFix"></image>
+        <image src="../images/2022ny/ylqz.png" class="dl_num_52" mode="widthFix"></image>
       </view>
       <view>
         <image src="{{hb2_data.picUrl}}" mode="widthFix" class="dl_num_53"></image>
-        <image src="../../images/2022ny/ylqz.png" class="dl_num_54" mode="widthFix"></image>
+        <image src="../images/2022ny/ylqz.png" class="dl_num_54" mode="widthFix"></image>
       </view>
     </view>
   </view>
@@ -197,7 +197,7 @@
   </view>
 
   <view wx:if="{{hjdata.length>0}}" class="dl_num_56">
-    <image src="../../images/2022ny/line.png" class="dl_num_57" mode="aspectFit"></image>
+    <image src="../images/2022ny/line.png" class="dl_num_57" mode="aspectFit"></image>
     <view class="dl_num_58">
       <block wx:for="{{hjdata}}" wx:for-item="m">
         <text>{{m.text}}</text>

@@ -1,0 +1,23 @@
+
+<!--components/model/model.wxml-->
+<view class='modal-mask' wx:if='{{show}}'>
+  <view class='modal-content'>
+    <view class='main-content'>
+      <view class="icon_clear_view" bind:tap="bindShowDialog">
+        <image class="icon_clear" src="../../../images/icon_clear_new.png"></image>
+      </view>
+      <view class="main-title">{{'需要您的微信授权，才能为您创建预约或查询记录。'}}</view>
+      <button wx:if="{{policyChecked}}" class='bottom' type='primary' open-type="getPhoneNumber" lang="zh_CN"
+            bindgetphonenumber="bindPhoneNumber">微信授权</button>
+      <button wx:else class='bottom' type='primary' lang="zh_CN"
+            bind:tap="getPhoneNumber">微信授权</button>
+       <view class="div_policy">
+        <checkbox-group bindchange="changePolicy">
+          <checkbox class='round pink' checked="{{policyChecked}}"></checkbox>
+          <label class="privacy_policy">已阅读并同意 <text class="underline_gray" catchtap="bindUserProtocol" data-fwxyurl="{{datas.fwxy_url}}">用户服务协议</text> 和 <text class="underline_gray" catchtap="bindPrivacyPolicy" data-yszzurl="{{datas.yszz_url}}">隐私政策</text></label>
+        </checkbox-group>
+      </view>
+    </view>
+    
+  </view>
+</view>

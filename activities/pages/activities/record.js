@@ -1,7 +1,7 @@
 const app = getApp()
-var request = require('../../utils/requestForHD.js')
-var box = require('../../utils/box.js')
-const utils = require('../../utils/utils.js')
+var request = require('../../../utils/requestForHD.js')
+var box = require('../../../utils/box.js')
+const utils = require('../../../utils/utils.js')
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -169,13 +169,13 @@ Page({
     //修改免责协议icon
     let that = this
     let mz_icon = that.data.mz_icon;
-    if (mz_icon == '../../images/2022ny/gx1_3x.png') {
+    if (mz_icon == '../images/2022ny/gx1_3x.png') {
       that.setData({
-        mz_icon: '../../images/2022ny/gx2_3x.png'
+        mz_icon: '../images/2022ny/gx2_3x.png'
       });
-    } else if (mz_icon == '../../images/2022ny/gx2_3x.png') {
+    } else if (mz_icon == '../images/2022ny/gx2_3x.png') {
       that.setData({
-        mz_icon: '../../images/2022ny/gx1_3x.png'
+        mz_icon: '../images/2022ny/gx1_3x.png'
       });
 
     }
@@ -209,7 +209,7 @@ Page({
 
   goNext: function () {
     // wx.navigateTo({
-    //   url: '/pages/activities/index',
+    //   url: '/activities/pages/activities/index',
     // })
     let that = this;
     wx.navigateBack();

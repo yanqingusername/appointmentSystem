@@ -230,7 +230,7 @@ Page({
   },
   bpa: function () {
     wx.navigateTo({
-      url: '/pages/activities/index?type=3',
+      url: '/activities/pages/activities/index?type=3',
     })
   },
   bindCancel: function (e) {
@@ -468,5 +468,10 @@ Page({
         url: '/pages/index/article'
       })
     }
+  },
+  bindTypetags(){
+    wx.navigateTo({
+      url: "/pages/typeTags/index"
+    })
   }
 })

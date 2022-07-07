@@ -1,7 +1,7 @@
 const app = getApp()
-var request = require('../../utils/requestForHD.js')
-var box = require('../../utils/box.js')
-const canvas = require('../../utils/canvas.js')
+var request = require('../../../utils/requestForHD.js')
+var box = require('../../../utils/box.js')
+const canvas = require('../../../utils/canvas.js')
 Page({
   data: {
     hb_url: '',
@@ -30,7 +30,7 @@ Page({
     const promise = new Promise(resolve => {
       resolve({
         title: text,
-        path: '/pages/activities/poster?id=' + that.data.pid,
+        path: '/activities/pages/activities/poster?id=' + that.data.pid,
         imageUrl: that.data.hb_url
       })
     })
@@ -84,7 +84,7 @@ Page({
 
   goNext: function () {
     wx.navigateTo({
-      url: '/pages/activities/index',
+      url: '/activities/pages/activities/index',
     })
 
 

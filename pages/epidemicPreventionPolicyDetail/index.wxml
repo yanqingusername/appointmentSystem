@@ -1,0 +1,41 @@
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">防疫政策详情页</view>
+</cu-custom>
+
+<view class="policy_view"></view>
+
+<view class="page">
+  <view class="P1">
+      <view class="P2 app_font">
+        <view class="app_flex_new">
+          <view class="bold_font_new">{{'政策标题'}}</view>
+          <view class="bold_font_2_new">{{'部分地区中、高风险'}}</view>
+          <view class="type_text_1">{{'本内容为该地区于5月31日12时报送，建议出行前先拨打当地电话咨询'}}</view>
+        </view>
+        <view class="hr"></view>
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+          <view class="P2_1_1_1">这里为政策的全文：</view>
+        </view>
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;" wx:for="{{3}}" wx:key="index">
+          <view class="P2_1_1">1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字。</view>
+        </view>
+      </view>
+  </view>
+
+  <view class="P1">
+      <view class="P2 app_font">
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+          <view class="P2_1_1_1">疫情防控咨询电话</view>
+        </view>
+
+        <view class="button_flex_new_between">
+          <view class="type_text_1">北京市</view>
+          <view style="display: flex;" catchtap="phoneCall">
+            <view class="type_text_2">010-12345</view>
+          </view>
+        </view>
+        
+      </view>
+  </view>
+</view>

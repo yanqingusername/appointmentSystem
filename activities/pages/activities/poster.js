@@ -1,6 +1,6 @@
 const app = getApp()
-var request = require('../../utils/requestForHD.js')
-var box = require('../../utils/box.js')
+var request = require('../../../utils/requestForHD.js')
+var box = require('../../../utils/box.js')
 
 Page({
   data: {
@@ -91,7 +91,7 @@ Page({
 
   goNext: function () {
     wx.navigateTo({
-      url: '/pages/activities/index',
+      url: '/activities/pages/activities/index',
     })
 
   

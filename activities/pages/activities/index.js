@@ -1,9 +1,9 @@
 const app = getApp()
-var request = require('../../utils/requestForHD.js')
-var box = require('../../utils/box.js')
-const updateApp = require('../../utils/updateApp.js')
-const canvas = require('../../utils/canvas.js')
-const utils = require('../../utils/utils.js')
+var request = require('../../../utils/requestForHD.js')
+var box = require('../../../utils/box.js')
+const updateApp = require('../../../utils/updateApp.js')
+const canvas = require('../../../utils/canvas.js')
+const utils = require('../../../utils/utils.js')
 //const wxbarcode = require('../../utils/wxbarcode.js');
 
 const formatNumber = n => {
@@ -34,7 +34,7 @@ Page({
     pat_num: 0,
     dl_num: 0,
     // mz_status: 1,
-    // mz_icon: '../../images/2022ny/gx1_3x.png',
+    // mz_icon: '../images/2022ny/gx1_3x.png',
     hb1_status: 0,
     hb2_status: 0,
     qrcode: '',
@@ -55,7 +55,7 @@ Page({
       'content': ''
     },
     title_word: '',
-    tz_url: '../../images/2022ny/qkk_3x.png',
+    tz_url: '../images/2022ny/qkk_3x.png',
     startPageX: 0,
     zfy: [],
     value: '',
@@ -295,12 +295,12 @@ console.log(that.data.pid);
     if ((dl_num >= 4 && dl_num < 7 && hb1_status == 0) || (dl_num >= 7 && (hb1_status == 0 || hb2_status == 0))) {
       //任意一个未领取，则显示红包按钮
       that.setData({
-        tz_url: '../../images/2022ny/hb_3x.png'
+        tz_url: '../images/2022ny/hb_3x.png'
       })
 
     } else {
       that.setData({
-        tz_url: '../../images/2022ny/qkk_3x.png'
+        tz_url: '../images/2022ny/qkk_3x.png'
       })
 
     }
@@ -632,13 +632,13 @@ console.log(that.data.pid);
     //修改免责协议icon
     let that = this
     let mz_icon = that.data.mz_icon;
-    if (mz_icon == '../../images/2022ny/gx1_3x.png') {
+    if (mz_icon == '../images/2022ny/gx1_3x.png') {
       that.setData({
-        mz_icon: '../../images/2022ny/gx2_3x.png'
+        mz_icon: '../images/2022ny/gx2_3x.png'
       });
-    } else if (mz_icon == '../../images/2022ny/gx2_3x.png') {
+    } else if (mz_icon == '../images/2022ny/gx2_3x.png') {
       that.setData({
-        mz_icon: '../../images/2022ny/gx1_3x.png'
+        mz_icon: '../images/2022ny/gx1_3x.png'
       });
 
     }
@@ -695,7 +695,7 @@ console.log(that.data.pid);
     }
     app.globalData.fx_data = data;
     wx.navigateTo({
-      url: '/pages/activities/preview?data=' + data,
+      url: '/activities/pages/activities/preview?data=' + data,
     })
 
   },
@@ -768,7 +768,7 @@ console.log(that.data.pid);
               }
 
               wx.navigateTo({
-                url: '/pages/activities/preview',
+                url: '/activities/pages/activities/preview',
               })
             },
           })
@@ -798,14 +798,14 @@ console.log(that.data.pid);
           console.log('complete:' + res);
           console.log(res);
           wx.navigateTo({
-            url: '/pages/activities/record',
+            url: '/activities/pages/activities/record',
           })
         }
       })
 
     } else {
       wx.navigateTo({
-        url: '/pages/activities/record',
+        url: '/activities/pages/activities/record',
       })
     }
     //埋点

@@ -1,0 +1,44 @@
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">疫情防控政策</view>
+</cu-custom>
+
+<view class="policy_view">
+  <view class="policy_view_1">
+    <view class="policy_view_1_1">北京市</view>
+    <view class="policy_view_1_2">部分地区中、高风险</view>
+  </view>
+  <view class="policy_view_2">数据来源为中国政府网及国务院客户端，最新更新时间5月31日12时</view>
+</view>
+
+<view class="page {{overflowFlag==true?'active':''}}">
+  <view class="P1">
+    <block wx:if="{{flag1}}" wx:for="{{appointmentList}}">
+      <view class="P2 app_font" bindtap="toInfo" data-id="{{'1'}}">
+        <view class="app_flex_new">
+          <view class="bold_font_new">{{'出京政策'}}</view>
+          <view class="bold_font_2_new">{{'5月31日12时'}}</view>
+        </view>
+        <view class="hr"></view>
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+          <view class="P2_1_1">列表中展示时，空格代替原文的回车。 1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措古古怪怪是否法师打发是短发阿斯顿发生对方</view>
+        </view>
+      
+        <view class="button_flex_new_between">
+          <view class="type_text_1"></view>
+          <view style="display: flex;">
+            <view id="button_1" catchtap="toInfo" data-id="{{'1'}}">查看全文</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view>
+      <!-- <image class="app_noinfo_img" src="../../image/nodata.png" mode="widthFix"></image> -->
+      <view class="app_noinfo_desc">{{tip}}</view>
+    </view>
+    <view wx:if="{{alreadyChecked_temp==true}}">
+      <!-- <image class="app_noinfo_img" src="../../image/nodata.png" mode="widthFix"></image> -->
+      <view class="app_noinfo_desc">{{tip_temp}}</view>
+    </view>
+  </view>
+</view>

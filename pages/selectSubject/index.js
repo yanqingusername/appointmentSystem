@@ -11,7 +11,8 @@ Page({
    */
   data: {
     title: "选择受检人",
-    dataList: []
+    dataList: [],
+    isMine: 0
   },
   onShow: function () {
     let that = this;
@@ -51,8 +52,10 @@ Page({
       that.getAllSubject();
     }
   },
-  onLoad: function () {
-
+  onLoad: function (options) {
+    this.setData({
+      isMine: options.isMine
+    });
   },
   getAllSubject(){
     let that = this;
@@ -80,34 +83,38 @@ Page({
    */
   bindAddSubject(){
     wx.navigateTo({
-      url:'/pages/addSubject/index?isAddSub=1'
+      url:`/pages/addSubject/index?isAddSub=1&isMine=${this.data.isMine}`
     });
   },
   /**
    * 选择受检人
    */
   bindSelectSubject(e){
-    let item = e.currentTarget.dataset.item;
-    console.log('--item-->:',item)
-    if(item){
-      let pages = getCurrentPages(); 
-      let prevPage = pages[pages.length - 2];
-      prevPage.setData({
-        isAddSubject: 1,
-        userinfo_id: item.id,
-        name: item.name,
-        gender: item.gender,
-        age: item.age,
-        cardIndex: item.card_type,
-        idcard: item.id_card,
-        phone: item.phone,
-        onlineFlagNum: item.onlineFlag,
-        onlineFlag: item.onlineFlag == 1 ? false : true,
-        card_name: item.card_type == 1 ? '护照' : item.card_type == 2 ? '港澳台通行证' : '身份证'
-      })
-      wx.navigateBack({
-        delta: 1, 
-      })
+    if(this.data.isMine == 1){
+
+    }else{
+      let item = e.currentTarget.dataset.item;
+      console.log('--item-->:',item)
+      if(item){
+        let pages = getCurrentPages(); 
+        let prevPage = pages[pages.length - 2];
+        prevPage.setData({
+          isAddSubject: 1,
+          userinfo_id: item.id,
+          name: item.name,
+          gender: item.gender,
+          age: item.age,
+          cardIndex: item.card_type,
+          idcard: item.id_card,
+          phone: item.phone,
+          onlineFlagNum: item.onlineFlag,
+          onlineFlag: item.onlineFlag == 1 ? false : true,
+          card_name: item.card_type == 1 ? '护照' : item.card_type == 2 ? '港澳台通行证' : '身份证'
+        })
+        wx.navigateBack({
+          delta: 1, 
+        })
+      }
     }
   },
   /**
@@ -120,7 +127,7 @@ Page({
     console.log('--item-->:',item)
     if(online&&item){
       wx.navigateTo({
-        url:`/pages/addSubject/index?isAddSub=2&title=编辑受检人&online=${online}&jsonItem=${jsonItem}`
+        url:`/pages/addSubject/index?isAddSub=2&title=编辑受检人&online=${online}&jsonItem=${jsonItem}&isMine=${this.data.isMine}`
       });
     }
   }

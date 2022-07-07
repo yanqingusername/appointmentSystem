@@ -14,8 +14,8 @@
 
     <text>\n</text>
     <view class="bottomx">
-      <!-- <image src="../../images/2022ny/download.png" bindtap="scpaf" style="width: 100%;height: 100%;" mode="widthFix"></image>
-      <image src="../../images/2022ny/close@3x.png" bindtap="closeCanvas" style="width: 50rpx;height: 50rpx;position: absolute;left: 110%;top: 25%;" mode="scaleToFill"></image> -->
+      <!-- <image src="../images/2022ny/download.png" bindtap="scpaf" style="width: 100%;height: 100%;" mode="widthFix"></image>
+      <image src="../images/2022ny/close@3x.png" bindtap="closeCanvas" style="width: 50rpx;height: 50rpx;position: absolute;left: 110%;top: 25%;" mode="scaleToFill"></image> -->
 
       <button class="bcxc" bindtap="scpaf" style="width: 45%;">保存到相册</button>
       <button open-type="share" class="zfpy" style="width: 45%;">分享给好友</button>

@@ -40,6 +40,11 @@ Page({
         // 获取微信小程序配置
         // 登录小程序
          that.loginApp();
+
+      // 
+      // wx.switchTab({
+      //   url: '/pages/mainIndex/index'
+      // })
   },
    // 获取微信code登录小程序
    loginApp: function () {
@@ -56,6 +61,11 @@ Page({
                     if (res.success) {
                         app.globalData.openid = res.msg;
                         console.log("获取的用户openid" + app.globalData.openid);
+                        
+                        // 跳转首页
+                        wx.switchTab({
+                          url: '/pages/mainIndex/index'
+                        })
                     } else {
                         box.showToast(res.msg);
                     }

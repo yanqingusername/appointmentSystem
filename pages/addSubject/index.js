@@ -44,6 +44,7 @@ Page({
     card_name: '身份证', //身份证name
     userinfo_id: '',
     policyChecked: false,
+    isMine: 0
   },
   onShow: function () {
     // this.bindHistoryInfo();
@@ -52,7 +53,8 @@ Page({
     this.getbaseData();
     
     this.setData({
-      isAddSub: options.isAddSub
+      isAddSub: options.isAddSub,
+      isMine: options.isMine
     });
 
     if(options && options.title){
@@ -413,26 +415,34 @@ Page({
           if (res.success) {
             box.showToast('添加成功','',1000)
 
-            setTimeout(()=>{
-              let pages = getCurrentPages();
-              let prevPage = pages[pages.length - 2];
-              prevPage.setData({
-                isAddSubject: 1,
-                userinfo_id: res.person_id,
-                gender: that.data.gender,
-                age: that.data.age,
-                cardIndex: that.data.cardIndex,
-                name: that.data.name,
-                phone: that.data.phone,
-                idcard: that.data.idcard,
-                card_name: that.data.card_name,
-                onlineFlag: that.data.onlineFlag,
-                onlineFlagNum: that.data.onlineFlagNum,
-              })
-              wx.navigateBack({
-                delta: 1,
-              })
-            },1200);
+            if(that.data.isMine == 1){
+              setTimeout(()=>{
+                wx.navigateBack({
+                  delta: 1,
+                })
+              },1200);
+            }else{
+              setTimeout(()=>{
+                let pages = getCurrentPages();
+                let prevPage = pages[pages.length - 2];
+                prevPage.setData({
+                  isAddSubject: 1,
+                  userinfo_id: res.person_id,
+                  gender: that.data.gender,
+                  age: that.data.age,
+                  cardIndex: that.data.cardIndex,
+                  name: that.data.name,
+                  phone: that.data.phone,
+                  idcard: that.data.idcard,
+                  card_name: that.data.card_name,
+                  onlineFlag: that.data.onlineFlag,
+                  onlineFlagNum: that.data.onlineFlagNum,
+                })
+                wx.navigateBack({
+                  delta: 1,
+                })
+              },1200);
+            }
           } else {
             box.showToast(res.msg);
           }
@@ -447,26 +457,34 @@ Page({
           if (res.success) {
             box.showToast('添加成功','',1000)
 
-            setTimeout(()=>{
-              let pages = getCurrentPages();
-              let prevPage = pages[pages.length - 3];
-              prevPage.setData({
-                isAddSubject: 1,
-                userinfo_id: res.person_id,
-                gender: that.data.gender,
-                age: that.data.age,
-                cardIndex: that.data.cardIndex,
-                name: that.data.name,
-                phone: that.data.phone,
-                idcard: that.data.idcard,
-                card_name: that.data.card_name,
-                onlineFlag: that.data.onlineFlag,
-                onlineFlagNum: that.data.onlineFlagNum,
-              })
-              wx.navigateBack({
-                delta: 2,
-              })
-            },1200);
+            if(that.data.isMine == 1){
+              setTimeout(()=>{
+                wx.navigateBack({
+                  delta: 1,
+                })
+              },1200);
+            }else{
+              setTimeout(()=>{
+                let pages = getCurrentPages();
+                let prevPage = pages[pages.length - 3];
+                prevPage.setData({
+                  isAddSubject: 1,
+                  userinfo_id: res.person_id,
+                  gender: that.data.gender,
+                  age: that.data.age,
+                  cardIndex: that.data.cardIndex,
+                  name: that.data.name,
+                  phone: that.data.phone,
+                  idcard: that.data.idcard,
+                  card_name: that.data.card_name,
+                  onlineFlag: that.data.onlineFlag,
+                  onlineFlagNum: that.data.onlineFlagNum,
+                })
+                wx.navigateBack({
+                  delta: 2,
+                })
+              },1200);
+            }
           } else {
             box.showToast(res.msg);
           }
@@ -482,26 +500,34 @@ Page({
           if (res.success) {
             box.showToast('编辑成功','',1000)
 
-            setTimeout(()=>{
-              let pages = getCurrentPages();
-              let prevPage = pages[pages.length - 3];
-              prevPage.setData({
-                isAddSubject: 1,
-                userinfo_id: that.data.userinfo_id,
-                gender: that.data.gender,
-                age: that.data.age,
-                cardIndex: that.data.cardIndex,
-                name: that.data.name,
-                phone: that.data.phone,
-                idcard: that.data.idcard,
-                card_name: that.data.card_name,
-                onlineFlag: that.data.onlineFlag,
-                onlineFlagNum: that.data.onlineFlagNum,
-              })
-              wx.navigateBack({
-                delta: 2,
-              })
-            },1200);
+            if(that.data.isMine == 1){
+              setTimeout(()=>{
+                wx.navigateBack({
+                  delta: 1,
+                })
+              },1200);
+            }else{
+              setTimeout(()=>{
+                let pages = getCurrentPages();
+                let prevPage = pages[pages.length - 3];
+                prevPage.setData({
+                  isAddSubject: 1,
+                  userinfo_id: that.data.userinfo_id,
+                  gender: that.data.gender,
+                  age: that.data.age,
+                  cardIndex: that.data.cardIndex,
+                  name: that.data.name,
+                  phone: that.data.phone,
+                  idcard: that.data.idcard,
+                  card_name: that.data.card_name,
+                  onlineFlag: that.data.onlineFlag,
+                  onlineFlagNum: that.data.onlineFlagNum,
+                })
+                wx.navigateBack({
+                  delta: 2,
+                })
+              },1200);
+            }
           } else {
             box.showToast(res.msg);
           }

@@ -748,6 +748,22 @@ bindDetail:function(e){
           this.data.channelList[index].height = 45;
           this.data.channelList[index].zIndex = 9999;
 
+          // 新增
+          if(channelData && channelData.length > 0){
+            channelData[0].callout = {
+              content: channelData[0].channel_name,
+              color: '#0F66F7',
+              fontSize: 14,
+              borderWidth: 2,
+              borderRadius: 10,
+              borderColor: '#fff',
+              bgColor: '#fff',
+              padding: 5,
+              display: 'ALWAYS',
+              textAlign: 'center'
+            }
+          }
+
           this.setData({
             channelList: channelData,
             isFirst: 2,

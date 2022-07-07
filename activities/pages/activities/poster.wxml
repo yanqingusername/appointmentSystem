@@ -10,7 +10,7 @@
   </view>
 <text>\n</text>
   <view style="text-align: center;">
-    <image src="../../images/2022ny/wys.png" mode="widthFix" bindtap="goNext" style="width: 70%;"></image>
+    <image src="../images/2022ny/wys.png" mode="widthFix" bindtap="goNext" style="width: 70%;"></image>
   </view>
   <text>\n</text>
 </view>

@@ -1,10 +1,10 @@
 <!--pages/myOrder/myOrder.wxml-->
 <cu-custom bgColor="bg-white" isBack="{{false}}" isCustom="{{true}}">
-  <view slot="content">预约记录</view>
+  <view slot="content">我的预约记录</view>
 </cu-custom>
 <view class="search_border">
   <view class='search' style="position: relative;">
-    <input id="search_checked" type='text' placeholder='请输入受检者姓名' placeholder-class="ph_class" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle'></input>
+    <input id="search_checked" type='text' placeholder='请输入手机号/姓名' placeholder-class="ph_class" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle'></input>
     <view class="weui-icon-clear" wx:if="{{searchText}}" catchtap="clearSearchHandle">
       <icon id="clear_1" type="clear" size="20" catchtap="clearSearchHandle" />
     </view>
@@ -22,35 +22,52 @@
     <block wx:if="{{flag1}}" wx:for="{{appointmentList}}">
       <view class="P2 app_font" bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
         <view class="app_flex_new">
-          <view class="bold_font_new">{{item.create_time}}</view>
+          <view class="bold_font_new">{{item.test_type}}</view>
           <view wx:if="{{item.use_status!=4&&item.use_status!=5&&item.use_status!=7}}" class="bold_font_2_new">{{item.status}}</view>
           <view wx:if="{{item.use_status==4}}" class="bold_font_2_new" style="color:#00A451">{{item.status}}</view>
           <view wx:if="{{item.use_status==5}}" class="bold_font_2_new" style="color:#B8321E">{{item.status}}</view>
           <view wx:if="{{item.use_status==7}}" class="bold_font_2_new" style="color:#444940">{{item.status}}</view>
         </view>
         <view class="hr"></view>
-        <view class="P2_1 app_flex">
-          <view class="P2_1_1">检测类型</view>
-          <view class="P2_1_2">{{item.test_type}}</view>
-        </view>
-        <view wx:if="{{item.name}}" class="P2_1 app_flex">
-          <view class="P2_1_1">受检者姓名</view>
+        <view wx:if="{{item.name}}" class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+          <view class="P2_1_1">受检人</view>
           <view class="P2_1_2">{{item.name}}</view>
         </view>
-        <view wx:if="{{item.phone}}" class="P2_1 app_flex">
+        <view wx:if="{{item.phone}}" class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
           <view class="P2_1_1">手机号</view>
           <view class="P2_1_2">{{item.phone}}</view>
         </view>
-        <view class="button_flex_new">
-          <!-- <button id="button_1" catchtap="openEssay">打开文章</button> -->
-          <!-- <web-view src="https://mp.weixin.qq.com/s/q-ns2FxMhsDqrFa-L4vtsA">hhh</web-view> -->
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;position:relative;">
+          <view class="P2_1_1">采样点</view>
+          <view class="P2_1_2">{{'北京南站采样点'}}</view>
+          <image id="pink_position" src="../../images/icon_position_red.png"></image>
+        </view>
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+          <view class="P2_1_1">预约时间</view>
+          <view class="P2_1_2">{{item.create_time}}</view>
+        </view>
+        <view class="type_view" catch:tap="bindTypetags">
+          <view class="type_view_1">
+            <image class="type_icon_25" src="../../images/icon_0701_25.png"></image>
+            <view class="type_title">送达实验室</view>
+            <view class="type_text">下一步，样本处理</view>
+          </view>
+        </view>
+        <view class="button_flex_new_between">
+          <view class="type_text_1">{{item.create_time}}</view>
+          <view style="display: flex;">
+            <view wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindRefund">申请退款</view>
+            <view id="button_2" wx:if="{{item.use_status==1}}">查看信息码</view>
+            <view wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</view>
+          </view>
+        </view>
+        <!-- <view class="button_flex_new">
           <view id="button_1" wx:if="{{item.sendbutn==1}}" catchtap="bpa">给亲友报平安</view>
           <button hidden wx:if="{{item.use_status==4}}" id="button_1" catchtap="bindInvoice">开发票</button>
           <view wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindRefund">申请退款</view>
-          <!-- <button id="button_2">升级快检</button> -->
           <view id="button_2" wx:if="{{item.use_status==1}}">查看信息码</view>
           <view wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</view>
-        </view>
+        </view> -->
       </view>
     </block>
     <block wx:if="{{flag2}}" wx:for="{{appointmentListPlus}}">

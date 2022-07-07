@@ -1,0 +1,90 @@
+<!-- <cu-custom isBack="{{false}}" bgImage="../../images/icon_0701_03.png">
+</cu-custom> -->
+
+
+  <!-- <view style="background-image:url(../../images/icon_0701_05.png);height:302px;background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;position:relative;">
+    <view class="main_view">
+      <view class="main_title">卡尤迪新冠肺炎核酸检测</view>
+      <view class="main_title_1"><view class="main_radius_1"></view><view class="main_text">12小时内出报告</view></view>
+      <view class="main_title_2" bindtap="bindChooseMap"><view class="main_radius_2"></view><view class="main_text">91个核酸检测采样点位，看地图 ></view></view>
+    </view>
+    <image src="../../images/icon_0701_06.png" class="main_img" />
+  </view> -->
+  <view style="position:relative;">
+    <image src="../../images/icon_0701_05.png" style="height:302px;width:100%"/>
+    <view class="main_view1">
+      <view class="main_title">卡尤迪新冠肺炎核酸检测</view>
+      <view class="main_title_1"><view class="main_radius_1"></view><view class="main_text">12小时内出报告</view></view>
+      <view class="main_title_2" bindtap="bindChooseMap"><view class="main_radius_2"></view><view class="main_text">91个核酸检测采样点位，看地图 ></view></view>
+    </view>
+    <image src="../../images/icon_0701_06.png" class="main_img" />
+  </view>
+<view class="main_center">
+  <view class="main_center_left" bindtap="bindOnsite" data-type="0">
+    <view class="main_1">现场录信息</view>
+    <view class="main_2">登记个人信息，排队采样</view>
+    <view class="main_3">马上预约</view>
+    <image src="../../images/icon_0701_07.png" class="main_7" />
+    <image src="../../images/icon_0701_08.png" class="main_8" />
+  </view>
+
+  <view class="main_center_right">
+    <view class="main_6" bindtap="bindChooseMap">
+      <view class="main_1">搜索采样点</view>
+      <view class="main_2">社区，商圈，火车站</view>
+      <image src="../../images/icon_0701_09.png" class="main_9" />
+    </view>
+
+    <view class="main_11" bindtap="bindAppointment">
+      <view class="main_1">预约记录</view>
+      <view class="main_2">我的信息码，样本进度</view>
+      <image src="../../images/icon_0701_10.png" class="main_10" />
+    </view>
+  </view>
+
+
+</view>
+
+<!-- 公告 -->
+      <!-- <view class="notice_view" bind:tap="bindNoticeClick">
+        <view class="notice_left">
+          <image class="notice_left_img" src="../../images/icon_0701_11.png"></image>
+          <view class="notice_left_title">您的预约已进入<text class="notice_left_text">“待采样”</text>状态，点击查看详情</view>
+        </view>
+      </view> -->
+
+      <view style="margin: 30rpx 30rpx 0rpx 30rpx;">
+         <view class="notice_view1" >
+        <swiper class="swiper_zi" vertical="true" autoplay="true" circular="true" interval="3000">
+            <block wx:for="{{3}}" wx:key="index">
+            <swiper-item>
+                <view class="notice_left" bind:tap="bindNoticeClick" data-index="{{index}}">
+                  <image class="notice_left_img" src="../../images/icon_0701_11.png"></image>
+                  <view class="notice_left_title">您的预约已进入<text class="notice_left_text">“待采样”</text>状态，点击查看详情{{index}}</view>
+                </view>
+            </swiper-item>
+            </block>
+        </swiper>
+         </view>
+      </view>
+
+      <view class="main_bottom">常用服务</view>
+
+      <view class="main_bottom_view">
+        <view class="bottom_view_1" bind:tap="bindTestReport">
+          <image class="bottom_view_1_img" src="../../images/icon_0701_12.png"></image>
+          <view class="bottom_view_1_text">查询报告</view>
+
+          <image class="main_15" src="../../images/icon_0701_15.png"></image>
+        </view>
+        <view class="bottom_view_1" bind:tap="bindEpidemicPreventionPolicy">
+          <image class="bottom_view_1_img" src="../../images/icon_0701_13.png"></image>
+          <view class="bottom_view_1_text">防疫政策</view>
+        </view>
+        <view class="bottom_view_1" bind:tap="bindXinguanSelfInspection">
+          <image class="bottom_view_1_img" src="../../images/icon_0701_14.png"></image>
+          <view class="bottom_view_1_text">新冠自检</view>
+        </view>
+      </view>
+
+      <view class="empty_view"></view>

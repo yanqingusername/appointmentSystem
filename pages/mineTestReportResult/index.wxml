@@ -1,0 +1,45 @@
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">查询报告结果</view>
+</cu-custom>
+
+<view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
+  <view class="P1">
+    <block wx:if="{{flag1}}" wx:for="{{appointmentList}}">
+      <view class="P2 app_font" bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
+        <view class="app_flex_new">
+          <view class="bold_font_new">{{'新冠肺炎核酸检测报告'}}</view>
+          <view class="bold_font_2_new">{{'阴性'}}</view>
+        </view>
+        <view class="hr"></view>
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+          <view class="P2_1_1">样本编号</view>
+          <view class="P2_1_2">{{'3901221123314489'}}</view>
+        </view>
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+          <view class="P2_1_1">受检人</view>
+          <view class="P2_1_2">{{'李四'}}</view>
+        </view>
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+          <view class="P2_1_1">手机号</view>
+          <view class="P2_1_2">{{'123***7890'}}</view>
+        </view>
+        <view class="button_flex_new_between">
+          <view class="type_text_1">{{item.create_time}}</view>
+          <view style="display: flex;">
+            <view data-report="{{item.pdf_url}}" id="button_1" catchtap="bindDownloadReport">下载</view>
+            <view data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查看</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view>
+      <!-- <image class="app_noinfo_img" src="../../image/nodata.png" mode="widthFix"></image> -->
+      <view class="app_noinfo_desc">{{tip}}</view>
+    </view>
+    <view wx:if="{{alreadyChecked_temp==true}}">
+      <!-- <image class="app_noinfo_img" src="../../image/nodata.png" mode="widthFix"></image> -->
+      <view class="app_noinfo_desc">{{tip_temp}}</view>
+    </view>
+  </view>
+</view>

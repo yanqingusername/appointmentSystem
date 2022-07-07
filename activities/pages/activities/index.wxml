@@ -4,20 +4,20 @@
     <text class="title_word">{{title_word}}</text>
   </view>
   <view class="title" bindtap="goNext">
-    <image src="{{dl_num>0?'../../images/2022ny/f2_3x.png':'../../images/2022ny/f1_3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>1?'../../images/2022ny/f2_3x.png':'../../images/2022ny/f1_3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>2?'../../images/2022ny/t2_3x.png':'../../images/2022ny/t1_3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>3?'../../images/2022ny/t2_3x.png':'../../images/2022ny/t1_3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>4?'../../images/2022ny/g2_3x.png':'../../images/2022ny/g1_3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>5?'../../images/2022ny/d2_3x.png':'../../images/2022ny/d1_3x.png'}}" class="Foka" mode="heightFix"></image>
-    <image src="{{dl_num>6?'../../images/2022ny/n2_3x.png':'../../images/2022ny/n1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>0?'../images/2022ny/f2_3x.png':'../images/2022ny/f1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>1?'../images/2022ny/f2_3x.png':'../images/2022ny/f1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>2?'../images/2022ny/t2_3x.png':'../images/2022ny/t1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>3?'../images/2022ny/t2_3x.png':'../images/2022ny/t1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>4?'../images/2022ny/g2_3x.png':'../images/2022ny/g1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>5?'../images/2022ny/d2_3x.png':'../images/2022ny/d1_3x.png'}}" class="Foka" mode="heightFix"></image>
+    <image src="{{dl_num>6?'../images/2022ny/n2_3x.png':'../images/2022ny/n1_3x.png'}}" class="Foka" mode="heightFix"></image>
     <view class="title_right" >
       <image src="{{tz_url}}" class="Foka" mode="heightFix"></image>
-      <image src="../../images/2022ny/arrow1_3x.png" class="Foka" mode="heightFix"></image>
+      <image src="../images/2022ny/arrow1_3x.png" class="Foka" mode="heightFix"></image>
     </view>
   </view>
   <view class="title_line">
-    <image src="../../images/2022ny/jx.png" style="width: 100%;" mode="widthFix"></image>
+    <image src="../images/2022ny/jx.png" style="width: 100%;" mode="widthFix"></image>
     <view class="titledata">
       <text class="titledata2" style="float: left;">已有<text style="color: #FFFF00;">{{pat_num}}</text>份平安帖被送出</text>
       <text class="titledata2" style="float: right;">已有<text style="color: #FFFF00;">{{get_pat_p_num}}</text>份平安礼被领取</text>
@@ -28,7 +28,7 @@
     </image>
     <view class="child child_2" wx:if="{{value==''}}" >
       <!-- <text>添加我的祝福语</text> -->
-      <image src="../../images/2022ny/zfy_3x.png" class="Foka" mode="heightFix" bindtap="getZFY"></image>
+      <image src="../images/2022ny/zfy_3x.png" class="Foka" mode="heightFix" bindtap="getZFY"></image>
     </view>
     <view wx:else class="child" style="text-align: center;">
       <!-- <text bindtap="getZFY"></text> -->
@@ -68,7 +68,7 @@
     </view>
   </view>
   <view class="hdgz_view">
-    <image src="../../images/2022ny/hdgz.png" class="hdgz_icon"></image>
+    <image src="../images/2022ny/hdgz.png" class="hdgz_icon"></image>
 
     <text bindtap="showhdgz" class="hzgz_text">活动规则</text>
   </view>
