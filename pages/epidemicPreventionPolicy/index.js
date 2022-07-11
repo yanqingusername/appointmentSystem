@@ -7,62 +7,62 @@ Page({
    * 页面的初始数据
    */
   data: {
-    circulationList: [],
-    setInter: '',
-    overflowFlag: false,
-    support_id: "",
     appointmentList: [],
-    appointmentListPlus: [],
-    TabCur: 0,
-    status: 0,
-    statusList: ['调拨出库', '领用出库'],
-    circulationListTemp: [],
     page: 1, //当前页数
     pageSize: 6, //每页六条
-    hasMoreData: true,
-    alreadyChecked: false,
     tip: "",
     tip_temp: '暂无数据',
-    flag1: true,
-    flag2: false,
-    swiperCurrent: 0,
+    city: '北京市',
+    type_name: "部分地区中、高风险",
+    source_type: "数据来源为中国政府网及国务院客户端，最新更新时间5月31日12时",
+    policyList:[
+      {
+        id:'1',
+        title: '出京政策',
+        time: "5月31日12时",
+        content: '列表中展示时，空格代替原文的回车。 1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措古古怪怪是否法师打发是短发阿斯顿发生对方'
+      },
+      {
+        id:'2',
+        title: '出京政策',
+        time: "5月31日12时",
+        content: '列表中展示时，空格代替原文的回车。 1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措古古怪怪是否法师打发是短发阿斯顿发生对方'
+      },
+      {
+        id:'3',
+        title: '出京政策',
+        time: "5月31日12时",
+        content: '列表中展示时，空格代替原文的回车。 1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措古古怪怪是否法师打发是短发阿斯顿发生对方'
+      },
+      {
+        id:'4',
+        title: '出京政策',
+        time: "5月31日12时",
+        content: '列表中展示时，空格代替原文的回车。 1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措古古怪怪是否法师打发是短发阿斯顿发生对方'
+      },
+      {
+        id:'5',
+        title: '出京政策',
+        time: "5月31日12时",
+        content: '列表中展示时，空格代替原文的回车。 1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措古古怪怪是否法师打发是短发阿斯顿发生对方'
+      },
+      {
+        id:'6',
+        title: '出京政策',
+        time: "5月31日12时",
+        content: '列表中展示时，空格代替原文的回车。 1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措古古怪怪是否法师打发是短发阿斯顿发生对方'
+      },
+      {
+        id:'7',
+        title: '出京政策',
+        time: "5月31日12时",
+        content: '列表中展示时，空格代替原文的回车。 1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措古古怪怪是否法师打发是短发阿斯顿发生对方'
+      }
+    ]
   },
 
   onShow: function () {
-    var that = this;
-    //获取全局openid，如果获取不到，则重新授权一次
-    let openid = app.globalData.openid;
-    console.log(openid);
-    if (openid == '' || typeof (openid) == 'undefined') {
-      wx.login({
-        success: (res) => {
-          var code = res.code;
-          console.log("获取code成功" + code);
-          request.request_get('/a/getOpenid.hn', {
-            code: code
-          }, function (res) {
-            console.info('回调', res);
-            //判断为空时的逻辑
-            if (!res) {
-              box.showToast("网络不稳定，请重试");
-              return;
-            }
-            if (!res.success) {
-              box.showToast(res.msg);
-              return;
-            }
-            app.globalData.openid = res.msg;
-            console.log("获取的用户openid" + app.globalData.openid);
-            that.getAppointmentList();
-          })
-        },
-        fail: () => {
-          box.showToast("请求超时，请检查网络是否连接")
-        }
-      })
-    } else {
-      that.getAppointmentList();
-    }
+    // this.getAppointmentList();
   },
   onLoad: function () {
     // var that = this;

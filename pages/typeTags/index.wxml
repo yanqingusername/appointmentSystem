@@ -10,25 +10,25 @@
       <view class="bold_font">采样信息</view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">样本编号</view>
-        <view class="P2_1_2">{{'3901221123314489'}}</view>
+        <view class="P2_1_2">{{sample_id}}</view>
       </view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">受检人</view>
-        <view class="P2_1_2">{{'李四'}}</view>
+        <view class="P2_1_2">{{name}}</view>
       </view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">手机号</view>
-        <view class="P2_1_2">{{'123***7890'}}</view>
+        <view class="P2_1_2">{{phone}}</view>
       </view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">证件号</view>
-        <view class="P2_1_2">{{'110108********2082'}}</view>
+        <view class="P2_1_2">{{idcard}}</view>
       </view>
     </view>
   </view>
 
   <view class="type_view_flex">
-        <image class="type_icon_25" src="../../images/icon_position_06.png"></image>
+        <image class="type_icon_25" src="../../images/icon_0701_25.png"></image>
         <view class="type_title" style="font-size:36rpx;color:#333333;">检测进度</view>
       </view>
   

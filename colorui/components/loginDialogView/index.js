@@ -132,33 +132,40 @@ Component({
     },
     // 授权手机号
     bindPhoneNumber(e) {
+      console.log('---->:',e)
+      this.setData({ show: false,policyChecked: false })
+      this.triggerEvent('bindPhoneNumber',e)  //triggerEvent触发事件
         // 用户同意授权
-        const OK = 'getPhoneNumber:ok'
-        if (e.detail.errMsg == OK) {
-            // wx.showLoading({
-            //     title: '加载中...',
-            //     mask: true
-            // })
-            // 判断 session_key 有无到期
-            // wx.checkSession({
-            //     success : res => {
-            //         this.TEL(e)
-            //     },
-            //     fail: res => {
-            //         this.getOpenID(() => {
-            //             this.TEL(e)
-            //         })
+        // const OK = 'getPhoneNumber:ok'
+        // if (e.detail.errMsg == OK) {
+        //   console.log('---->:',e)
+        //     // wx.showLoading({
+        //     //     title: '加载中...',
+        //     //     mask: true
+        //     // })
+        //     // 判断 session_key 有无到期
+        //     // wx.checkSession({
+        //     //     success : res => {
+        //     //         this.TEL(e)
+        //     //     },
+        //     //     fail: res => {
+        //     //         this.getOpenID(() => {
+        //     //             this.TEL(e)
+        //     //         })
                 
-            //     }
-            // })
-        }
+        //     //     }
+        //     // })
+        // }else{
+        //   this.bindShowDialog();
+        // }
       
     },
-    getPhoneNumber(){
+    getPhoneNumbers(){
       box.showToast("请阅读并勾选协议")
     },
     bindShowDialog(){
-      this.setData({ show: false })
+      this.setData({ show: false,policyChecked: false })
+      this.triggerEvent('bindShowDialog','')
     }
   }
 })

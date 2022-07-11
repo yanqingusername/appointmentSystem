@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "loginDialogView":"../../colorui/components/loginDialogView/index"
+    "loginDialogView":"../../colorui/components/loginDialogView/index",
+    "dialog-select": "../../colorui/components/dialog-select/index"
   }
 }

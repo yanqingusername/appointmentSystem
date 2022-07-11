@@ -39,12 +39,12 @@ Page({
         })
         // 获取微信小程序配置
         // 登录小程序
-         that.loginApp();
+        //  that.loginApp();
 
       // 
-      // wx.switchTab({
-      //   url: '/pages/mainIndex/index'
-      // })
+      wx.switchTab({
+        url: '/pages/mainIndex/index'
+      })
   },
    // 获取微信code登录小程序
    loginApp: function () {

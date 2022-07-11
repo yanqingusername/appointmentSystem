@@ -56,11 +56,11 @@
       <view style="margin: 30rpx 30rpx 0rpx 30rpx;">
          <view class="notice_view1" >
         <swiper class="swiper_zi" vertical="true" autoplay="true" circular="true" interval="3000">
-            <block wx:for="{{3}}" wx:key="index">
+            <block wx:for="{{noticeList}}" wx:key="index">
             <swiper-item>
-                <view class="notice_left" bind:tap="bindNoticeClick" data-index="{{index}}">
+                <view class="notice_left" catch:tap="bindNoticeClick" data-item="{{item}}" >
                   <image class="notice_left_img" src="../../images/icon_0701_11.png"></image>
-                  <view class="notice_left_title">您的预约已进入<text class="notice_left_text">“待采样”</text>状态，点击查看详情{{index}}</view>
+                  <view class="notice_left_title">{{item.title}}<text class="notice_left_text">“{{item.title1}}”</text>{{item.title2}}</view>
                 </view>
             </swiper-item>
             </block>
@@ -75,7 +75,7 @@
           <image class="bottom_view_1_img" src="../../images/icon_0701_12.png"></image>
           <view class="bottom_view_1_text">查询报告</view>
 
-          <image class="main_15" src="../../images/icon_0701_15.png"></image>
+          <image wx:if="{{isNewNotice}}" class="main_15" src="../../images/icon_0701_15.png"></image>
         </view>
         <view class="bottom_view_1" bind:tap="bindEpidemicPreventionPolicy">
           <image class="bottom_view_1_img" src="../../images/icon_0701_13.png"></image>
@@ -88,3 +88,7 @@
       </view>
 
       <view class="empty_view"></view>
+
+      <loginDialogView show="{{isLogin}}" datas="{{dialogData}}" bind:bindPhoneNumber="bindPhoneNumber" bind:bindShowDialog="bindShowDialog"/>
+ 
+ 

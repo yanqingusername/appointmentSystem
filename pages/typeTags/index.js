@@ -5,6 +5,10 @@ const request = require('../../utils/request.js')
 
 Page({
   data: {
+    sample_id:'3901221123314489',
+    name: '李四',
+    phone: '123***7890',
+    idcard: '110108********2082',
     service_result:[
       {
         time:'08:49',

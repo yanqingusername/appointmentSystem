@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: "选择受检人",
+    title: "受检人管理",
     dataList: [],
     isMine: 0
   },
