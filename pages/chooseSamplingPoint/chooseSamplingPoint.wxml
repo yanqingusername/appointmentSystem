@@ -130,7 +130,7 @@
 
         <view class="work_item_view">
           <view class="lable_view_item" style="color: #FFFFFF;background: #E26B9B;display: inline-block;" wx:if="{{item.yingye == 0}}">{{'营业中'}}</view>
-          <view class="lable_view_item" style="color: #FFFFFF;background: #CCCCCC;display: inline-block;" wx:else>{{'准备中'}}</view>
+          <view class="lable_view_item" style="color: #FFFFFF;background: #CCCCCC;display: inline-block;" wx:else>{{'休息中'}}</view>
           <view class="work_item_view_1" style="margin-right:10rpx;" wx:if="{{item.sbusiness_time1 || item.xbusiness_time1}}">工作时间</view>
           <view class="work_item_view_1" >{{item.sbusiness_time1}} {{item.xbusiness_time1}}</view>
         </view>
@@ -181,7 +181,7 @@
 
         <view class="work_item_view">
           <view class="lable_view_item" style="color: #FFFFFF;background: #E26B9B;display: inline-block;" wx:if="{{item.yingye == 0}}">{{'营业中'}}</view>
-          <view class="lable_view_item" style="color: #FFFFFF;background: #CCCCCC;display: inline-block;" wx:else>{{'准备中'}}</view>
+          <view class="lable_view_item" style="color: #FFFFFF;background: #CCCCCC;display: inline-block;" wx:else>{{'休息中'}}</view>
           <view class="work_item_view_1" style="margin-right:10rpx;" wx:if="{{item.sbusiness_time1 || item.xbusiness_time1}}">工作时间</view>
           <view class="work_item_view_1" >{{item.sbusiness_time1}} {{item.xbusiness_time1}}</view>
         </view>
