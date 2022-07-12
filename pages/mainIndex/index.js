@@ -282,6 +282,29 @@ Page({
       });
     }
   },
+  TEL(e){
+    // let that = this;
+    // let DATA = {
+    //     openid: this.data.openid,
+    //     encrypted_data: e.encryptedData,
+    //     iv: e.iv,
+    //     unionid: this.data.unionid
+    // }
+    // request.request_get('/a/getUserinfo.hn', DATA, function (res) {
+    //   //判断为空时的逻辑
+    //   if (res) {
+    //     if (res.success) {
+
+    //       // 本地存储
+    //       // wx.setStorageSync('data',_RES['data']['data']);
+    //     } else {
+    //       box.showToast(res.msg);
+    //     }
+    //   } else {
+    //     box.showToast("网络不稳定，请重试");
+    //   }
+    // })
+},
   bindShowDialog() {
     this.setData({
       userId: '1'
