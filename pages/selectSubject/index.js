@@ -12,56 +12,27 @@ Page({
   data: {
     title: "受检人管理",
     dataList: [],
-    isMine: 0
+    isMine: 0,
+    user_id: '',
+    openid: '',
   },
   onShow: function () {
     let that = this;
-    //获取全局openid，如果获取不到，则重新授权一次
-    let openid = app.globalData.openid;
-    console.log(openid);
-    if (openid == '' || typeof (openid) == 'undefined' || openid == undefined) {
-      wx.login({
-        success: (resp) => {
-          var code = resp.code;
-          console.log("获取code成功" + code);
-          request.request_get('/a/getOpenid.hn', {
-            code: code
-          }, function (res) {
-            console.info('回调', res);
-            //判断为空时的逻辑
-            if (!res) {
-              box.showToast("网络不稳定，请重试");
-              return;
-            }
-            if (!res.success) {
-              box.showToast(res.msg);
-              return;
-            }
-            app.globalData.openid = res.msg;
-            console.log("获取的用户openid" + app.globalData.openid);
-            if(res.msg && res.msg != undefined && typeof (res.msg) != 'undefined'){
-              that.getAllSubject();
-            }
-          });
-        },
-        fail: () => {
-          box.showToast("请求超时，请检查网络是否连接")
-        }
-      })
-    } else {
+    
       that.getAllSubject();
-    }
   },
   onLoad: function (options) {
     this.setData({
+        user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+        openid: wx.getStorageSync('coyote_userinfo').openid || '',
       isMine: options.isMine
     });
   },
   getAllSubject(){
     let that = this;
-    var openid = app.globalData.openid;
     let data = {
-      open_id: openid
+      open_id: this.data.openid,
+      user_id: this.data.user_id
     }
     request.request_get('/a/getAllSubject.hn', data, function (res) {
       console.info('回调', res)

@@ -12,13 +12,20 @@ Page({
     isIphoneX:false,
     couponArr:[],
     coupon_payment:'不使用',
-    old_coupon_id:''
+    old_coupon_id:'',
+    user_id: '',
+    openid: ''
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      openid: wx.getStorageSync('coyote_userinfo').openid || '',
+    });
+
     console.log('options');
     console.log(options);
     var that = this
@@ -34,7 +41,7 @@ Page({
   getCouponList(){
     var that = this
     var data = {
-      openid:app.globalData.openid,
+      openid:this.data.openid,
     }
     request.request_get('/activity/getCouponInfo.hn',data,function(res){
       console.log('getCouponInfo',res);

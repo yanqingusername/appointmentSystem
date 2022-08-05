@@ -56,8 +56,8 @@
           <!-- <input class="P5_2 " style="position:relative;right:20rpx" type="{{keyboard_type}}" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" maxlength="{{keyboard_type_limit_num}}" value="{{idcard}}"></input> -->
           <input class="P5_2 " wx:if="{{cardIndex > 0}}" style="position:relative;right:20rpx" type="text" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" maxlength="20" value="{{idcard}}"></input>
           <input class="P5_2 " wx:else style="position:relative;right:20rpx" type="idcard" placeholder="请输入证件号码" placeholder-class="place_style" bindinput="bindIdcard" maxlength="18" value="{{idcard}}"></input>
-          <view id="clear_1" style="padding:16rpx;right: -20rpx;" wx:if="{{idcard}}" catch:tap="clearidcard">
-            <image class="icon_clear" src="../../images/icon_clear.png"></image>
+          <view id="the_second_clear" style="padding:16rpx;right: -20rpx;" wx:if="{{idcard}}" catch:tap="clearidcard">
+            <image class="icon_clear"  style="margin-right:0" src="../../images/icon_clear.png"></image>
           </view>
         </view>
         <view wx:if="{{onlineFlag==true}}" style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
@@ -88,21 +88,21 @@
 
         <view class="P5 app_flex" id="{{onlineid==2?'phone_style_1':''}}" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">手机号</view>
-          <input class='P5_2 ' type="number" style="width:52%;" placeholder='请输入受检者手机号' placeholder-class="place_style" bindinput="bindPhone" maxlength="13" value="{{tools.centerPhoneTrim(phone)}}"></input>
-          <view id="the_second_clear" wx:if="{{phone}}" catch:tap="clearPhone">
+          <input class='P5_2 ' type="number" style="position: relative;right: 20rpx;" placeholder='请输入受检者手机号' placeholder-class="place_style" bindinput="bindPhone" maxlength="13" value="{{tools.centerPhoneTrim(phone)}}"></input>
+          <view id="the_second_clear"  style="padding:16rpx;right: -20rpx;"   wx:if="{{phone}}" catch:tap="clearPhone">
             <image class="icon_clear" style="margin-right:0" src="../../images/icon_clear.png"></image>
           </view>
-          <view class=" P3_code" bindtap="getCode" disabled="{{codeBtState}}" style="{{codeBtState?'color:#CCCCCC':'color:#E16898'}};padding-right: 24rpx;">{{codeBtText}}</view>
+          <!-- <view class=" P3_code" bindtap="getCode" disabled="{{codeBtState}}" style="{{codeBtState?'color:#CCCCCC':'color:#E16898'}};padding-right: 24rpx;">{{codeBtText}}</view> -->
         </view>
-        <view style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <!-- <view style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view> -->
 
-        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+        <!-- <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">验证码</view>
           <input class='P5_2' style="position:relative;right:20rpx" type="number" placeholder='请输入验证码' placeholder-class="place_style" bindinput="bindCode" maxlength="4" value="{{code}}"></input>
           <view id="the_third_clear" wx:if="{{code}}" catch:tap="clearCode">
             <image class="icon_clear" src="../../images/icon_clear.png"></image>
           </view>
-        </view>
+        </view> -->
 
         <view style="height: 10rpx;"></view>
       </view>

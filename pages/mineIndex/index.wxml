@@ -15,18 +15,18 @@
     </view>
   </view>
 
-  <view class="mine_center" wx:if="{{userId == 1 && userInfo}}">
+  <view class="mine_center" wx:if="{{user_id}}">
     <view class="mine_center_left">
       <open-data type="userAvatarUrl" style="width:130rpx;height:130rpx;"></open-data>
     </view>
     <view class="mine_center_right">
       <view class="mine_view_1">
-        <view class="mine_1">{{userInfo.nickName}}</view>
+        <view class="mine_1">{{user_name}}</view>
         <image bind:tap="toExit" src="../../images/icon_0701_26.png" class="mine_view_1_img"/>
       </view>
-      <view class="mine_2">
-        <view class="mine_2_1">1566***8570</view>
-        <view class="mine_2_2" bind:tap="bindUpdatePhone">修改</view>
+      <view class="mine_2" wx:if="{{phone_number}}">
+        <view class="mine_2_1">{{phone_number}}</view>
+        <view class="mine_2_2" bind:tap="bindUpdatePhone" data-phonenumber="{{phone_number}}">修改</view>
       </view>
     </view>
   </view>

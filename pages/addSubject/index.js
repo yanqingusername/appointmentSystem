@@ -44,7 +44,10 @@ Page({
     card_name: '身份证', //身份证name
     userinfo_id: '',
     policyChecked: false,
-    isMine: 0
+    isMine: 0,
+
+    user_id: '',
+    openid: ''
   },
   onShow: function () {
     // this.bindHistoryInfo();
@@ -53,6 +56,8 @@ Page({
     this.getbaseData();
     
     this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      openid: wx.getStorageSync('coyote_userinfo').openid || '',
       isAddSub: options.isAddSub,
       isMine: options.isMine
     });
@@ -178,7 +183,7 @@ Page({
   bindHistoryInfo: function (e) {
     var that = this
     var data = {
-      openid: app.globalData.openid
+      openid: this.data.openid
     }
     request.request_get('/a/getpretestInfo.hn', data, function (res) {
       console.info('回调', res)
@@ -308,7 +313,7 @@ Page({
     var phone = that.data.phone;
     var code = that.data.code;
     var age = that.data.age;
-    var openid = app.globalData.openid;
+    var openid = that.data.openid;
     var phoneCode = that.data.phoneCode;
     var onlineFlag = that.data.onlineFlag;
     var cardIndex = that.data.cardIndex;
@@ -394,6 +399,7 @@ Page({
 
     var data = {
       open_id: openid,
+      user_id: that.data.user_id,
       name: that.data.name,
       gender: that.data.gender,
       age: that.data.age,

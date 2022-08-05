@@ -26,6 +26,6 @@
 
   </view>
   <view wx:if="{{couponArr.length==0}}" class="template_flex">
-    <view style="margin-top:100rpx">您暂无优惠券</view>
+    <view style="margin-top:100rpx">暂无卡券</view>
   </view>
 </view>

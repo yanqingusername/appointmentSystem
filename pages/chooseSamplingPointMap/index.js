@@ -51,6 +51,10 @@ Page({
     lableidList: [],
     isbigscreen: '',
     yingye: '',
+
+    isLogin: false,
+    user_id: '',
+    userInfo: {},
   },
   getLocationAuth(){
     wx.getSetting({//获取用户已授权的信息
@@ -96,6 +100,10 @@ Page({
     })
   },
   onShow:function(){
+    this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || ''
+    });
+
    var that = this;
   that.clearSearchHandle();
   that.getChannelList();
@@ -556,12 +564,159 @@ bindDetail:function(e){
       var channel ={channel_name:channel_name1,distance:distance1,channel_id:id1}; 
       let jsonItem = JSON.stringify(channel);
       console.log(channel)
-      if(channel_name1 && distance1 && id1){
-        wx.redirectTo({
-          url: `/pages/onsiteAppointment/onsiteAppointment?choMap=1&channel=${jsonItem}&choose_type=0&fix_channel_id=-1&typeid=${typeid}`,
+      if(this.data.user_id){
+        if(channel_name1 && distance1 && id1){
+          wx.redirectTo({
+            url: `/pages/onsiteAppointment/onsiteAppointment?choMap=1&channel=${jsonItem}&choose_type=0&fix_channel_id=-1&typeid=${typeid}`,
+          })
+        }
+      }else{
+        wx.getUserProfile({
+          desc: '用于完善会员资料',
+          success: (res) => {
+            this.bindGetUserInfo(res);
+          },
+          fail: (res) => {
+            //用户按了拒绝按钮
+            wx.showModal({
+              title: '警告',
+              content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+              showCancel: false,
+              confirmText: '返回授权',
+              success: function (res) {
+                // 用户没有授权成功，不需要改变 isHide 的值
+                if (res.confirm) {
+                  console.log('用户点击了“返回授权”');
+                }
+              }
+            });
+          }
         })
       }
     },
+    // 授权用户信息
+  bindGetUserInfo(e) {
+    const OK = "getUserProfile:ok"
+    if (e.errMsg == OK) {
+      // 判断 session_key 有无到期
+      // wx.checkSession({
+      //     success: res => {
+      this.USRE(e)
+      //     },
+      //     fail: res => {
+      //             this.USRE(e)
+      //     }
+      // })
+    } else {
+      //用户按了拒绝按钮
+      wx.showModal({
+        title: '警告',
+        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+        showCancel: false,
+        confirmText: '返回授权',
+        success: function (res) {
+          // 用户没有授权成功，不需要改变 isHide 的值
+          if (res.confirm) {
+            console.log('用户点击了“返回授权”');
+          }
+        }
+      });
+    }
+  },
+  USRE(e) {
+    let that = this;
+    wx.login({
+      success: (res) => {
+        var code = res.code;
+        console.log('---->:', code)
+        request.request_get('/a/getUseridAndUserInfo.hn', {
+          code: code,
+          encryptedData: e.encryptedData,
+          iv: e.iv,
+        }, function (res) {
+          //判断为空时的逻辑
+          if (res) {
+            if (res.success) {
+              console.log("获取的用户信息---->:" + res);
+              that.setData({
+                isLogin: true,
+                userInfo: {
+                  openid: res.openid,
+                  unionid: res.unionid,
+                  user_id: res.userid,
+                  avatarUrl: res.userInfo.userInfo.avatarUrl,
+                  nickName: res.userInfo.userInfo.nickName,
+                }
+              });
+            } else {
+              box.showToast(res.msg);
+            }
+          } else {
+            box.showToast("网络不稳定，请重试");
+          }
+        })
+      },
+      fail: (res) => {
+        box.showToast("请求超时，请检查网络是否连接")
+      }
+    })
+  },
+  bindPhoneNumber(e) {
+    e = e.detail;
+    // 用户同意授权
+    const OK = 'getPhoneNumber:ok'
+    if (e.detail.errMsg == OK) {
+      // 判断 session_key 有无到期
+      // wx.checkSession({
+      //     success : res => {
+      this.TEL(e)
+      //     },
+      //     fail: res => {
+      //             this.TEL(e)
+      //     }
+      // })
+    } else {
+      let user_info = this.data.userInfo;
+      user_info.phone_number = '';
+      this.setData({
+        userInfo: user_info,
+        user_id: this.data.userInfo.user_id
+      });
+      wx.setStorageSync('coyote_userinfo', user_info);
+    }
+  },
+  TEL(e) {
+    let that = this;
+    let DATA = {
+      user_id: this.data.userInfo.user_id,
+      code: e.detail.code
+    }
+    request.request_get('/a/getPhoneNumber.hn', DATA, function (res) {
+      //判断为空时的逻辑
+      if (res) {
+        if (res.success) {
+          let user_info = that.data.userInfo;
+          user_info.phone_number = res.phoneNumber;
+          that.setData({
+            userInfo: user_info,
+            user_id: that.data.userInfo.user_id
+          });
+          // 本地存储
+          wx.setStorageSync('coyote_userinfo', user_info);
+
+        } else {
+          box.showToast(res.msg);
+        }
+      } else {
+        box.showToast("网络不稳定，请重试");
+      }
+    })
+  },
+  bindShowDialog() {
+    this.setData({
+      isLogin: false
+    });
+  },
     // 输入框有文字时，点击X清除
     clearSearchHandle() {
       this.setListData();

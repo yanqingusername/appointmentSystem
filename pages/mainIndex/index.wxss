@@ -209,6 +209,12 @@ position: relative;
 font-family: PingFangSC-Regular, PingFang SC;
 font-weight: 400;
 color: #8A8A8A;
+max-width: 600rpx;
+overflow:hidden;
+text-overflow: ellipsis;
+display:-webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
 }
 
 .notice_left_text{

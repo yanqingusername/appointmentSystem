@@ -374,11 +374,18 @@ text-align: center;
   /* padding-right: 38rpx; */
 }
 
+.pink_position_view{
+  position:absolute;
+  right: 10rpx;
+  padding: 20rpx;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #pink_position{
   width: 30rpx; 
   height: 36rpx;
-  position:absolute;
-  right: 30rpx;
 }
 
 .type_view{

@@ -105,8 +105,17 @@ Page({
     is_paynotice: 2,//是否显示付款须知 1-显示  2-隐藏
     paynotice_title: '',
     paynotice_url: '',
+
+    user_id: '',
+    openid: ''
   },
   onLoad: function (options) {
+
+    this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      openid: wx.getStorageSync('coyote_userinfo').openid || '',
+    });
+
     var that = this;
     // console.log(utils.checkAuditTime('09:00-12:00'));
     // console.log(utils.checkAuditTime('09:00-01:00'));
@@ -177,7 +186,7 @@ Page({
     //通过openid
     let that = this;
     let data = {
-    openid:app.globalData.openid
+    openid: this.data.openid
     }
     // that.setData({
     //   coupon_id:1,
@@ -228,7 +237,7 @@ Page({
       var channel_id = ''
     }
     var data = {
-      openid: app.globalData.openid,
+      openid: this.data.openid,
       channel_id: channel_id,
       fever: that.data.fever,
       return_home: that.data.return_home,
@@ -718,7 +727,7 @@ Page({
   bindHistoryInfo: function (e) {
     var that = this
     var data = {
-      openid: app.globalData.openid
+      openid: this.data.openid
     }
     request.request_get('/a/getpretestInfo.hn', data, function (res) {
       console.info('回调', res)
@@ -924,7 +933,7 @@ Page({
     var phone = that.data.phone;
     var code = that.data.code;
     var age = that.data.age;
-    var openid = app.globalData.openid;
+    var openid = this.data.openid;
     var phoneCode = that.data.phoneCode;
     var onlineFlag = that.data.onlineFlag;
     var cardIndex = that.data.cardIndex;
@@ -1062,7 +1071,7 @@ Page({
     var phone = that.data.phone;
     var code = that.data.code;
     var age = that.data.age;
-    var openid = app.globalData.openid;
+    var openid = this.data.openid;
     var typeid = that.data.typeid;
     var channel_id = that.data.channel.channel_id;
     var phoneCode = that.data.phoneCode;
@@ -1152,6 +1161,7 @@ Page({
       coupon_id: coupon_id,
       appointment_date: appointment_date,
       id: this.data.userinfo_id,
+      user_id: this.data.user_id
       // pay_channel: this.data.pay_channel //支付渠道
     }
 
@@ -1190,7 +1200,8 @@ Page({
                   success(res) {
                     console.log('success:' + res);
                     let data = {
-                      openid: app.globalData.openid
+                      openid: that.data.openid,
+                      user_id: that.data.user_id
                     }
                     request.request_get('/a/sendmsg.hn', data, function (res) {
                       console.info('回调', res)
@@ -1233,6 +1244,7 @@ Page({
         channel: channel_id,
         appointment_time: appointment_date,
         verification_code: verification_code,
+        user_id: this.data.user_id
         // pay_channel: this.data.pay_channel //支付渠道
       }
       request.request_get('/a/addMeituanPaymentOrder.hn', data2, function (res) {
@@ -1250,7 +1262,8 @@ Page({
               success(res) {
                 console.log('success:' + res);
                 let data = {
-                  openid: app.globalData.openid
+                  openid: that.data.openid,
+                  user_id: that.data.user_id
                 }
                 request.request_get('/a/sendmsg.hn', data, function (res) {
                   console.info('回调', res)
@@ -1873,8 +1886,8 @@ Page({
   },
   getBannerList: function () {
     var that = this;
-    console.log('open_id=' + app.globalData.openid)
-    var open_id = app.globalData.openid;
+    console.log('open_id=' + this.data.openid)
+    var open_id = this.data.openid;
     var data = {
       type: 2
     }
@@ -2053,9 +2066,9 @@ Page({
   },
   getAllSubject(){
     let that = this;
-    var openid = app.globalData.openid;
     let data = {
-      open_id: openid
+      open_id: this.data.openid,
+      user_id: this.data.user_id
     }
     request.request_get('/a/getAllSubject.hn', data, function (res) {
       console.info('回调', res)

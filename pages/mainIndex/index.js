@@ -8,53 +8,34 @@ Page({
    */
   data: {
     fix_channel_id: -1,
-    openid: '',
-    unionid: '',
     isLogin: false,
     dialogData: {},
-    userId: '',
-    noticeList: [{
-        activity_id: 1,
-        href: "https://cloud.coyotebio-lab.com/beijingnanzhan.jpg",
-        icon: "https://mp.weixin.qq.com/s/qpDb8gRv0jQpkjfYRfCG2Q",
-        open_way: 1,
-        id: '1',
-        title: "您的预约已进入",
-        title1: '待采样',
-        title2: '状态，点击查看详情'
-      },
-      {
-        activity_id: 1,
-        href: "https://tj.coyotebio-lab.com/a/jjtz.png",
-        icon: "https://tj.coyotebio-lab.com/a/jjtz.png",
-        open_way: 1,
-        id: '2',
-        title: "您距上次检测已超过",
-        title1: '14',
-        title2: '天，点击立即预约'
-      },
-      {
-        activity_id: 1,
-        href: "https://tj.coyotebio-lab.com/a/jjtz.png",
-        icon: "https://tj.coyotebio-lab.com/a/jjtz.png",
-        open_way: 1,
-        id: '3',
-        title: "您距上次检测已超过",
-        title1: '48',
-        title2: '小时，点击立即预约'
-      }
-    ],
-    isNewNotice: true
+    user_id: '',
+    phone_number: '',
+    userInfo: {},
+    noticeList: [],
+    isNewNotice: true,
+    main_title: '卡尤迪新冠肺炎核酸检测',
+    main_type_time: '12小时内出报告',
+    main_type_text: '91个核酸检测采样点位，看地图 >'
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    var that = this;
-    this.getOpenID(() => {});
+    this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || ''
+    });
+
+    this.getbaseData();
+    this.getMainIndex();
   },
   onShow: function () {
+    this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || ''
+    });
 
+    this.getNoticeList();
   },
   /**
    * 个人预约
@@ -62,7 +43,7 @@ Page({
   bindOnsite: function (options) {
     var that = this;
 
-    if (that.data.userId == 1) {
+    if (that.data.user_id) {
       wx.navigateTo({
         url: '/pages/onsiteAppointment/onsiteAppointment?choose_type=' + options.currentTarget.dataset.type + '&fix_channel_id=' + that.data.fix_channel_id,
       })
@@ -75,7 +56,7 @@ Page({
    * 预约记录
    */
   bindAppointment: function () {
-    if (this.data.userId == 1) {
+    if (this.data.user_id) {
       wx.navigateTo({
         url: '/pages/appointmentRecord/appointmentRecord'
       })
@@ -95,7 +76,7 @@ Page({
    * 查询报告
    */
   bindTestReport: function () {
-    if (this.data.userId == 1) {
+    if (this.data.user_id) {
       wx.navigateTo({
         url: "/pages/mineTestReport/index"
       })
@@ -144,69 +125,41 @@ Page({
       })
     }
   },
-  /**
-   * 获取openid
-   */
-  getOpenID(success) {
-    let that = this;
-    wx.login({
-      success: (res) => {
-        var code = res.code;
-        console.log('---->:',code)
-        request.request_get('/a/getOpenid.hn', {
-          code: code
-        }, function (res) {
-          //判断为空时的逻辑
-          if (res) {
-            if (res.success) {
-              console.log("获取的用户openid" + res.msg);
-              // that.setData({
-              //   openid : res.data.data.openid,
-              //   unionid: res.data.data.unionid
-              // });
-              success();
-            } else {
-              box.showToast(res.msg);
-            }
-          } else {
-            box.showToast("网络不稳定，请重试");
-          }
-        })
-      },
-      fail: (res) => {
-        box.showToast("请求超时，请检查网络是否连接")
-      }
-    })
-  },
   getUserProfile() {
     wx.getUserProfile({
       desc: '用于完善会员资料',
       success: (res) => {
         this.bindGetUserInfo(res);
+      },
+      fail:(res)=>{
+          //用户按了拒绝按钮
+          wx.showModal({
+            title: '警告',
+            content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+            showCancel: false,
+            confirmText: '返回授权',
+            success: function (res) {
+              // 用户没有授权成功，不需要改变 isHide 的值
+              if (res.confirm) {
+                console.log('用户点击了“返回授权”');
+              }
+            }
+          });
       }
     })
   },
   // 授权用户信息
   bindGetUserInfo(e) {
+    let that = this;
     const OK = "getUserProfile:ok"
     if (e.errMsg == OK) {
-      console.log('---->:', e.encryptedData, e.iv)
-      // wx.showLoading({
-      //     title: '加载中...',
-      //     mask: true
-      // })
       // 判断 session_key 有无到期
-      this.setData({
-        isLogin: true
-      });
       // wx.checkSession({
       //     success: res => {
-      this.USRE(e)
+            that.USRE(e)
       //     },
       //     fail: res => {
-      //         this.getOpenID(() => {
-      //             this.USRE(e)
-      //         })
+      //         that.USRE(e)
       //     }
       // })
     } else {
@@ -226,18 +179,59 @@ Page({
     }
   },
   USRE(e) {
+    let that = this;
+    wx.login({
+      success: (res) => {
+        var code = res.code;
+        console.log('---->:',code)
+        request.request_get('/a/getUseridAndUserInfo.hn', {
+          code: code,
+          encryptedData: e.encryptedData,
+          iv: e.iv,
+        }, function (res) {
+          //判断为空时的逻辑
+          if (res) {
+            if (res.success) {
+              console.log("获取的用户信息---->:" + res);
+              that.setData({
+                isLogin: true,
+                userInfo: {
+                  openid: res.openid,
+                  unionid: res.unionid,
+                  user_id: res.userid,
+                  avatarUrl: res.userInfo.userInfo.avatarUrl,
+                  nickName: res.userInfo.userInfo.nickName,
+                }
+              });
+            } else {
+              box.showToast(res.msg);
+            }
+          } else {
+            box.showToast("网络不稳定，请重试");
+          }
+        })
+      },
+      fail: (res) => {
+        box.showToast("请求超时，请检查网络是否连接")
+      }
+    })
+
+    
     // let that = this;
     // let DATA = {
-    //     openid: this.data.openid,
+    //     // openid: this.data.openid,
     //     encrypted_data: e.encryptedData,
     //     iv: e.iv,
-    //     unionid: this.data.unionid
+    //     // unionid: this.data.unionid
     // }
     // request.request_get('/a/getUserinfo.hn', DATA, function (res) {
     //   //判断为空时的逻辑
     //   if (res) {
     //     if (res.success) {
-
+    //       console.log('--USRE-->:',res);
+    //       that.setData({
+    //         isLogin: true
+    //       });
     //       // 本地存储
     //       // wx.setStorageSync('data',_RES['data']['data']);
     //     } else {
@@ -247,79 +241,80 @@ Page({
     //     box.showToast("网络不稳定，请重试");
     //   }
     // })
-    this.setData({
-      userInfo: e.userInfo
-    });
   },
   bindPhoneNumber(e) {
     e = e.detail;
     // 用户同意授权
     const OK = 'getPhoneNumber:ok'
     if (e.detail.errMsg == OK) {
-      console.log('--222-->:', e)
-      // wx.showLoading({
-      //     title: '加载中...',
-      //     mask: true
-      // })
       // 判断 session_key 有无到期
       // wx.checkSession({
       //     success : res => {
-      //         this.TEL(e)
+      //         this.TEL(e);
       //     },
       //     fail: res => {
-      //         this.getOpenID(() => {
-      //             this.TEL(e)
-      //         })
-
+                  this.TEL(e)
       //     }
       // })
-      this.setData({
-        userId: '1'
-      });
     } else {
+      let user_info = this.data.userInfo;
+      user_info.phone_number = '';
       this.setData({
-        userId: '1'
+        userInfo: user_info,
+        user_id: this.data.userInfo.user_id
       });
+      wx.setStorageSync('coyote_userinfo',user_info);
+
+      this.getNoticeList();
     }
   },
   TEL(e){
-    // let that = this;
-    // let DATA = {
-    //     openid: this.data.openid,
-    //     encrypted_data: e.encryptedData,
-    //     iv: e.iv,
-    //     unionid: this.data.unionid
-    // }
-    // request.request_get('/a/getUserinfo.hn', DATA, function (res) {
-    //   //判断为空时的逻辑
-    //   if (res) {
-    //     if (res.success) {
+    let that = this;
+    let DATA = {
+      user_id: this.data.userInfo.user_id,
+      code: e.detail.code
+    }
+    request.request_get('/a/getPhoneNumber.hn', DATA, function (res) {
+      //判断为空时的逻辑
+      if (res) {
+        if (res.success) {
+          let user_info = that.data.userInfo;
+          user_info.phone_number = res.phoneNumber;
+          that.setData({
+            phone_number: res.phoneNumber,
+            userInfo: user_info,
+            user_id: that.data.userInfo.user_id
+          });
+          // 本地存储
+          wx.setStorageSync('coyote_userinfo',user_info);
 
-    //       // 本地存储
-    //       // wx.setStorageSync('data',_RES['data']['data']);
-    //     } else {
-    //       box.showToast(res.msg);
-    //     }
-    //   } else {
-    //     box.showToast("网络不稳定，请重试");
-    //   }
-    // })
+          this.getNoticeList();
+        } else {
+          box.showToast(res.msg);
+        }
+      } else {
+        box.showToast("网络不稳定，请重试");
+      }
+    })
 },
   bindShowDialog() {
     this.setData({
-      userId: '1'
+      isLogin: false
     });
   },
   /**
    * 获取公告列表
    */
   getNoticeList() {
-    request.request_get('/a/getnNoticeList.hn', {
-      userid: this.data.userId
+    let that = this;
+    request.request_get('/a/getNoticeList.hn', {
+      user_id: this.data.user_id
     }, function (res) {
       if (res) {
         if (res.success) {
-          
+          that.setData({
+            noticeList: res.resList
+          });
         } else {
           box.showToast(res.msg);
         }
@@ -333,7 +328,7 @@ Page({
    */
    getNoticeNew() {
     request.request_get('/a/getNoticeNew.hn', {
-      userid: this.data.userId
+      user_id: this.data.user_id
     }, function (res) {
       if (res) {
         if (res.success) {
@@ -350,5 +345,44 @@ Page({
         box.showToast("网络不稳定，请重试");
       }
     });
+  },
+  /**
+   * 获取用户服务协议
+   * 获取隐私政策
+   */
+  getbaseData: function () {
+    let that = this;
+    let data = {};
+    request.request_get('/a/getbaseInfo.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          let msg = res.msg;
+          that.setData({
+            dialogData: {
+              fwxy_url: msg.fwxy_url,
+              yszz_url: msg.yszz_url,
+            }
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 获取首页文案
+   */
+   getMainIndex: function () {
+    let that = this;
+    let data = {};
+    request.request_get('/a/getMainIndex.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          that.setData({
+            main_title: res.title,
+            main_type_text: res.type_text,
+            main_type_time: res.type_time
+          });
+        }
+      }
+    })
   },
 })

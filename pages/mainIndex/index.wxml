@@ -13,9 +13,9 @@
   <view style="position:relative;">
     <image src="../../images/icon_0701_05.png" style="height:302px;width:100%"/>
     <view class="main_view1">
-      <view class="main_title">卡尤迪新冠肺炎核酸检测</view>
-      <view class="main_title_1"><view class="main_radius_1"></view><view class="main_text">12小时内出报告</view></view>
-      <view class="main_title_2" bindtap="bindChooseMap"><view class="main_radius_2"></view><view class="main_text">91个核酸检测采样点位，看地图 ></view></view>
+      <view class="main_title">{{main_title}}</view>
+      <view class="main_title_1"><view class="main_radius_1"></view><view class="main_text">{{main_type_time}}</view></view>
+      <view class="main_title_2" bindtap="bindChooseMap"><view class="main_radius_2"></view><view class="main_text">{{main_type_text}} ></view></view>
     </view>
     <image src="../../images/icon_0701_06.png" class="main_img" />
   </view>
@@ -46,13 +46,6 @@
 </view>
 
 <!-- 公告 -->
-      <!-- <view class="notice_view" bind:tap="bindNoticeClick">
-        <view class="notice_left">
-          <image class="notice_left_img" src="../../images/icon_0701_11.png"></image>
-          <view class="notice_left_title">您的预约已进入<text class="notice_left_text">“待采样”</text>状态，点击查看详情</view>
-        </view>
-      </view> -->
-
       <view style="margin: 30rpx 30rpx 0rpx 30rpx;">
          <view class="notice_view1" >
         <swiper class="swiper_zi" vertical="true" autoplay="true" circular="true" interval="3000">
@@ -60,7 +53,7 @@
             <swiper-item>
                 <view class="notice_left" catch:tap="bindNoticeClick" data-item="{{item}}" >
                   <image class="notice_left_img" src="../../images/icon_0701_11.png"></image>
-                  <view class="notice_left_title">{{item.title}}<text class="notice_left_text">“{{item.title1}}”</text>{{item.title2}}</view>
+                  <view class="notice_left_title">{{item.headtext}}<text class="notice_left_text" wx:if="{{item.text}}">“{{item.text}}”</text>{{item.tailtext}}</view>
                 </view>
             </swiper-item>
             </block>

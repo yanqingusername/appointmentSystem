@@ -9,20 +9,27 @@ Page({
    * Page initial data
    */
   data: {
-    couponArr:[]
+    couponArr:[],
+    user_id: '',
+    openid: ''
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      openid: wx.getStorageSync('coyote_userinfo').openid || '',
+    });
+
     var that = this
     that.getCouponList()
   },
   getCouponList(){
     var that = this
     var data = {
-      openid:app.globalData.openid,
+      openid:this.data.openid,
     }
     request.request_get('/activity/getCouponInfo.hn',data,function(res){
       console.log('getCouponInfo',res);

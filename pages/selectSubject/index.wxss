@@ -79,3 +79,8 @@ color: #999999;
   height: 40rpx;
   width: 40rpx;
 }
+
+.template_flex{
+  display: flex;
+  justify-content: center;
+}

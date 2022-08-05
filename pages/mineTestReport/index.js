@@ -7,97 +7,65 @@ Page({
    * 页面的初始数据
    */
   data: {
-    circulationList: [],
-    setInter: '',
     overflowFlag: false,
-    support_id: "",
-    appointmentList: [],
-    appointmentListPlus: [],
-    TabCur: 0,
-    status: 0,
-    statusList: ['调拨出库', '领用出库'],
-    circulationListTemp: [],
     page: 1, //当前页数
     pageSize: 6, //每页六条
-    hasMoreData: true,
-    alreadyChecked: false,
+
     tip: "",
     tip_temp: '暂无数据',
-    flag1: true,
-    flag2: false,
-    swiperCurrent: 0,
+
+    isLogin: false, //是否登录
+    isUserInfo: false, // 是否获取用户呢称
+    policyChecked: false,
+    user_id: '',
+    userInfo: {},
+
+    searchText: ''
   },
 
   onShow: function () {
-    var that = this;
-    //获取全局openid，如果获取不到，则重新授权一次
-    let openid = app.globalData.openid;
-    console.log(openid);
-    if (openid == '' || typeof (openid) == 'undefined') {
-      wx.login({
-        success: (res) => {
-          var code = res.code;
-          console.log("获取code成功" + code);
-          request.request_get('/a/getOpenid.hn', {
-            code: code
-          }, function (res) {
-            console.info('回调', res);
-            //判断为空时的逻辑
-            if (!res) {
-              box.showToast("网络不稳定，请重试");
-              return;
-            }
-            if (!res.success) {
-              box.showToast(res.msg);
-              return;
-            }
-            app.globalData.openid = res.msg;
-            console.log("获取的用户openid" + app.globalData.openid);
-            that.getAppointmentList();
-          })
-        },
-        fail: () => {
-          box.showToast("请求超时，请检查网络是否连接")
-        }
-      })
+    this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+    });
+    if (this.data.user_id) {
+      this.setData({
+        isLogin: false
+      });
     } else {
-      that.getAppointmentList();
+      this.setData({
+        isLogin: true
+      });
     }
+    this.getAppointmentList();
   },
   onLoad: function () {
-    // var that = this;
-    //  that.getAppointmentList();
+    this.getbaseData();
   },
   toInfo: function (e) {
-    var that = this;
-    wx.navigateTo({
-      url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + e.currentTarget.dataset.num + '&onlineFlagNum=' + e.currentTarget.dataset.onlineflagnum,
-    })
+    // var that = this;
+    // wx.navigateTo({
+    //   url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + e.currentTarget.dataset.num + '&onlineFlagNum=' + e.currentTarget.dataset.onlineflagnum,
+    // })
   },
-  onReachBottom: function () {
-    console.log('成功下拉+++++++++++')
-    var that = this;
-    // that.getcirculationList();
-  },
+  onReachBottom: function () {},
   getAppointmentList: function () {
     var that = this;
-    console.log('当前页数=' + that.data.page)
-    console.log('circulationList=' + that.data.circulationList)
-    console.log('hasMoreData=' + that.data.hasMoreData)
-    console.log('open_id=' + app.globalData.openid)
-    var open_id = app.globalData.openid;
     var data = {
-      open_id: open_id
+      user_id: that.data.user_id,
+      name: that.data.searchText
     }
-    request.request_get('/a/getTestRecords.hn', data, function (res) {
-      console.info('回调', res)
+    request.request_get('/a/getMyTestReport.hn', data, function (res) {
       if (res) {
         if (res.success) {
-          console.log(res.msg);
-          var appointmentList = res.msg;
           that.setData({
-            appointmentList: appointmentList
-          })
+            appointmentList: res.res
+          });
+          if (that.data.appointmentList.length == 0) {
+            that.setData({
+              tip: '该手机号下未查到报告，可点击搜索框右侧，用样本号或其他手机号查询试试~',
+              overflowFlag: true
+            });
+          }
         } else {
           box.showToast(res.msg);
         }
@@ -109,62 +77,16 @@ Page({
     this.setData({
       searchText: e.detail.value
     })
-    console.log("input-----" + e.detail.value)
-    var value = e.detail.value;
-    var that = this;
-    var appointmentList = that.data.appointmentList;
-    var appointmentListPlus = that.data.appointmentListPlus
-    if (value == '' || value == null) {
-      that.setData({
-        flag1: true,
-        flag2: false,
-        tip: '',
-        overflowFlag: false
-      })
-    } else {
-      //  if (e.detail.cursor) { //e.detail.cursor表示input值当前焦点所在的位置
-      var that = this;
-      that.setData({
-        flag1: false,
-        flag2: true,
-        tip: '',
-        overflowFlag: false
-      })
-      var arr = [];
-      for (var i = 0; i < appointmentList.length; i++) {
-        if (appointmentList[i].name.indexOf(value) >= 0) {
-          appointmentList[i].checked = false;
-          arr.push(appointmentList[i]);
-        }
-      }
-      console.log(arr);
-      that.setData({
-        appointmentListPlus: arr
-      });
-      if (that.data.appointmentListPlus.length == 0) {
-        that.setData({
-          tip: '没有搜索到该受检者',
-          overflowFlag: true
-          //  flagCheck: true
-        });
-      }
-      //}
-    }
+    this.getAppointmentList();
   },
   // 输入框有文字时，点击X清除
   clearSearchHandle() {
-    console.log('hereeeeee')
     this.setData({
       searchText: '',
       tip: '',
       overflowFlag: false
     })
-    var that = this;
-    that.setData({
-      flag1: true, //显示原始列表
-      flag2: false //关闭查询列表
-    })
-    // that.getCompanyList();
+    this.getAppointmentList();
   },
   bindDownloadReport: function (e) {
     var report_temp = e.currentTarget.dataset.report
@@ -200,5 +122,236 @@ Page({
     wx.navigateTo({
       url: "/pages/mineTestReportSelect/index"
     });
+  },
+  /**
+   * 
+   */
+  bindShowDialog() {
+    this.setData({
+      isLogin: false,
+      policyChecked: false
+    });
+  },
+  getUserProfile() {
+    wx.getUserProfile({
+      desc: '用于完善会员资料',
+      success: (res) => {
+        this.bindGetUserInfo(res);
+      }
+    })
+  },
+  // 授权用户信息
+  bindGetUserInfo(e) {
+    let that = this;
+    const OK = "getUserProfile:ok"
+    if (e.errMsg == OK) {
+
+      // 判断 session_key 有无到期
+      // wx.checkSession({
+      //     success: res => {
+      that.USRE(e)
+      //     },
+      //     fail: res => {
+      //         that.USRE(e)
+      //     }
+      // })
+    } else {
+      this.setData({
+        isLogin: false
+      });
+      //用户按了拒绝按钮
+      wx.showModal({
+        title: '警告',
+        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+        showCancel: false,
+        confirmText: '返回授权',
+        success: function (res) {
+          // 用户没有授权成功，不需要改变 isHide 的值
+          if (res.confirm) {
+            console.log('用户点击了“返回授权”');
+          }
+        }
+      });
+    }
+  },
+  USRE(e) {
+    let that = this;
+    wx.login({
+      success: (res) => {
+        var code = res.code;
+        console.log('---->:', code)
+        request.request_get('/a/getUseridAndUserInfo.hn', {
+          code: code,
+          encryptedData: e.encryptedData,
+          iv: e.iv,
+        }, function (res) {
+          //判断为空时的逻辑
+          if (res) {
+            if (res.success) {
+              console.log("获取的用户信息---->:" + res);
+              that.setData({
+                isUserInfo: true,
+                userInfo: {
+                  openid: res.openid,
+                  unionid: res.unionid,
+                  user_id: res.userid,
+                  avatarUrl: res.userInfo.userInfo.avatarUrl,
+                  nickName: res.userInfo.userInfo.nickName,
+                }
+              });
+            } else {
+              box.showToast(res.msg);
+            }
+          } else {
+            box.showToast("网络不稳定，请重试");
+          }
+        })
+      },
+      fail: (res) => {
+        box.showToast("请求超时，请检查网络是否连接")
+      }
+    })
+  },
+  // 授权手机号
+  bindPhoneNumber(e) {
+    console.log(e)
+    // 用户同意授权
+    const OK = 'getPhoneNumber:ok'
+    if (e.detail.errMsg == OK) {
+      // 判断 session_key 有无到期
+      // wx.checkSession({
+      //     success : res => {
+      this.TEL(e)
+      //     },
+      //     fail: res => {
+      //             this.TEL(e)
+      //     }
+      // })
+    } else {
+      let user_info = this.data.userInfo;
+      user_info.phone_number = '';
+      this.setData({
+        userInfo: user_info,
+        user_id: this.data.userInfo.user_id,
+        isLogin: false,
+        policyChecked: false
+      });
+      wx.setStorageSync('coyote_userinfo', user_info);
+    }
+  },
+  TEL(e) {
+    let that = this;
+    let DATA = {
+      user_id: this.data.userInfo.user_id,
+      code: e.detail.code
+    }
+    request.request_get('/a/getPhoneNumber.hn', DATA, function (res) {
+      //判断为空时的逻辑
+      if (res) {
+        if (res.success) {
+          let user_info = that.data.userInfo;
+          user_info.phone_number = res.phoneNumber;
+          that.setData({
+            phone_number: res.phoneNumber,
+            userInfo: user_info,
+            user_id: that.data.userInfo.user_id,
+            isLogin: false,
+            policyChecked: false
+          });
+          // 本地存储
+          wx.setStorageSync('coyote_userinfo', user_info);
+
+        } else {
+          box.showToast(res.msg);
+        }
+      } else {
+        box.showToast("网络不稳定，请重试");
+      }
+    })
+  },
+  changePolicy(e) {
+    this.setData({
+      policyChecked: !this.data.policyChecked
+    })
+  },
+  bindUserProtocol(e) {
+    let report_temp = e.currentTarget.dataset.fwxyurl;
+    if (report_temp == '' || report_temp == undefined || report_temp == null) {
+      box.showToast('用户服务协议不存在，请联系客服')
+      return;
+    }
+    wx.downloadFile({
+      url: report_temp, //要预览的PDF的地址
+      filePath: wx.env.USER_DATA_PATH + '/用户服务协议.pdf',
+      success: function (res) {
+        console.log(res);
+        if (res.statusCode === 200) { //成功
+          var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
+          console.log(Path);
+          wx.openDocument({
+            filePath: Path,
+            showMenu: false,
+            success: function (res) {
+              console.log('打开用户服务协议成功');
+            }
+          })
+        }
+      },
+      fail: function (res) {
+        box.showToast('用户服务协议不存在，请联系客服')
+        console.log(res); //失败
+      }
+    })
+  },
+  bindPrivacyPolicy(e) {
+    let report_temp = e.currentTarget.dataset.yszzurl;
+    if (report_temp == '' || report_temp == undefined || report_temp == null) {
+      box.showToast('隐私政策不存在，请联系客服')
+      return;
+    }
+    wx.downloadFile({
+      url: report_temp, //要预览的PDF的地址
+      filePath: wx.env.USER_DATA_PATH + '/隐私政策.pdf',
+      success: function (res) {
+        console.log(res);
+        if (res.statusCode === 200) { //成功
+          var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
+
+          wx.openDocument({
+            filePath: Path,
+            showMenu: false,
+            success: function (res) {
+              console.log('打开用户服务协议成功');
+            }
+          })
+        }
+      },
+      fail: function (res) {
+        box.showToast('隐私政策不存在，请联系客服')
+        console.log(res); //失败
+      }
+    })
+  },
+  getPhoneNumbers() {
+    box.showToast("请阅读并勾选协议")
+  },
+  /**
+   * 获取用户服务协议
+   * 获取隐私政策
+   */
+  getbaseData: function () {
+    let that = this;
+    let data = {};
+    request.request_get('/a/getbaseInfo.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          let msg = res.msg;
+          that.setData({
+            fwxy_url: msg.fwxy_url,
+            yszz_url: msg.yszz_url,
+          })
+        }
+      }
+    })
   },
 })

@@ -136,7 +136,7 @@ page{
 }
 #the_second_clear{
   padding: 16rpx;
-  position: absolute;
+  /* position: absolute; */
   /* top: 496rpx; */
   right: 200rpx;
   display: flex;
@@ -178,7 +178,7 @@ page{
 
 #clear_1{
   padding: 8rpx;
-  position:absolute;
+  /* position:absolute; */
   right: -10rpx;
 
 }

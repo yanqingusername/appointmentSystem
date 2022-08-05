@@ -28,48 +28,23 @@ Page({
     flag2: false,
     swiperCurrent: 0,
     movies: [],
+
+    user_id: ''
   },
 
   onShow: function () {
     var that = this;
     that.getBannerList();
-    //获取全局openid，如果获取不到，则重新授权一次
-    let openid = app.globalData.openid;
-    console.log(openid);
-    if (openid == '' || typeof (openid) == 'undefined') {
-      wx.login({
-        success: (res) => {
-          var code = res.code;
-          console.log("获取code成功" + code);
-          request.request_get('/a/getOpenid.hn', {
-            code: code
-          }, function (res) {
-            console.info('回调', res);
-            //判断为空时的逻辑
-            if (!res) {
-              box.showToast("网络不稳定，请重试");
-              return;
-            }
-            if (!res.success) {
-              box.showToast(res.msg);
-              return;
-            }
-            app.globalData.openid = res.msg;
-            console.log("获取的用户openid" + app.globalData.openid);
-            that.getAppointmentList();
-          })
-        },
-        fail: () => {
-          box.showToast("请求超时，请检查网络是否连接")
-        }
-      })
-    } else {
-      that.getAppointmentList();
-    }
+    
+    that.getAppointmentList();
   },
   onLoad: function () {
     // var that = this;
     //  that.getAppointmentList();
+
+    this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || ''
+    });
   },
   toInfo: function (e) {
     var that = this;
@@ -146,16 +121,11 @@ Page({
   },
 
   getAppointmentList: function () {
-    var that = this;
-    console.log('当前页数=' + that.data.page)
-    console.log('circulationList=' + that.data.circulationList)
-    console.log('hasMoreData=' + that.data.hasMoreData)
-    console.log('open_id=' + app.globalData.openid)
-    var open_id = app.globalData.openid;
+    var that = this;  
     var data = {
-      open_id: open_id
+      user_id: this.data.user_id
     }
-    request.request_get('/a/getTestRecords.hn', data, function (res) {
+    request.request_get('/a1/getMyTestRecords.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
@@ -291,7 +261,7 @@ Page({
       })
       var arr = [];
       for (var i = 0; i < appointmentList.length; i++) {
-        if (appointmentList[i].name.indexOf(value) >= 0) {
+        if (appointmentList[i].name.indexOf(value) >= 0 || appointmentList[i].phone.indexOf(value) >= 0) {
           appointmentList[i].checked = false;
           arr.push(appointmentList[i]);
         }
@@ -469,9 +439,21 @@ Page({
       })
     }
   },
-  bindTypetags(){
-    wx.navigateTo({
-      url: "/pages/typeTags/index"
+  bindTypetags(e){
+    let appointmentnum = e.currentTarget.dataset.appointmentnum;
+    if(appointmentnum){
+      wx.navigateTo({
+        url: `/pages/typeTags/index?appointmentnum=${appointmentnum}`
+      })
+    }
+  },
+  openMap:function(e){
+    console.log(e)
+    wx.openLocation({
+      latitude:parseFloat(e.currentTarget.dataset.latitude), //纬度
+      longitude:parseFloat(e.currentTarget.dataset.longitude), //经度
+      scale: 18,
+      name:e.currentTarget.dataset.channelname
     })
-  }
+  },
 })

@@ -24,49 +24,59 @@
       <view class="input_view">
         <input
         id="search_checked"
-        type='text'
+        type='number'
         placeholder='请输入样本编号'
         placeholder-class="ph_class"
         value="{{sample_number}}"
+        maxlength="14"
+        bindinput='input1'
         />
       </view>
 
       <view class="input_view">
         <input
         id="search_checked"
-        type='text'
+        type='number'
         placeholder='请输入受检人手机号'
         placeholder-class="ph_class"
         value="{{sample_phone}}"
+        maxlength="11"
+        bindinput='input2'
         />
       </view>
 
-      <view class="btn_view" bind:tap="bindSelectResult">查询</view>
+      <view class="btn_view_active" wx:if="{{submitState}}" bind:tap="bindSelectResult1">查询</view>
+      <view class="btn_view" wx:else>查询</view>
+      
     </view>
 
     <view class="page_view" wx:if="{{selectTab == 2}}">
       <view class="input_view">
         <input
         id="search_checked"
-        type='text'
+        type='number'
         placeholder='请输入受检人手机号'
         placeholder-class="ph_class"
-        value="{{sample_number}}"
+        value="{{sample_phone}}"
+        maxlength="11"
+        bindinput='input4'
         />
       </view>
 
       <view class="input_view_code">
         <input
         id="search_code"
-        type='text'
+        type='number'
         placeholder='短信验证码'
         placeholder-class="ph_class"
-        value="{{sample_phone}}"
+        value="{{phone_code}}"
+        bindinput='input3'
         />
         <view class="P3_code" bindtap="getCode" disabled="{{codeBtState}}" style="{{codeBtState?'color:#CCCCCC':'color:#E16898'}};padding-right: 24rpx;">{{codeBtText}}</view>
       </view>
 
-      <view class="btn_view" bind:tap="bindSelectResult">查询</view>
+      <view class="btn_view_active" wx:if="{{submitState2}}" bind:tap="bindSelectResult2">查询</view>
+      <view class="btn_view" wx:else>查询</view>
     </view>
 	</view>
 </view>

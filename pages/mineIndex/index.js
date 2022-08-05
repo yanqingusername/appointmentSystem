@@ -14,56 +14,30 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     Custom: app.globalData.Custom,
-    openid: '',
-    unionid: '',
     isLogin: false,
     dialogData: {},
-    userId: ''
+    user_id: '',
+    phone_number: '',
+    user_name: '',
+    userInfo: {},
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    var that = this;
-
-    this.getOpenID(() => {});
-
+    this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      phone_number: wx.getStorageSync('coyote_userinfo').phone_number || '',
+      user_name: wx.getStorageSync('coyote_userinfo').nickName || '',
+    });
     this.getbaseData();
-    // console.log(app.globalData.userInfo)
-
   },
-  /**
-   * 获取openid
-   */
-   getOpenID(success) {
-    let that = this;
-    wx.login({
-      success: (res) => {
-        var code = res.code;
-        request.request_get('/a/getOpenid.hn', {
-          code: code
-        }, function (res) {
-          //判断为空时的逻辑
-          if (res) {
-            if (res.success) {
-              console.log("获取的用户openid" + res.msg);
-              // that.setData({
-              //   openid : res.data.data.openid,
-              //   unionid: res.data.data.unionid
-              // });
-              success();
-            } else {
-              box.showToast(res.msg);
-            }
-          } else {
-            box.showToast("网络不稳定，请重试");
-          }
-        })
-      },
-      fail: (res) => {
-        box.showToast("请求超时，请检查网络是否连接")
-      }
-    })
+  onShow: function () {
+    this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      phone_number: wx.getStorageSync('coyote_userinfo').phone_number || '',
+      user_name: wx.getStorageSync('coyote_userinfo').nickName || '',
+    });
   },
   getUserProfile() {
     wx.getUserProfile({
@@ -71,21 +45,20 @@ Page({
       success: (res) => {
         this.bindGetUserInfo(res);
       },
-      fail:(res)=>{
-          console.log('fail12121212')
-          //用户按了拒绝按钮
-          wx.showModal({
-            title: '警告',
-            content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-            showCancel: false,
-            confirmText: '返回授权',
-            success: function (res) {
-              // 用户没有授权成功，不需要改变 isHide 的值
-              if (res.confirm) {
-                console.log('用户点击了“返回授权”');
-              }
+      fail: (res) => {
+        //用户按了拒绝按钮
+        wx.showModal({
+          title: '警告',
+          content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+          showCancel: false,
+          confirmText: '返回授权',
+          success: function (res) {
+            // 用户没有授权成功，不需要改变 isHide 的值
+            if (res.confirm) {
+              console.log('用户点击了“返回授权”');
             }
-          });
+          }
+        });
       }
     })
   },
@@ -93,27 +66,16 @@ Page({
   bindGetUserInfo(e) {
     const OK = "getUserProfile:ok"
     if (e.errMsg == OK) {
-      console.log('---->:', e)
-      // wx.showLoading({
-      //     title: '加载中...',
-      //     mask: true
-      // })
       // 判断 session_key 有无到期
-      this.setData({
-        isLogin: true
-      });
       // wx.checkSession({
       //     success: res => {
       this.USRE(e)
       //     },
       //     fail: res => {
-      //         this.getOpenID(() => {
       //             this.USRE(e)
-      //         })
       //     }
       // })
     } else {
-      console.log('12121212')
       //用户按了拒绝按钮
       wx.showModal({
         title: '警告',
@@ -129,70 +91,102 @@ Page({
       });
     }
   },
-  USRE(e){
-    // let that = this;
-    // let DATA = {
-    //     openid: this.data.openid,
-    //     encrypted_data: e.encryptedData,
-    //     iv: e.iv,
-    //     unionid: this.data.unionid
-    // }
-    // request.request_get('/a/getUserInfo.hn', DATA, function (res) {
-    //   //判断为空时的逻辑
-    //   if (res) {
-    //     if (res.success) {
-
-    //       // 本地存储
-    //       // wx.setStorageSync('data',_RES['data']['data']);
-    //     } else {
-    //       box.showToast(res.msg);
-    //     }
-    //   } else {
-    //     box.showToast("网络不稳定，请重试");
-    //   }
-    // })
-    this.setData({
-      userInfo : e.userInfo
-    });
+  USRE(e) {
+    let that = this;
+    wx.login({
+      success: (res) => {
+        var code = res.code;
+        console.log('---->:', code)
+        request.request_get('/a/getUseridAndUserInfo.hn', {
+          code: code,
+          encryptedData: e.encryptedData,
+          iv: e.iv,
+        }, function (res) {
+          //判断为空时的逻辑
+          if (res) {
+            if (res.success) {
+              console.log("获取的用户信息---->:" + res);
+              that.setData({
+                isLogin: true,
+                userInfo: {
+                  openid: res.openid,
+                  unionid: res.unionid,
+                  user_id: res.userid,
+                  avatarUrl: res.userInfo.userInfo.avatarUrl,
+                  nickName: res.userInfo.userInfo.nickName,
+                }
+              });
+            } else {
+              box.showToast(res.msg);
+            }
+          } else {
+            box.showToast("网络不稳定，请重试");
+          }
+        })
+      },
+      fail: (res) => {
+        box.showToast("请求超时，请检查网络是否连接")
+      }
+    })
   },
-  bindPhoneNumber(e){
+  bindPhoneNumber(e) {
     e = e.detail;
     // 用户同意授权
     const OK = 'getPhoneNumber:ok'
     if (e.detail.errMsg == OK) {
-      console.log('--222-->:',e)
-        // wx.showLoading({
-        //     title: '加载中...',
-        //     mask: true
-        // })
-        // 判断 session_key 有无到期
-        // wx.checkSession({
-        //     success : res => {
-        //         this.TEL(e)
-        //     },
-        //     fail: res => {
-        //         this.getOpenID(() => {
-        //             this.TEL(e)
-        //         })
-            
-        //     }
-        // })
-        this.setData({
-          userId: '1'
-        });
-    }else{
+      // 判断 session_key 有无到期
+      // wx.checkSession({
+      //     success : res => {
+      this.TEL(e)
+      //     },
+      //     fail: res => {
+      //             this.TEL(e)
+      //     }
+      // })
+    } else {
+      let user_info = this.data.userInfo;
+      user_info.phone_number = '';
       this.setData({
-        userId: '1'
+        userInfo: user_info,
+        user_id: this.data.userInfo.user_id,
+        user_name: this.data.userInfo.nickName,
       });
+      wx.setStorageSync('coyote_userinfo', user_info);
     }
   },
-  bindShowDialog(){
-    this.setData({
-      userId: '1'
-    });
-  },
-  onShow: function () {
+  TEL(e) {
+    let that = this;
+    let DATA = {
+      user_id: this.data.userInfo.user_id,
+      code: e.detail.code
+    }
+    request.request_get('/a/getPhoneNumber.hn', DATA, function (res) {
+      //判断为空时的逻辑
+      if (res) {
+        if (res.success) {
+          let user_info = that.data.userInfo;
+          user_info.phone_number = res.phoneNumber;
+          that.setData({
+            phone_number: res.phoneNumber,
+            userInfo: user_info,
+            user_id: that.data.userInfo.user_id,
+            user_name: that.data.userInfo.nickName,
+          });
+          // 本地存储
+          wx.setStorageSync('coyote_userinfo', user_info);
 
+        } else {
+          box.showToast(res.msg);
+        }
+      } else {
+        box.showToast("网络不稳定，请重试");
+      }
+    })
+  },
+  bindShowDialog() {
+    this.setData({
+      isLogin: false
+    });
   },
   // 退出登录
   toExit: function () {
@@ -215,7 +209,7 @@ Page({
     })
   },
   bindCoupon: function () {
-    if (this.data.userId == 1){
+    if (this.data.user_id) {
       wx.navigateTo({
         url: '/pages/coupon/coupon',
       })
@@ -224,7 +218,7 @@ Page({
     }
   },
   bingManageSubject: function () {
-    if (this.data.userId == 1){
+    if (this.data.user_id) {
       wx.navigateTo({
         url: '/pages/selectSubject/index?isMine=1'
       });
@@ -232,12 +226,12 @@ Page({
       this.getUserProfile();
     }
   },
-  hidePicker(){
+  hidePicker() {
     this.setData({
       isShow: false
     });
   },
-  hidePickerCall(){
+  hidePickerCall() {
     this.setData({
       isShow: false
     });
@@ -261,10 +255,13 @@ Page({
     //   },
     // })
   },
-  bindUpdatePhone: function () {
-    wx.navigateTo({
-      url: "/pages/updatePhone/index"
-    });
+  bindUpdatePhone: function (e) {
+    let phonenumber = e.currentTarget.dataset.phonenumber;
+    if (phonenumber) {
+      wx.navigateTo({
+        url: `/pages/updatePhone/index?phonenumber=${phonenumber}`
+      });
+    }
   },
   bindUserProtocol: utils.throttle(function (e) {
     var report_temp = this.data.fwxy_url;
@@ -324,10 +321,12 @@ Page({
       }
     })
   }, 2000),
+  /**
+   * 获取用户服务协议
+   * 获取隐私政策
+   */
   getbaseData: function () {
     let that = this;
-    //获取用户服务协议
-    //获取隐私政策
     let data = {};
     request.request_get('/a/getbaseInfo.hn', data, function (res) {
       if (res) {

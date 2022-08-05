@@ -237,3 +237,5 @@
     </view>
   </view>
 </view>
+
+<loginDialogView show="{{isLogin}}" datas="{{dialogData}}" bind:bindPhoneNumber="bindPhoneNumber" bind:bindShowDialog="bindShowDialog"/>

@@ -6,51 +6,78 @@
 
 <view class="search_border">
   <view class='search' style="position: relative;">
-    <input id="search_checked" type='text' placeholder='请输入检测名称，或受检人姓名' placeholder-class="ph_class" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle'></input>
-    <view class="weui-icon-clear" wx:if="{{searchText}}" catchtap="clearSearchHandle">
-      <icon id="clear_1" type="clear" size="20" catchtap="clearSearchHandle" />
+    <view class="input_view">
+      <input id="search_checked" type='text' placeholder='请输入检测名称，或受检人姓名' placeholder-class="ph_class" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle'></input>
+      <view class="weui-icon-clear" wx:if="{{searchText}}" catchtap="clearSearchHandle">
+        <icon id="clear_1" type="clear" size="20" catchtap="clearSearchHandle" />
+      </view>
     </view>
-
     <view class="sample_view" catchtap="catchSelectHandle">样本号查询</view>
   </view>
 </view>
 <view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
   <view class="P1">
-    <block wx:if="{{flag1}}" wx:for="{{appointmentList}}">
+    <block wx:for="{{appointmentList}}" wx:key="index">
       <view class="P2 app_font" bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
         <view class="app_flex_new">
-          <view class="bold_font_new">{{'新冠肺炎核酸检测报告'}}</view>
-          <view class="bold_font_2_new">{{'阴性'}}</view>
+          <view class="bold_font_new">{{item.test_name}}</view>
+          <view class="bold_font_2_new">{{item.test_result}}</view>
         </view>
         <view class="hr"></view>
         <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
           <view class="P2_1_1">样本编号</view>
-          <view class="P2_1_2">{{'3901221123314489'}}</view>
+          <view class="P2_1_2">{{item.sample_id}}</view>
         </view>
         <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
           <view class="P2_1_1">受检人</view>
-          <view class="P2_1_2">{{'李四'}}</view>
+          <view class="P2_1_2">{{item.name}}</view>
         </view>
         <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
           <view class="P2_1_1">手机号</view>
-          <view class="P2_1_2">{{'123***7890'}}</view>
+          <view class="P2_1_2">{{item.telphone}}</view>
         </view>
         <view class="button_flex_new_between">
-          <view class="type_text_1">{{item.create_time}}</view>
+          <view class="type_text_1">{{item.report_time}}</view>
           <view style="display: flex;">
-            <view data-report="{{item.pdf_url}}" id="button_1" catchtap="bindDownloadReport">下载</view>
-            <view data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查看</view>
+            <view data-report="{{item.reportUrl}}" id="button_1" catchtap="bindDownloadReport">下载</view>
+            <view data-report="{{item.reportUrl}}" id="button_2" catchtap="bindDownloadReport">查看</view>
           </view>
         </view>
       </view>
     </block>
-    <view>
+    <view style="margin:240rpx 80rpx 0rpx 80rpx;">
       <!-- <image class="app_noinfo_img" src="../../image/nodata.png" mode="widthFix"></image> -->
       <view class="app_noinfo_desc">{{tip}}</view>
     </view>
-    <view wx:if="{{alreadyChecked_temp==true}}">
-      <!-- <image class="app_noinfo_img" src="../../image/nodata.png" mode="widthFix"></image> -->
-      <view class="app_noinfo_desc">{{tip_temp}}</view>
+  </view>
+</view>
+
+
+<!--components/model/model.wxml-->
+<view class='modal-mask' wx:if='{{isLogin}}'>
+  <view class='modal-content'>
+    <view class='modal-main-content'>
+      <view class="modal-icon_clear_view" bind:tap="bindShowDialog">
+        <image class="modal-icon_clear" src="../../images/icon_clear_new.png"></image>
+      </view>
+      <view class="modal-main-title">{{'需要您的微信授权，才能为您创建预约或查询记录。'}}</view>
+      
+      <view wx:if='{{isUserInfo}}'>
+        <button wx:if="{{policyChecked}}" class='modal-bottom' type='primary' open-type="getPhoneNumber" lang="zh_CN"
+            bindgetphonenumber="bindPhoneNumber">微信授权</button>
+        <button wx:else class='modal-bottom' type='primary' lang="zh_CN"
+              bind:tap="getPhoneNumbers">微信授权</button>
+        <view class="modal-div_policy">
+          <checkbox-group bindchange="changePolicy">
+            <checkbox class='modal-round pink' checked="{{policyChecked}}"></checkbox>
+            <label class="modal-privacy_policy">已阅读并同意 <text class="modal-underline_gray" catchtap="bindUserProtocol" data-fwxyurl="{{fwxy_url}}">用户服务协议</text> 和 <text class="modal-underline_gray" catchtap="bindPrivacyPolicy" data-yszzurl="{{yszz_url}}">隐私政策</text></label>
+          </checkbox-group>
+        </view>
+      </view>
+
+      <button wx:else  class='modal-bottom' type='primary' lang="zh_CN"
+            bind:tap="getUserProfile">微信授权</button>
     </view>
+    
   </view>
 </view>

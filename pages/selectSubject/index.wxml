@@ -24,4 +24,7 @@
         </view>
       </block>
       <view style="height:50rpx;"></view>
+      <view wx:if="{{dataList.length==0}}" class="template_flex">
+        <view style="margin-top:50rpx">暂无受检人</view>
+      </view>
 </view>
