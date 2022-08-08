@@ -34,7 +34,9 @@ Page({
     swiperCurrent:0,
     movies:[],
     yysj1:'',
-    yysj2:''
+    yysj2:'',
+
+    user_id: ''
   },
 
   onShow:function(){
@@ -53,6 +55,11 @@ Page({
   
 },
 onLoad:function(options){
+
+  this.setData({
+    user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+  });
+
   var that = this;
   that.getBannerList();
   var appointment_num = options.appointment_num;
@@ -99,16 +106,14 @@ isIphoneX() {
 getAppointmentInfo: function () {
   var that = this;
   var appointment_num = that.data.appointment_num;
-  var open_id = app.globalData.openid
-  console.info(appointment_num,open_id)
-  request.request_get('/a/getPersonTestDetails.hn', {
+  request.request_get('/a1/getPersonTestDetails.hn', {
     appointment_num: appointment_num,
-    open_id:open_id
+    user_id: that.data.user_id
   }, function (res) {
     console.info('回调', res)
     if (res) {
       if (res.success) {
-        var info = res.msg;
+        var info = res;
         if(info.payment_type==0){
           that.setData({
             payment_way:'线上支付（公众号）'
@@ -144,11 +149,11 @@ getAppointmentInfo: function () {
             card_type:'港澳台通行证'
           })
         }
-        var workingTimeArr = info.working_time.split(',');
-              for(var i=0;i<workingTimeArr.length;i++){
-                var reg = new RegExp(":00:00","g");
-               workingTimeArr[i] = workingTimeArr[i].replace(reg,":00");
-              }
+        // var workingTimeArr = info.working_time.split(',');
+        //       for(var i=0;i<workingTimeArr.length;i++){
+        //         var reg = new RegExp(":00:00","g");
+        //        workingTimeArr[i] = workingTimeArr[i].replace(reg,":00");
+        //       }
         that.setData({
           name:info.name,
           id_card:info.id_card,
@@ -159,13 +164,16 @@ getAppointmentInfo: function () {
           test_type:info.test_type,
           type: info.type,
           info: info,
-          workingTimeArr:workingTimeArr,
+          sbusiness_time: info.sbusiness_time,
+          xbusiness_time: info.xbusiness_time,
+          // workingTimeArr:workingTimeArr,
           latitude:info.latitude,
           longitude:info.longitude,
           yysj1:info.yysj1,
           yysj2:info.yysj2,
           verification_code: info.verification_code,
-          payment_type: info.payment_type
+          payment_type: info.payment_type,
+          status: info.status
         })
         console.log('creator_id' + that.data.creator_id)
         console.log('app.globalData.userInfo.id' + app.globalData.userInfo.id)
@@ -283,8 +291,6 @@ bindBack:function(){
   },
   getBannerList: function () {
     var that = this;
-    console.log('open_id='+app.globalData.openid)
-    var open_id = app.globalData.openid;
     var data = {
       type:4
     }
@@ -336,9 +342,12 @@ bindBack:function(){
       })
     }
   },
-  bindTypetags(){
-    wx.navigateTo({
-      url: "/pages/typeTags/index"
-    })
+  bindTypetags(e){
+    let sample_id = e.currentTarget.dataset.sampleid;
+    if(sample_id){
+      wx.navigateTo({
+        url: `/pages/typeTags/index?sampleid=${sample_id}`
+      })
+    }
   }
 })

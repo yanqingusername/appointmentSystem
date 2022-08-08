@@ -1,5 +1,5 @@
 page{
-  background: #FFFFFF;
+  background:#F6F6F6;
 }
 /* pages/myOrder/myOrder.wxss */
 

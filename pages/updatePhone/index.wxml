@@ -5,29 +5,34 @@
 
 <view class="page">
 	<view class="page_view">
-    <view class="page_view">
+    <view class="page_view1">
       <view class="input_view">
         <input
         id="search_checked"
-        type='text'
+        type='number'
         placeholder='请输入新的手机号'
         placeholder-class="ph_class"
-        value="{{sample_number}}"
+        value="{{user_phone}}"
+        bindinput="input1"
         />
       </view>
 
       <view class="input_view_code">
         <input
         id="search_code"
-        type='text'
+        type='number'
         placeholder='短信验证码'
         placeholder-class="ph_class"
-        value="{{sample_phone}}"
+        value="{{user_code}}"
+        bindinput="input2"
         />
         <view class="P3_code" bindtap="getCode" disabled="{{codeBtState}}" style="{{codeBtState?'color:#CCCCCC':'color:#E16898'}};">{{codeBtText}}</view>
       </view>
 
-      <view class="btn_view" bind:tap="bindSubmit">保存</view>
+      <view class="btn_view_active" wx:if="{{submitState}}" bind:tap="bindSubmit">保存</view>
+      <view class="btn_view" wx:else>保存</view>
+
+      <view style="height: 40rpx;background: #FFFFFF;"></view>
     </view>
 	</view>
 </view>

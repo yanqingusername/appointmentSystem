@@ -5,87 +5,51 @@ const request = require('../../utils/request.js')
 
 Page({
   data: {
-    sample_id:'3901221123314489',
-    name: '李四',
-    phone: '123***7890',
-    idcard: '110108********2082',
-    service_result:[
-      {
-        time:'08:49',
-        date:'6月1日',
-        title:'出具报告',
-        type: 1,
-        text: '点击查看',
-        pdf_url: ''
-      },
-      {
-        time:'07:00',
-        date:'6月1日',
-        title:'开始检测',
-        type: 2,
-        text: '',
-        pdf_url: ''
-      },
-      {
-        time:'06:59',
-        date:'6月1日',
-        title:'样本处理',
-        type: 3,
-        text: '',
-        pdf_url: ''
-      },
-      {
-        time:'23:21',
-        date:'5月31日',
-        title:'送达实验室',
-        type: 4,
-        text: '下一步，样本处理',
-        pdf_url: ''
-      },
-      {
-        time:'21:03',
-        date:'5月31日',
-        title:'转运中',
-        type: 5,
-        text: '',
-        pdf_url: ''
-      },
-      {
-        time:'20:32',
-        date:'5月31日',
-        title:'完成采样',
-        type: 6,
-        text: '',
-        pdf_url: ''
-      }
-    ]
+    sample_id:'',
+    name: '',
+    phone: '',
+    idcard: '',
+    service_result:[],
+    sampleid: "",
+    user_id:""
   },
   onLoad: function (options) {
     
+    this.setData({
+      sampleid: options.sampleid,
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+    });
 
-    // this.getServiceRecordInfo();
-    let that = this;
-    if(this.data.service_result.length > 0){
-      var query = wx.createSelectorQuery() 
-      query.select('#schedule').boundingClientRect() 
-      query.exec((ress) => { 
-        that.setData({ 
-          H: ress[0].height 
-        });
-      });
-    }
+    this.getServiceRecordInfo();
+    // let that = this;
+    // if(this.data.service_result.length > 0){
+    //   var query = wx.createSelectorQuery() 
+    //   query.select('#schedule').boundingClientRect() 
+    //   query.exec((ress) => { 
+    //     that.setData({ 
+    //       H: ress[0].height 
+    //     });
+    //   });
+    // }
 
   },
   getServiceRecordInfo: function () {
     var that = this;
     var data = {
-      "instrument_SN": this.data.instrumentsn
+      sample_id: this.data.sampleid,
+      user_id: this.data.user_id,
     }
-    request.request_new('/instrument/supprot/getInstrumentServiceRecordInfo.hn', data, function (res) {
+    request.request_get('/a1/getTypeTags.hn', data, function (res) {
       if (res) {
+        console.log('---->:',res)
         if (res.success) {
+          let userinfo = res.res;
           var service_result = res.service_result;
           that.setData({
+            sample_id: userinfo[0].sample_id,
+            name: userinfo[0].name,
+            phone: userinfo[0].phone,
+            idcard: userinfo[0].idcard,
             service_result: service_result
           });
           if(service_result.length > 0){

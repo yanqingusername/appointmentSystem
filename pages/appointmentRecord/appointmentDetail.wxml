@@ -4,7 +4,7 @@
 </cu-custom>
 
 <view class="page" style="background-color:#F6F6F6;">
-  <!-- <view class="P1" style="height:620rpx">
+  <view class="P1" style="height:620rpx" wx:if="{{status == 1}}">
     <view id="color_style_1" style="background-color:{{onlineFlagNum==0? '#418BE4' : '#E06596' }};">
       <view id="design_1">
         <image id="jingdong_image" wx:if="{{payment_type== 6}}" src="../../images/icon_jd_new.png"></image>
@@ -34,36 +34,36 @@
     <view class="template_flex" bindtap="goYYJL">
       <view id="pink_hint" style="margin: 275rpx 0 0 0;">可进入预约记录查看报告</view>
     </view>
-  </view> -->
+  </view>
 
-  <view class="P1">
+  <view class="P1" wx:else>
     <view id="color_style_1" style="background-color:{{onlineFlagNum==0? '#418BE4' : '#E06596' }};">
       <view id="design_1">
         <image id="jingdong_image" wx:if="{{payment_type== 6}}" src="../../images/icon_jd_new.png"></image>
         <image id="meituan_image" wx:if="{{payment_type==5}}" src="../../images/icon_meituan_new.png"></image>
         <image id="wechat_image" wx:if="{{payment_type==3}}" src="../../images/icon_wechat_new.png"></image>
       </view>
-      <view id="font_1">{{hint_font_1}}</view>
+      <view id="font_1">{{info.status_text}}</view>
     </view>
     <view class="font_view_1" style="background-color:{{onlineFlagNum==0? '#418BE4' : '#E06596' }}">
       <view id="font_2">
-        <text>{{hint_font_2}}</text>
+        <text>{{info.status_tail_text}}</text>
       </view>
     </view>
     <view class="hr"></view>
-    <view >
+    <view wx:if="{{status != 7 || status != 1}}">
       <view class="type_view_flex">
         <image class="type_icon_25" src="../../images/icon_0701_25.png"></image>
         <view class="type_title" style="font-size:30rpx;color:#333333;">检测进度</view>
       </view>
       <view class="type_view">
         <view class="type_view_1">
-          <view class="type_title">送达实验室</view>
-          <view class="type_text">下一步，样本处理</view>
+          <view class="type_title">{{info.statustext}}</view>
+          <view class="type_text">{{info.statustailtext}}</view>
         </view>
       </view>
 
-      <view class="type_view_flex" style="padding: 30rpx 0rpx 30rpx 0rpx;" catch:tap="bindTypetags">
+      <view class="type_view_flex" style="padding: 30rpx 0rpx 30rpx 0rpx;" catch:tap="bindTypetags" data-sampleid="{{info.sample_id}}">
         <view class="type_title" style="font-size:26rpx;color:#E06596;">查看详情</view>
       </view>
     </view>
@@ -77,7 +77,7 @@
     </block>
   </swiper>
   <view class="P1">
-    <view class="P2 app_font" style="padding-bottom:30rpx;" bindtap="toInfo" data-id="{{item.id}}" data-type="{{item.type}}">
+    <view class="P2 app_font" style="padding-bottom:30rpx;" bindtap="toInfo" data-id="{{info.id}}" data-type="{{info.type}}">
       <view class="bold_font">
         预约信息
       </view>
@@ -116,9 +116,9 @@
       <view class="P2_1 app_flex">
         <view class="P2_1_3"></view>
         <view class="P2_1_2" style="font-size:24rpx">
-          <view wx:for="{{workingTimeArr}}">
-            <view class="P2_1_2" style="font-size:24rpx"><text wx:if="{{index==0}}">营业时间</text></view>
-            <view class="P2_1_2" style="font-size:24rpx"> {{item}}</view>
+          <view>
+            <view class="P2_1_2" style="font-size:24rpx"><text>营业时间</text></view>
+            <view class="P2_1_2" style="font-size:24rpx"> {{sbusiness_time}}{{xbusiness_time}}</view>
             <!-- <view class="P2_1_2" style="font-size:24rpx">4小时内特急检服务 08:00-21:00</view>
               <view class="P2_1_2" style="font-size:24rpx">8小时内加急检服务 08:00-00:00</view> -->
           </view>
@@ -133,7 +133,7 @@
     </view>
   </view>
   <view class="P1">
-    <view class="P2 app_font" bindtap="toInfo" data-id="{{item.id}}" data-type="{{item.type}}">
+    <view class="P2 app_font" bindtap="toInfo" data-id="{{info.id}}" data-type="{{info.type}}">
       <view class="bold_font">
         支付信息
       </view>
@@ -162,12 +162,12 @@
     </view>
   </view>
   <view class="P1" style="margin-bottom:100rpx">
-    <view class="P2 app_font" bindtap="toInfo" data-id="{{item.id}}" data-type="{{item.type}}">
+    <view class="P2 app_font" bindtap="toInfo" data-id="{{info.id}}" data-type="{{info.type}}">
       <view class="common_flex">
         <view class="bold_font">
           联系客服
         </view>
-        <view data-phone="{{item.cstn}}" bindtap="phoneCall">
+        <view data-phone="{{info.cstn}}" bindtap="phoneCall">
           <image id="pink_phone" src="../../images/icon_phone_red.png"></image>
         </view>
       </view>

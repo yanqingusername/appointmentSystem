@@ -44,8 +44,8 @@
             </view> 
               <view class='right_container' id='schedule'>
                   <view class='title_black'>{{ item.title }}</view>
-                  <view class='title_gray' wx:if="{{item.text && item.type == 1}}" style="font-size: 26rpx;margin-left:20rpx;margin-top:4rpx;color:#E787AC;" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">{{ item.text }}</view>
-                  <view class='title_gray' wx:if="{{item.text && item.type != 1 }}" style="font-size: 26rpx;margin-left:20rpx;margin-top:4rpx;">{{ item.text }}</view>
+                  <view class='title_gray' wx:if="{{item.pdf_url}}" style="font-size: 26rpx;margin-left:20rpx;margin-top:4rpx;color:#E787AC;" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">{{ item.text }}</view>
+                  <view class='title_gray' wx:else style="font-size: 26rpx;margin-left:20rpx;margin-top:4rpx;">{{ item.text }}</view>
               </view> 
           </view> 
         </block>
