@@ -128,9 +128,9 @@
           <!-- <view wx:if="{{hiddenFlag==false}}" class="bold_font_2" style="display: flex;align-items: center;margin-right: 20rpx;"><view wx:if="{{index == 0}}" class="address_view">距离最近</view>{{item.distance}}</view> -->
         </view>
 
-        <view class="map_view">
+        <view class="map_view" catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
           <view class="map_view_title"><text style="color:#0072FF;" wx:if="{{hiddenFlag==false}}">{{item.distance}}</text> |  {{item.site_description}}</view>
-          <view class="icon_view_4_new" catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
+          <view class="icon_view_4_new" >
             <image class="icon_24" src="../../images/icon_0701_24.png"></image>
             <!-- <view class="text_1_new">导航</view> -->
           </view>
@@ -155,9 +155,9 @@
             <view style="color: #0870FF;font-size: 24rpx;padding-top:4rpx;margin-left:10rpx;">{{item.big_screen_text}}</view>
           </view>
 
-          <view class="map_view_type" style="padding: 12rpx 14rpx 12rpx 30rpx;width: 100%;margin-top:20rpx;" wx:for="{{item.paytypetexts}}" wx:for-index="typeIndex" wx:for-item="typeItem">
+          <view class="map_view_type" style="padding: 12rpx 14rpx 12rpx 30rpx;width: 100%;margin-top:20rpx;" wx:for="{{item.paytypetexts}}" wx:for-index="typeIndex" wx:for-item="typeItem" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" data-typeid="{{typeItem.id}}" catch:tap="bindCheckSamplingPoint">
             <view class="map_3_view_title">{{typeItem.paytype_text}}</view>
-            <view class="icon_view_3_new" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}" data-id="{{item.channel_id}}" data-typeid="{{typeItem.id}}" catch:tap="bindCheckSamplingPoint">马上预约</view>
+            <view class="icon_view_3_new" >马上预约</view>
           </view>
         </view>
       </view>

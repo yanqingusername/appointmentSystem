@@ -4,6 +4,8 @@
 </cu-custom>
 
 <view class="page">
+  <image class="img_new" src="../../images/icon_0809_02.jpg" mode="widthFix"></image>
+  
 	<view class="page_view">
 		<view id="module_1" class="P5 app_flex">
 			<view

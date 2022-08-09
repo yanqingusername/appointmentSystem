@@ -126,9 +126,9 @@
           <!-- <view wx:if="{{hiddenFlag==false}}" class="bold_font_2" style="display: flex;align-items: center;margin-right: 20rpx;"><view wx:if="{{index == 0}}" class="address_view">距离最近</view>{{item.distance}}</view> -->
         </view>
 
-        <view class="map_view">
+        <view class="map_view" catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
           <view class="map_view_title"><text style="color:#0072FF;" wx:if="{{hiddenFlag==false}}">{{item.distance}}</text> |  {{item.site_description}}</view>
-          <view class="icon_view_4_new" catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
+          <view class="icon_view_4_new" >
             <image class="icon_24" src="../../images/icon_0701_24.png"></image>
             <!-- <view class="text_1_new">导航</view> -->
           </view>

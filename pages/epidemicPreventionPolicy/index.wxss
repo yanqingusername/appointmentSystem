@@ -137,21 +137,21 @@ page{
 }
 
 .policy_view_1_1{
-  font-size: 32rpx;
+  font-size: 40rpx;
   color: #FFFFFF;
 }
 
 .policy_view_1_2{
   background: #FCC883;
-  border-radius: 8rpx;
-  color: #FFFFFF;
-  font-size: 24rpx;
-  padding: 4rpx 12rpx;
-  align-items: center;
-  justify-content: center;
-  border: 1px #FFFFFF solid;
-  margin-left: 12rpx;
-  display: inline-block;
+    border-radius: 8rpx;
+    color: #FFFFFF;
+    font-size: 22rpx;
+    padding: 2rpx 12rpx;
+    align-items: center;
+    justify-content: center;
+    border: 1px #FFFFFF solid;
+    margin-left: 12rpx;
+    display: inline-block;
 }
 
 .policy_view_2{

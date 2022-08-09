@@ -134,3 +134,7 @@ page{
   background: #E06596;
   color: #FFFFFF;
 }
+
+.img_new{
+  width: 750rpx;
+}
