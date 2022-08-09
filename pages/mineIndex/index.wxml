@@ -9,7 +9,7 @@
   </view> -->
 
   <view style="position:relative;">
-    <image src="../../images/icon_0701_27.png" style="height:215px;width:100%;"/>
+    <image src="../../images/icon_0701_27.png" style="height:{{isIphoneX?(215+StatusBar):215}}px;width:100%;"/>
     <view class="mine_view1" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
       <view class="mine_title" style="height:{{CustomBar}}px;position: absolute;display: flex;align-items: center;justify-content: center;">个人中心</view>
     </view>
@@ -17,7 +17,7 @@
 
   <view class="mine_center" wx:if="{{user_id}}">
     <view class="mine_center_left">
-      <open-data type="userAvatarUrl" style="width:130rpx;height:130rpx;"></open-data>
+      <image src="{{avatarUrl}}" style="width:130rpx;height:130rpx;" />
     </view>
     <view class="mine_center_right">
       <view class="mine_view_1">
@@ -33,7 +33,8 @@
 
   <view class="mine_center" wx:else>
     <view class="mine_center_left" bindtap="getUserProfile">
-      <view class="mine_radius"></view>
+      <image src="../../images/icon_0809_01.png" style="width:130rpx;height:130rpx;" />
+      <!-- <view class="mine_radius"></view> -->
     </view>
     <view class="mine_center_right" bindtap="getUserProfile">
       <view class="mine_1">点击登录/注册</view>
@@ -62,7 +63,7 @@
       <image src="../../images/icon_0701_21.png" class="mine_6_2_img"/>
     </view>
   </view>
-  <view class="mine_6">
+  <view class="mine_6" bind:tap="bindUserProtocol">
     <view class="mine_6_1">
       <image src="../../images/icon_0701_18.png" class="mine_6_1_img"/>
       <view class="mine_6_1_text">使用条款</view>
@@ -71,7 +72,7 @@
       <image src="../../images/icon_0701_21.png" class="mine_6_2_img"/>
     </view>
   </view>
-  <view class="mine_6">
+  <view class="mine_6" bind:tap="bindPrivacyPolicy">
     <view class="mine_6_1">
       <image src="../../images/icon_0701_19.png" class="mine_6_1_img"/>
       <view class="mine_6_1_text">隐私政策</view>

@@ -115,7 +115,8 @@ width: 690rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24rpx 24rpx 24rpx 20rpx;
+  padding: 0rpx 24rpx 0rpx 20rpx;
+  height: 80rpx;
 }
 
 .mine_6_1{
@@ -134,7 +135,7 @@ width: 690rpx;
 font-family: PingFangSC-Regular, PingFang SC;
 font-weight: 400;
 color: #6C6C6C;
-text-shadow: 0px 1px 4px rgba(90, 142, 252, 0.27);
+/* text-shadow: 0px 1px 4px rgba(90, 142, 252, 0.27); */
 }
 
 .mine_6_2{
@@ -148,7 +149,7 @@ text-shadow: 0px 1px 4px rgba(90, 142, 252, 0.27);
   font-weight: 400;
   color: #AAAAAA;
   margin-right: 16rpx;
-  text-shadow: 0px 1px 4px rgba(90, 142, 252, 0.27);
+  /* text-shadow: 0px 1px 4px rgba(90, 142, 252, 0.27); */
 }
 
 .mine_6_2_img{

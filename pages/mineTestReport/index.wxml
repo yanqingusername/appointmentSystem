@@ -5,7 +5,7 @@
 
 
 <view class="search_border">
-  <view class='search' style="position: relative;">
+  <view class='search'>
     <view class="input_view">
       <input id="search_checked" type='text' placeholder='请输入检测名称，或受检人姓名' placeholder-class="ph_class" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle'></input>
       <view class="weui-icon-clear" wx:if="{{searchText}}" catchtap="clearSearchHandle">
@@ -15,7 +15,7 @@
     <view class="sample_view" catchtap="catchSelectHandle">样本号查询</view>
   </view>
 </view>
-<view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
+<view class="page {{overflowFlag==true?'active':''}}">
   <view class="P1">
     <block wx:for="{{appointmentList}}" wx:key="index">
       <view class="P2 app_font" bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
@@ -45,7 +45,7 @@
         </view>
       </view>
     </block>
-    <view style="margin:240rpx 80rpx 0rpx 80rpx;">
+    <view wx:if="{{tip}}" style="margin:240rpx 80rpx 0rpx 80rpx;">
       <!-- <image class="app_noinfo_img" src="../../image/nodata.png" mode="widthFix"></image> -->
       <view class="app_noinfo_desc">{{tip}}</view>
     </view>

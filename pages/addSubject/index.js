@@ -141,12 +141,15 @@ Page({
           })
         }
       }
+
+      this.checkSubmitStatus();
     }
   },
   //保存按钮禁用判断
   checkSubmitStatus: function(e){
     if(this.data.onlineid == 2){
-      if(this.data.phone != '' && this.data.code != ''){
+      // if(this.data.phone != '' && this.data.code != ''){
+      if(this.data.phone != ''){
         this.setData({
           submitState: false
         })
@@ -157,7 +160,8 @@ Page({
       }
     }else{
       if(this.data.cardIndex != 0){
-        if(this.data.name != '' && this.data.phone != '' && this.data.age != '' && this.data.code != '' && this.data.idcard != ''){
+        // if(this.data.name != '' && this.data.phone != '' && this.data.age != '' && this.data.code != '' && this.data.idcard != ''){
+        if(this.data.name != '' && this.data.phone != '' && this.data.age != '' && this.data.idcard != ''){
           this.setData({
             submitState: false
           })
@@ -167,7 +171,8 @@ Page({
           })
         }
       } else {
-        if(this.data.name != '' && this.data.phone != '' && this.data.code != '' && this.data.idcard != ''){
+        // if(this.data.name != '' && this.data.phone != '' && this.data.code != '' && this.data.idcard != ''){
+        if(this.data.name != '' && this.data.phone != '' && this.data.idcard != ''){
           this.setData({
             submitState: false
           })
@@ -353,20 +358,21 @@ Page({
     } else if (!utils.checkPhone(phone)) {
       box.showToast("手机号码格式不正确")
       return
-    } else if (code == '') {
-      box.showToast("请填写验证码");
-      return
-    } else if (phoneCode[0] == "") {
-      //进入这里说明未点击获取验证码
-      box.showToast("请获取验证码")
-      return
-    } else if (phoneCode[0] != phone) {
-      box.showToast("手机号和验证码不匹配")
-      return
-    } else if (phoneCode[1] != code) {
-      box.showToast("验证码错误")
-      return
-    }
+    } 
+    // else if (code == '') {
+    //   box.showToast("请填写验证码");
+    //   return
+    // } else if (phoneCode[0] == "") {
+    //   //进入这里说明未点击获取验证码
+    //   box.showToast("请获取验证码")
+    //   return
+    // } else if (phoneCode[0] != phone) {
+    //   box.showToast("手机号和验证码不匹配")
+    //   return
+    // } else if (phoneCode[1] != code) {
+    //   box.showToast("验证码错误")
+    //   return
+    // }
 
     if (onlineFlag == false) { //线下
       that.setData({
@@ -406,7 +412,7 @@ Page({
       card_type: that.data.cardIndex,
       id_card: that.data.idcard,
       phone: phone,
-      code: code,
+      // code: code,
       onlineFlag: that.data.onlineFlagNum,
     }
 

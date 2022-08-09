@@ -11,7 +11,7 @@
     <image src="../../images/icon_0701_06.png" class="main_img" />
   </view> -->
   <view style="position:relative;">
-    <image src="../../images/icon_0701_05.png" style="height:302px;width:100%"/>
+    <image src="../../images/icon_0701_05.png" style="height:{{isIphoneX?(302+StatusBar):302}}px;width:100%"/>
     <view class="main_view1">
       <view class="main_title">{{main_title}}</view>
       <view class="main_title_1"><view class="main_radius_1"></view><view class="main_text">{{main_type_time}}</view></view>

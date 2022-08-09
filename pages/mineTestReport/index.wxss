@@ -1,4 +1,7 @@
 /* pages/myOrder/myOrder.wxss */
+page{
+  background-color: #F5F5F5;
+}
 .P1{
   width: 690rpx;
   margin: 30rpx;
@@ -54,8 +57,8 @@
 .page{
   width:100%;
   overflow-x:hidden;
-  height: 100%;
-  background-color: #F5F5F5;
+  /* height: 100%; */
+  /* background-color: #F5F5F5; */
 }
 .bold_font{ 
   font-size: 28rpx;
@@ -113,16 +116,14 @@ button{
 .search
 {
   display: flex;
-  flex-direction: row;
-  justify-content:end;
-  align-items: center;
-  width:100%;
-  height:60rpx;
-  /* background-color:whitesmoke; */
-  margin-top: 5%;
-  /* border:1rpx solid whitesmoke; */
-  border-radius: 20rpx;
-   /* margin-left: 120rpx;  */
+    /* flex-direction: row; */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60rpx;
+    margin-top: 5%;
+    border-radius: 20rpx;
+    padding: 0rpx 30rpx;
 }
 
 /* 搜索框提示文字样式 */
@@ -191,13 +192,13 @@ button{
   background-color: #F5F5F5;
 }
 .input_view{
-  width: 67%;
+  width: 70%;
     text-align: initial;
     background-color: #F5F5F5;
     height: 70rpx;
     padding-left: 24rpx;
     border-radius: 18rpx;
-    margin-left: 38rpx;
+    /* margin-left: 38rpx; */
     display: flex;
 }
 #search_checked{
@@ -429,11 +430,11 @@ text-align: center;
 }
 
 .sample_view{
-  position: absolute;
+  /* position: absolute;
     right: 30rpx;
     top: -2rpx;
-    z-index: 100;
-    padding: 10rpx 0rpx 10rpx 20rpx;
+    z-index: 100; */
+    /* padding: 10rpx 0rpx 10rpx 20rpx; */
     color: #E787AC;
 }
 

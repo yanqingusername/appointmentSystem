@@ -20,6 +20,7 @@ Page({
     phone_number: '',
     user_name: '',
     userInfo: {},
+    avatarUrl: ''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -29,6 +30,8 @@ Page({
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
       phone_number: wx.getStorageSync('coyote_userinfo').phone_number || '',
       user_name: wx.getStorageSync('coyote_userinfo').nickName || '',
+      avatarUrl: wx.getStorageSync('coyote_userinfo').avatarUrl || '',
+      isIphoneX: this.isIphoneX()
     });
     this.getbaseData();
   },
@@ -37,7 +40,18 @@ Page({
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
       phone_number: wx.getStorageSync('coyote_userinfo').phone_number || '',
       user_name: wx.getStorageSync('coyote_userinfo').nickName || '',
+      avatarUrl: wx.getStorageSync('coyote_userinfo').avatarUrl || '',
+      isIphoneX: this.isIphoneX()
     });
+  },
+  isIphoneX() {
+    let info = wx.getSystemInfoSync();
+    console.log(info)
+    if (info.model.indexOf("iPhone") >= 0 && (info.statusBarHeight > 20)) {
+      return true;
+    } else {
+      return false;
+    }
   },
   getUserProfile() {
     wx.getUserProfile({
@@ -150,6 +164,7 @@ Page({
         userInfo: user_info,
         user_id: this.data.userInfo.user_id,
         user_name: this.data.userInfo.nickName,
+        avatarUrl: this.data.userInfo.avatarUrl
       });
       wx.setStorageSync('coyote_userinfo', user_info);
     }
@@ -171,6 +186,7 @@ Page({
             userInfo: user_info,
             user_id: that.data.userInfo.user_id,
             user_name: that.data.userInfo.nickName,
+            avatarUrl: that.data.userInfo.avatarUrl
           });
           // 本地存储
           wx.setStorageSync('coyote_userinfo', user_info);
@@ -190,23 +206,36 @@ Page({
   },
   // 退出登录
   toExit: function () {
-    var data = {
-      openid: app.globalData.openid,
-    }
-    request.request_get('/support/appLogOut.hn', data, function (res) {
-      console.info('回调', res)
-      if (res) {
-        if (res.success) {
-          wx.reLaunch({
-            url: '/pages/index/login',
-          })
-        } else {
-          box.showToast("请检查网络后重试");
-        }
-      } else {
-        box.showToast("网络不稳定，请重试");
+    let that = this;
+    wx.removeStorage({
+      key: 'coyote_userinfo',
+      success (res) {
+        console.log(res)
+        that.setData({
+          user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+          phone_number: wx.getStorageSync('coyote_userinfo').phone_number || '',
+          user_name: wx.getStorageSync('coyote_userinfo').nickName || '',
+          avatarUrl: wx.getStorageSync('coyote_userinfo').avatarUrl || '',
+        });
       }
-    })
+    });
+    // var data = {
+    //   openid: app.globalData.openid,
+    // }
+    // request.request_get('/support/appLogOut.hn', data, function (res) {
+    //   console.info('回调', res)
+    //   if (res) {
+    //     if (res.success) {
+    //       wx.reLaunch({
+    //         url: '/pages/index/login',
+    //       })
+    //     } else {
+    //       box.showToast("请检查网络后重试");
+    //     }
+    //   } else {
+    //     box.showToast("网络不稳定，请重试");
+    //   }
+    // })
   },
   bindCoupon: function () {
     if (this.data.user_id) {

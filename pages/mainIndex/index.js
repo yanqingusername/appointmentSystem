@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    StatusBar: app.globalData.StatusBar,
     fix_channel_id: -1,
     isLogin: false,
     dialogData: {},
@@ -17,14 +18,15 @@ Page({
     isNewNotice: true,
     main_title: '卡尤迪新冠肺炎核酸检测',
     main_type_time: '12小时内出报告',
-    main_type_text: '91个核酸检测采样点位，看地图 >'
+    main_type_text: '91个核酸检测采样点位，看地图'
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
     this.setData({
-      user_id: wx.getStorageSync('coyote_userinfo').user_id || ''
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      isIphoneX: this.isIphoneX()
     });
 
     this.getbaseData();
@@ -32,10 +34,20 @@ Page({
   },
   onShow: function () {
     this.setData({
-      user_id: wx.getStorageSync('coyote_userinfo').user_id || ''
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      isIphoneX: this.isIphoneX()
     });
 
     this.getNoticeList();
+  },
+  isIphoneX() {
+    let info = wx.getSystemInfoSync();
+    console.log(info)
+    if (info.model.indexOf("iPhone") >= 0 && (info.statusBarHeight > 20)) {
+      return true;
+    } else {
+      return false;
+    }
   },
   /**
    * 个人预约
