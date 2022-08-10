@@ -11,7 +11,8 @@
   </view>
     <input id="search_checked" style="width:{{sampling_place=='北京清河站'? '62':'72'}}%;" type='text' placeholder='请输入采样点或地址关键词' placeholder-style="color: #BEDBFF;" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" ></input>
   <view class="weui-icon-clear" wx:if="{{searchText}}" bindtap="clearSearchHandle">
-    <icon type="clear" size="20" />
+    <!-- <icon type="clear" size="20" /> -->
+    <image style="width:28rpx;height:28rpx;" src="../../images/icon_0810_01.png"></image>
   </view>
   
   </view>

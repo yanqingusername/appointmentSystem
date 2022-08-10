@@ -127,7 +127,7 @@ button{
   /* background-color:whitesmoke; */
   margin-top: 5%;
   /* border:1rpx solid whitesmoke; */
-  border-radius: 20rpx;
+  /* border-radius: 20rpx; */
    /* margin-left: 120rpx;  */
 }
 
@@ -197,7 +197,7 @@ button{
     height: 70rpx;
     padding-left: 30rpx;
     padding-right: 150rpx;
-    border-radius: 30rpx;
+    border-radius: 50rpx;
     color: #FFFFFF;
     /* opacity: 0.8; */
 }
