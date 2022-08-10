@@ -57,7 +57,7 @@
     "backgroundColor": "#F2F2F2",
     "list": [
       {
-        "pagePath": "pages/mainIndex/index",
+        "pagePath": "pages/index/index",
         "iconPath": "/images/main_img.png",
         "selectedIconPath": "/images/main_img_select.png",
         "text": "首页"

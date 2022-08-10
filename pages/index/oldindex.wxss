@@ -1,0 +1,70 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.page{
+  width:100%;
+  overflow-x:hidden;
+}
+.image_column{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+}
+image{
+  margin: auto;
+  height: 260rpx;
+  width: 100%;
+}
+#coupon_bottom{
+display: flex;
+bottom: 60rpx;
+position: absolute;
+align-items: center;
+justify-content: center;
+width: 100%;
+/* left:280rpx; */
+/* justify-content: center; */
+}
+#coupon_text{
+  color: #5E5E5E;
+  font-size: 32rpx;
+}
+.swiper {
+  height: 300rpx;
+  width: 100%;
+}
+.swiper image {
+  height: 100%;
+  width: 100%;
+}
+
+.view_item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 0rpx 20rpx 0rpx;
+}
+
+.view_img{
+  width: 726rpx;
+  height: 236rpx;
+  margin: 0rpx;
+}
