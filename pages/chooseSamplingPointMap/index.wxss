@@ -120,7 +120,7 @@ button{
 {
   display: flex;
   flex-direction: row;
-  justify-content:end;
+  justify-content:center;
   align-items: center;
   width:100%;
   height:60rpx;
@@ -190,23 +190,22 @@ button{
   color: #E26B9B;
 }
 #search_checked{
-  width:72%;
-  text-align: initial;
-  background: #63A7FF;
+  width: 72%;
+    text-align: initial;
+    background: #63A7FF;
     margin-left: 20rpx;
-  height: 70rpx;
-  /* padding-top: 12rpx; */
-  padding-left: 30rpx;
-  padding-right: 150rpx;
-  border-radius: 30rpx;
-
-color: #FFFFFF;
+    height: 70rpx;
+    padding-left: 30rpx;
+    padding-right: 150rpx;
+    border-radius: 30rpx;
+    color: #FFFFFF;
+    /* opacity: 0.8; */
 }
 .phcolor{
   color: #FFFFFF;
 }
 .search_border{
-  background: linear-gradient(45deg, #469DE8, #469DE8);
+  background: linear-gradient(90deg, #6CAAF8, #4E7EF4);
   height: 10rpx;
   padding-top: 1rpx;
   padding-bottom: 130rpx;
@@ -222,7 +221,7 @@ color: #FFFFFF;
 .search_left{
   display: flex;
   align-items: center;
-  margin-left: 5%;
+  /* margin-left: 5%; */
 }
 #district_font{
   font-size: 30rpx;
@@ -483,23 +482,24 @@ background: #FFF5F3;
     margin-right: 6rpx;
 }
 .lable_view{
-  background: linear-gradient(45deg, #469DE8, #469DE8);
+  background: linear-gradient(90deg, #6CAAF8, #4E7EF4);
     display: flex;
     width: 100%;
     height: 90rpx;
     padding: 20rpx 30rpx 0rpx 30rpx;
 }
 .lable_view_item{
-    background: #5FB0FF;
-    border-radius: 8rpx;
-    color: #FFFFFF;
-    font-size: 24rpx;
-    display: flex;
-    padding: 4rpx 12rpx;
-    align-items: center;
-    justify-content: center;
-    border: 1px #5FB0FF solid;
-    margin-right: 12rpx;
+  background: #83B4FF;
+  border-radius: 8rpx;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  display: flex;
+  padding: 4rpx 12rpx;
+  align-items: center;
+  justify-content: center;
+  border: 1px #83B4FF solid;
+  margin-right: 12rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
 }
 
 .lable_view_item_activety{
@@ -513,6 +513,7 @@ background: #FFF5F3;
   justify-content: center;
   border: 1px #FFFFFF solid;
   margin-right: 12rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
 }
 
 .item_view{
@@ -643,4 +644,9 @@ margin: 20rpx 0rpx 6rpx 0rpx;
   padding: 0rpx 20rpx 0rpx 30rpx;
   background: #E1F1FE;
 border-radius: 18rpx;
+}
+
+.bg-gradual-blue1{
+  background: linear-gradient(90deg, #6CAAF8, #4E7EF4);
+  color: var(--white);
 }

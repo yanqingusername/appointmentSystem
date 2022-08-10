@@ -1,5 +1,5 @@
 <!--pages/myOrder/myOrder.wxml-->
-<cu-custom isBack="{{true}}" bgColor="bg-gradual-blue">
+<cu-custom isBack="{{true}}" bgColor="bg-gradual-blue1">
   <view slot="backText" bindtap="bindBack"></view>
   <view slot="content">选择采样点</view>
 </cu-custom>
@@ -9,7 +9,7 @@
   <text id="district_font">{{sampling_place}}</text>
         <image class="right_arrow" src="../../images/icon_0701_22.png"></image>
   </view>
-    <input id="search_checked" style="width:{{sampling_place=='北京清河站'? '62':'72'}}%;" type='text' placeholder='请输入采样点或地址关键词' confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" ></input>
+    <input id="search_checked" style="width:{{sampling_place=='北京清河站'? '62':'72'}}%;" type='text' placeholder='请输入采样点或地址关键词' placeholder-style="color: #BEDBFF;" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" ></input>
   <view class="weui-icon-clear" wx:if="{{searchText}}" bindtap="clearSearchHandle">
     <icon type="clear" size="20" />
   </view>
