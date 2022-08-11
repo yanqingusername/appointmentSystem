@@ -331,7 +331,7 @@ Page({
           // 本地存储
           wx.setStorageSync('coyote_userinfo',user_info);
 
-          this.getNoticeList();
+          that.getNoticeList();
         } else {
           box.showToast(res.msg);
         }
