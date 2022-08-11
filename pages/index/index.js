@@ -384,7 +384,7 @@ Page({
             isNew: res.isNew
           });
         } else {
-          box.showToast(res.msg);
+          // box.showToast(res.msg);
         }
       } else {
         box.showToast("网络不稳定，请重试");
