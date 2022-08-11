@@ -57,11 +57,19 @@ Page({
             policyTitle: res.policyTitle,
             policyType: res.policyType,
             policyContent: res.policyContent,
-            policyText: res.policyText,
-            policyList: res.policyList,
+            // policyText: res.policyText,
+            // policyList: res.policyList,
             policyCity: res.policycity,
             policyPhone: res.policyphone,
           });
+          let policyText = res.policyText;
+          let policyList = [];
+          if(policyText){
+            policyList = policyText.split('<br/>');
+            that.setData({
+              policyList: policyList
+            });
+          }
         } else {
           box.showToast(res.msg);
         }

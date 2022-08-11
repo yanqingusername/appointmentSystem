@@ -14,11 +14,11 @@
           <view class="type_text_1">{{policyContent}}</view>
         </view>
         <view class="hr"></view>
-        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+        <!-- <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
           <view class="P2_1_1_1">{{policyText}}</view>
-        </view>
+        </view> -->
         <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;" wx:for="{{policyList}}" wx:key="index">
-          <view class="P2_1_1">{{item.content}}</view>
+          <view class="P2_1_1">{{item}}</view>
         </view>
       </view>
   </view>
