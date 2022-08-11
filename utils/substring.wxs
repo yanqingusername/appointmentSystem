@@ -37,6 +37,14 @@
     var param = params.replace(getRegExp('(\d{6})(.*)(\d{4})','g'), '$1 $2 $3')
       return param
   }
+
+  var contentTrim = function(params){
+    if (!params) {  
+    return " ";
+    }
+    var param = params.replace(getRegExp('<br/>','g'), '  ');
+    return param;
+  }
   
 
 
@@ -45,5 +53,6 @@
     monthString: monthString,
     timeString: timeString,
     centerPhoneTrim: centerPhoneTrim,
-    centerIdCardTrim: centerIdCardTrim
+    centerIdCardTrim: centerIdCardTrim,
+    contentTrim: contentTrim
 }
