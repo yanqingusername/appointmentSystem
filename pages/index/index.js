@@ -22,7 +22,7 @@ Page({
     phone_number: '',
     userInfo: {},
     noticeList: [],
-    isNewNotice: true,
+    isNew: 1,
     main_title: '卡尤迪新冠肺炎核酸检测',
     main_type_time: '12小时内出报告',
     main_type_text: '91个核酸检测采样点位，看地图'
@@ -48,6 +48,7 @@ Page({
           isIphoneX: this.isIphoneX()
         });
     
+        this.getNoticeNew();
         this.getNoticeList();
   },
   onLoad(query) {
@@ -120,6 +121,8 @@ Page({
    */
   bindTestReport: function () {
     if (this.data.user_id) {
+      let date = new Date().getTime();
+      wx.setStorageSync('currtime',utils.now_time(date));
       wx.navigateTo({
         url: "/pages/mineTestReport/index"
       })
@@ -370,18 +373,17 @@ Page({
    * 获取最新公告
    */
    getNoticeNew() {
-    request.request_get('/a/getNoticeNew.hn', {
-      user_id: this.data.user_id
+     let that = this;
+    request.request_get('/a1/getNoticeNew.hn', {
+      user_id: this.data.user_id,
+      curr_time: wx.getStorageSync('currtime') || '2022-08-01 00:00:00'
     }, function (res) {
       if (res) {
         if (res.success) {
-          this.setData({
-            isNewNotice: true
+          that.setData({
+            isNew: res.isNew
           });
         } else {
-          this.setData({
-            isNewNotice: false
-          });
           box.showToast(res.msg);
         }
       } else {

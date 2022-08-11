@@ -68,7 +68,7 @@
           <image class="bottom_view_1_img" src="../../images/icon_0701_12.png"></image>
           <view class="bottom_view_1_text">查询报告</view>
 
-          <image wx:if="{{isNewNotice}}" class="main_15" src="../../images/icon_0701_15.png"></image>
+          <image wx:if="{{isNew == 0}}" class="main_15" src="../../images/icon_0701_15.png"></image>
         </view>
         <view class="bottom_view_1" bind:tap="bindEpidemicPreventionPolicy">
           <image class="bottom_view_1_img" src="../../images/icon_0701_13.png"></image>
