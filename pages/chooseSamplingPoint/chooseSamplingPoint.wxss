@@ -192,7 +192,8 @@ button{
 #search_checked{
   width: 72%;
     text-align: initial;
-    background: #63A7FF;
+    /* background: #63A7FF; */
+    background: linear-gradient(90deg, #7EB2FF 0%, #75A8F7 100%, #75A8F7 100%);
     margin-left: 20rpx;
     height: 70rpx;
     padding-left: 30rpx;
