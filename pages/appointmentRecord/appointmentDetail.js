@@ -203,7 +203,7 @@ bindBack:function(){
   bindBackIndex:function(){
     var that =this
    
-      wx.redirectTo({
+      wx.reLaunch({
         url: '/pages/index/index'
       })
    

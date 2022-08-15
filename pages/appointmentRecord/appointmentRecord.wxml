@@ -61,8 +61,8 @@
           <view class="type_text_1">{{item.create_time}}</view>
           <view style="display: flex;">
             <view wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindRefund">申请退款</view>
-            <view id="button_2" wx:if="{{item.use_status==1}}" bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看信息码</view>
-            <view id="button_2" wx:else bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看详情</view>
+            <view id="button_2" wx:if="{{item.use_status==1}}" catchtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看信息码</view>
+            <view id="button_2" wx:else catchtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看详情</view>
             <view wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</view>
           </view>
         </view>
@@ -117,8 +117,8 @@
           <view class="type_text_1">{{item.create_time}}</view>
           <view style="display: flex;">
             <view wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindRefund">申请退款</view>
-            <view id="button_2" wx:if="{{item.use_status==1}}" bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看信息码</view>
-            <view id="button_2" wx:else bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看详情</view>
+            <view id="button_2" wx:if="{{item.use_status==1}}" catchtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看信息码</view>
+            <view id="button_2" wx:else catchtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看详情</view>
             <view wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</view>
           </view>
         </view>
