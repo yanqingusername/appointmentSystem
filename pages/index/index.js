@@ -155,20 +155,41 @@ Page({
 
     let open_way= item.open_way
     let icon= item.icon
-    if(open_way==0){
-      wx.navigateTo({
-        url: icon
-      })
-    }else if(open_way==1){
-      app.globalData.article = icon
-      wx.navigateTo({
-        url: '/pages/index/article?url='+icon
-      })
-    }else{
-      app.globalData.article = icon
-      wx.navigateTo({
-        url: '/pages/index/article'
-      })
+    let typestring = item.type;
+
+    // 待采样
+    if(typestring == 0){
+      let herf = item.herf;
+      let appointment_num = item.appointment_num;
+      if(herf && appointment_num) {
+        wx.navigateTo({
+          url: herf + '?appointment_num='+appointment_num+"&onlineFlagNum="
+        });
+      }
+    } else if(typestring == 1){
+      // 超时
+      let herf = item.herf;
+      if(herf) {
+        wx.navigateTo({
+          url: herf + '?choose_type=0&fix_channel_id=-1'
+        });
+      }
+    } else {
+      if(open_way==0){
+        wx.navigateTo({
+          url: icon
+        })
+      }else if(open_way==1){
+        app.globalData.article = icon
+        wx.navigateTo({
+          url: '/pages/index/article?url='+icon
+        })
+      }else{
+        app.globalData.article = icon
+        wx.navigateTo({
+          url: '/pages/index/article'
+        })
+      }
     }
   },
   getUserProfile() {
