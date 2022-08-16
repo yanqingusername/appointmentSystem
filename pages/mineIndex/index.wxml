@@ -15,6 +15,9 @@
     </view>
   </view>
 
+  <view class="mine_new_view">
+
+  
   <view class="mine_center" wx:if="{{user_id}}">
     <view class="mine_center_left">
       <image src="{{avatarUrl}}" style="width:130rpx;height:130rpx;" />
@@ -92,7 +95,7 @@
     </view>
   </view>
 </view>
-
+</view>
 <!-- <view class="mine_10">
   <view class="mine_10_1" bind:tap="toExit">退出登录</view>
 </view> -->

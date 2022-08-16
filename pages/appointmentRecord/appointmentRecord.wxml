@@ -24,7 +24,7 @@
         <view class="app_flex_new">
           <view class="bold_font_new">{{item.test_type}}</view>
           <view wx:if="{{item.use_status!=4&&item.use_status!=5&&item.use_status!=7}}" class="bold_font_2_new">{{item.status}}</view>
-          <view wx:if="{{item.use_status==4}}" class="bold_font_2_new" style="color:#00A451">{{item.status}}</view>
+          <view wx:if="{{item.use_status==4}}" class="bold_font_2_new">{{item.status}}</view>
           <view wx:if="{{item.use_status==5}}" class="bold_font_2_new" style="color:#B8321E">{{item.status}}</view>
           <view wx:if="{{item.use_status==7}}" class="bold_font_2_new" style="color:#444940">{{item.status}}</view>
         </view>
@@ -63,7 +63,7 @@
             <view wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindRefund">申请退款</view>
             <view id="button_2" wx:if="{{item.use_status==1}}" catchtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看信息码</view>
             <view id="button_2" wx:else catchtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看详情</view>
-            <view wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</view>
+            <!-- <view wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</view> -->
           </view>
         </view>
         <!-- <view class="button_flex_new">
@@ -80,7 +80,7 @@
         <view class="app_flex_new">
           <view class="bold_font_new">{{item.test_type}}</view>
           <view wx:if="{{item.use_status!=4&&item.use_status!=5&&item.use_status!=7}}" class="bold_font_2_new">{{item.status}}</view>
-          <view wx:if="{{item.use_status==4}}" class="bold_font_2_new" style="color:#00A451">{{item.status}}</view>
+          <view wx:if="{{item.use_status==4}}" class="bold_font_2_new">{{item.status}}</view>
           <view wx:if="{{item.use_status==5}}" class="bold_font_2_new" style="color:#B8321E">{{item.status}}</view>
           <view wx:if="{{item.use_status==7}}" class="bold_font_2_new" style="color:#444940">{{item.status}}</view>
         </view>
@@ -119,7 +119,7 @@
             <view wx:if="{{item.use_status==1&&item.refundTimeFlag!=false}}" data-appointmentnum="{{item.appointment_num}}" data-paytype="{{item.pay_type}}" id="button_1" catchtap="bindRefund">申请退款</view>
             <view id="button_2" wx:if="{{item.use_status==1}}" catchtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看信息码</view>
             <view id="button_2" wx:else catchtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">查看详情</view>
-            <view wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</view>
+            <!-- <view wx:if="{{item.use_status==4}}" data-report="{{item.pdf_url}}" id="button_2" catchtap="bindDownloadReport">查询报告</view> -->
           </view>
         </view>
 

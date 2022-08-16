@@ -30,12 +30,12 @@ page{
 
 .mine_center{
   /* margin-top: -250rpx; */
-  margin-top: -260rpx;
+  /* margin-top: -260rpx; */
   display: flex;
   align-items: center;
   margin-left: 30rpx;
   margin-right: 30rpx;
-  position: absolute;
+  /* position: absolute; */
 }
 .mine_center_left{
   width: 130rpx;
@@ -51,6 +51,7 @@ page{
  flex-direction: column;
  margin-left: 24rpx;
  width: 530rpx;
+ z-index: 1;
 }
 
 .mine_view_1{
@@ -61,7 +62,7 @@ page{
 
 .mine_view_1_img{
   width: 150rpx;
-  height: 40rpx;
+  height: 60rpx;
 }
 
 .mine_1{
@@ -106,8 +107,10 @@ border-radius: 10px;
 padding: 12rpx 0rpx;
 /* margin-top: 40rpx; */
 flex-direction: column;
-margin-top: -80rpx;
-position: fixed;
+/* margin-top: -80rpx;
+position: fixed; */
+z-index: 1;
+margin-top: 50rpx;
 width: 690rpx;
 }
 
@@ -178,4 +181,11 @@ color: #6C6C6C;
     border: 1px solid #1673EC;
     border-radius: 12rpx;
     color: #1673EC;
+}
+
+.mine_new_view{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -260rpx;
 }
