@@ -620,7 +620,9 @@ Page({
       fail(res) {
         console.log('获取坐标失败')
         var data = {
-          tag: ''
+          tag: '',
+          longitude: 116.39772, // 默认天安门广场
+          latitude: 39.90323, // 默认天安门广场
         }
         request.request_get('/a/getFixedSamplingPoint.hn', data, function (res) {
           console.log('getFixedSamplingPoint', res);
