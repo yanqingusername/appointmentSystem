@@ -212,17 +212,12 @@ Page({
       content: "确定要退出登录吗？",
       success(res) {
         if (res.confirm) {
-          wx.removeStorage({
-            key: 'coyote_userinfo',
-            success (res) {
-              console.log(res)
-              that.setData({
-                user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
-                phone_number: wx.getStorageSync('coyote_userinfo').phone_number || '',
-                user_name: wx.getStorageSync('coyote_userinfo').nickName || '',
-                avatarUrl: wx.getStorageSync('coyote_userinfo').avatarUrl || '',
-              });
-            }
+          wx.removeStorageSync('coyote_userinfo');
+          that.setData({
+            user_id: '',
+            phone_number: '',
+            user_name: '',
+            avatarUrl: '',
           });
         }
       }

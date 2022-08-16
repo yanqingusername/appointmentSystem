@@ -13,11 +13,13 @@ Page({
     submitState: false,
     user_phone: '',
     user_code: '',
-    user_id: ''
+    user_id: '',
+    user_info:{}
   },
   onLoad: function (options) {
     this.setData({
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      user_info: wx.getStorageSync('coyote_userinfo') || '',
     });
   },
   getCode: function () {
@@ -120,7 +122,15 @@ Page({
     request.request_get('/a1/updateiphone.hn', data, function (res) {
       if (res) {
         if (res.success) {
-          
+          box.showToast(res.msg,'',1000);
+          let user_info = that.data.user_info;
+          user_info.phone_number = phone;
+          wx.setStorageSync('coyote_userinfo',user_info);
+          setTimeout(()=>{
+            wx.navigateBack({
+              delta: 1
+            });
+          },1200);
         } else {
           box.showToast(res.msg);
         }
