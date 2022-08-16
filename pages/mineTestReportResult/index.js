@@ -60,7 +60,7 @@ Page({
           });
           if (that.data.appointmentList.length == 0) {
             that.setData({
-              tip: '暂无报告',
+              tip: '该受检人手机号下未查到样本编号的信息',
               overflowFlag: true
             });
           }
@@ -84,7 +84,7 @@ Page({
           });
           if (that.data.appointmentList.length == 0) {
             that.setData({
-              tip: '暂无报告',
+              tip: '该受检人手机号下未查到样本编号的信息',
               overflowFlag: true
             });
           }

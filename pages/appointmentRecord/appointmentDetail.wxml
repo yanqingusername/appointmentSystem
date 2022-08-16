@@ -51,7 +51,7 @@
       </view>
     </view>
     <view class="hr"></view>
-    <view wx:if="{{status != 7 || status != 1}}">
+    <view wx:if="{{status != 7 && status != 1}}">
       <view class="type_view_flex">
         <image class="type_icon_25" src="../../images/icon_0701_25.png"></image>
         <view class="type_title" style="font-size:30rpx;color:#333333;">检测进度</view>

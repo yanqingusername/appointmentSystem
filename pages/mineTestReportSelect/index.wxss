@@ -90,7 +90,7 @@ page{
 }
 
 #search_code{
-  width:500rpx;
+  width:480rpx;
   text-align: initial;
   background-color: #F5F5F5;
   height: 80rpx;
@@ -103,10 +103,10 @@ page{
 
 .P3_code{
   align-self: center;
-  width:37%;
+  width:210rpx;
   text-align: right;
   font-size: 30rpx;
-  padding-right: 30rpx;
+  /* padding-right: 30rpx; */
   /* bottom: 2rpx; */
 }
 

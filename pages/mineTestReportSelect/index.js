@@ -79,7 +79,7 @@ Page({
         var interval = setInterval(function () {
           currentTime--;
           that.setData({
-            codeBtText: currentTime + 's'
+            codeBtText: currentTime + '秒重新发送'
           })
           if (currentTime <= 0) {
             clearInterval(interval)

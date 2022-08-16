@@ -74,7 +74,7 @@
         value="{{phone_code}}"
         bindinput='input3'
         />
-        <view class="P3_code" bindtap="getCode" disabled="{{codeBtState}}" style="{{codeBtState?'color:#CCCCCC':'color:#E16898'}};padding-right: 24rpx;">{{codeBtText}}</view>
+        <view class="P3_code" bindtap="getCode" disabled="{{codeBtState}}" style="{{codeBtState?'color:#E16898':'color:#E16898'}};">{{codeBtText}}</view>
       </view>
 
       <view class="btn_view_active" wx:if="{{submitState2}}" bind:tap="bindSelectResult2">查询</view>
