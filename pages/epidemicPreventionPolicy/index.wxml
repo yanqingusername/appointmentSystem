@@ -7,7 +7,7 @@
 <view class="policy_view">
   <view class="policy_view_1">
     <view class="policy_view_1_1">{{city}}</view>
-    <view class="policy_view_1_2">{{type_name}}</view>
+    <view class="policy_view_1_2" wx:if="{{type_name}}">{{type_name}}</view>
   </view>
   <view class="policy_view_2">{{source_type}}</view>
 </view>
