@@ -81,7 +81,7 @@ page{
 }
 
 .bold_font_2_new {
-  color: #FCC883;
+  color: #FF9900;
   font-size: 28rpx;
   margin: 10rpx 0rpx;
 }

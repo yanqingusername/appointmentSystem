@@ -142,7 +142,7 @@ page{
 }
 
 .policy_view_1_2{
-  background: #FCC883;
+  background: #FF9900;
     border-radius: 8rpx;
     color: #FFFFFF;
     font-size: 22rpx;
