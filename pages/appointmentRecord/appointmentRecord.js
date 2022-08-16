@@ -135,11 +135,14 @@ Page({
             if (appointmentList[i].use_status == 1) {
               appointmentList[i].status = '待采样'
             } else if (appointmentList[i].use_status == 2) {
-              appointmentList[i].status = '待检测'
+              // appointmentList[i].status = '待检测'
+              appointmentList[i].status = '已采样'
             } else if (appointmentList[i].use_status == 3) {
-              appointmentList[i].status = '检测中'
+              // appointmentList[i].status = '检测中'
+              appointmentList[i].status = '已采样'
             } else if (appointmentList[i].use_status == 4) {
-              appointmentList[i].status = '已报告'
+              // appointmentList[i].status = '已报告'
+              appointmentList[i].status = '已采样'
             } else if (appointmentList[i].use_status == 5) {
               appointmentList[i].status = '退款中'
             } else if (appointmentList[i].use_status == 7) {

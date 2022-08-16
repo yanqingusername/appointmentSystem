@@ -644,10 +644,19 @@ margin: 20rpx 0rpx 6rpx 0rpx;
   justify-content: space-between;
   padding: 0rpx 20rpx 0rpx 30rpx;
   background: #E1F1FE;
-border-radius: 18rpx;
+border-radius: 12rpx;
 }
 
 .bg-gradual-blue1{
   background: linear-gradient(90deg, #6CAAF8, #4E7EF4);
   color: var(--white);
+}
+
+
+.new_title{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10rpx 20rpx 10rpx 30rpx;
+  font-size: 32rpx;
 }

@@ -20,7 +20,7 @@ Page({
     onlineFlag:false,
     support_id:"",
     TabCur: 0,
-    status: 1,
+    status: '',
     payment_channel:'wechat',
     statusList: [ '已接单','已完成', '用户评价'],
     back_color:'#418BE4',
@@ -36,7 +36,8 @@ Page({
     yysj1:'',
     yysj2:'',
 
-    user_id: ''
+    user_id: '',
+    isShowPages: false
   },
 
   onShow:function(){
@@ -113,6 +114,9 @@ getAppointmentInfo: function () {
     console.info('回调', res)
     if (res) {
       if (res.success) {
+        that.setData({
+          isShowPages: true
+        });
         var info = res;
         if(info.payment_type==0){
           that.setData({

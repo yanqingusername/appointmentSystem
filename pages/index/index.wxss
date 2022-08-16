@@ -193,8 +193,9 @@ position: relative;
 .notice_left {
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   height: 100%;
+  padding-left: 20rpx;
 }
 
 .notice_left_img {

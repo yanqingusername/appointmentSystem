@@ -122,10 +122,10 @@
       <view class="P2 app_font" style="margin-left:0rpx;margin-right:0rpx;margin-top:20rpx;position:relative;" data-name="{{item.channel_name}}"  data-distance="{{item.distance}}"   data-id="{{item.channel_id}}" data-paytypetexts="{{item.paytypetexts}}" bindtap="bindCheckSamplingPoint">
         <image wx:if="{{hiddenFlag==false && index == 0}}" src="../../images/icon_0701_23.png" class="address_img"/>
 
-        <view class="app_flex">
+        <!-- <view class="app_flex">
           <view class="bold_font" style="width: 95%;margin-left:30rpx;">{{item.channel_name}}</view>
-          <!-- <view wx:if="{{hiddenFlag==false}}" class="bold_font_2" style="display: flex;align-items: center;margin-right: 20rpx;"><view wx:if="{{index == 0}}" class="address_view">距离最近</view>{{item.distance}}</view> -->
-        </view>
+        </view> -->
+        <view class="new_title">{{item.channel_name}}</view>
 
         <view class="map_view" catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
           <view class="map_view_title"><text style="color:#0072FF;" wx:if="{{hiddenFlag==false}}">{{item.distance}}</text> |  {{item.site_description}}</view>
