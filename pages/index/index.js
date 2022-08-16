@@ -154,7 +154,7 @@ Page({
     console.log('---->:', item)
 
     let open_way= item.open_way
-    let icon= item.icon
+    let icon= item.herf
     let typestring = item.type;
 
     // 待采样
