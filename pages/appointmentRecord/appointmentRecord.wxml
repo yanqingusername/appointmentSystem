@@ -49,7 +49,7 @@
           <view class="P2_1_1">预约时间</view>
           <view class="P2_1_2">{{item.appointment_date}} {{item.appointment_time_slot}}</view>
         </view>
-        <view class="type_view" catch:tap="bindTypetags" wx:if="{{item.use_status != 1 && item.use_status != 5 && item.use_status != 7}}" data-appointmentnum="{{item.appointment_num}}" >
+        <view class="type_view" catch:tap="bindTypetags" wx:if="{{item.use_status != 1 && item.use_status != 5 && item.use_status != 7}}" data-sampleid="{{item.sample_id}}" >
           <view class="type_view_1">
             <image class="type_icon_25" src="../../images/icon_0701_25.png"></image>
             <view class="type_title">{{item.statustext}}</view>
@@ -105,7 +105,7 @@
           <view class="P2_1_1">预约时间</view>
           <view class="P2_1_2">{{item.appointment_date}} {{item.appointment_time_slot}}</view>
         </view>
-        <view class="type_view" catch:tap="bindTypetags" wx:if="{{item.use_status != 1 && item.use_status != 5 && item.use_status != 7}}" data-appointmentnum="{{item.appointment_num}}" >
+        <view class="type_view" catch:tap="bindTypetags" wx:if="{{item.use_status != 1 && item.use_status != 5 && item.use_status != 7}}" data-sampleid="{{item.sample_id}}" >
           <view class="type_view_1">
             <image class="type_icon_25" src="../../images/icon_0701_25.png"></image>
             <view class="type_title">{{item.statustext}}</view>

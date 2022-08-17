@@ -27,6 +27,7 @@ Page({
    */
   onLoad: function () {
     this.setData({
+      userInfo: wx.getStorageSync('coyote_userinfo') || {},
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
       phone_number: wx.getStorageSync('coyote_userinfo').phone_number || '',
       user_name: wx.getStorageSync('coyote_userinfo').nickName || '',
@@ -37,12 +38,17 @@ Page({
   },
   onShow: function () {
     this.setData({
+      userInfo: wx.getStorageSync('coyote_userinfo') || {},
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
       phone_number: wx.getStorageSync('coyote_userinfo').phone_number || '',
       user_name: wx.getStorageSync('coyote_userinfo').nickName || '',
       avatarUrl: wx.getStorageSync('coyote_userinfo').avatarUrl || '',
       isIphoneX: this.isIphoneX()
     });
+
+    if(this.data.user_id){
+      this.getNewUserinfo();
+    }
   },
   isIphoneX() {
     let info = wx.getSystemInfoSync();
@@ -376,5 +382,46 @@ Page({
         }
       }
     })
+  },
+
+  /**
+   * 获取用户信息
+   */
+   getNewUserinfo() {
+    let that = this;
+    request.request_get('/a/getNewUserinfo.hn', {
+      user_id: this.data.user_id
+    }, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res && res.res && res.res.length > 0){
+            let newUserInfo = res.res[0];
+            let user_info = that.data.userInfo;
+            user_info.phone_number = newUserInfo.telephone;
+            user_info.nickName = newUserInfo.nickname;
+            user_info.avatarUrl = newUserInfo.avatarurl;
+
+            that.setData({
+              userInfo: user_info,
+              phone_number: newUserInfo.telephone,
+              user_name: newUserInfo.nickname,
+              avatarUrl: newUserInfo.avatarurl
+            });
+
+            var coyote_userinfo = wx.getStorageSync('coyote_userinfo');
+            coyote_userinfo.phone_number = newUserInfo.telephone;
+            coyote_userinfo.nickName = newUserInfo.nickname;
+            coyote_userinfo.avatarUrl = newUserInfo.avatarurl;
+
+            // 本地存储
+            wx.setStorageSync('coyote_userinfo',coyote_userinfo);
+          }
+        } else {
+          box.showToast(res.msg);
+        }
+      } else {
+        box.showToast("网络不稳定，请重试");
+      }
+    });
   },
 })

@@ -50,6 +50,10 @@ Page({
     
         this.getNoticeNew();
         this.getNoticeList();
+
+        if(this.data.user_id){
+          this.getNewUserinfo();
+        }
   },
   onLoad(query) {
     var that =this
@@ -333,6 +337,7 @@ Page({
       wx.setStorageSync('coyote_userinfo',user_info);
 
       this.getNoticeList();
+      this.getNewUserinfo();
     }
   },
   TEL(e){
@@ -356,6 +361,7 @@ Page({
           wx.setStorageSync('coyote_userinfo',user_info);
 
           that.getNoticeList();
+          that.getNewUserinfo();
         } else {
           box.showToast(res.msg);
         }
@@ -450,5 +456,42 @@ Page({
         }
       }
     })
+  },
+
+  /**
+   * 获取用户信息
+   */
+   getNewUserinfo() {
+    let that = this;
+    request.request_get('/a/getNewUserinfo.hn', {
+      user_id: this.data.user_id
+    }, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res && res.res && res.res.length > 0){
+            let newUserInfo = res.res[0];
+            let user_info = that.data.userInfo;
+            user_info.phone_number = newUserInfo.telephone;
+            user_info.nickName = newUserInfo.nickname;
+            user_info.avatarUrl = newUserInfo.avatarurl;
+
+            var coyote_userinfo = wx.getStorageSync('coyote_userinfo');
+            coyote_userinfo.phone_number = newUserInfo.telephone;
+            coyote_userinfo.nickName = newUserInfo.nickname;
+            coyote_userinfo.avatarUrl = newUserInfo.avatarurl;
+
+            that.setData({
+              userInfo: user_info,
+            });
+            // 本地存储
+            wx.setStorageSync('coyote_userinfo',coyote_userinfo);
+          }
+        } else {
+          box.showToast(res.msg);
+        }
+      } else {
+        box.showToast("网络不稳定，请重试");
+      }
+    });
   },
 })

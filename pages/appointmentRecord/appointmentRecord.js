@@ -443,10 +443,10 @@ Page({
     }
   },
   bindTypetags(e){
-    let appointmentnum = e.currentTarget.dataset.appointmentnum;
-    if(appointmentnum){
+    let sampleid = e.currentTarget.dataset.sampleid;
+    if(sampleid){
       wx.navigateTo({
-        url: `/pages/typeTags/index?appointmentnum=${appointmentnum}`
+        url: `/pages/typeTags/index?sampleid=${sampleid}`
       })
     }
   },
