@@ -31,7 +31,7 @@
 
         <view class="button_flex_new_between">
           <view class="type_text_1">{{policyCity}}</view>
-          <view style="display: flex;" catchtap="phoneCall">
+          <view style="display: flex;" catchtap="phoneCall" data-policyphone="{{policyPhone}}">
             <view class="type_text_2">{{policyPhone}}</view>
           </view>
         </view>

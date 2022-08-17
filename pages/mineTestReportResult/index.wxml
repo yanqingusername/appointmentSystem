@@ -6,7 +6,7 @@
 <view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
   <view class="P1">
     <block wx:for="{{appointmentList}}" wx:key="index">
-      <view class="P2 app_font" bindtap="toInfo" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
+      <view class="P2 app_font" data-report="{{item.reportUrl}}" bindtap="bindDownloadReport" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
         <view class="app_flex_new">
           <view class="bold_font_new">{{item.test_name}}</view>
           <view class="bold_font_2_new">{{item.test_result}}</view>
@@ -27,8 +27,8 @@
         <view class="button_flex_new_between">
           <view class="type_text_1">{{item.report_time}}</view>
           <view style="display: flex;">
-            <view data-report="{{item.reportUrl}}" id="button_1" catchtap="bindDownloadReport">下载</view>
-            <view data-report="{{item.reportUrl}}" id="button_2" catchtap="bindDownloadReport">查看</view>
+            <!-- <view data-report="{{item.reportUrl}}" id="button_1" catchtap="bindDownloadReport">下载</view> -->
+            <view data-report="{{item.reportUrl}}" id="button_1" catchtap="bindDownloadReport">查看</view>
           </view>
         </view>
       </view>

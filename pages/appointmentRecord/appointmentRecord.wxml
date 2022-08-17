@@ -10,7 +10,7 @@
     </view>
   </view>
 </view>
-<view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
+<view class="page {{overflowFlag==true?'active':''}}">
   <swiper wx:if="{{movies.length>0}}" class="swiper" indicator-dots="true" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000">
     <block wx:for="{{movies}}" wx:for-index="index">
       <swiper-item>

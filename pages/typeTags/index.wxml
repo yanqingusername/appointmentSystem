@@ -8,9 +8,14 @@
   <view class="P1">
     <view class="P2 app_font">
       <view class="bold_font">采样信息</view>
-      <view class="P2_1 app_flex">
-        <view class="P2_1_3">样本编号</view>
-        <view class="P2_1_2">{{sample_id}}</view>
+      <view class="view_between">
+        <view class="view_between_left">
+          <view class="P2_1_3">样本编号</view>
+          <view class="P2_1_5">{{sample_id}}</view>
+        </view>
+        <view class="view_between_right">
+          <view class="P2_1_4" bindtap="bindCopy" data-sampleid="{{sample_id}}">复制</view>
+        </view>
       </view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">受检人</view>

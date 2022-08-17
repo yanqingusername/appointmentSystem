@@ -1,4 +1,7 @@
 /* pages/myOrder/myOrder.wxss */
+page{
+  background-color: #F5F5F5;
+}
 .P1{
   width: 690rpx;
   margin: 30rpx;
@@ -188,7 +191,8 @@ button{
   overflow-x:hidden;
   overflow-y:hidden;
   /* height: 100%; */
-  background-color: white;
+  /* background-color: white; */
+  margin-top: 30rpx;
 }
 #search_checked{
   width:90%;

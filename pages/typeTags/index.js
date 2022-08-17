@@ -99,4 +99,22 @@ Page({
       }
     })
   },
+  bindCopy: function(e){
+    let sampleid = e.currentTarget.dataset.sampleid;
+    if(sampleid){
+      wx.setClipboardData({
+        data: sampleid,
+        success (res) {
+          wx.getClipboardData({
+            success (res) {
+              wx.showToast({
+                title: '内容已复制',
+              })
+              console.log(res.data) // data
+            }
+          })
+        }
+      })
+    }
+  },
 })

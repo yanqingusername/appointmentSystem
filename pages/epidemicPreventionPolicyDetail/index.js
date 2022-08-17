@@ -15,17 +15,6 @@ Page({
     policyList: [],
     policyCity: '',
     policyPhone: '',
-
-    // {
-    //   content: '1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字。'
-    // },
-    // {
-    //   content: '1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字。'
-    // },
-    // {
-    //   content: '1 鉴于当前北京疫情形势，为防止疫情外溢扩散，首都严格进京管理xxx政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字政策措施文字。'
-    // }
-  
   },
 
   onShow: function () {
@@ -38,8 +27,9 @@ Page({
     this.getPreventionPolicyDetail();
   },
   phoneCall: function (e) {
+    let policyPhone = e.currentTarget.dataset.policyphone;
     wx.makePhoneCall({
-      phoneNumber: this.data.policyPhone,
+      phoneNumber: policyPhone,
       success: function () {
         console.log("成功拨打电话")
       },
@@ -60,7 +50,7 @@ Page({
             // policyText: res.policyText,
             // policyList: res.policyList,
             policyCity: res.policycity,
-            policyPhone: res.policyphone,
+            policyPhone: res.policyphone || '010-12345',
           });
           let policyText = res.policyText;
           let policyList = [];

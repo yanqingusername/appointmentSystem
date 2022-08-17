@@ -339,3 +339,39 @@ page{
   width: 56rpx;
   height: 52rpx;
 }
+
+.view_between{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30rpx;
+    width: 100%;
+}
+
+.view_between_left{
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.view_between_right{
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 15%;
+}
+
+.P2_1_4{
+  color: #9E9E9E;
+  font-size: 30rpx;
+}
+
+.P2_1_5{
+  /* color: #9E9E9E; */
+  font-size: 30rpx;
+  width: 72%;
+  word-break: break-all;
+}
