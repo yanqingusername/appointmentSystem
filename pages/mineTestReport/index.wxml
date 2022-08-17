@@ -40,7 +40,7 @@
           <view class="type_text_1">{{item.report_time}}</view>
           <view style="display: flex;">
             <!-- <view data-report="{{item.reportUrl}}" id="button_1" catchtap="bindDownloadReport">下载</view> -->
-            <view data-report="{{item.reportUrl}}" id="button_1" catchtap="bindDownloadReport">查看</view>
+            <view data-report="{{item.reportUrl}}" id="button_2" catchtap="bindDownloadReport">查看</view>
           </view>
         </view>
       </view>
