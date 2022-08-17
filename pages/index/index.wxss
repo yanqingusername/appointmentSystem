@@ -115,13 +115,13 @@ padding-left: 34rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 128rpx;
-height: 46rpx;
+  width: 150rpx;
+height: 50rpx;
 background: #FFFFFF;
 /* box-shadow: 0rpx 2rpx 8rpx 0rpx rgba(90, 142, 252, 0.27); */
 border-radius: 24rpx;
 border: 1px solid #0074FF;
-font-size: 24rpx;
+font-size: 28rpx;
 font-family: PingFangSC-Regular, PingFang SC;
 font-weight: 400;
 color: #0072FF;
