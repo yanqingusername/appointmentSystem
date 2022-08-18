@@ -8,7 +8,7 @@
 <view class="search_border">
   <view class='search'>
     <view class="input_view">
-      <input id="search_checked" type='text' placeholder='请输入检测名称，或受检人姓名' placeholder-class="ph_class" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle'></input>
+      <input id="search_checked" type='text' placeholder='请输入受检人姓名' placeholder-class="ph_class" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle'></input>
       <view class="weui-icon-clear" wx:if="{{searchText}}" catchtap="clearSearchHandle">
         <icon id="clear_1" type="clear" size="20" catchtap="clearSearchHandle" />
       </view>
