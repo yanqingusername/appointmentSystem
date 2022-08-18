@@ -1,3 +1,4 @@
+<wxs src="../../utils/substring.wxs" module="tools" />
 <cu-custom isBack="{{true}}" bgColor="bg-white">
   <view slot="backText" bindtap="bindBack"></view>
   <view slot="content">样本检测进度</view>
@@ -23,11 +24,11 @@
       </view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">手机号</view>
-        <view class="P2_1_2">{{phone}}</view>
+        <view class="P2_1_2">{{tools.centerPhoneTrim1(phone)}}</view>
       </view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">证件号</view>
-        <view class="P2_1_2">{{idcard}}</view>
+        <view class="P2_1_2">{{tools.centerIdCardTrim1(idcard)}}</view>
       </view>
     </view>
   </view>

@@ -1,4 +1,5 @@
 <!--pages/myOrder/myOrder.wxml-->
+<wxs src="../../utils/substring.wxs" module="tools" />
 <cu-custom bgColor="bg-white" isBack="{{false}}" isCustom="{{true}}">
   <view slot="content">我的预约记录</view>
 </cu-custom>
@@ -35,7 +36,7 @@
         </view>
         <view wx:if="{{item.phone}}" class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
           <view class="P2_1_1">手机号</view>
-          <view class="P2_1_2">{{item.phone}}</view>
+          <view class="P2_1_2">{{tools.centerPhoneTrim1(item.phone)}}</view>
         </view>
         <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;position:relative;" wx:if="{{item.channel_name}}">
           <view class="P2_1_1">采样点</view>
@@ -91,7 +92,7 @@
         </view>
         <view wx:if="{{item.phone}}" class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
           <view class="P2_1_1">手机号</view>
-          <view class="P2_1_2">{{item.phone}}</view>
+          <view class="P2_1_2">{{tools.centerPhoneTrim1(item.phone)}}</view>
         </view>
        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;position:relative;" wx:if="{{item.channel_name}}">
           <view class="P2_1_1">采样点</view>

@@ -1,3 +1,4 @@
+<wxs src="../../utils/substring.wxs" module="tools" />
 <cu-custom isBack="{{true}}" bgColor="bg-white">
   <view slot="backText" bindtap="bindBack"></view>
   <view slot="content">我的检测报告</view>
@@ -34,7 +35,7 @@
         </view>
         <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
           <view class="P2_1_1">手机号</view>
-          <view class="P2_1_2">{{item.telphone}}</view>
+          <view class="P2_1_2">{{tools.centerPhoneTrim1(item.telphone)}}</view>
         </view>
         <view class="button_flex_new_between">
           <view class="type_text_1">{{item.report_time}}</view>

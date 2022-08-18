@@ -1,4 +1,5 @@
 <!--pages/myOrder/myOrder.wxml-->
+<wxs src="../../utils/substring.wxs" module="tools" />
 <cu-custom bgColor="bg-white" isBack="{{false}}" isCustom="{{true}}">
   <view slot="content">预约详情</view>
 </cu-custom>
@@ -91,11 +92,11 @@
       </view>
       <view wx:if="{{id_card}}" class="P2_1 app_flex">
         <view class="P2_1_3">证件号</view>
-        <view class="P2_1_2">{{id_card}}</view>
+        <view class="P2_1_2">{{tools.centerIdCardTrim1(id_card)}}</view>
       </view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">手机号</view>
-        <view class="P2_1_2">{{phone}}</view>
+        <view class="P2_1_2">{{tools.centerPhoneTrim1(phone)}}</view>
       </view>
       <view class="P2_1 app_flex">
         <view class="P2_1_3">检测类型</view>

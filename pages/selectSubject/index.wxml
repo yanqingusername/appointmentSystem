@@ -14,8 +14,8 @@
           <view class="subject_view_bg">
               <view style="width:90%">
                 <view class="subject_title">{{item.name ? item.name : '-'}}</view>
-                <view class="subject_text" style="margin-top:20rpx;">{{item.card_type == 1 ? '护照' : item.card_type == 2 ? '港澳台通行证' : '身份证'}} {{item.id_card ? tools.centerIdCardTrim(item.id_card) : '-'}}</view>
-                <view class="subject_text" style="margin-top:22rpx;">手机号 {{tools.centerPhoneTrim(item.phone)}}</view>
+                <view class="subject_text" style="margin-top:20rpx;">{{item.card_type == 1 ? '护照' : item.card_type == 2 ? '港澳台通行证' : '身份证'}} {{item.id_card ? tools.centerIdCardTrim1(item.id_card) : '-'}}</view>
+                <view class="subject_text" style="margin-top:22rpx;">手机号 {{tools.centerPhoneTrim1(item.phone)}}</view>
               </view>
               <view style="position:relative;width:60rpx;height:60rpx;display: flex;align-items: center;justify-content: center;" catch:tap="bindEditSubject" data-online="{{item.onlineFlag}}" data-item="{{item}}">
                 <image class="right_arrow" src="../../images/icon_detail_edit_gray.png"></image>
