@@ -13,6 +13,8 @@ Page({
 
     tip: "",
     tip_temp: '暂无数据',
+    flag1: true,
+    flag2: false,
 
     isLogin: false, //是否登录
     isUserInfo: false, // 是否获取用户呢称
@@ -20,7 +22,9 @@ Page({
     user_id: '',
     userInfo: {},
 
-    searchText: ''
+    searchText: '',
+    appointmentList: [],
+    appointmentListPlus: [],
   },
 
   onShow: function () {
@@ -77,16 +81,77 @@ Page({
     this.setData({
       searchText: e.detail.value
     })
-    this.getAppointmentList();
+    // this.getAppointmentList();
+    var value = e.detail.value;
+    var that = this;
+    var appointmentList = that.data.appointmentList;
+    var appointmentListPlus = that.data.appointmentListPlus
+    if (value == '' || value == null) {
+      that.setData({
+        flag1: true,
+        flag2: false,
+        tip: '',
+        overflowFlag: false
+      })
+
+      if (that.data.appointmentList.length == 0) {
+        that.setData({
+          tip: '该手机号下未查到报告，可点击搜索框右侧，用样本号或其他手机号查询试试~',
+          overflowFlag: true
+        });
+      }
+    } else {
+      var that = this;
+      that.setData({
+        flag1: false,
+        flag2: true,
+        tip: '',
+        overflowFlag: false
+      })
+      var arr = [];
+      for (var i = 0; i < appointmentList.length; i++) {
+        if (appointmentList[i].name.indexOf(value) >= 0) {
+          appointmentList[i].checked = false;
+          arr.push(appointmentList[i]);
+        }
+      }
+      console.log(arr);
+      that.setData({
+        appointmentListPlus: arr
+      });
+      if (that.data.appointmentListPlus.length == 0) {
+        that.setData({
+          tip: '该手机号下未查到报告，可点击搜索框右侧，用样本号或其他手机号查询试试~',
+          overflowFlag: true
+        });
+      }
+      //}
+    }
   },
   // 输入框有文字时，点击X清除
   clearSearchHandle() {
+    // this.setData({
+    //   searchText: '',
+    //   tip: '',
+    //   overflowFlag: false
+    // })
+    // this.getAppointmentList();
     this.setData({
       searchText: '',
       tip: '',
       overflowFlag: false
     })
-    this.getAppointmentList();
+    var that = this;
+    that.setData({
+      flag1: true, //显示原始列表
+      flag2: false //关闭查询列表
+    })
+    if (that.data.appointmentList.length == 0) {
+      that.setData({
+        tip: '该手机号下未查到报告，可点击搜索框右侧，用样本号或其他手机号查询试试~',
+        overflowFlag: true
+      });
+    }
   },
   bindDownloadReport: function (e) {
     var report_temp = e.currentTarget.dataset.report

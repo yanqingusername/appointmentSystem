@@ -18,7 +18,35 @@
 </view>
 <view class="page {{overflowFlag==true?'active':''}}">
   <view class="P1">
-    <block wx:for="{{appointmentList}}" wx:key="index">
+    <block wx:if="{{flag1}}" wx:for="{{appointmentList}}" wx:key="index">
+      <view class="P2 app_font" bindtap="bindDownloadReport" data-report="{{item.reportUrl}}" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
+        <view class="app_flex_new">
+          <view class="bold_font_new">{{item.test_name}}</view>
+          <view class="bold_font_2_new">{{item.test_result}}</view>
+        </view>
+        <view class="hr"></view>
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+          <view class="P2_1_1">样本编号</view>
+          <view class="P2_1_2">{{item.sample_id}}</view>
+        </view>
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+          <view class="P2_1_1">受检人</view>
+          <view class="P2_1_2">{{item.name}}</view>
+        </view>
+        <view class="P2_1 app_flex" style="padding: 14rpx 30rpx;margin: 0rpx;">
+          <view class="P2_1_1">手机号</view>
+          <view class="P2_1_2">{{tools.centerPhoneTrim1(item.telphone)}}</view>
+        </view>
+        <view class="button_flex_new_between">
+          <view class="type_text_1">{{item.report_time}}</view>
+          <view style="display: flex;">
+            <!-- <view data-report="{{item.reportUrl}}" id="button_1" catchtap="bindDownloadReport">下载</view> -->
+            <view data-report="{{item.reportUrl}}" id="button_2" catchtap="bindDownloadReport">查看</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{flag2}}" wx:for="{{appointmentListPlus}}" wx:key="index">
       <view class="P2 app_font" bindtap="bindDownloadReport" data-report="{{item.reportUrl}}" data-onlineflagnum="{{item.onlineFlag}}" data-num="{{item.appointment_num}}" data-type="{{item.type}}">
         <view class="app_flex_new">
           <view class="bold_font_new">{{item.test_name}}</view>
