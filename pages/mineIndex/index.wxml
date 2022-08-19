@@ -7,7 +7,7 @@
       <view class="mine_title">个人中心</view>
     </view>
   </view> -->
-
+<wxs src="../../utils/substring.wxs" module="tools" />
   <view style="position:relative;">
     <image src="../../images/icon_0701_27.png" style="height:{{isIphoneX?(215+StatusBar):215}}px;width:100%;"/>
     <view class="mine_view1" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
@@ -28,7 +28,7 @@
         <image bind:tap="toExit" src="../../images/icon_0701_26.png" class="mine_view_1_img"/>
       </view>
       <view class="mine_2">
-        <view class="mine_2_1">{{phone_number ? phone_number : '未绑定手机号'}}</view>
+        <view class="mine_2_1" style="opacity: 0.6;">{{phone_number ? tools.centerPhoneTrim1(phone_number) : '未绑定手机号'}}</view>
         <view class="mine_2_2" bind:tap="bindUpdatePhone" data-phonenumber="{{phone_number}}">修改</view>
       </view>
     </view>
