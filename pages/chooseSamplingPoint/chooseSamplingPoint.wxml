@@ -127,9 +127,9 @@
         </view> -->
         <view class="new_title">{{item.channel_name}}</view>
 
-        <view class="map_view" catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
+        <view class="map_view">
           <view class="map_view_title"><text style="color:#0072FF;" wx:if="{{hiddenFlag==false}}">{{item.distance}}</text> |  {{item.site_description}}</view>
-          <view class="icon_view_4_new" >
+          <view class="icon_view_4_new" catchtap="openMap" data-channelname="{{item.channel_name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
             <image class="icon_24" src="../../images/icon_0701_24.png"></image>
             <!-- <view class="text_1_new">导航</view> -->
           </view>
