@@ -130,15 +130,15 @@ color: #0072FF;
 
 .main_7{
   width: 42rpx;
-  height: 84rpx;
+  height: 82rpx;
   position: absolute;
-  left: 86rpx;
+  left: 100rpx;
   bottom: 32rpx;
 }
 
 .main_8{
-  height: 202rpx;
-  width: 176rpx;
+  height: 182rpx;
+  width: 158rpx;
   position: absolute;
   right: 20rpx;
   bottom: 18rpx;
