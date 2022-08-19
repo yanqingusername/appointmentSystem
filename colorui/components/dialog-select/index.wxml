@@ -12,7 +12,8 @@
         <!-- <view class="new_view_item" style="color: {{instrumentIndex == 1 ? '#333333;':''}}" bindtap="bindSelect" data-number='1'>修改信息</view> -->
         <!-- <view class="new_view_item" style="color: {{instrumentIndex == 2 ? '#333333;':''}}" bindtap="bindSelect" data-number='2'>转移</view> -->
         <view class="new_view_item1">
-          <div class="call_btn" bindtap="hideModalCall">拨打客服电话 <text style="color:#50BE8B;margin-left:6rpx;">400-869-3888</text>转<text style="color:#50BE8B;margin-left:6rpx;">5</text></div>
+          <!-- <view class="call_btn" bindtap="hideModalCall">拨打客服电话 <text style="color:#50BE8B;margin-left:6rpx;">400-869-3888</text>转<text style="color:#50BE8B;margin-left:6rpx;">5</text></view> -->
+          <view class="call_btn" bindtap="hideModalCall">拨打客服电话 <text style="color:#50BE8B;margin-left:6rpx;">400-869-3888</text></view>
         </view>
         <view class="new_view_item" bindtap="hideModal">取消</view>
     </view>

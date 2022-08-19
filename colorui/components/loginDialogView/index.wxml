@@ -6,11 +6,11 @@
       <view class="icon_clear_view" bind:tap="bindShowDialog">
         <image class="icon_clear" src="../../../images/icon_clear_new.png"></image>
       </view>
-      <view class="main-title">{{'需要您的微信授权，才能为您创建预约或查询记录。'}}</view>
+      <view class="main-title">{{'需要您的微信授权，请【允许获取手机号】，以便您用手机查询检测报告。'}}</view>
       <button wx:if="{{policyChecked}}" class='bottom' type='primary' open-type="getPhoneNumber" lang="zh_CN"
             bindgetphonenumber="bindPhoneNumber">微信授权</button>
-      <button wx:else class='bottom' type='primary' lang="zh_CN"
-            bind:tap="getPhoneNumbers">微信授权</button>
+      <button wx:else class='bottom' lang="zh_CN"
+            bind:tap="getPhoneNumbers" style="background: #999999;">微信授权</button>
        <view class="div_policy">
         <checkbox-group bindchange="changePolicy">
           <checkbox class='round pink' checked="{{policyChecked}}"></checkbox>

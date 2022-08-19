@@ -27,8 +27,8 @@
         <view class="mine_1">{{user_name}}</view>
         <image bind:tap="toExit" src="../../images/icon_0701_26.png" class="mine_view_1_img"/>
       </view>
-      <view class="mine_2" wx:if="{{phone_number}}">
-        <view class="mine_2_1">{{phone_number}}</view>
+      <view class="mine_2">
+        <view class="mine_2_1">{{phone_number ? phone_number : '未绑定手机号'}}</view>
         <view class="mine_2_2" bind:tap="bindUpdatePhone" data-phonenumber="{{phone_number}}">修改</view>
       </view>
     </view>

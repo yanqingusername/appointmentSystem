@@ -89,13 +89,13 @@
       <view class="modal-icon_clear_view" bind:tap="bindShowDialog">
         <image class="modal-icon_clear" src="../../images/icon_clear_new.png"></image>
       </view>
-      <view class="modal-main-title">{{'需要您的微信授权，才能为您创建预约或查询记录。'}}</view>
+      <view class="modal-main-title">{{'需要您的微信授权，请【允许获取手机号】，以便您用手机查询检测报告。'}}</view>
       
       <view wx:if='{{isUserInfo}}'>
         <button wx:if="{{policyChecked}}" class='modal-bottom' type='primary' open-type="getPhoneNumber" lang="zh_CN"
             bindgetphonenumber="bindPhoneNumber">微信授权</button>
-        <button wx:else class='modal-bottom' type='primary' lang="zh_CN"
-              bind:tap="getPhoneNumbers">微信授权</button>
+        <button wx:else class='modal-bottom' lang="zh_CN"
+              bind:tap="getPhoneNumbers"  style="background: #999999;">微信授权</button>
         <view class="modal-div_policy">
           <checkbox-group bindchange="changePolicy">
             <checkbox class='modal-round pink' checked="{{policyChecked}}"></checkbox>

@@ -296,11 +296,9 @@ Page({
   },
   bindUpdatePhone: function (e) {
     let phonenumber = e.currentTarget.dataset.phonenumber;
-    if (phonenumber) {
       wx.navigateTo({
         url: `/pages/updatePhone/index?phonenumber=${phonenumber}`
       });
-    }
   },
   bindUserProtocol: utils.throttle(function (e) {
     var report_temp = this.data.fwxy_url;

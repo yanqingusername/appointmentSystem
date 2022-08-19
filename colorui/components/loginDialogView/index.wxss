@@ -24,7 +24,7 @@
 .main-content{
       /* flex: 1; */
       height: 100%;
-      padding: 80rpx 50rpx 50rpx 50rpx;
+      padding: 80rpx 40rpx 50rpx 40rpx;
       /* overflow-y: scroll; */
       /* font-size: 26rpx; */
       display: flex;
@@ -60,7 +60,7 @@
   border-radius: 40rpx;
   text-align: center;
   color: white;
-  margin-top: 30rpx;
+  margin-top: 50rpx;
   display: flex;
     align-items: center;
     justify-content: center;
@@ -75,7 +75,7 @@
 *
 */
 .div_policy{
-  margin-top: 20rpx;
+  margin-top: 30rpx;
   font-size: 26rpx;
   display: flex;
   align-items: center;
@@ -95,7 +95,7 @@
   border-radius: 5000rpx;
   bottom: 2rpx;
   left: 0rpx;
-  transform: scale(0.7)
+  transform: scale(0.8)
 }
 
 .icon_clear_view{
