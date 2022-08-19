@@ -44,9 +44,10 @@
         <block wx:for="{{service_result}}" wx:key="index"> 
           <view class='view_container'> 
             <view class='circle_container'> 
-              <view class='title_black'>{{item.time}}</view> 
-              <view class='title_gray'>{{item.date}}</view> 
-              <view class='line' wx:if="{{index != (service_result.length -1)}}" style='height:30px'/>
+              <!-- <view class='title_black'>{{item.time}}</view> 
+              <view class='title_gray'>{{item.date}}</view>  -->
+              <view class='view_round'></view>
+              <view class='line' wx:if="{{index != (service_result.length -1)}}" style='height:50px'/>
             </view> 
               <view class='right_container' id='schedule'>
                   <view class='title_black'>{{ item.title }}</view>
