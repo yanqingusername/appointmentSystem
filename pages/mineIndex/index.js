@@ -59,7 +59,19 @@ Page({
       return false;
     }
   },
+  // 获取 code
+  getCode(success){
+    wx.login({
+        success : _Code => {
+          this.setData({
+            rs_code : _Code.code
+          });
+          success();
+        }
+    })
+  },
   getUserProfile() {
+    this.getCode(() => {});
     wx.getUserProfile({
       desc: '用于完善会员资料',
       success: (res) => {
@@ -84,17 +96,20 @@ Page({
   },
   // 授权用户信息
   bindGetUserInfo(e) {
+    let that = this;
     const OK = "getUserProfile:ok"
     if (e.errMsg == OK) {
       // 判断 session_key 有无到期
-      // wx.checkSession({
-      //     success: res => {
-      this.USRE(e)
-      //     },
-      //     fail: res => {
-      //             this.USRE(e)
-      //     }
-      // })
+      wx.checkSession({
+        success: res => {
+          that.USRE(e)
+        },
+        fail: res => {
+          that.getCode(() => {
+            that.USRE(e)
+          })
+        }
+      })
     } else {
       //用户按了拒绝按钮
       // wx.showModal({
@@ -113,12 +128,12 @@ Page({
   },
   USRE(e) {
     let that = this;
-    wx.login({
-      success: (res) => {
-        var code = res.code;
-        console.log('---->:', code)
+    // wx.login({
+    //   success: (res) => {
+    //     var code = res.code;
+    //     console.log('---->:', code)
         request.request_get('/a/getUseridAndUserInfo.hn', {
-          code: code,
+          code: this.data.rs_code,
           encryptedData: e.encryptedData,
           iv: e.iv,
         }, function (res) {
@@ -143,11 +158,11 @@ Page({
             box.showToast("网络不稳定，请重试");
           }
         })
-      },
-      fail: (res) => {
-        box.showToast("请求超时，请检查网络是否连接")
-      }
-    })
+    //   },
+    //   fail: (res) => {
+    //     box.showToast("请求超时，请检查网络是否连接")
+    //   }
+    // })
   },
   bindPhoneNumber(e) {
     e = e.detail;
@@ -173,6 +188,10 @@ Page({
         avatarUrl: this.data.userInfo.avatarUrl
       });
       wx.setStorageSync('coyote_userinfo', user_info);
+
+      if(this.data.user_id){
+        this.getNewUserinfo();
+      }
     }
   },
   TEL(e) {

@@ -91,7 +91,7 @@
       </view>
       <view class="modal-main-title">{{'需要您的微信授权，请【允许获取手机号】，以便您用手机查询检测报告。'}}</view>
       
-      <view wx:if='{{isUserInfo}}'>
+      <!-- <view wx:if='{{isUserInfo}}'>
         <button wx:if="{{policyChecked}}" class='modal-bottom' type='primary' open-type="getPhoneNumber" lang="zh_CN"
             bindgetphonenumber="bindPhoneNumber">微信授权</button>
         <button wx:else class='modal-bottom' lang="zh_CN"
@@ -106,6 +106,27 @@
 
       <button wx:else  class='modal-bottom' type='primary' lang="zh_CN"
             bind:tap="getUserProfile">微信授权</button>
+    </view> -->
+    
+      <view wx:if='{{isUserInfo}}'>
+        <button class='modal-bottom' type='primary' open-type="getPhoneNumber" lang="zh_CN"
+            bindgetphonenumber="bindPhoneNumber">微信手机号授权</button>
+      </view>
+
+      <view wx:else>
+        <button wx:if="{{policyChecked}}"  class='modal-bottom' type='primary' lang="zh_CN"
+            bind:tap="getUserProfile">微信授权</button>
+        <button wx:else class='modal-bottom' lang="zh_CN"
+              bind:tap="getPhoneNumbers"  style="background: #999999;">微信授权</button>
+        <view class="modal-div_policy">
+          <checkbox-group bindchange="changePolicy">
+            <checkbox class='modal-round pink' checked="{{policyChecked}}"></checkbox>
+            <label class="modal-privacy_policy">已阅读并同意 <text class="modal-underline_gray" catchtap="bindUserProtocol" data-fwxyurl="{{fwxy_url}}">用户服务协议</text> 和 <text class="modal-underline_gray" catchtap="bindPrivacyPolicy" data-yszzurl="{{yszz_url}}">隐私政策</text></label>
+          </checkbox-group>
+        </view>
+      </view>
+
+      
     </view>
     
   </view>
