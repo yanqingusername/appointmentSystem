@@ -51,7 +51,7 @@ Page({
       sample_id:  that.data.snumber, //样本编号
       sample_number: that.data.sphone, //手机号
     }
-    request.request_get('/a/getSelectTestRecordsBySampleId.hn', data, function (res) {
+    request.request_get('/Newacid/getSelectTestRecordsBySampleId.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
@@ -75,7 +75,7 @@ Page({
     var data = {
       sample_number: that.data.sphone, //手机号
     }
-    request.request_get('/a/getSelectTestRecordsByPhone.hn', data, function (res) {
+    request.request_get('/Newacid/getSelectTestRecordsByPhone.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {

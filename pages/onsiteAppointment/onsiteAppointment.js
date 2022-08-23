@@ -246,7 +246,7 @@ Page({
       symptom: that.data.symptom,
       peer_high_risk_occupation: that.data.peer_high_risk_occupation
     }
-    request.request_get('/a/epidemiologicalSurvey.hn', data, function (res) {
+    request.request_get('/Newacid/epidemiologicalSurvey.hn', data, function (res) {
       console.log('epidemiologicalSurvey', res);
       if (res) {
         if (res.success) {
@@ -267,7 +267,7 @@ Page({
       flag: 0, //1 动态加载  0 全部加载 本来是参数dynamicTimeFlag
       channel_id: channel_id
     }
-    request.request_get('/a/getDetectionType.hn', data, function (res) {
+    request.request_get('/Newacid/getDetectionType.hn', data, function (res) {
       console.log('getDetectionType', res);
       if (res) {
         if (res.success) {
@@ -359,7 +359,7 @@ Page({
           latitude: res.latitude,
           id: id
         }
-        request.request_get('/a/getSamplingPointById.hn', data, function (res) {
+        request.request_get('/Newacid/getSamplingPointById.hn', data, function (res) {
           console.log('getFixedSamplingPoint', res);
           if (res) {
             if (res.success) {
@@ -449,7 +449,7 @@ Page({
         var data = {
           id: id
         }
-        request.request_get('/a/getSamplingPointById.hn', data, function (res) {
+        request.request_get('/Newacid/getSamplingPointById.hn', data, function (res) {
           console.log('getFixedSamplingPoint', res);
           if (res) {
             if (res.success) {
@@ -544,7 +544,7 @@ Page({
           latitude: res.latitude,
           tag: ''
         }
-        request.request_get('/a/getFixedSamplingPoint.hn', data, function (res) {
+        request.request_get('/Newacid/getFixedSamplingPoint.hn', data, function (res) {
           console.log('getFixedSamplingPoint', res);
           if (res) {
             if (res.success) {
@@ -624,7 +624,7 @@ Page({
           longitude: 116.39772, // 默认天安门广场
           latitude: 39.90323, // 默认天安门广场
         }
-        request.request_get('/a/getFixedSamplingPoint.hn', data, function (res) {
+        request.request_get('/Newacid/getFixedSamplingPoint.hn', data, function (res) {
           console.log('getFixedSamplingPoint', res);
           if (res) {
             if (res.success) {
@@ -731,7 +731,7 @@ Page({
     var data = {
       openid: this.data.openid
     }
-    request.request_get('/a/getpretestInfo.hn', data, function (res) {
+    request.request_get('/Newacid/getpretestInfo.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
@@ -1170,7 +1170,7 @@ Page({
     console.log('--data1-->:',data1)
 
     if (choose_type == 0) {
-      request.request_get('/a/addOnlinePaymentOrder.hn', data1, function (res) {
+      request.request_get('/Newacid/addOnlinePaymentOrder.hn', data1, function (res) {
         console.info('回调', res)
         if (res) {
           if (res.success) {
@@ -1205,7 +1205,7 @@ Page({
                       openid: that.data.openid,
                       user_id: that.data.user_id
                     }
-                    request.request_get('/a/sendmsg.hn', data, function (res) {
+                    request.request_get('/Newacid/sendmsg.hn', data, function (res) {
                       console.info('回调', res)
                     })
                   },
@@ -1249,7 +1249,7 @@ Page({
         user_id: this.data.user_id
         // pay_channel: this.data.pay_channel //支付渠道
       }
-      request.request_get('/a/addMeituanPaymentOrder.hn', data2, function (res) {
+      request.request_get('/Newacid/addMeituanPaymentOrder.hn', data2, function (res) {
         console.info('回调', res)
         if (res) {
           if (res.success) {
@@ -1267,7 +1267,7 @@ Page({
                   openid: that.data.openid,
                   user_id: that.data.user_id
                 }
-                request.request_get('/a/sendmsg.hn', data, function (res) {
+                request.request_get('/Newacid/sendmsg.hn', data, function (res) {
                   console.info('回调', res)
                 })
               },
@@ -1435,7 +1435,7 @@ Page({
         }, 1000);
 
         // 服务器发送验证码***********************
-        request.request_get('/a/Verification.hn', {
+        request.request_get('/Newacid/Verification.hn', {
           phone: phone
         }, function (res) {
           console.info('回调', res)
@@ -1758,7 +1758,7 @@ Page({
   },
   showSurvey: function () {
     var that = this
-    request.request_get('/a/getQuestion.hn', {}, function (res) {
+    request.request_get('/Newacid/getQuestion.hn', {}, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
@@ -1995,7 +1995,7 @@ Page({
     }
     console.log('===================================================');
     console.log(channel_id);
-    request.request_get('/a/getbaseData.hn', data, function (res) {
+    request.request_get('/Newacid/getbaseData.hn', data, function (res) {
       console.log('getbaseData', res);
       if (!res) {
         box.showToast("网络不稳定，请重试");
@@ -2072,7 +2072,7 @@ Page({
       open_id: this.data.openid,
       user_id: this.data.user_id
     }
-    request.request_get('/a/getAllSubject.hn', data, function (res) {
+    request.request_get('/Newacid/getAllSubject.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
@@ -2124,7 +2124,7 @@ Page({
       test_type: that.data.typeid,
       channel_id: that.data.channel.channel_id
     }
-    request.request_get('/a/is_during_business_hours1.hn', data, function (res) {
+    request.request_get('/Newacid/is_during_business_hours1.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
           if (res.during_business_hours){

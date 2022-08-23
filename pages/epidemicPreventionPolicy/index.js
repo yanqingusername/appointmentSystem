@@ -37,7 +37,7 @@ Page({
     var that = this;
    
     var data = {}
-    request.request_get('/a/getPreventionPolicyList.hn', data, function (res) {
+    request.request_get('/Newacid/getPreventionPolicyList.hn', data, function (res) {
       if (res) {
         if (res.code == 0) {
           that.setData({

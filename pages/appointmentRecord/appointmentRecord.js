@@ -125,7 +125,7 @@ Page({
     var data = {
       user_id: this.data.user_id
     }
-    request.request_get('/a1/getMyTestRecords.hn', data, function (res) {
+    request.request_get('/Newacid/getMyTestRecords.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {

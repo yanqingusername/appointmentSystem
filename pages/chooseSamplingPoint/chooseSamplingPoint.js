@@ -115,7 +115,7 @@ gettagList: function (e) {
   var data = {
     isbig: 0
   }
-  request.request_get('/a/gettagList.hn', data, function (res) {
+  request.request_get('/Newacid/gettagList.hn', data, function (res) {
     console.info('回调', res)
     if (res) {
       if (res.success) {
@@ -167,7 +167,7 @@ getChannelList:function(){
         isbigscreen: that.data.isbigscreen,
         yingye: that.data.yingye,
       }
-      request.request_get('/a/getFixedSamplingPoint.hn',data,function(res){
+      request.request_get('/Newacid/getFixedSamplingPoint.hn',data,function(res){
         console.log('getFixedSamplingPoint',res);
         if(res){
           if(res.success){
@@ -269,7 +269,7 @@ getChannelList:function(){
         isbigscreen: that.data.isbigscreen,
         yingye: that.data.yingye,
       }
-      request.request_get('/a/getFixedSamplingPoint.hn',data,function(res){
+      request.request_get('/Newacid/getFixedSamplingPoint.hn',data,function(res){
         console.log('getFixedSamplingPoint',res);
         if(res){
           if(res.success){

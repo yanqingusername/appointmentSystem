@@ -39,7 +39,7 @@ Page({
       sample_id: this.data.sampleid,
       user_id: this.data.user_id,
     }
-    request.request_get('/a1/getTypeTags.hn', data, function (res) {
+    request.request_get('/Newacid/getTypeTags.hn', data, function (res) {
       if (res) {
         console.log('---->:',res)
         if (res.success) {

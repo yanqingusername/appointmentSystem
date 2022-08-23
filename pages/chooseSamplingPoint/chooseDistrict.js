@@ -21,7 +21,7 @@ Page({
     var that = this
     var data = {
     }
-    request.request_get('/a/getCountSamplingPoint.hn',data,function(res){
+    request.request_get('/Newacid/getCountSamplingPoint.hn',data,function(res){
       console.log('getChannelDistrict',res);
       if(res){
         if(res.success){

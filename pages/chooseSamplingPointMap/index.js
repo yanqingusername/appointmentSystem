@@ -129,7 +129,7 @@ gettagList: function (e) {
   var data = {
     isbig: 1
   }
-  request.request_get('/a/gettagList.hn', data, function (res) {
+  request.request_get('/Newacid/gettagList.hn', data, function (res) {
     console.info('回调', res)
     if (res) {
       if (res.success) {
@@ -181,7 +181,7 @@ getChannelList:function(){
         isbigscreen: that.data.isbigscreen,
         yingye: that.data.yingye,
       }
-      request.request_get('/a/getAllFixedSamplingPoint.hn',data,function(res){
+      request.request_get('/Newacid/getAllFixedSamplingPoint.hn',data,function(res){
         console.log('getAllFixedSamplingPoint',res);
         if(res){
           if(res.success){
@@ -282,7 +282,7 @@ getChannelList:function(){
         isbigscreen: that.data.isbigscreen,
         yingye: that.data.yingye,
       }
-      request.request_get('/a/getAllFixedSamplingPoint.hn',data,function(res){
+      request.request_get('/Newacid/getAllFixedSamplingPoint.hn',data,function(res){
         console.log('getAllFixedSamplingPoint',res);
         if(res){
           if(res.success){
@@ -644,7 +644,7 @@ bindDetail:function(e){
     //   success: (res) => {
     //     var code = res.code;
     //     console.log('---->:', code)
-        request.request_get('/a/getUseridAndUserInfo.hn', {
+        request.request_get('/Newacid/getUseridAndUserInfo.hn', {
           code: this.data.rs_code,
           encryptedData: e.encryptedData,
           iv: e.iv,
@@ -706,7 +706,7 @@ bindDetail:function(e){
       user_id: this.data.userInfo.user_id,
       code: e.detail.code
     }
-    request.request_get('/a/getPhoneNumber.hn', DATA, function (res) {
+    request.request_get('/Newacid/getPhoneNumber.hn', DATA, function (res) {
       //判断为空时的逻辑
       if (res) {
         if (res.success) {

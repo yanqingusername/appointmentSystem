@@ -190,7 +190,7 @@ Page({
     var data = {
       openid: this.data.openid
     }
-    request.request_get('/a/getpretestInfo.hn', data, function (res) {
+    request.request_get('/Newacid/getpretestInfo.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
@@ -421,7 +421,7 @@ Page({
 
     // 0-默认从个人预约跳转   1-从选择受检人-添加受检人跳转 2-从选择受检人-编辑受检人跳转
     if(this.data.isAddSub == 0){
-      request.request_get('/a/addSubject.hn', data, function (res) {
+      request.request_get('/Newacid/addSubject.hn', data, function (res) {
         console.info('回调', res)
         if (res) {
           if (res.success) {
@@ -463,7 +463,7 @@ Page({
         }
       })
     } else if(this.data.isAddSub == 1){
-      request.request_get('/a/addSubject.hn', data, function (res) {
+      request.request_get('/Newacid/addSubject.hn', data, function (res) {
         console.info('回调', res)
         if (res) {
           if (res.success) {
@@ -506,7 +506,7 @@ Page({
       })
     } else if(this.data.isAddSub == 2){
       data.id = that.data.userinfo_id;
-      request.request_get('/a/editSubject.hn', data, function (res) {
+      request.request_get('/Newacid/editSubject.hn', data, function (res) {
         console.info('回调', res)
         if (res) {
           if (res.success) {
@@ -584,7 +584,7 @@ Page({
         }, 1000);
 
         // 服务器发送验证码***********************
-        request.request_get('/a/Verification.hn', {
+        request.request_get('/Newacid/Verification.hn', {
           phone: phone
         }, function (res) {
           console.info('回调', res)
@@ -733,7 +733,7 @@ Page({
    let params = {
     id: this.data.userinfo_id
    }
-   request.request_get('/a/deleteSubject.hn', params, function (res) { 
+   request.request_get('/Newacid/deleteSubject.hn', params, function (res) { 
      if (res) {
        if (res.success) {
          box.showToast('删除成功','',1000);
@@ -822,7 +822,7 @@ Page({
     //获取用户服务协议
     //获取隐私政策
     let data = {}
-    request.request_get('/a/getbaseInfo.hn', data, function (res) {
+    request.request_get('/Newacid/getbaseInfo.hn', data, function (res) {
       if(res){
         if (res.success) {
           let msg = res.msg;

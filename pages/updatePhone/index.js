@@ -56,7 +56,7 @@ Page({
         }, 1000);
 
         // 服务器发送验证码***********************
-        request.request_get('/a/Verification.hn', {
+        request.request_get('/Newacid/Verification.hn', {
           phone: phone
         }, function (res) {
           console.info('回调', res)
@@ -119,7 +119,7 @@ Page({
       phone: phone,
       user_id: this.data.user_id
     }
-    request.request_get('/a1/updateiphone.hn', data, function (res) {
+    request.request_get('/Newacid/updateiphone.hn', data, function (res) {
       if (res) {
         if (res.success) {
           box.showToast(res.msg,'',1000);

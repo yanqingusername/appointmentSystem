@@ -107,7 +107,7 @@ isIphoneX() {
 getAppointmentInfo: function () {
   var that = this;
   var appointment_num = that.data.appointment_num;
-  request.request_get('/a1/getPersonTestDetails.hn', {
+  request.request_get('/Newacid/getPersonTestDetails.hn', {
     appointment_num: appointment_num,
     user_id: that.data.user_id
   }, function (res) {

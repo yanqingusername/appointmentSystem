@@ -52,7 +52,7 @@ Page({
         success: (res) => {
             var code = res.code;
             console.log("获取code成功" + code);
-            request.request_get('/a/getOpenid.hn', {
+            request.request_get('/Newacid/getOpenid.hn', {
                 code: code
             }, function (res) {
                 console.info('回调', res);

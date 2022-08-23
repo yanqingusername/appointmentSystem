@@ -40,7 +40,7 @@ Page({
     var data = {
       id: this.data.id
     }
-    request.request_get('/a/getPreventionPolicyDetail.hn', data, function (res) {
+    request.request_get('/Newacid/getPreventionPolicyDetail.hn', data, function (res) {
       if (res) {
         if (res.success) {
           that.setData({

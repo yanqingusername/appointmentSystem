@@ -92,7 +92,7 @@ Page({
         }, 1000);
 
         // 服务器发送验证码***********************
-        request.request_get('/a/Verification.hn', {
+        request.request_get('/Newacid/Verification.hn', {
           phone: phone
         }, function (res) {
           console.info('回调', res)

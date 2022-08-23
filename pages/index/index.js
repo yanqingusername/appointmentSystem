@@ -269,7 +269,7 @@ Page({
     //   success: (res) => {
     //     var code = res.code;
     //     console.log('---->:',code)
-        request.request_get('/a/getUseridAndUserInfo.hn', {
+        request.request_get('/Newacid/getUseridAndUserInfo.hn', {
           code: this.data.rs_code,
           encryptedData: e.encryptedData,
           iv: e.iv,
@@ -309,7 +309,7 @@ Page({
     //     iv: e.iv,
     //     // unionid: this.data.unionid
     // }
-    // request.request_get('/a/getUserinfo.hn', DATA, function (res) {
+    // request.request_get('/Newacid/getUserinfo.hn', DATA, function (res) {
     //   //判断为空时的逻辑
     //   if (res) {
     //     if (res.success) {
@@ -360,7 +360,7 @@ Page({
       user_id: this.data.userInfo.user_id,
       code: e.detail.code
     }
-    request.request_get('/a/getPhoneNumber.hn', DATA, function (res) {
+    request.request_get('/Newacid/getPhoneNumber.hn', DATA, function (res) {
       //判断为空时的逻辑
       if (res) {
         if (res.success) {
@@ -394,7 +394,7 @@ Page({
    */
   getNoticeList() {
     let that = this;
-    request.request_get('/a/getNoticeList.hn', {
+    request.request_get('/Newacid/getNoticeList.hn', {
       user_id: this.data.user_id
     }, function (res) {
       if (res) {
@@ -415,7 +415,7 @@ Page({
    */
    getNoticeNew() {
      let that = this;
-    request.request_get('/a1/getNoticeNew.hn', {
+    request.request_get('/Newacid/getNoticeNew.hn', {
       user_id: this.data.user_id,
       curr_time: wx.getStorageSync('currtime') || '2022-08-01 00:00:00'
     }, function (res) {
@@ -439,7 +439,7 @@ Page({
   getbaseData: function () {
     let that = this;
     let data = {};
-    request.request_get('/a/getbaseInfo.hn', data, function (res) {
+    request.request_get('/Newacid/getbaseInfo.hn', data, function (res) {
       if (res) {
         if (res.success) {
           let msg = res.msg;
@@ -459,7 +459,7 @@ Page({
    getMainIndex: function () {
     let that = this;
     let data = {};
-    request.request_get('/a/getMainIndex.hn', data, function (res) {
+    request.request_get('/Newacid/getMainIndex.hn', data, function (res) {
       if (res) {
         if (res.success) {
           that.setData({
@@ -477,7 +477,7 @@ Page({
    */
    getNewUserinfo() {
     let that = this;
-    request.request_get('/a/getNewUserinfo.hn', {
+    request.request_get('/Newacid/getNewUserinfo.hn', {
       user_id: this.data.user_id
     }, function (res) {
       if (res) {

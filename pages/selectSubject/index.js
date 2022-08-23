@@ -34,7 +34,7 @@ Page({
       open_id: this.data.openid,
       user_id: this.data.user_id
     }
-    request.request_get('/a/getAllSubject.hn', data, function (res) {
+    request.request_get('/Newacid/getAllSubject.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
