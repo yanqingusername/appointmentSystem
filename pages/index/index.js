@@ -508,4 +508,7 @@ Page({
       }
     });
   },
+  catchTouchMove:function(res){
+    return false
+  },
 })
