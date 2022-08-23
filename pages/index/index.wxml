@@ -50,7 +50,8 @@
          <view class="notice_view1" >
         <swiper class="swiper_zi" vertical="true" autoplay="true" circular="true" interval="3000">
             <block wx:for="{{noticeList}}" wx:key="index">
-            <swiper-item catchtouchmove='catchTouchMove'>
+             <!-- catchtouchmove='catchTouchMove' -->
+            <swiper-item>
                 <view class="notice_left" catch:tap="bindNoticeClick" data-item="{{item}}" >
                   <image class="notice_left_img" src="../../images/icon_0701_11.png"></image>
                   <view class="notice_left_title">{{item.headtext}}<text class="notice_left_text" wx:if="{{item.text}}">“{{item.text}}”</text>{{item.tailtext}}</view>
