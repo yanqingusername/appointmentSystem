@@ -157,7 +157,7 @@
       </view>
 
       <view class="type_view" style="padding: 0rpx 24rpx 10rpx 24rpx;margin-top:20rpx;">
-          <view class="type_view_2">如您需要开发票，请关注微信公众号【卡尤迪医学检验实验室】，在菜单栏“售后服务”-“发票申请”中操作。</view>
+          <view class="type_view_2">如您需要开发票，请在微信公众号【卡尤迪医学检验实验室】，在菜单栏“售后服务”-“发票申请”中操作。</view>
       </view>
 
     </view>
