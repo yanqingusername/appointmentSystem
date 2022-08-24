@@ -1,0 +1,12 @@
+page{
+  background:#F6F6F6;
+}
+
+.page{
+  width:100%;
+  overflow-x:hidden; 
+}
+
+.type_icon{
+  width: 100%;
+}

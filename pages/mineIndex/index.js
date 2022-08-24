@@ -441,4 +441,9 @@ Page({
       }
     });
   },
+  bindInvoice: function () {
+      wx.navigateTo({
+        url: "/pages/nowInvoice/index"
+      });
+  },
 })

@@ -1,0 +1,16 @@
+<wxs src="../../utils/substring.wxs" module="tools" />
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">开具发票</view>
+</cu-custom>
+
+<view class="page" style="background-color:#F6F6F6;">
+  <image class="type_icon" src="https://cloud.coyotebio-lab.com:8443/wximages/fpsq.jpg" mode="widthFix"></image>
+</view>
+
+
+
+
+
+
+

@@ -27,8 +27,8 @@
     "pages/epidemicPreventionPolicy/index",
     "pages/epidemicPreventionPolicyDetail/index",
     "pages/xinguanSelfInspection/index",
-    "pages/updatePhone/index"
-    
+    "pages/updatePhone/index",
+    "pages/nowInvoice/index"
   ],
   "subpackages": [
     {
