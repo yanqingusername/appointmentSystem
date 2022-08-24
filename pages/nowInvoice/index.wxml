@@ -5,7 +5,7 @@
 </cu-custom>
 
 <view class="page" style="background-color:#F6F6F6;">
-  <image class="type_icon" src="https://cloud.coyotebio-lab.com:8443/wximages/fpsq.jpg" mode="widthFix"></image>
+  <image class="type_icon" show-menu-by-longpress="{{true}}" src="https://cloud.coyotebio-lab.com:8443/wximages/fpsq.jpg" mode="widthFix"></image>
 </view>
 
 
