@@ -20,7 +20,8 @@
   
   <view class="mine_center" wx:if="{{user_id}}">
     <view class="mine_center_left">
-      <image src="{{avatarUrl}}" style="width:130rpx;height:130rpx;" />
+      <image wx:if="{{avatarUrl}}" src="{{avatarUrl}}" style="width:130rpx;height:130rpx;" />
+      <image wx:else src="../../images/icon_0809_01.png" style="width:130rpx;height:130rpx;" />
     </view>
     <view class="mine_center_right">
       <view class="mine_view_1">
