@@ -92,7 +92,7 @@ color: #FFFFFF;
 }
 
 .main_1{
-  font-size: 34rpx;
+  font-size: 36rpx;
 /* font-family: PingFangSC-Regular, PingFang SC; */
 /* font-weight: 400; */
 color: #000000;
