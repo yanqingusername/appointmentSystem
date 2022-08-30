@@ -16,7 +16,8 @@ page{
   /* padding-top: 168rpx; */
   padding-left: 32rpx;
   position: absolute;
-    top: 168rpx;
+    /* top: 168rpx; */
+    bottom: 258rpx;
 }
 
 .main_title{
@@ -97,7 +98,7 @@ color: #FFFFFF;
 /* font-weight: 400; */
 color: #000000;
 /* text-shadow: 0rpx 2rpx 8rpx rgba(90, 142, 252, 0.27); */
-padding: 40rpx 0rpx 0rpx 34rpx;
+padding: 34rpx 0rpx 0rpx 34rpx;
 }
 
 .main_2{

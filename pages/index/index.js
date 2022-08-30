@@ -79,11 +79,18 @@ Page({
   isIphoneX() {
     let info = wx.getSystemInfoSync();
     console.log(info)
-    if (info.model.indexOf("iPhone") >= 0 && (info.statusBarHeight > 20)) {
+    let modelmes = info.model;
+
+    if (modelmes.search('iPhone XR') != -1 || modelmes.search('iPhone XS') != -1 || modelmes.search('iPhone 11') != -1 || modelmes.search('iPhone 11 Pro Max') != -1 || modelmes.search('iPhone 12 Pro Max') != -1 || modelmes.search('iPhone 13 Pro Max') != -1 || modelmes.search('iPhone 12/13 Pro Max') != -1) {
       return true;
     } else {
       return false;
     }
+    // if (info.model.indexOf("iPhone") >= 0 && (info.statusBarHeight > 20)) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   },
   /**
    * 个人预约
