@@ -586,7 +586,7 @@ bindDetail:function(e){
     },
     chooseDistrict:function(){
       wx.navigateTo({
-        url: '/pages/chooseSamplingPoint/chooseDistrict',
+        url: '/pages/chooseSamplingPoint/chooseDistrict?bigscreen=2',
       })
     },
     openMap:function(e){

@@ -752,7 +752,7 @@ bindDetail:function(e){
     },
     chooseDistrict:function(){
       wx.navigateTo({
-        url: '/pages/chooseSamplingPoint/chooseDistrict',
+        url: '/pages/chooseSamplingPoint/chooseDistrict?bigscreen=1',
       })
     },
     openMap:function(e){
