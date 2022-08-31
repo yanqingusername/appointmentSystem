@@ -147,8 +147,8 @@ Page({
                   openid: res.openid,
                   unionid: res.unionid,
                   user_id: res.userid,
-                  avatarUrl: res.userInfo.userInfo.avatarUrl,
-                  nickName: res.userInfo.userInfo.nickName,
+                  avatarUrl: res.userInfo12.avatarurl,
+                  nickName: res.userInfo12.nickname,
                 }
               });
             } else {
