@@ -52,7 +52,9 @@
       </view>
     </view>
     <view class="hr"></view>
-    <view wx:if="{{status == 2 || status == 3 || status == 4 || status == 6}}">
+
+    <!-- 注销实验室进度 -->
+    <!-- <view wx:if="{{status == 2 || status == 3 || status == 4 || status == 6}}">
       <view class="type_view_flex">
         <image class="type_icon_25" src="../../images/icon_0701_25.png"></image>
         <view class="type_title" style="font-size:30rpx;color:#333333;">检测进度</view>
@@ -67,7 +69,7 @@
       <view class="type_view_flex" style="padding: 30rpx 0rpx 30rpx 0rpx;" catch:tap="bindTypetags" data-sampleid="{{info.sample_id}}">
         <view class="type_title" style="font-size:26rpx;color:#E06596;">查看详情</view>
       </view>
-    </view>
+    </view> -->
 
   </view>
   <swiper wx:if="{{movies.length>0}}" class="swiper" indicator-dots="true" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000">
