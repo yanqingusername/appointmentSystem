@@ -1,6 +1,9 @@
 <!--pages/myOrder/myOrder.wxml-->
-<cu-custom isBack="{{true}}" bgColor="bg-gradual-blue1">
+<!-- <cu-custom isBack="{{true}}" bgColor="bg-gradual-blue1">
   <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">查找采样点</view>
+</cu-custom> -->
+<cu-custom bgColor="bg-gradual-blue1" isBack="{{false}}" isCustom="{{true}}">
   <view slot="content">查找采样点</view>
 </cu-custom>
 <view class="search_border">

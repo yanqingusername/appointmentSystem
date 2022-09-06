@@ -424,7 +424,7 @@ Page({
      let that = this;
     request.request_get('/Newacid/getNoticeNew.hn', {
       user_id: this.data.user_id,
-      curr_time: wx.getStorageSync('currtime') || '2022-09-02 00:00:00'
+      curr_time: wx.getStorageSync('currtime') || '2022-09-06 12:00:00'
     }, function (res) {
       if (res) {
         if (res.success) {

@@ -1,6 +1,9 @@
 <wxs src="../../utils/substring.wxs" module="tools" />
-<cu-custom isBack="{{true}}" bgColor="bg-white">
+<!-- <cu-custom isBack="{{true}}" bgColor="bg-white">
   <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">我的检测报告</view>
+</cu-custom> -->
+<cu-custom bgColor="bg-white" isBack="{{false}}" isCustom="{{true}}">
   <view slot="content">我的检测报告</view>
 </cu-custom>
 
