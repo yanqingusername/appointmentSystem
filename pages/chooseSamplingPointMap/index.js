@@ -55,6 +55,9 @@ Page({
     isLogin: false,
     user_id: '',
     userInfo: {},
+
+    jsonItem:{},
+    typeid: ""
   },
   getLocationAuth(){
     wx.getSetting({//获取用户已授权的信息
@@ -575,6 +578,12 @@ bindDetail:function(e){
       var channel ={channel_name:channel_name1,distance:distance1,channel_id:id1}; 
       let jsonItem = JSON.stringify(channel);
       console.log(channel)
+
+      this.setData({
+        typeid: typeid,
+        jsonItem: channel
+      });
+
       if(this.data.user_id){
         if(channel_name1 && distance1 && id1){
           wx.redirectTo({
@@ -698,6 +707,9 @@ bindDetail:function(e){
         user_id: this.data.userInfo.user_id
       });
       wx.setStorageSync('coyote_userinfo', user_info);
+
+      this.seturl();
+
     }
   },
   TEL(e) {
@@ -719,8 +731,14 @@ bindDetail:function(e){
           // 本地存储
           wx.setStorageSync('coyote_userinfo', user_info);
 
+          that.seturl();
+
         } else {
-          box.showToast(res.msg);
+          box.showToast(res.msg,'',1000);
+
+          setTimeout(() => {
+            that.seturl();
+          }, 1200);
         }
       } else {
         box.showToast("网络不稳定，请重试");
@@ -1308,5 +1326,13 @@ bindDetail:function(e){
       
     }
     this.getChannelList();
+  },
+  seturl(){
+      let channel = this.data.jsonItem;
+      let jsonItem = JSON.stringify(channel);
+      let typeid = this.data.typeid;
+      wx.redirectTo({
+        url: `/pages/onsiteAppointment/onsiteAppointment?choMap=1&channel=${jsonItem}&choose_type=0&fix_channel_id=-1&typeid=${typeid}`,
+      })
   }
 })

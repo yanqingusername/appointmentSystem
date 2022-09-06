@@ -18,9 +18,12 @@ Page({
     sample_phone: '',
     phone_code: '',
 
+    user_id: ''
   },
   onLoad: function (options) {
-
+    this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+    });
   },
   changeOnlineFlag(e){
     let selectTab = e.currentTarget.dataset.onlineid;
@@ -167,6 +170,12 @@ Page({
       box.showToast("验证码错误")
       return
     }
+
+    let data = {
+      phone: phone,
+      user_id: this.data.user_id
+    }
+    request.request_get('/Newacid/updateiphone.hn', data, function (res) {});
 
     wx.navigateTo({
       url: `/pages/mineTestReportResult/index?isreport=2&pcode=${this.data.phone_code}&sphone=${this.data.sample_phone}`

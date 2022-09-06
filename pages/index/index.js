@@ -25,7 +25,9 @@ Page({
     isNew: 1,
     main_title: '卡尤迪新冠肺炎核酸检测',
     main_type_time: '12小时内出报告',
-    main_type_text: '91个核酸检测采样点位，看地图'
+    main_type_text: '91个核酸检测采样点位，看地图',
+
+    numberType: '1'
   },
   onShow:function(){
     var that = this;
@@ -103,6 +105,9 @@ Page({
         url: '/pages/onsiteAppointment/onsiteAppointment?choose_type=' + options.currentTarget.dataset.type + '&fix_channel_id=' + that.data.fix_channel_id,
       })
     } else {
+      this.setData({
+        numberType: 2
+      });
       that.getUserProfile();
     }
 
@@ -116,6 +121,9 @@ Page({
         url: '/pages/appointmentRecord/appointmentRecord'
       })
     } else {
+      this.setData({
+        numberType: 3
+      });
       this.getUserProfile();
     }
   },
@@ -138,6 +146,9 @@ Page({
         url: "/pages/mineTestReport/index"
       })
     } else {
+      this.setData({
+        numberType: 4
+      });
       this.getUserProfile();
     }
   },
@@ -359,6 +370,9 @@ Page({
 
       this.getNoticeList();
       this.getNewUserinfo();
+
+      this.setUrl();
+
     }
   },
   TEL(e){
@@ -383,8 +397,16 @@ Page({
 
           that.getNoticeList();
           that.getNewUserinfo();
+
+          that.setUrl();
+
         } else {
-          box.showToast(res.msg);
+          box.showToast(res.msg,'',1000);
+
+          setTimeout(() => {
+            that.setUrl();
+          }, 1200);
+
         }
       } else {
         box.showToast("网络不稳定，请重试");
@@ -518,4 +540,19 @@ Page({
   catchTouchMove:function(res){
     return false
   },
+  setUrl(){
+    if(this.data.numberType == 2){
+        wx.navigateTo({
+          url: '/pages/onsiteAppointment/onsiteAppointment?choose_type=0&fix_channel_id=' + this.data.fix_channel_id,
+        })
+    } else if(this.data.numberType == 3){
+        wx.navigateTo({
+          url: '/pages/appointmentRecord/appointmentRecord'
+        })
+    } else if(this.data.numberType == 4){
+        wx.navigateTo({
+          url: "/pages/mineTestReport/index"
+        })
+    }
+  }
 })
