@@ -218,6 +218,20 @@ Page({
 
         } else {
           box.showToast(res.msg);
+
+          let user_info = that.data.userInfo;
+          user_info.phone_number = '';
+          that.setData({
+            userInfo: user_info,
+            user_id: that.data.userInfo.user_id,
+            user_name: that.data.userInfo.nickName,
+            avatarUrl: that.data.userInfo.avatarUrl
+          });
+          wx.setStorageSync('coyote_userinfo', user_info);
+
+          if(that.data.user_id){
+            that.getNewUserinfo();
+          }
         }
       } else {
         box.showToast("网络不稳定，请重试");

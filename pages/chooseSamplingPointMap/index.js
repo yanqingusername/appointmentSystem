@@ -736,6 +736,14 @@ bindDetail:function(e){
         } else {
           box.showToast(res.msg,'',1000);
 
+          let user_info = that.data.userInfo;
+          user_info.phone_number = '';
+          that.setData({
+            userInfo: user_info,
+            user_id: that.data.userInfo.user_id
+          });
+          wx.setStorageSync('coyote_userinfo', user_info);
+
           setTimeout(() => {
             that.seturl();
           }, 1200);

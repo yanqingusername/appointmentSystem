@@ -342,6 +342,16 @@ Page({
 
         } else {
           box.showToast(res.msg);
+
+          let user_info = that.data.userInfo;
+          user_info.phone_number = '';
+          that.setData({
+            userInfo: user_info,
+            user_id: that.data.userInfo.user_id,
+            isLogin: false,
+            policyChecked: false
+          });
+          wx.setStorageSync('coyote_userinfo', user_info);
         }
       } else {
         box.showToast("网络不稳定，请重试");
