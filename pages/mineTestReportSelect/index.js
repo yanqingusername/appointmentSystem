@@ -175,7 +175,7 @@ Page({
       phone: phone,
       user_id: this.data.user_id
     }
-    request.request_get('/Newacid/updateiphone.hn', data, function (res) {});
+    request.request_get('/Newacid/overwriteiphone.hn', data, function (res) {});
 
     wx.navigateTo({
       url: `/pages/mineTestReportResult/index?isreport=2&pcode=${this.data.phone_code}&sphone=${this.data.sample_phone}`
