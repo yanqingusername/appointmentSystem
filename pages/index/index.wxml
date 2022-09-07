@@ -37,7 +37,8 @@
 
     <view class="main_11" bindtap="bindAppointment">
       <view class="main_1">预约记录</view>
-      <view class="main_2">我的信息码，样本进度</view>
+      <view class="main_2">我的信息码</view>
+      <!-- <view class="main_2">我的信息码，样本进度</view> -->
       <image src="../../images/icon_0701_10.png" class="main_10" />
     </view>
   </view>
