@@ -661,6 +661,8 @@ Page({
         // onlineFlagNum: 1,
       })
     }
+
+    this.checkSubmitStatus();
   },
   bindOCR: function () {
     var that = this
