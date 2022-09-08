@@ -165,6 +165,17 @@ Page({
     // })
   },
   bindPhoneNumber(e) {
+
+      let user_info = this.data.userInfo;
+      user_info.phone_number = '';
+      this.setData({
+        userInfo: user_info,
+        user_id: this.data.userInfo.user_id,
+        user_name: this.data.userInfo.nickName,
+        avatarUrl: this.data.userInfo.avatarUrl
+      });
+      wx.setStorageSync('coyote_userinfo', user_info);
+
     e = e.detail;
     // 用户同意授权
     const OK = 'getPhoneNumber:ok'
@@ -179,15 +190,6 @@ Page({
       //     }
       // })
     } else {
-      let user_info = this.data.userInfo;
-      user_info.phone_number = '';
-      this.setData({
-        userInfo: user_info,
-        user_id: this.data.userInfo.user_id,
-        user_name: this.data.userInfo.nickName,
-        avatarUrl: this.data.userInfo.avatarUrl
-      });
-      wx.setStorageSync('coyote_userinfo', user_info);
 
       if(this.data.user_id){
         this.getNewUserinfo();
@@ -208,26 +210,16 @@ Page({
           user_info.phone_number = res.phoneNumber;
           that.setData({
             phone_number: res.phoneNumber,
-            userInfo: user_info,
-            user_id: that.data.userInfo.user_id,
-            user_name: that.data.userInfo.nickName,
-            avatarUrl: that.data.userInfo.avatarUrl
+            userInfo: user_info
           });
           // 本地存储
           wx.setStorageSync('coyote_userinfo', user_info);
 
+          if(that.data.user_id){
+            that.getNewUserinfo();
+          }
         } else {
           box.showToast(res.msg);
-
-          let user_info = that.data.userInfo;
-          user_info.phone_number = '';
-          that.setData({
-            userInfo: user_info,
-            user_id: that.data.userInfo.user_id,
-            user_name: that.data.userInfo.nickName,
-            avatarUrl: that.data.userInfo.avatarUrl
-          });
-          wx.setStorageSync('coyote_userinfo', user_info);
 
           if(that.data.user_id){
             that.getNewUserinfo();

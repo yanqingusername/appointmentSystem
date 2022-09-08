@@ -293,6 +293,17 @@ Page({
   },
   // 授权手机号
   bindPhoneNumber(e) {
+
+      let user_info = this.data.userInfo;
+      user_info.phone_number = '';
+      this.setData({
+        userInfo: user_info,
+        user_id: this.data.userInfo.user_id,
+        isLogin: false,
+        policyChecked: false
+      });
+      wx.setStorageSync('coyote_userinfo', user_info);
+
     console.log(e)
     // 用户同意授权
     const OK = 'getPhoneNumber:ok'
@@ -307,15 +318,7 @@ Page({
       //     }
       // })
     } else {
-      let user_info = this.data.userInfo;
-      user_info.phone_number = '';
-      this.setData({
-        userInfo: user_info,
-        user_id: this.data.userInfo.user_id,
-        isLogin: false,
-        policyChecked: false
-      });
-      wx.setStorageSync('coyote_userinfo', user_info);
+      
     }
   },
   TEL(e) {
@@ -333,25 +336,12 @@ Page({
           that.setData({
             phone_number: res.phoneNumber,
             userInfo: user_info,
-            user_id: that.data.userInfo.user_id,
-            isLogin: false,
-            policyChecked: false
           });
           // 本地存储
           wx.setStorageSync('coyote_userinfo', user_info);
 
         } else {
           box.showToast(res.msg);
-
-          let user_info = that.data.userInfo;
-          user_info.phone_number = '';
-          that.setData({
-            userInfo: user_info,
-            user_id: that.data.userInfo.user_id,
-            isLogin: false,
-            policyChecked: false
-          });
-          wx.setStorageSync('coyote_userinfo', user_info);
         }
       } else {
         box.showToast("网络不稳定，请重试");
