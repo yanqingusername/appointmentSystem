@@ -11,7 +11,6 @@ var apiurl = 'https://cloud.coyotebio-lab.com:8443/lis_appointment'    // 服务
 
 // var apiurl = "https://store.coyotebio-lab.com:8443/lis_appointment"//测试服务器
 
-
 // 常用request get封装
 function request_get(controller, data, cb) {
     var url = apiurl + controller;
