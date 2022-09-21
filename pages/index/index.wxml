@@ -12,14 +12,21 @@
   </view> -->
   <view style="position:relative;">
     <image src="../../images/icon_0701_05.png" style="height:{{isIphoneX?(325):302}}px;width:100%"/>
-    <view class="main_view1">
+    <!-- <view class="main_view1">
       <view class="main_title">{{main_title}}</view>
       <view class="main_title_1"><view class="main_radius_1"></view><view class="main_text">{{main_type_time}}</view></view>
       <view class="main_title_2" bindtap="bindChooseMap"><view class="main_radius_2"></view><view class="main_text">{{main_type_text}} ></view></view>
     </view>
-    <image src="../../images/icon_0701_06.png" class="main_img" />
+    <image src="../../images/icon_0701_06.png" class="main_img" /> -->
+    <swiper wx:if="{{movies.length>0}}" class="swiper" indicator-dots="true" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000" style="top:{{CustomBar}}px;">
+      <block wx:for="{{movies}}" wx:for-index="index">
+        <swiper-item class="swiper_item">
+          <image src="{{item.href}}" class="slide-image" bindtap="swipclick" mode="widthFix" />
+        </swiper-item>
+      </block>
+    </swiper>
   </view>
-<view class="main_center">
+<view class="main_center" style="margin-top: -{{isIphoneX?(325-CustomBar-160):(302-CustomBar-160)}}px;">
   <view class="main_center_left" bindtap="bindOnsite" data-type="0">
     <view class="main_1">现场录信息</view>
     <view class="main_2">登记个人信息，排队采样</view>

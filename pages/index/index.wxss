@@ -70,7 +70,7 @@ color: #FFFFFF;
 }
 
 .main_center{
-  margin-top: -190rpx;
+  /* margin-top: -150rpx; */
   display: flex;
   margin-left: 30rpx;
   margin-right: 30rpx;
@@ -284,5 +284,26 @@ color: #000000;
     border-radius: 20rpx;
     position: relative;
     height: 90rpx;
+  }
+
+  .swiper {
+    height: 150px !important;
+    width: 100%;
+    display: flex;
+  flex-direction: column;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  position: absolute;
+  }
+
+  .swiper .swiper_item{
+    border-radius: 20rpx;
+    height: 150px !important;
+  }
+
+  .swiper image {
+    height: 150px !important;
+    width: 100%;
+    border-radius: 20rpx;
   }
   

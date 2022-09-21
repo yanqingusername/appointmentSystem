@@ -13,7 +13,7 @@ Page({
   data: {
     // userInfo: {},
     // fix_channel_id:-1,
-    
+    CustomBar: app.globalData.CustomBar,
     StatusBar: app.globalData.StatusBar,
     fix_channel_id: -1,
     isLogin: false,
@@ -27,7 +27,9 @@ Page({
     main_type_time: '12小时内出报告',
     main_type_text: '91个核酸检测采样点位，看地图',
 
-    numberType: '1'
+    numberType: '1',
+    movies:[],
+    swiperCurrent:0,
   },
   onShow:function(){
     var that = this;
@@ -75,8 +77,10 @@ Page({
       isIphoneX: this.isIphoneX()
     });
 
+    this.getBannerList()
+
     this.getbaseData();
-    this.getMainIndex();
+    // this.getMainIndex();
   },
   isIphoneX() {
     let info = wx.getSystemInfoSync();
@@ -550,5 +554,57 @@ Page({
           url: "/pages/mineTestReport/index"
         })
     }
-  }
+  },
+  /**
+   * 获取banner
+   */
+  getBannerList: function () {
+    var that = this;
+    var data = {
+      type:1
+    }
+    request.request_get('/activity/getBannerInfo.hn', data, function (res) {
+      console.info('回调', res)
+      if (res) {
+        if (res.success) {
+          console.log(res.msg);
+            that.setData({
+              movies:res.msg
+            })
+        } else {
+          //box.showToast(res.msg);
+        }
+      }
+    })
+  },
+  
+  //轮播图的切换事件
+  swiperChange: function(e) {
+    //console.log(e)
+    this.setData({
+      swiperCurrent: e.detail.current
+    })
+  },
+  //点击图片触发事件 
+  swipclick: function(e) {
+    console.log(this.data.swiperCurrent);
+    console.log(this.data.links);
+    let open_way= this.data.movies[this.data.swiperCurrent].open_way
+    let icon= this.data.movies[this.data.swiperCurrent].icon
+    if(open_way==0){
+      wx.navigateTo({
+        url: icon
+      })
+    }else if(open_way==1){
+      app.globalData.article = icon
+      wx.navigateTo({
+        url: '/pages/index/article?url='+icon
+      })
+    }else{
+      app.globalData.article = icon
+      wx.navigateTo({
+        url: '/pages/index/article'
+      })
+    }
+  },
 })
