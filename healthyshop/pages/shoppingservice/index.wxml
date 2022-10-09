@@ -1,0 +1,26 @@
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">商城客服</view>
+</cu-custom>
+
+<view class="page">
+  <view class="view_1">
+    <view class="view_1_1">亲爱的用户，我们是电商客服，您可以点击下面按钮，将对商品的问题留言给我，我们会在工作日9-18点尽快回复。</view>
+    <view class="view_1_2"><text style="color: #35373E;font-size: 28rpx;" >新冠检测报告相关问题，</text>请您致电新冠检测24小时热线<text style="color: #006FFF;font-size: 28rpx;" bindtap="phoneCall">400-869-3888</text>。</view>
+  </view>
+
+  <view class="view_2">
+    <button class="view_2_1" open-type="contact">
+			<view class="view_2_1_1"><image class="view_2_1_1_1" src="../../../images/icon_10_08_19.png"  mode=""></image></view>
+			<view class="view_2_1_2">联系客服</view>
+		</button>
+  </view>
+
+</view>
+
+
+
+
+
+
+

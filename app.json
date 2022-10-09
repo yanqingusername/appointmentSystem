@@ -45,7 +45,10 @@
       "root": "healthyshop",
       "pages": [
         "pages/healthysearch/index",
-        "pages/shoppingdetail/index"
+        "pages/shoppingdetail/index",
+        "pages/addressAdd/index",
+        "pages/addressSelect/index",
+        "pages/shoppingservice/index"
       ]
     }
   ],

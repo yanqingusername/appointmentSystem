@@ -1,0 +1,26 @@
+<wxs src="../../../utils/substring.wxs" module="tools" />
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">{{title}}</view>
+</cu-custom>
+
+<view class="page">
+     <view class="subject_view" bind:tap="bindAddAddress">
+        <view class="subject_view_white"><image  class="icon_add" src="../../../images/icon_add.png"/>添加新地址</view>
+      </view>
+
+      <block wx:for="{{dataList}}" wx:key="index">
+        <view class="subject_item" bind:tap="bindSelectAddress" data-item="{{item}}">
+          <view class="subject_view_bg">
+              <view style="width:90%">
+                <view class="subject_title">{{item.vip_person}} {{tools.centerPhoneTrim(item.vip_phone)}}</view>
+                <view class="subject_text" style="margin-top:22rpx;">{{item.province}}{{item.city}}{{item.area}} {{item.address}}</view>
+              </view>
+              <view style="position:relative;width:60rpx;height:60rpx;display: flex;align-items: center;justify-content: center;" catch:tap="bindEditAddress" data-item="{{item}}">
+                <image class="right_arrow" src="../../../images/icon_detail_edit_gray.png"></image>
+              </view>
+          </view>
+        </view>
+      </block>
+      <view style="height:50rpx;"></view>
+</view>

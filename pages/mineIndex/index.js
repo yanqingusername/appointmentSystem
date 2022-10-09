@@ -290,6 +290,15 @@ Page({
       this.getUserProfile();
     }
   },
+  bindAddressSelect: function () {
+    if (this.data.user_id) {
+      wx.navigateTo({
+        url: '/healthyshop/pages/addressSelect/index?isMine=1'
+      });
+    } else {
+      this.getUserProfile();
+    }
+  },
   hidePicker() {
     this.setData({
       isShow: false

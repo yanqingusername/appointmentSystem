@@ -157,7 +157,7 @@ display: flex;
     justify-content: center;
     align-items: center;
     background: #FFFFFF;
-    padding: 20rpx 30rpx 20rpx 30rpx;
+    padding: 20rpx 30rpx 30rpx 30rpx;
 }
 
 .view_5_1{

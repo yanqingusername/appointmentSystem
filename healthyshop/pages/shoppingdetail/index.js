@@ -611,4 +611,9 @@ Page({
       delta: 1
     });
   },
+  clickShoppingService() {
+    wx.navigateTo({
+      url: "/healthyshop/pages/shoppingservice/index"
+    });
+  },
 })

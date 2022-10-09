@@ -48,8 +48,30 @@
     </view>
   </view>
 
+  <view class="mine_11">
+    <view class="mine_11_1">我的订单</view>
+    <view class="view_2">
+      <view class="view_2_1" bindtap="handlerClassClick" data-id="1">
+        <image class="view_2_1_1" src="../../images/icon_10_08_14.png" />
+        <view class="view_2_1_2">全部订单</view>
+      </view>
+      <view class="view_2_1" bindtap="handlerClassClick" data-id="2">
+        <image class="view_2_1_1" src="../../images/icon_10_08_15.png" />
+        <view class="view_2_1_2">待收货</view>
+      </view>
+      <view class="view_2_1" bindtap="handlerClassClick" data-id="3">
+        <image class="view_2_1_1" src="../../images/icon_10_08_16.png" />
+        <view class="view_2_1_2">已收货</view>
+      </view>
+      <view class="view_2_1" bindtap="bindCoupon">
+        <image class="view_2_1_1" src="../../images/icon_10_08_17.png" />
+        <view class="view_2_1_2">优惠券</view>
+      </view>
+    </view>
+  </view>
+
 <view class="mine_5">
-  <view class="mine_6" bindtap="bindCoupon">
+  <!-- <view class="mine_6" bindtap="bindCoupon">
     <view class="mine_6_1">
       <image src="../../images/icon_0701_16.png" class="mine_6_1_img"/>
       <view class="mine_6_1_text">我的卡券</view>
@@ -57,11 +79,20 @@
     <view class="mine_6_2">
       <image src="../../images/icon_0701_21.png" class="mine_6_2_img"/>
     </view>
-  </view>
+  </view> -->
   <view class="mine_6" bind:tap="bingManageSubject">
     <view class="mine_6_1">
       <image src="../../images/icon_0701_17.png" class="mine_6_1_img"/>
       <view class="mine_6_1_text">受检人管理</view>
+    </view>
+    <view class="mine_6_2">
+      <image src="../../images/icon_0701_21.png" class="mine_6_2_img"/>
+    </view>
+  </view>
+  <view class="mine_6" bindtap="bindAddressSelect">
+    <view class="mine_6_1">
+      <image src="../../images/icon_10_08_18.png" class="mine_6_1_img"/>
+      <view class="mine_6_1_text">收货地址管理</view>
     </view>
     <view class="mine_6_2">
       <image src="../../images/icon_0701_21.png" class="mine_6_2_img"/>

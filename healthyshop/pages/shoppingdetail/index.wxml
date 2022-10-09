@@ -84,7 +84,7 @@
 	<view class="view_10_2">商品未上架</view>
 </view>
 
-<view class="view_11">
+<view class="view_11" bind:tap="clickShoppingService">
 	<image class="view_11_1" lazy-load src="../../../images/icon_10_08_13.png"/>
 	<view class="view_11_2">客服</view>
 </view>

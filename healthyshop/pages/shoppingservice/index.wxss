@@ -1,0 +1,69 @@
+page{
+  background:#F3F4F9;
+}
+
+.page{
+  width:100%;
+  overflow-x:hidden; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.view_1{
+  width: 686rpx;
+  /* height: 360rpx; */
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 32rpx 32rpx 52rpx 32rpx;
+  margin-top: 30rpx;
+}
+.view_1_1{
+  font-size: 28rpx;
+  color: #35373E;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
+}
+
+.view_1_2{
+  margin-top: 36rpx;
+  color: #35373E;
+  font-size: 28rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+font-weight: 600;
+}
+
+.view_2{
+  margin-top: 60rpx;
+}
+
+.view_2_1{
+  width: 426px;
+height: 96rpx;
+background: #D8E8FF;
+border-radius: 48rpx;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0rpx;
+      padding: 0;
+}
+
+.view_2_1_1{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.view_2_1_1_1{
+  width: 100%;
+  height: 100%;
+}
+
+.view_2_1_2{
+  font-size: 32rpx;
+  color: #076DFD;
+  margin-left: 18rpx;
+  text-align: center;
+}
