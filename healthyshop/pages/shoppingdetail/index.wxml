@@ -1,0 +1,90 @@
+<view style="position:relative;height: 750rpx;">
+	<image src="../../../images/icon_0701_27.png" lazy-load style="height:750rpx;width:100%;" />
+	<view class="mine_view1" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+		<image src="../../../images/icon_10_08_10.png" lazy-load class="view_1" bind:tap="BackPage"/>
+	</view>
+</view>
+
+<view class="view_2">
+	<view class="view_2_1">
+        <view class="view_2_2"><text style="font-size: 32rpx;color: #FF0000;">￥</text>299</view>
+		<view class="view_2_3">￥399</view>
+	</view>
+
+	<view class="view_2_1">
+		<view class="view_2_4">包邮</view>
+	</view>
+</view>
+
+<view class="view_3">
+	<view class="view_3_1"><text style="font-size: 32rpx;color: #FC5A51;">【满100减20】</text>卡尤迪肠道菌群检测试剂盒 顺培怡 益生菌固体饮料 美国进口菌种 12袋/盒</view>
+</view>
+
+<view class="view_4">
+	<view class="view_4_1" wx:for="{{4}}" wx:key="index">
+		<view class="view_4_1_1">
+			<view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;">￥</text>299</view>
+			<view class="view_4_1_1_2">
+				<view class="view_4_1_1_2_1">满100使用</view>
+				<view class="view_4_1_1_2_2">有效期至2022-10-10</view>
+			</view>
+		</view>
+		<view class="view_4_1_2">
+			<view class="view_4_1_2_1"></view>
+			<view class="view_4_1_2_2">立即领取</view>
+		</view>
+	</view>
+</view>
+
+<view class="view_5">
+	<view class="view_5_1">展开更多优惠券<image src="../../../images/icon_10_08_11.png" lazy-load class="view_5_2" bind:tap="handlerClickMore"/></view>
+</view>
+
+<view style="height:20rpx;background: #F3F4F9;"></view>
+
+<view class="view_6">
+	<view class="view_6_1"></view>
+	<view class="view_6_2">商品详情</view>
+</view>
+
+<view class="view_7" wx:for="{{4}}" wx:key="index">
+	<image src="../../../images/icon_0701_27.png" lazy-load style="width:100%;" mode="widthFix"/>
+</view>
+
+<view class="view_8">
+	<view class="view_8_1">
+		<view class="view_8_1_1">------</view>
+		<view class="view_8_1_2">更多好物推荐</view>
+		<view class="view_8_1_1">------</view>
+	</view>
+</view>
+
+<view class="view_9">
+      <view class="midouItem" catchtap="handleRouter" wx:for="{{5}}" wx:key="index" data-id="{{index}}">
+				<view class="midouYizhanShop">
+					<image class="midouYizhanShop-image" lazy-load src="../../../images/icon_0701_06.png"></image>
+			  </view>
+
+				<view class="midouFour">
+					<view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">【满100减20】</text>卡尤迪肠道菌群检测试剂盒 顺</view>
+						<view class="midouPriceView">
+              <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>299</view>
+							<view class="midouOriginal">￥399</view>
+						</view>
+					</view>
+				</view>
+    </view>
+
+<view style="height:30rpx;background: #F3F4F9;"></view>
+
+<view style="height:156rpx;background: #F3F4F9;"></view>
+
+<view class="view_10">
+	<!-- <view class="view_10_1">立即购买</view> -->
+	<view class="view_10_2">商品未上架</view>
+</view>
+
+<view class="view_11">
+	<image class="view_11_1" lazy-load src="../../../images/icon_10_08_13.png"/>
+	<view class="view_11_2">客服</view>
+</view>

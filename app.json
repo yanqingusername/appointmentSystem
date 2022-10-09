@@ -28,7 +28,8 @@
     "pages/epidemicPreventionPolicyDetail/index",
     "pages/xinguanSelfInspection/index",
     "pages/updatePhone/index",
-    "pages/nowInvoice/index"
+    "pages/nowInvoice/index",
+    "pages/healthy/index"
   ],
   "subpackages": [
     {
@@ -38,6 +39,13 @@
         "pages/activities/preview",
         "pages/activities/poster",
         "pages/activities/record"
+      ]
+    },
+    {
+      "root": "healthyshop",
+      "pages": [
+        "pages/healthysearch/index",
+        "pages/shoppingdetail/index"
       ]
     }
   ],
@@ -61,6 +69,12 @@
         "iconPath": "/images/main_img.png",
         "selectedIconPath": "/images/main_img_select.png",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/healthy/index",
+        "iconPath": "/images/icon_10_08_01.png",
+        "selectedIconPath": "/images/icon_10_08_02.png",
+        "text": "健康"
       },
       {
         "pagePath": "pages/mineIndex/index",

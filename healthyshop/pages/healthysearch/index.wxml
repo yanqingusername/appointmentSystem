@@ -1,0 +1,42 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+	<view slot="content">{{class_title}}</view>
+</cu-custom>
+<view class="search_border">
+	<view class='search'>
+		<view class="search_left">
+			<image class="right_arrow" src="../../../images/icon_10_08_03.png" />
+      <input id="search_checked" style="width:80%;" type='text' placeholder='搜索益生菌 自检试剂盒' placeholder-style="color: #999999;" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" ></input>
+      <view class="weui-icon-clear" wx:if="{{searchText}}" bindtap="clearSearchHandle">
+        <image style="width:28rpx;height:28rpx;" src="../../../images/icon_0810_01.png"></image>
+      </view>
+		</view>
+	</view>
+</view>
+
+<view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
+	<view class="P1" style="margin-top:100rpx">
+
+   <view class="view_4">
+      <view class="view_4_1" catchtap="handleRouter" wx:for="{{5}}" wx:key="index" data-id="{{index}}">
+				<view class="midouYizhanShop">
+					<image class="midouYizhanShop-image" lazy-load src="../../../images/icon_0701_06.png"></image>
+			  </view>
+
+				<view class="midouFour">
+					<view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">【满100减20】</text>卡尤迪肠道菌群检测试剂盒 顺</view>
+					<view class="midouPriceView">
+            <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>299</view>
+						<view class="midouOriginal">￥399</view>
+					</view>
+          <view class="midouBuyView">
+            <view class="midouBuy">购买</view>
+          </view>
+				</view>
+			</view>
+    </view>
+
+    <view style="height:30rpx;"></view>
+		
+	</view>
+</view>
+

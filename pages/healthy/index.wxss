@@ -1,0 +1,259 @@
+page {
+  background: #EFEFEF;
+}
+
+.search_border {
+  background: #FFFFFF;
+  height: 10rpx;
+  padding-top: 1rpx;
+  padding-bottom: 100rpx;
+  position: fixed;
+  width: 100%;
+  z-index: 500;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70rpx;
+  margin-top: 10rpx;
+}
+
+.right_arrow {
+  height: 32rpx;
+  width: 32rpx;
+  margin-left: 24rpx;
+}
+
+.search_left {
+  display: flex;
+  align-items: center;
+  width: 686rpx;
+  height: 68rpx;
+  background: #F3F4F9;
+  border-radius: 34rpx;
+}
+
+#district_font {
+  font-size: 24rpx;
+  margin-left: 12rpx;
+  color: #999999;
+}
+
+.swiper {
+  height: 146px !important;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.swiper .swiper_item {
+  border-radius: 20rpx;
+  height: 146px !important;
+}
+
+.swiper image {
+  height: 146px !important;
+  width: 100%;
+  border-radius: 20rpx;
+}
+
+.page {
+  width: 100%;
+  overflow-x: hidden;
+  /* background-color: #FFFFFF; */
+  /* height: 100%; */
+  /* background-color: #F5F5F5; */
+  /* background: linear-gradient(#FFFFFF, #EFEFEF); */
+}
+
+.page.active {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  /* height: 100%; */
+  background-color: #FFFFFF;
+}
+
+.P1 {
+  /* width: 686rpx;
+  margin: 32rpx; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.view_1 {
+  background: #FFFFFF;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0rpx 32rpx;
+}
+
+.line_view_2 {
+  width: 100%;
+  height: 30rpx;
+  background: #FFFFFF;
+}
+
+.view_2 {
+  background: #FFFFFF;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  flex-direction: row;
+  padding: 0rpx 32rpx;
+}
+
+.view_2_1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.view_2_1_1 {
+  width: 96rpx;
+  height: 96rpx;
+}
+
+.view_2_1_2 {
+  font-size: 24rpx;
+  color: #666666;
+  margin-top: 12rpx;
+}
+
+.line_view_3 {
+  width: 100%;
+  height: 24rpx;
+  background: #FFFFFF;
+}
+
+.view_3 {
+  background: #FFFFFF;
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0rpx 32rpx 0rpx 32rpx;
+}
+
+.view_3_1 {
+  height: 176rpx;
+  width: 686rpx;
+}
+
+.view_3_2 {
+  position: absolute;
+  /* bottom: 58rpx; */
+  left: 90rpx;
+  display: flex;
+  align-items: baseline;
+}
+
+.view_3_2_1 {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.view_3_2_2 {
+  font-size: 60rpx;
+  color: #333333;
+  margin-left: 4rpx;
+}
+
+.view_3_3 {
+  position: absolute;
+  /* top: 50rpx; */
+  left: 238rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.view_3_3_1 {
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.view_3_3_2 {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 8rpx;
+}
+
+.view_4 {
+  background: linear-gradient(#FFFFFF, #EFEFEF);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 32rpx;
+  padding-right: 32rpx;
+}
+
+.midouItem {
+  background-color: #fff;
+  margin-bottom: 24rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  /* height: 100%; */
+}
+
+.midouYizhanShop {
+  position: relative;
+  width: 332rpx;
+  height: 332rpx;
+  border-radius: 16rpx 16rpx 0px 0px;
+}
+
+.midouYizhanShop-image {
+  width: 332rpx;
+  height: 332rpx;
+  border-radius: 16rpx 16rpx 0px 0px;
+}
+
+.midouFour {
+  padding: 25rpx 17rpx 20rpx 17rpx;
+}
+
+.midouTitle {
+  font-size: 28rpx;
+  width: 290rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: #333333;
+}
+
+.midouPriceView {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 4rpx;
+}
+
+.midouPrice {
+  font-size: 32rpx;
+  color: #FF0000;
+  display: flex;
+  align-items: center;
+}
+
+.midouOriginal {
+  font-size: 22rpx;
+  text-decoration: line-through;
+  color: #999999;
+  margin-left: 10rpx;
+}
