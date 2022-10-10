@@ -272,10 +272,20 @@ Page({
     //   }
     // })
   },
+  handlerClassClick: function (e) {
+    if (this.data.user_id) {
+      let typeid = e.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: `/healthyshop/pages/shoppingorderlist/index?typeid=${typeid}`,
+      })
+    } else {
+      this.getUserProfile();
+    }
+  },
   bindCoupon: function () {
     if (this.data.user_id) {
       wx.navigateTo({
-        url: '/pages/coupon/coupon',
+        url: '/healthyshop/pages/shoppingcoupon/index',
       })
     } else {
       this.getUserProfile();

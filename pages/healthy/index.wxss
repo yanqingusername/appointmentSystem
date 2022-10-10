@@ -5,7 +5,7 @@ page {
 .search_border {
   background: #FFFFFF;
   height: 10rpx;
-  padding-top: 1rpx;
+  /* padding-top: 1rpx; */
   padding-bottom: 100rpx;
   position: fixed;
   width: 100%;

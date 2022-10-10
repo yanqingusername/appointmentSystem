@@ -80,8 +80,8 @@
 <view style="height:156rpx;background: #F3F4F9;"></view>
 
 <view class="view_10">
-	<!-- <view class="view_10_1">立即购买</view> -->
-	<view class="view_10_2">商品未上架</view>
+	<view class="view_10_1" bind:tap="clickShoppingSubOrder">立即购买</view>
+	<!-- <view class="view_10_2">商品未上架</view> -->
 </view>
 
 <view class="view_11" bind:tap="clickShoppingService">

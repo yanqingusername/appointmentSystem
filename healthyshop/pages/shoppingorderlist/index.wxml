@@ -1,0 +1,73 @@
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">订单列表</view>
+</cu-custom>
+<view class="search_border">
+	<view class='search'>
+		<view class="view_1">
+      <view class="view_1_1" bind:tap="clickTab" data-typeid="1">
+        <view class="view_1_1_1 {{typeid == 1 ? 'view_1_1_1_active':''}}">全部订单</view>
+        <view class="view_1_1_2 {{typeid == 1 ? 'view_1_1_2_active':''}}"></view>
+      </view>
+      <view class="view_1_1" bind:tap="clickTab" data-typeid="2">
+        <view class="view_1_1_1 {{typeid == 2 ? 'view_1_1_1_active':''}}">待收货</view>
+        <view class="view_1_1_2 {{typeid == 2 ? 'view_1_1_2_active':''}}"></view>
+      </view>
+      <view class="view_1_1" bind:tap="clickTab" data-typeid="3">
+        <view class="view_1_1_1 {{typeid == 3 ? 'view_1_1_1_active':''}}">已收货</view>
+        <view class="view_1_1_2 {{typeid == 3 ? 'view_1_1_2_active':''}}"></view>
+      </view>
+    </view>
+	</view>
+</view>
+
+<view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
+	<view class="P1" style="margin-top:100rpx">
+
+	<view class="view_3" wx:for="{{6}}" wx:key="index">
+        <view class="view_5">
+          <view class="view_3_1">订单号：3901221123314489</view>
+          <view class="view_3_2_2" wx:if="{{index == 1}}">支付成功</view>
+          <view class="view_3_2_2" style="color: #999999;" wx:else>已退款</view>
+        </view>
+
+        <view class="view_line"></view>
+
+        <view class="view_3_2_3">2022-09-16 23:44:09</view>
+        
+        <view class="view_3_2" catchtap="handleRouter" data-id="{{index}}">
+          <view class="midouYizhanShop">
+            <image class="midouYizhanShop-image" lazy-load src="../../../images/icon_0701_06.png"></image>
+          </view>
+
+          <view class="midouFour">
+            <view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">【满100减20】</text>培怡 益生菌固体饮料 美国进口菌种 12袋/盒</view>
+            <view class="midouBuyView">
+              <view class="midouNumber">X1</view>
+              <view class="midouPrice"><text style="font-size: 22rpx;color: #999999;">实付： </text><text style="font-size: 24rpx;color: #FF0000;">￥</text>299</view>
+            </view>
+          </view>
+        </view>
+
+        <view class="view_7">
+          <view class="view_7_1">
+            <image class="view_7_1_1" wx:if="{{index == 1}}" lazy-load src="../../../images/icon_10_08_28.png"></image>
+            <image class="view_7_1_1" wx:else lazy-load src="../../../images/icon_10_08_27.png"></image>
+            <view class="view_7_1_2">已发货</view>
+          </view>
+          <view class="view_7_2">某某某 13781234717  北京朝阳区呼家楼花苑小区甲28号</view>
+        </view>
+
+        <view class="view_8">
+          <view class="view_8_1"></view>
+          <view class="view_8_2">
+            <view class="view_8_2_2" wx:if="{{index == 1}}">再次购买</view>
+            <view class="view_8_2_1">确认收货</view>
+          </view>
+        </view>
+      </view>
+		
+    <view style="height:20rpx;"></view>
+	</view>
+</view>
+

@@ -616,4 +616,9 @@ Page({
       url: "/healthyshop/pages/shoppingservice/index"
     });
   },
+  clickShoppingSubOrder() {
+    wx.navigateTo({
+      url: "/healthyshop/pages/shoppingsuborder/index"
+    });
+  },
 })

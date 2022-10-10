@@ -1,0 +1,128 @@
+<wxs src="../../../utils/substring.wxs" module="tools" />
+
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+  <view slot="backText" bindtap="bindBack"></view>
+  <view slot="content">提交订单</view>
+</cu-custom>
+
+<view class="page">
+  <form>
+    <view>
+      <!-- 添加地址 -->
+      <view class="view_1" bind:tap="bindAddAddress" wx:if="{{isAddAddress == 0}}">
+        <image class="view_1_1" src="../../../images/icon_10_08_21.png"></image>
+        <view class="view_1_2">选择收货地址</view>
+        <image class="view_1_3" src="../../../images/rightArrow.png"></image>
+      </view>
+
+      <view class="view_2" bind:tap="bindSelectAddress" wx:if="{{isAddAddress == 1}}">
+        <image class="view_1_1" src="../../../images/icon_10_08_20.png"></image>
+        <view class="view_2_2">
+          <view class="view_2_2_1">北京市朝阳区北京市朝阳区东四环中路34号大成国际A2座12A21</view>
+          <view class="view_2_2_2">陈奕迅 {{tools.centerPhoneTrim1('134111121123')}} </view>
+        </view>
+        <image class="view_1_3" src="../../../images/rightArrow.png"></image>
+      </view>
+
+      <view class="view_3">
+        <view class="view_3_1">卡尤迪大蓝健康旗舰店</view>
+        <view class="view_3_2" catchtap="handleRouter" data-id="{{index}}">
+          <view class="midouYizhanShop">
+            <image class="midouYizhanShop-image" lazy-load src="../../../images/icon_0701_06.png"></image>
+          </view>
+
+          <view class="midouFour">
+            <view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">【满100减20】</text>培怡 益生菌固体饮料 美国进口菌种 12袋/盒</view>
+            <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>299</view>
+            <view class="midouBuyView">
+              <view class="midouBuyView_1">-</view>
+              <view class="midouBuyView_2">1</view>
+              <view class="midouBuyView_3">+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="view_4">
+        <view class="view_4_1">
+          <view class="view_4_1_1">配送方式</view>
+          <view class="view_4_1_2">我们会在2工作日内为您发货</view>
+          <view class="view_4_1_3">快递 免邮</view>
+        </view>
+        <view class="view_line"></view>
+
+        <view class="view_4_2" bind:tap="bindAddAddress">
+          <view class="view_4_2_1">优惠券</view>
+          <view class="view_4_2_2">
+            <view class="view_4_2_2_1">新用户50元券</view>
+            <image class="view_4_2_2_2" src="../../../images/rightArrow.png"></image>
+          </view>
+        </view>
+      </view>
+
+      <view class="view_5">
+        <view class="view_5_1">
+          <view class="view_5_1_1">付款方式</view>
+          <view class="view_5_1_2"><image class="view_5_1_2_1" src="../../../images/icon_wechat_new.png"></image>微信支付</view>
+        </view>
+        <view class="view_line"></view>
+
+        <view class="view_5_2" bind:tap="bindAddAddress">
+          <view class="view_5_2_1">订单备注</view>
+          <view class="view_5_2_2">
+            <input id="search_checked" style="width:100%;" type='text' placeholder='选填，请与客服协商一致后标注在这里' placeholder-style="color: #999999;" value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" ></input>
+          </view>
+        </view>
+        
+      </view>
+
+     
+
+    </view>
+    <view style="height:200rpx"></view>
+
+    <!-- 提交按钮 -->
+    <view class="fixed_view">
+      <view class="fixed_view_1">
+        <view class="fixed_view_1_1">应付：<text class="fixed_view_1_2">¥</text><text class="fixed_view_1_3">299</text></view>
+        <view class="fixed_view_1_4">已优惠：￥50</view>
+      </view>
+      <view class="fixed_view_2" bind:tap="clickOrderDetail">
+        <view class="fixed_view_2_1">提交订单</view>
+      </view>
+    </view>
+  </form>
+</view>
+
+<view catchtouchmove="preventD" hidden="{{!isShow}}" class="picker-item">
+  <view class="picker-container {{isShow?'show_picker':'hide_picker'}}" animation="{{animationData}}">
+
+    <view class="btn-box">
+      <view class="pick_btn" bindtap="hideModal">取消</view>
+      <view class='pick_btn' style="color: #999999"></view>
+      <view class='pick_btn' style="color: #FC5A51" bindtap="onConfirm">使用</view>
+    </view>
+
+    <view class="new_view">
+          <scroll-view class="mask_4" scroll-y >
+            <view class="mask_4_1" wx:for="{{4}}" wx:key="index">
+              <view class="mask_4_1_1">
+                <view class="mask_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;">￥</text>20</view>
+                <view class="mask_4_1_1_2">
+                  <view class="mask_4_1_1_2_1">满100使用</view>
+                  <view class="mask_4_1_1_2_2">有效期至2022-10-10</view>
+                </view>
+              </view>
+              <view class="mask_4_1_2">
+                <image class="mask_4_1_2_2" src="../../../images/icon_10_08_22.png"></image>
+                <!-- <image class="mask_4_1_2_2" src="../../../images/icon_10_08_23.png"></image> -->
+              </view>
+            </view>
+          </scroll-view>
+    </view>
+    
+
+  </view>
+  <!-- 遮罩 -->
+  <view class="sensorType-screen" bindtap="hideModal" animation="{{animationOpacity}}"/>
+</view>

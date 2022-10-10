@@ -48,7 +48,11 @@
         "pages/shoppingdetail/index",
         "pages/addressAdd/index",
         "pages/addressSelect/index",
-        "pages/shoppingservice/index"
+        "pages/shoppingservice/index",
+        "pages/shoppingsuborder/index",
+        "pages/shoppingorderdetail/index",
+        "pages/shoppingcoupon/index",
+        "pages/shoppingorderlist/index"
       ]
     }
   ],
