@@ -86,10 +86,11 @@ page {
   align-items: center;
   justify-content: center;
   width: 100%;
+  background: linear-gradient(#FFFFFF, #EFEFEF);
 }
 
 .view_1 {
-  background: #FFFFFF;
+  /* background: #FFFFFF; */
   display: flex;
   width: 100%;
   align-items: center;
@@ -104,13 +105,13 @@ page {
 }
 
 .view_2 {
-  background: #FFFFFF;
+  /* background: #FFFFFF; */
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   flex-direction: row;
-  padding: 0rpx 32rpx;
+  padding: 30rpx 32rpx 0rpx 32rpx;
 }
 
 .view_2_1 {
@@ -118,17 +119,20 @@ page {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 25%;
 }
 
 .view_2_1_1 {
-  width: 96rpx;
-  height: 96rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .view_2_1_2 {
   font-size: 24rpx;
-  color: #666666;
-  margin-top: 12rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
+color: #666666;
+  margin-top: 10rpx;
 }
 
 .line_view_3 {
@@ -138,13 +142,13 @@ page {
 }
 
 .view_3 {
-  background: #FFFFFF;
+  /* background: #FFFFFF; */
   position: relative;
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
-  padding: 0rpx 32rpx 0rpx 32rpx;
+  padding: 24rpx 32rpx 0rpx 32rpx;
 }
 
 .view_3_1 {
@@ -191,11 +195,12 @@ page {
 }
 
 .view_4 {
-  background: linear-gradient(#FFFFFF, #EFEFEF);
+  /* background: linear-gradient(#FFFFFF, #EFEFEF); */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+  padding-top: 30rpx;
   padding-left: 32rpx;
   padding-right: 32rpx;
 }

@@ -10,12 +10,56 @@ Page({
    */
   data: {
     movies: [],
+    isIndicatorDots: false,
     swiperCurrent: 0,
 
     isLogin: false,
     user_id: '',
     userInfo: {},
-
+    coupon: {
+      coupon_id: "1",
+      coupon_money: "20",
+      coupon_title: "新人优惠券无门槛",
+      coupon_time: "有效期为领取后3天内",
+    },
+    isReceiveCoupon: false,
+    shopList:[
+      {
+        id:'1',
+        subtitle:"【满100减20】",
+        title: "卡尤迪肠道菌群检测试剂盒 顺",
+        price: "299",
+        oldprice: '399'
+      },
+      {
+        id:'2',
+        subtitle:"【满100减20】",
+        title: "卡尤迪肠道菌群检测试剂盒 顺",
+        price: "299",
+        oldprice: '399'
+      },
+      {
+        id:'3',
+        subtitle:"【满100减20】",
+        title: "卡尤迪肠道菌群检测试剂盒 顺",
+        price: "299",
+        oldprice: '399'
+      },
+      {
+        id:'4',
+        subtitle:"【满100减20】",
+        title: "卡尤迪肠道菌群检测试剂盒 顺",
+        price: "299",
+        oldprice: '399'
+      },
+      {
+        id:'5',
+        subtitle:"【满100减20】",
+        title: "卡尤迪肠道菌群检测试剂盒 顺",
+        price: "299",
+        oldprice: '399'
+      }
+    ]
   },
   onShow: function () {
 
@@ -24,66 +68,23 @@ Page({
     this.setData({
       user_id: wx.getStorageSync('coyote_userinfo').user_id || ''
     });
-    this.getBannerList()
+    this.getBannerList();
+
+    // this.getCoupon();
   },
   handlerSearchClick() {
     wx.navigateTo({
       url: '/healthyshop/pages/healthysearch/index'
     });
   },
-  handlerClassClick(e) {
-    let id = e.currentTarget.dataset.id;
-    let title = e.currentTarget.dataset.title;
-    wx.navigateTo({
-      url: `/healthyshop/pages/healthysearch/index?id=${id}&title=${title}`
-    });
-
-  },
-  handlerCouponClick() {
-
-  },
-  handleRouter(e) {
-    let id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: `/healthyshop/pages/shoppingdetail/index?shopid=${id}`
-    });
-  },
-  onReachBottom: function () {
-    console.log('1111')
-  },
-  /**
-   * 获取banner
-   */
-  getBannerList: function () {
-    var that = this;
-    var data = {
-      type: 1
-    }
-    request.request_get('/activity/getBannerInfo.hn', data, function (res) {
-      console.info('回调', res)
-      if (res) {
-        if (res.success) {
-          console.log(res.msg);
-          that.setData({
-            movies: res.msg
-          })
-        } else {
-          //box.showToast(res.msg);
-        }
-      }
-    })
-  },
   //轮播图的切换事件
   swiperChange: function (e) {
-    //console.log(e)
     this.setData({
       swiperCurrent: e.detail.current
     })
   },
   //点击图片触发事件 
   swipclick: function (e) {
-    console.log(this.data.swiperCurrent);
-    console.log(this.data.links);
     let open_way = this.data.movies[this.data.swiperCurrent].open_way
     let icon = this.data.movies[this.data.swiperCurrent].icon
     if (open_way == 0) {
@@ -101,5 +102,125 @@ Page({
         url: '/pages/index/article'
       })
     }
+  },
+  handlerClassClick(e) {
+    let id = e.currentTarget.dataset.id;
+    let title = e.currentTarget.dataset.title;
+    wx.navigateTo({
+      url: `/healthyshop/pages/healthysearch/index?id=${id}&title=${title}`
+    });
+  },
+  /**
+   * 优惠券点击事件
+   */
+  handlerCouponClick() {
+    let id = e.currentTarget.dataset.id;
+
+  },
+  handleRouter(e) {
+    let shopid = e.currentTarget.dataset.shopid;
+    wx.navigateTo({
+      url: `/healthyshop/pages/shoppingdetail/index?shopid=${shopid}`
+    });
+  },
+  onReachBottom: function () {
+    console.log('1111')
+  },
+  /**
+   * 获取banner
+   */
+  getBannerList: function () {
+    var that = this;
+    var data = {
+      type: 1
+    }
+    request.request_get('/activity/getBannerInfo.hn', data, function (res) {
+      console.info('回调', res)
+      if (res) {
+        if (res.success) {
+          that.setData({
+            movies: res.msg
+          });
+          if (that.data.movies.length > 1) {
+            that.setData({
+              isIndicatorDots: true
+            });
+          }
+        } else {
+          //box.showToast(res.msg);
+        }
+      }
+    })
+  },
+  /**
+   * 获取优惠券
+   */
+   getCoupon: function () {
+    let that = this;
+    let data = {
+      type: 1
+    }
+    request.request_get('/activity/getCouponInfo.hn', data, function (res) {
+      console.info('回调', res)
+      if (res) {
+        if (res.success) {
+          that.setData({
+            coupon: res.msg
+          });
+        } else {
+          //box.showToast(res.msg);
+        }
+      }
+    })
+  },
+  /**
+   * 领取优惠券
+   */
+   getReceiveCoupon: function (id) {
+    let that = this;
+    let data = {
+      coupon_id: id
+    }
+    request.request_get('/activity/getReceiveCoupon.hn', data, function (res) {
+      console.info('回调', res)
+      if (res) {
+        if (res.success) {
+          that.setData({
+            isReceiveCoupon: true
+          });
+        } else {
+          //box.showToast(res.msg);
+        }
+      }
+    })
+  },
+  /**
+   * 获取商品列表
+   */
+   getShopList: function () {
+    var that = this;
+    var data = {
+      type: 1
+    }
+    request.request_get('/activity/getShopList.hn', data, function (res) {
+      console.info('回调', res)
+      if (res) {
+        if (res.success) {
+          if (that.data.page == 1) {
+            that.setData({
+              shopList: res.msg,
+              page: (res.data.data && res.data.data.length > 0) ? that.data.page + 1 : that.data.page
+            })
+          } else {
+            that.setData({
+              shopList: that.data.goodList.concat(res.data.data || []),
+              page: (res.data.data && res.data.data.length > 0) ? that.data.page + 1 : that.data.page,
+            })
+          }
+        } else {
+          //box.showToast(res.msg);
+        }
+      }
+    })
   },
 })

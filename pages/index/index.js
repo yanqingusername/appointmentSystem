@@ -30,6 +30,7 @@ Page({
     numberType: '1',
     movies:[],
     swiperCurrent:0,
+    isIndicatorDots: false
   },
   onShow:function(){
     var that = this;
@@ -571,6 +572,12 @@ Page({
             that.setData({
               movies:res.msg
             })
+
+            if(that.data.movies.length > 1){
+              that.setData({
+                isIndicatorDots: true
+              });
+            }
         } else {
           //box.showToast(res.msg);
         }

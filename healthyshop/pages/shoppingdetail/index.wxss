@@ -2,6 +2,22 @@ page{
   background: #EFEFEF;
 }
 
+.swiper {
+  height: 750rpx !important;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.swiper .swiper_item {
+  height: 750rpx !important;
+}
+
+.swiper image {
+  height: 750rpx !important;
+  width: 100%;
+}
+
 .view_1{
   height: 54rpx;
     width: 54rpx;
@@ -21,6 +37,24 @@ page{
   top: 0rpx;
   width: 100%;
   justify-content: center;
+}
+
+.mine_view2{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
+  justify-content: center;
+  width: 72rpx;
+  height: 36rpx;
+  background: #000000;
+  border-radius: 22rpx;
+  opacity: 0.4;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
 }
 
 .view_2{

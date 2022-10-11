@@ -26,18 +26,18 @@
 
       <view class="view_3">
         <view class="view_3_1">卡尤迪大蓝健康旗舰店</view>
-        <view class="view_3_2" catchtap="handleRouter" data-id="{{index}}">
+        <view class="view_3_2" bind:tap="handleRouter" data-id="{{shopid}}">
           <view class="midouYizhanShop">
             <image class="midouYizhanShop-image" lazy-load src="../../../images/icon_0701_06.png"></image>
           </view>
 
           <view class="midouFour">
-            <view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">【满100减20】</text>培怡 益生菌固体饮料 美国进口菌种 12袋/盒</view>
-            <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>299</view>
+            <view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">{{shopsubtitle}}</text>{{shoptitle}}</view>
+            <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>{{total_payment}}</view>
             <view class="midouBuyView">
-              <view class="midouBuyView_1">-</view>
-              <view class="midouBuyView_2">1</view>
-              <view class="midouBuyView_3">+</view>
+              <view class="midouBuyView_1" catchtap="bindReduce">-</view>
+              <view class="midouBuyView_2">{{shopnumber}}</view>
+              <view class="midouBuyView_3" catchtap="bindAdd">+</view>
             </view>
           </view>
         </view>
@@ -51,10 +51,10 @@
         </view>
         <view class="view_line"></view>
 
-        <view class="view_4_2" bind:tap="bindAddAddress">
+        <view class="view_4_2" bind:tap="clickCoupon">
           <view class="view_4_2_1">优惠券</view>
           <view class="view_4_2_2">
-            <view class="view_4_2_2_1">新用户50元券</view>
+            <view class="view_4_2_2_1">{{coupon_title}}</view>
             <image class="view_4_2_2_2" src="../../../images/rightArrow.png"></image>
           </view>
         </view>
@@ -67,10 +67,10 @@
         </view>
         <view class="view_line"></view>
 
-        <view class="view_5_2" bind:tap="bindAddAddress">
+        <view class="view_5_2">
           <view class="view_5_2_1">订单备注</view>
           <view class="view_5_2_2">
-            <input id="search_checked" style="width:100%;" type='text' placeholder='选填，请与客服协商一致后标注在这里' placeholder-style="color: #999999;" value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" ></input>
+            <input id="search_checked" style="width:100%;" type='text' placeholder='选填，请与客服协商一致后标注在这里' placeholder-style="color: #999999;" value="{{remarkText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" ></input>
           </view>
         </view>
         
@@ -84,8 +84,8 @@
     <!-- 提交按钮 -->
     <view class="fixed_view">
       <view class="fixed_view_1">
-        <view class="fixed_view_1_1">应付：<text class="fixed_view_1_2">¥</text><text class="fixed_view_1_3">299</text></view>
-        <view class="fixed_view_1_4">已优惠：￥50</view>
+        <view class="fixed_view_1_1">应付：<text class="fixed_view_1_2">¥</text><text class="fixed_view_1_3">{{shop_payment}}</text></view>
+        <view class="fixed_view_1_4">已优惠：￥{{coupon_payment}}</view>
       </view>
       <view class="fixed_view_2" bind:tap="clickOrderDetail">
         <view class="fixed_view_2_1">提交订单</view>
@@ -100,24 +100,38 @@
     <view class="btn-box">
       <view class="pick_btn" bindtap="hideModal">取消</view>
       <view class='pick_btn' style="color: #999999"></view>
-      <view class='pick_btn' style="color: #FC5A51" bindtap="onConfirm">使用</view>
+      <view class='pick_btn' style="color: #FC5A51" bindtap="onConfirm">确定</view>
     </view>
 
     <view class="new_view">
           <scroll-view class="mask_4" scroll-y >
-            <view class="mask_4_1" wx:for="{{4}}" wx:key="index">
-              <view class="mask_4_1_1">
-                <view class="mask_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;">￥</text>20</view>
-                <view class="mask_4_1_1_2">
-                  <view class="mask_4_1_1_2_1">满100使用</view>
-                  <view class="mask_4_1_1_2_2">有效期至2022-10-10</view>
+            <block wx:for="{{couponList}}" wx:key="index">
+              <view class="mask_4_1" wx:if="{{total_payment >= item.coupon_price}}" catch:tap="clickSelectCoupon" data-couponid="{{item.coupon_id}}" data-couponpayment="{{item.coupon_payment}}" data-coupontitle="{{item.coupon_title}}">
+                <view class="mask_4_1_1">
+                  <view class="mask_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;">￥</text>{{item.coupon_payment}}</view>
+                  <view class="mask_4_1_1_2">
+                    <view class="mask_4_1_1_2_1">{{item.coupon_title}}</view>
+                    <view class="mask_4_1_1_2_2">{{item.coupon_time}}</view>
+                  </view>
+                </view>
+                <view class="mask_4_1_2">
+                  <image wx:if="{{select_coupon_id == item.coupon_id}}" class="mask_4_1_2_2" src="../../../images/icon_10_08_23.png"></image>
+                  <image wx:else class="mask_4_1_2_2" src="../../../images/icon_10_08_22.png"></image>
                 </view>
               </view>
-              <view class="mask_4_1_2">
-                <image class="mask_4_1_2_2" src="../../../images/icon_10_08_22.png"></image>
-                <!-- <image class="mask_4_1_2_2" src="../../../images/icon_10_08_23.png"></image> -->
+              <view class="mask_4_1" wx:else>
+                <view class="mask_4_1_1">
+                  <view class="mask_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;">￥</text>{{item.coupon_payment}}</view>
+                  <view class="mask_4_1_1_2">
+                    <view class="mask_4_1_1_2_1">{{item.coupon_title}}</view>
+                    <view class="mask_4_1_1_2_2">{{item.coupon_time}}</view>
+                  </view>
+                </view>
+                <view class="mask_4_1_2">
+                  <image class="mask_4_1_2_2" src="../../../images/icon_10_08_29.png"></image>
+                </view>
               </view>
-            </view>
+            </block>
           </scroll-view>
     </view>
     

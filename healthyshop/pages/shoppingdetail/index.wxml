@@ -1,8 +1,17 @@
 <view style="position:relative;height: 750rpx;">
-	<image src="../../../images/icon_0701_27.png" lazy-load style="height:750rpx;width:100%;" />
+	<swiper class="swiper" bindchange="swiperChange" autoplay="true" interval="4000" duration="1000">
+        <block wx:for="{{5}}" wx:for-index="index" wx:key="index">
+          <swiper-item class="swiper_item">
+            <image src="../../../images/icon_0701_27.png" lazy-load style="height:750rpx;width:100%;" />
+          </swiper-item>
+        </block>
+      </swiper>
+	
 	<view class="mine_view1" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
 		<image src="../../../images/icon_10_08_10.png" lazy-load class="view_1" bind:tap="BackPage"/>
 	</view>
+
+	<view class="mine_view2">{{(swiperCurrent+1)}}/{{5}}</view>
 </view>
 
 <view class="view_2">
@@ -31,12 +40,12 @@
 		</view>
 		<view class="view_4_1_2">
 			<view class="view_4_1_2_1"></view>
-			<view class="view_4_1_2_2">立即领取</view>
+			<view class="view_4_1_2_2" bind:tap="clickReceiveCoupon">立即领取</view>
 		</view>
 	</view>
 </view>
 
-<view class="view_5">
+<view class="view_5" bind:tap="clickMoreCoupon">
 	<view class="view_5_1">展开更多优惠券<image src="../../../images/icon_10_08_11.png" lazy-load class="view_5_2" bind:tap="handlerClickMore"/></view>
 </view>
 
@@ -88,3 +97,6 @@
 	<image class="view_11_1" lazy-load src="../../../images/icon_10_08_13.png"/>
 	<view class="view_11_2">客服</view>
 </view>
+
+<loginDialogView show="{{isLogin}}" datas="{{dialogData}}" bind:bindPhoneNumber="bindPhoneNumber" bind:bindShowDialog="bindShowDialog"/>
+ 

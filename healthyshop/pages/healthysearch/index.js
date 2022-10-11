@@ -12,7 +12,44 @@ Page({
   data: {
     class_id: "",
     class_title:"搜索",
-    searchText: ''
+    searchText: '',
+    shopList:[
+      {
+        id:'1',
+        subtitle:"【满100减20】",
+        title: "卡尤迪肠道菌群检测试剂盒 顺",
+        price: "299",
+        oldprice: '399'
+      },
+      {
+        id:'2',
+        subtitle:"【满100减20】",
+        title: "卡尤迪肠道菌群检测试剂盒 顺",
+        price: "299",
+        oldprice: '399'
+      },
+      {
+        id:'3',
+        subtitle:"【满100减20】",
+        title: "卡尤迪肠道菌群检测试剂盒 顺",
+        price: "299",
+        oldprice: '399'
+      },
+      {
+        id:'4',
+        subtitle:"【满100减20】",
+        title: "卡尤迪肠道菌群检测试剂盒 顺",
+        price: "299",
+        oldprice: '399'
+      },
+      {
+        id:'5',
+        subtitle:"【满100减20】",
+        title: "卡尤迪肠道菌群检测试剂盒 顺",
+        price: "299",
+        oldprice: '399'
+      }
+    ]
   },
   onShow: function () {
 
@@ -44,5 +81,34 @@ Page({
     wx.navigateTo({
       url: `/healthyshop/pages/shoppingdetail/index?shopid=${id}`
     });
-  }
+  },
+  /**
+   * 获取商品列表
+   */
+   getShopList: function () {
+    var that = this;
+    var data = {
+      type: 1
+    }
+    request.request_get('/activity/getShopList.hn', data, function (res) {
+      console.info('回调', res)
+      if (res) {
+        if (res.success) {
+          if (that.data.page == 1) {
+            that.setData({
+              shopList: res.msg,
+              page: (res.data.data && res.data.data.length > 0) ? that.data.page + 1 : that.data.page
+            })
+          } else {
+            that.setData({
+              shopList: that.data.goodList.concat(res.data.data || []),
+              page: (res.data.data && res.data.data.length > 0) ? that.data.page + 1 : that.data.page,
+            })
+          }
+        } else {
+          //box.showToast(res.msg);
+        }
+      }
+    })
+  },
 })

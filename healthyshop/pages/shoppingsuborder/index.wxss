@@ -1,7 +1,5 @@
-/* pages/createOrder/createOrder.wxss */
-/**index.wxss**/
 page{
-  background: #F5F5F5;
+  background: #F3F4F9;
 }
 
 .page{

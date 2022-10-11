@@ -13,9 +13,9 @@
 <view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
 	<view class="P1" style="margin-top:100rpx">
 
-		<view class="view_1">
-      <swiper wx:if="{{movies.length>0}}" class="swiper" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000">
-        <block wx:for="{{movies}}" wx:for-index="index">
+		<view class="view_1" wx:if="{{movies.length>0}}">
+      <swiper wx:if="{{movies.length>0}}" class="swiper" indicator-dots="{{isIndicatorDots}}" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000">
+        <block wx:for="{{movies}}" wx:for-index="index" wx:key="index">
           <swiper-item class="swiper_item">
             <image src="{{item.href}}" class="slide-image" bindtap="swipclick" mode="widthFix" />
           </swiper-item>
@@ -23,7 +23,7 @@
       </swiper>
     </view>
 
-    <view class="line_view_2"></view>
+    <!-- <view class="line_view_2"></view> -->
 
     <view class="view_2">
       <view class="view_2_1" bindtap="handlerClassClick" data-id="1" data-title="益生菌">
@@ -44,36 +44,38 @@
       </view>
     </view>
 
-    <view class="line_view_3"></view>
+    <!-- <view class="line_view_3"></view> -->
 
-    <view class="view_3" bindtap="handlerCouponClick">
-      <image src="../../images/icon_10_08_08.png" class="view_3_1"/>
+    <view class="view_3" wx:if="{{coupon}}" bindtap="handlerCouponClick" data-id="{{coupon.coupon_id}}">
+      <image wx:if="{{user_id}}" src="../../images/icon_10_08_08.png" class="view_3_1"/>
+      <image wx:else src="../../images/icon_10_08_09.png" class="view_3_1"/>
+      
       <view class="view_3_2">
         <view class="view_3_2_1">¥</view>
-        <view class="view_3_2_2">20</view>
+        <view class="view_3_2_2">{{coupon.coupon_money}}</view>
       </view>
       <view class="view_3_3">
-        <view class="view_3_3_1">新人优惠券无门槛</view>
-        <view class="view_3_3_2">有效期为领取后3天内</view>
+        <view class="view_3_3_1">{{coupon.coupon_title}}</view>
+        <view class="view_3_3_2">{{coupon.coupon_time}}</view>
       </view>
     </view>
 
-    <view class="line_view_2"></view>
+    <!-- <view class="line_view_2"></view> -->
 
     <view class="view_4">
-      <view class="midouItem" catchtap="handleRouter" wx:for="{{5}}" wx:key="index" data-id="{{index}}">
+      <view class="midouItem" catchtap="handleRouter" wx:for="{{shopList}}" wx:key="index" data-shopid="{{item.id}}">
 				<view class="midouYizhanShop">
 					<image class="midouYizhanShop-image" lazy-load src="../../images/icon_0701_06.png"></image>
 			  </view>
 
 				<view class="midouFour">
-					<view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">【满100减20】</text>卡尤迪肠道菌群检测试剂盒 顺</view>
-						<view class="midouPriceView">
-              <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>299</view>
-							<view class="midouOriginal">￥399</view>
-						</view>
+					<view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">{{item.subtitle}}</text>{{item.title}}</view>
+					<view class="midouPriceView">
+            <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>{{item.price}}</view>
+						<view class="midouOriginal">￥{{item.oldprice}}</view>
 					</view>
 				</view>
+			</view>
     </view>
 		
 	</view>

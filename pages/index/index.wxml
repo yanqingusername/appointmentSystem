@@ -17,9 +17,9 @@
       <view class="main_title_1"><view class="main_radius_1"></view><view class="main_text">{{main_type_time}}</view></view>
       <view class="main_title_2" bindtap="bindChooseMap"><view class="main_radius_2"></view><view class="main_text">{{main_type_text}} ></view></view>
     </view>
-    <image src="../../images/icon_0701_06.png" class="main_img" /> indicator-dots="true" -->
-    <swiper wx:if="{{movies.length>0}}" class="swiper" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000" style="top:{{CustomBar}}px;">
-      <block wx:for="{{movies}}" wx:for-index="index">
+    <image src="../../images/icon_0701_06.png" class="main_img" />  -->
+    <swiper wx:if="{{movies.length>0}}" class="swiper" indicator-dots="{{isIndicatorDots}}" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000" style="top:{{CustomBar}}px;">
+      <block wx:for="{{movies}}" wx:for-index="index" wx:key="index">
         <swiper-item class="swiper_item">
           <image src="{{item.href}}" class="slide-image" bindtap="swipclick" mode="widthFix" />
         </swiper-item>
