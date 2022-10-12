@@ -83,14 +83,15 @@ Page({
     });
   },
   /**
-   * 获取商品列表
+   * 获取搜索商品列表
    */
    getShopList: function () {
     var that = this;
     var data = {
-      type: 1
+      class_id: this.data.class_id,
+      searchText: this.data.class_id,
     }
-    request.request_get('/activity/getShopList.hn', data, function (res) {
+    request.request_get('/activity/getSearchShopList.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
