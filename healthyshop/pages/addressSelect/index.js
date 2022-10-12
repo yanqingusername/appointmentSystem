@@ -11,12 +11,15 @@ Page({
   data: {
     title: "选择地址",
     dataList: [],
+    isMine: 0,
   },
   onShow: function () {
     this.getAllAddress();
   },
-  onLoad: function () {
-
+  onLoad: function (options) {
+    this.setData({
+      isMine: options.isMine
+    });
   },
   getAllAddress(){
     let that = this;
@@ -44,31 +47,35 @@ Page({
    */
   bindAddAddress(){
     wx.navigateTo({
-      url:'/pages/addressAdd/index?isAddAddress=1'
+      url:`/healthyshop/pages/addressAdd/index?isAddAddress=1&isMine=${this.data.isMine}`
     });
   },
   /**
    * 选择地址
    */
   bindSelectAddress(e){
-    let item = e.currentTarget.dataset.item;
-    console.log('--item-->:',item)
-    if(item){
-      let pages = getCurrentPages(); 
-      let prevPage = pages[pages.length - 2];
-      prevPage.setData({
-        isAddAddress: 1,
-        address_id: item.id,
-        vip_person: item.vip_person,
-        vip_phone: item.vip_phone,
-        province: item.province,
-        city: item.city,
-        area: item.area,
-        address: item.address,
-      })
-      wx.navigateBack({
-        delta: 1, 
-      })
+    if(this.data.isMine == 1){
+
+    }else{
+      let item = e.currentTarget.dataset.item;
+      console.log('--item-->:',item)
+      if(item){
+        let pages = getCurrentPages(); 
+        let prevPage = pages[pages.length - 2];
+        prevPage.setData({
+          isAddAddress: 1,
+          address_id: item.id,
+          address_person: item.address_person,
+          address_phone: item.address_phone,
+          province: item.province,
+          city: item.city,
+          area: item.area,
+          address: item.address,
+        })
+        wx.navigateBack({
+          delta: 1, 
+        })
+      }
     }
   },
   /**
@@ -80,7 +87,7 @@ Page({
     console.log('--item-->:',item)
     if(item){
       wx.navigateTo({
-        url:`/pages/addressAdd/index?isAddAddress=2&title=编辑地址&jsonItem=${jsonItem}`
+        url:`/healthyshop/pages/addressAdd/index?isAddAddress=2&title=编辑地址&jsonItem=${jsonItem}&isMine=${this.data.isMine}`
       });
     }
   }

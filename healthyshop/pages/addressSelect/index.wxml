@@ -13,7 +13,7 @@
         <view class="subject_item" bind:tap="bindSelectAddress" data-item="{{item}}">
           <view class="subject_view_bg">
               <view style="width:90%">
-                <view class="subject_title">{{item.vip_person}} {{tools.centerPhoneTrim(item.vip_phone)}}</view>
+                <view class="subject_title">{{item.address_person}} {{tools.centerPhoneTrim1(item.address_phone)}}</view>
                 <view class="subject_text" style="margin-top:22rpx;">{{item.province}}{{item.city}}{{item.area}} {{item.address}}</view>
               </view>
               <view style="position:relative;width:60rpx;height:60rpx;display: flex;align-items: center;justify-content: center;" catch:tap="bindEditAddress" data-item="{{item}}">

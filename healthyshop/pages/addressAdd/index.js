@@ -13,8 +13,8 @@ Page({
     isShowRegion: 1,
     region: ['北京市', '北京市', '东城区'],
     title: "添加地址",
-    vip_person: "",
-    vip_phone: "",
+    address_person: "",
+    address_phone: "",
     province: "",
     city: "",
     area: "",
@@ -31,13 +31,15 @@ Page({
     isAddAddress: 0,  // 0-默认从vip预约-添加地址跳转   1-从选择地址-添加地址跳转 2-从选择地址-编辑地址跳转
     address_id: '',
     policyChecked: false,
+    isMine: 0,
   },
   onShow: function () {
   },
   onLoad: function (options) {
     this.getbaseData();
     this.setData({
-      isAddAddress: options.isAddAddress
+      isAddAddress: options.isAddAddress,
+      isMine: options.isMine
     });
 
     if(options && options.title){
@@ -50,8 +52,8 @@ Page({
       let jsonItem = JSON.parse(options.jsonItem);
       let addressregion = jsonItem.province+jsonItem.city+jsonItem.area+"";
       this.setData({
-        vip_person: jsonItem.vip_person,
-        vip_phone: jsonItem.vip_phone,
+        address_person: jsonItem.address_person,
+        address_phone: jsonItem.address_phone,
         province: jsonItem.province,
         city: jsonItem.city,
         area: jsonItem.area,
@@ -66,7 +68,7 @@ Page({
   },
   //保存按钮禁用判断
   checkSubmitStatus: function(e){
-    if(this.data.vip_person != '' && this.data.vip_phone != '' && this.data.addressregion != '' && this.data.address != ''){
+    if(this.data.address_person != '' && this.data.address_phone != '' && this.data.addressregion != '' && this.data.address != ''){
       this.setData({
         submitState: false
       })
@@ -81,7 +83,7 @@ Page({
     var str = e.detail.value;
     str = utils.checkInput_2(str);
     this.setData({
-      vip_person: str
+      address_person: str
     })
 
     this.checkSubmitStatus();
@@ -91,14 +93,14 @@ Page({
     var str = e.detail.value;
     str = utils.checkInput(str);
     this.setData({
-      vip_phone: str
+      address_phone: str
     })
 
     this.checkSubmitStatus();
   },
   clearPhone: function () {
     this.setData({
-      vip_phone: ''
+      address_phone: ''
     })
     this.checkSubmitStatus();
   },
@@ -127,19 +129,19 @@ Page({
   submitBuffer: utils.throttle(function (e) {
 
     var that = this;
-    var vip_person = that.data.vip_person;
-    var vip_phone = that.data.vip_phone;
+    var address_person = that.data.address_person;
+    var address_phone = that.data.address_phone;
     var addressregion = that.data.addressregion;
     var address = that.data.address;
     var openid = app.globalData.openid;
     
-    if (vip_person == '') {
+    if (address_person == '') {
       box.showToast("请填写联系人姓名");
       return
-    } else if (vip_phone == '') {
+    } else if (address_phone == '') {
       box.showToast("请填写手机号码");
       return
-    } else if (!utils.checkPhone(vip_phone)) {
+    } else if (!utils.checkPhone(address_phone)) {
       box.showToast("手机号码格式不正确")
       return
     } else if (addressregion == '') {
@@ -157,8 +159,8 @@ Page({
 
     var data = {
       open_id: openid,
-      vip_person: that.data.vip_person,
-      vip_phone: that.data.vip_phone,
+      address_person: that.data.address_person,
+      address_phone: that.data.address_phone,
       area_info:"",
       province: that.data.region[0],
       city: that.data.region[1],
@@ -179,23 +181,31 @@ Page({
           if (res.success) {
             box.showToast('添加成功','',1000)
 
-            setTimeout(()=>{
-              let pages = getCurrentPages();
-              let prevPage = pages[pages.length - 2];
-              prevPage.setData({
-                isAddAddress: 1,
-                address_id: res.address_id,
-                vip_person: that.data.vip_person,
-                vip_phone: that.data.vip_phone,
-                province: that.data.region[0],
-                city: that.data.region[1],
-                area: that.data.region[2],
-                address: that.data.address,
-              })
-              wx.navigateBack({
-                delta: 1,
-              })
-            },1200);
+            if(that.data.isMine == 1){
+              setTimeout(()=>{
+                wx.navigateBack({
+                  delta: 1,
+                })
+              },1200);
+            }else{
+              setTimeout(()=>{
+                let pages = getCurrentPages();
+                let prevPage = pages[pages.length - 2];
+                prevPage.setData({
+                  isAddAddress: 1,
+                  address_id: res.address_id,
+                  address_person: that.data.address_person,
+                  address_phone: that.data.address_phone,
+                  province: that.data.region[0],
+                  city: that.data.region[1],
+                  area: that.data.region[2],
+                  address: that.data.address,
+                })
+                wx.navigateBack({
+                  delta: 1,
+                })
+              },1200);
+            }
           } else {
             box.showToast(res.msg);
           }
@@ -210,23 +220,31 @@ Page({
           if (res.success) {
             box.showToast('添加成功','',1000)
 
-            setTimeout(()=>{
-              let pages = getCurrentPages();
-              let prevPage = pages[pages.length - 3];
-              prevPage.setData({
-                isAddAddress: 1,
-                address_id: res.address_id,
-                vip_person: that.data.vip_person,
-                vip_phone: that.data.vip_phone,
-                province: that.data.region[0],
-                city: that.data.region[1],
-                area: that.data.region[2],
-                address: that.data.address,
-              })
-              wx.navigateBack({
-                delta: 2,
-              })
-            },1200);
+            if(that.data.isMine == 1){
+              setTimeout(()=>{
+                wx.navigateBack({
+                  delta: 1,
+                })
+              },1200);
+            }else{
+              setTimeout(()=>{
+                let pages = getCurrentPages();
+                let prevPage = pages[pages.length - 3];
+                prevPage.setData({
+                  isAddAddress: 1,
+                  address_id: res.address_id,
+                  address_person: that.data.address_person,
+                  address_phone: that.data.address_phone,
+                  province: that.data.region[0],
+                  city: that.data.region[1],
+                  area: that.data.region[2],
+                  address: that.data.address,
+                })
+                wx.navigateBack({
+                  delta: 2,
+                })
+              },1200);
+            }
           } else {
             box.showToast(res.msg);
           }
@@ -243,23 +261,31 @@ Page({
           if (res.success) {
             box.showToast('编辑成功','',1000)
 
-            setTimeout(()=>{
-              let pages = getCurrentPages();
-              let prevPage = pages[pages.length - 3];
-              prevPage.setData({
-                isAddAddress: 1,
-                address_id: that.data.address_id,
-                vip_person: that.data.vip_person,
-                vip_phone: that.data.vip_phone,
-                province: that.data.region[0],
-                city: that.data.region[1],
-                area: that.data.region[2],
-                address: that.data.address,
-              })
-              wx.navigateBack({
-                delta: 2,
-              })
-            },1200);
+            if(that.data.isMine == 1){
+              setTimeout(()=>{
+                wx.navigateBack({
+                  delta: 1,
+                })
+              },1200);
+            }else{
+              setTimeout(()=>{
+                let pages = getCurrentPages();
+                let prevPage = pages[pages.length - 3];
+                prevPage.setData({
+                  isAddAddress: 1,
+                  address_id: that.data.address_id,
+                  address_person: that.data.address_person,
+                  address_phone: that.data.address_phone,
+                  province: that.data.region[0],
+                  city: that.data.region[1],
+                  area: that.data.region[2],
+                  address: that.data.address,
+                })
+                wx.navigateBack({
+                  delta: 2,
+                })
+              },1200);
+            }
           } else {
             box.showToast(res.msg);
           }

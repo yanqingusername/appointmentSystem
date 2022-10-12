@@ -19,16 +19,16 @@
 
       <view class="view_3">
         <view class="view_3_1">卡尤迪大蓝健康旗舰店</view>
-        <view class="view_3_2" catchtap="handleRouter" data-id="{{index}}">
+        <view class="view_3_2" catchtap="handleRouter" data-id="{{shopid}}">
           <view class="midouYizhanShop">
             <image class="midouYizhanShop-image" lazy-load src="../../../images/icon_0701_06.png"></image>
           </view>
 
           <view class="midouFour">
-            <view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">【满100减20】</text>培怡 益生菌固体饮料 美国进口菌种 12袋/盒</view>
+            <view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">{{shopsubtitle}}</text>{{shoptitle}}</view>
             <view class="midouBuyView">
-              <view class="midouNumber">X1</view>
-              <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>299</view>
+              <view class="midouNumber">X{{shopnumber}}</view>
+              <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>{{shopprice}}</view>
             </view>
           </view>
         </view>
@@ -36,56 +36,57 @@
 
         <view class="view_5_1">
           <view class="view_5_1_1">收货地址</view>
-          <view class="view_5_1_2">某某某 13781234717  北京朝阳区呼家楼花苑小区甲28号</view>
+          <view class="view_5_1_2">{{address_person}} {{address_phone}}  {{province}}{{city}}{{area}}{{address}}</view>
         </view>
 
         <view class="view_6">
           <view class="view_7_1">订单备注</view>
-          <view class="view_7_2">无</view>
+          <view class="view_7_2">{{remarkText}}</view>
         </view>
 
         <view class="view_7">
           <view class="view_7_1">订单编号</view>
-          <view class="view_7_2">3901221123314489<text class="view_7_3"></text><view class="view_7_4">复制</view></view>
+          <view class="view_7_2">{{ordernumber}}<text class="view_7_3"></text><view class="view_7_4" bindtap="bindCopy" data-number="{{ordernumber}}">复制</view></view>
         </view>
 
         <view class="view_7">
           <view class="view_7_1">优惠金额</view>
-          <view class="view_7_2">0</view>
+          <view class="view_7_2">{{coupon_money}}</view>
         </view>
 
         <view class="view_7">
           <view class="view_7_1">实付金额</view>
-          <view class="view_7_5">￥299</view>
+          <view class="view_7_5">￥{{order_payment}}</view>
         </view>
 
         <view class="view_7">
           <view class="view_7_1">成交时间</view>
-          <view class="view_7_2">2022-09-16 23:44:09</view>
+          <view class="view_7_2">{{order_time}}</view>
         </view>
 
         <view class="view_7">
           <view class="view_7_1">退款时间</view>
-          <view class="view_7_2">2022-09-24 14:08:09</view>
+          <view class="view_7_2">{{return_time}}</view>
         </view>
 
         <view class="view_7">
           <view class="view_7_1">物流信息</view>
-          <view class="view_7_2">申通快递  ST882761729<text class="view_7_3"></text><view class="view_7_4">复制</view></view>
+          <view wx:if="{{courier_name && courier_number}}" class="view_7_2">{{courier_name}}  {{courier_number}}<text class="view_7_3"></text><view class="view_7_4" bindtap="bindCopy" data-number="{{courier_number}}">复制</view></view>
+          <view wx:else class="view_7_2">待发货，发货后快递单号将展示在这里</view>
         </view>
 
         <view class="view_8">
           <view class="view_8_1"></view>
           <view class="view_8_2">
-            <view class="view_8_2_2">再次购买</view>
-            <view class="view_8_2_1">确认收货</view>
+            <view class="view_8_2_2" bind:tap="handleRouter" data-id="{{shopid}}">再次购买</view>
+            <view class="view_8_2_1" bind:tap="clickSubmit" data-ordernum="{{ordernum}}">确认收货</view>
           </view>
         </view>
 
         <view class="view_8" style="padding: 0rpx 0rpx 0rpx 0rpx;">
           <view class="view_8_1"></view>
           <view class="view_8_2">
-            <view class="view_8_2_3">剩余12天19小时</view>
+            <view class="view_8_2_3">{{time}}</view>
           </view>
         </view>
 
@@ -110,17 +111,17 @@
 
 
       <view class="view_10">
-        <view class="view_10_1">
+        <view class="view_10_1" bind:tap="clickOther">
           <view class="view_10_1_1">益生菌使用小贴士</view>
           <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
         </view>
         <view class="view_line_10"></view>
-        <view class="view_10_1">
+        <view class="view_10_1" bind:tap="clickOther">
           <view class="view_10_1_1">家庭自检试剂盒操作手册</view>
           <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
         </view>
         <view class="view_line_10"></view>
-        <view class="view_10_1">
+        <view class="view_10_1" bind:tap="clickOther">
           <view class="view_10_1_1">在家自行采样注意事项</view>
           <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
         </view>
@@ -132,3 +133,7 @@
 
     
 </view>
+
+<!-- 确认收货弹框 -->
+<modalView show="{{showDialog}}"  datas="{{dialogData}}" bind:dialogCancel="dialogCancel" bind:dialogSure="dialogSure" types="1" />
+ 

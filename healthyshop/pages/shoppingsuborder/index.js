@@ -270,13 +270,13 @@ Page({
     })
   },
   clickOrderDetail: utils.throttle(function (e) {
-    if (this.data.address_id == '') {
-      box.showToast("请选择收货地址");
-      return;
-    }
+    // if (this.data.address_id == '') {
+    //   box.showToast("请选择收货地址");
+    //   return;
+    // }
 
     wx.navigateTo({
-      url: "/healthyshop/pages/shoppingorderdetail/index"
+      url: `/healthyshop/pages/shoppingorderdetail/index?ordernum=123`
     });
   }, 3000),
   // 提交确认出库信息

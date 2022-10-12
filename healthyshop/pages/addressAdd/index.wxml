@@ -10,14 +10,14 @@
         <view style="height: 2rpx;"></view>
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">姓名</view>
-          <input class="P5_2 app_font" placeholder="请填写联系人姓名" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="50" value="{{vip_person}}"></input>
+          <input class="P5_2 app_font" placeholder="请填写联系人姓名" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="50" value="{{address_person}}"></input>
         </view>
         <view style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
         <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">手机号</view>
-          <input class="P5_2 " style="position:relative;right:20rpx" type="number" placeholder="请输入联系人手机号" placeholder-class="place_style" bindinput="bindPhone" maxlength="11" value="{{vip_phone}}"></input>
-          <view id="clear_1" style="padding:16rpx;right: -20rpx;" wx:if="{{vip_phone}}" catch:tap="clearPhone">
+          <input class="P5_2 " style="position:relative;right:20rpx" type="number" placeholder="请输入联系人手机号" placeholder-class="place_style" bindinput="bindPhone" maxlength="11" value="{{address_phone}}"></input>
+          <view id="clear_1" style="padding:16rpx;right: -20rpx;" wx:if="{{address_phone}}" catch:tap="clearPhone">
             <image class="icon_clear" src="../../../images/icon_clear.png"></image>
           </view>
         </view>

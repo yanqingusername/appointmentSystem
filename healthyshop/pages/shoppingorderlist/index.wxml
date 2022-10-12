@@ -61,8 +61,8 @@
         <view class="view_8">
           <view class="view_8_1"></view>
           <view class="view_8_2">
-            <view class="view_8_2_2" wx:if="{{index == 1}}">再次购买</view>
-            <view class="view_8_2_1">确认收货</view>
+            <view class="view_8_2_2" catchtap="handleRouter" data-id="{{index}}" wx:if="{{index == 1}}">再次购买</view>
+            <view class="view_8_2_1" catch:tap="clickSubmit">确认收货</view>
           </view>
         </view>
       </view>
@@ -70,4 +70,8 @@
     <view style="height:20rpx;"></view>
 	</view>
 </view>
+
+<!-- 确认收货弹框 -->
+<modalView show="{{showDialog}}"  datas="{{dialogData}}" bind:dialogCancel="dialogCancel" bind:dialogSure="dialogSure" types="1" />
+ 
 
