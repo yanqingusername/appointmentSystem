@@ -18,7 +18,8 @@ Page({
     userInfo: {},
     coupon: {
       coupon_id: "1",
-      coupon_money: "20",
+      coupon_payment: 20,
+      coupon_price: 100,
       coupon_title: "新人优惠券无门槛",
       coupon_time: "有效期为领取后3天内",
     },

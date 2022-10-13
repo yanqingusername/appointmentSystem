@@ -16,23 +16,23 @@
 
 <view class="view_2">
 	<view class="view_2_1">
-        <view class="view_2_2"><text style="font-size: 32rpx;color: #FF0000;">￥</text>299</view>
-		<view class="view_2_3">￥399</view>
+        <view class="view_2_2"><text style="font-size: 32rpx;color: #FF0000;">￥</text>{{price}}</view>
+		<view class="view_2_3">￥{{oldprice}}</view>
 	</view>
 
 	<view class="view_2_1">
-		<view class="view_2_4">包邮</view>
+		<view class="view_2_4">{{freeshipping}}</view>
 	</view>
 </view>
 
 <view class="view_3">
-	<view class="view_3_1"><text style="font-size: 32rpx;color: #FC5A51;">【满100减20】</text>卡尤迪肠道菌群检测试剂盒 顺培怡 益生菌固体饮料 美国进口菌种 12袋/盒</view>
+	<view class="view_3_1"><text style="font-size: 32rpx;color: #FC5A51;">{{subtitle}}</text>{{title}}</view>
 </view>
 
 <view class="view_4">
 	<view class="view_4_1" wx:for="{{4}}" wx:key="index">
 		<view class="view_4_1_1">
-			<view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;">￥</text>299</view>
+			<view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;">￥</text>20</view>
 			<view class="view_4_1_1_2">
 				<view class="view_4_1_1_2_1">满100使用</view>
 				<view class="view_4_1_1_2_2">有效期至2022-10-10</view>
@@ -89,8 +89,8 @@
 <view style="height:156rpx;background: #F3F4F9;"></view>
 
 <view class="view_10">
-	<view class="view_10_1" bind:tap="clickShoppingSubOrder">立即购买</view>
-	<!-- <view class="view_10_2">商品未上架</view> -->
+	<view wx:if="{{isGrounding}}" class="view_10_1" bind:tap="clickShoppingSubOrder">立即购买</view>
+	<view wx:else class="view_10_2">商品未上架</view>
 </view>
 
 <view class="view_11" bind:tap="clickShoppingService">

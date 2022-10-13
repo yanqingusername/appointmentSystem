@@ -29,7 +29,7 @@ Page({
     address: "甲28号",
     remarkText: "无",
     ordernumber: "3901221123314489",
-    coupon_money: "0",
+    coupon_payment: "0",
     order_payment: "299",
     order_time: "2022-09-16 23:44:09",
     return_time: "2022-09-16 23:44:09",

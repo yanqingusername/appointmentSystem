@@ -17,8 +17,17 @@ Page({
     phone_number: '',
     userInfo: {},
     dialogData: {},
-    shopid: '',
     swiperCurrent:0,
+    // shopimage:[‘’,’’,’’],  // 商品顶部头图
+		shopid:'', // 商品id
+        		subtitle:"【满100减20】", // 商品副标题
+        		title: "卡尤迪肠道菌群检测试剂盒 顺培怡 益生菌固体饮料 美国进口菌种 12袋/盒", // 商品标题
+        		price: "299", // 商品价格
+        		oldprice: "399", // 商品原价格
+		freeshipping: "包邮", // 商品标签
+		// shopdetailimg:[‘’,’’,’’],  // 商品详情图
+		isGrounding: true // 商品是否上架
+
   },
   onShow: function () {
     this.setData({

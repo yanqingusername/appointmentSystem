@@ -52,7 +52,7 @@
       
       <view class="view_3_2">
         <view class="view_3_2_1">¥</view>
-        <view class="view_3_2_2">{{coupon.coupon_money}}</view>
+        <view class="view_3_2_2">{{coupon.coupon_payment}}</view>
       </view>
       <view class="view_3_3">
         <view class="view_3_3_1">{{coupon.coupon_title}}</view>
