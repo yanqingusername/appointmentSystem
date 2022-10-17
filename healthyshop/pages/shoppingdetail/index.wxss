@@ -183,7 +183,7 @@ opacity: 0.8;
 .view_4_1_2_1{
   width: 2rpx;
   height: 92rpx;
-  border-right: 1rpx dashed #FDCDCD;
+  border-right: 2rpx dashed #FDCDCD;
 }
 
 .view_4_1_2_2{
