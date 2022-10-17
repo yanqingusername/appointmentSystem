@@ -46,8 +46,7 @@
       <view class="view_4">
         <view class="view_4_1">
           <view class="view_4_1_1">配送方式</view>
-          <view class="view_4_1_2">我们会在2工作日内为您发货</view>
-          <view class="view_4_1_3">快递 免邮</view>
+          <view class="view_4_1_2">我们会在2工作日内为您发货<text class="view_4_1_3">快递 免邮</text></view>
         </view>
         <view class="view_line"></view>
 

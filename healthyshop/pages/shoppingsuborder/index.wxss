@@ -224,7 +224,7 @@ color: #333333;
 .view_4_1{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 28rpx 36rpx 22rpx 28rpx;
 }
 
@@ -240,7 +240,7 @@ color: #333333;
 font-family: PingFangSC-Regular, PingFang SC;
 font-weight: 400;
 color: #333333;
-margin-left: 82rpx;
+/* margin-left: 82rpx; */
 }
 
 .view_4_1_3{
