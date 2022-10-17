@@ -154,6 +154,12 @@ font-weight: 500;
   justify-content: center;
 }
 
+.template_flex_img{
+  width: 400rpx;
+  height: 400rpx;
+  margin-top: 200rpx;
+}
+
 /**
   *  卡劵样式
   */

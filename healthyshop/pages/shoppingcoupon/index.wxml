@@ -35,6 +35,10 @@
   <!-- <view wx:if="{{number == 1}}" class="template_flex">
     <view style="margin-top:100rpx">暂无健康商城优惠券</view>
   </view> -->
+  
+    <!-- <view wx:if="{{number == 1}}" class="template_flex">
+      <image class="template_flex_img" src="../../../images/icon_10_08_30.png"></image>
+    </view> -->
   </view>
 
   <view wx:if="{{number == 2}}">
@@ -59,8 +63,11 @@
       </view> 
 
     </view>
-    <view wx:if="{{couponArr.length==0}}" class="template_flex">
+    <!-- <view wx:if="{{couponArr.length==0}}" class="template_flex">
       <view style="margin-top:100rpx">暂无卡券</view>
+    </view> -->
+    <view wx:if="{{couponArr.length==0}}" class="template_flex">
+      <image class="template_flex_img" src="../../../images/icon_10_08_30.png"></image>
     </view>
   </view>
 
