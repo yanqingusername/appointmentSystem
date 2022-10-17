@@ -12,7 +12,7 @@
           <view class="P5_1 app_font">姓名</view>
           <input class="P5_2 app_font" placeholder="请填写联系人姓名" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="50" value="{{address_person}}"></input>
         </view>
-        <view style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
         <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">手机号</view>
@@ -22,7 +22,7 @@
           </view>
         </view>
 
-        <view style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
         <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">所在地区</view>
@@ -36,7 +36,7 @@
             </view>
           </view>
         </view>
-        <view style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
         <view class="P5 app_flex_new" style="margin: 34rpx 0rpx 34rpx 0rpx;">
           <view class="P5_1_news app_font" style="padding: 0rpx 0rpx 0rpx 20rpx;">详细地址</view>

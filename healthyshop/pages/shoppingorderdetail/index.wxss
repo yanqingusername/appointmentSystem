@@ -133,7 +133,7 @@ font-weight: 400;
 
 .view_line {
   width: 626rpx;
-  height: 1px;
+  height: 2rpx;
   margin-top: 30rpx;
   background: #F1F1F1;
   margin-bottom: 20rpx;
@@ -200,7 +200,7 @@ font-weight: 400;
 
 .view_7_3{
   height:22rpx;
-  width:1px;
+  width:2rpx;
   background:#F1F1F1;
   margin:0rpx 12rpx;
 }
@@ -241,7 +241,7 @@ color: #FF0000;
   width: 180rpx;
   height: 68rpx;
   border-radius: 40rpx;
-  border: 1px solid #FC5A51;
+  border: 2rpx solid #FC5A51;
   font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
@@ -256,7 +256,7 @@ color: #FF0000;
   width: 180rpx;
   height: 68rpx;
   border-radius: 40rpx;
-  border: 1px solid #DDDDDD;
+  border: 2rpx solid #DDDDDD;
   font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
@@ -372,7 +372,7 @@ color: #333333;
 
 .view_line_10{
   width: 626rpx;
-  height: 1px;
+  height: 2rpx;
   background: #F1F1F1;
   margin: 0rpx 30rpx;
 }

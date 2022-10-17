@@ -66,7 +66,9 @@ Page({
         coupon_price: 400,
         coupon_time: "有效期至2022-10-10"
       }
-    ]
+    ],
+
+    bottomLift: 0
   },
   onLoad: function (options) {
     let that = this;
@@ -78,6 +80,22 @@ Page({
     });
 
     this.setPrice();
+    this.getBottomLift();
+  },
+  getBottomLift(){
+    let that = this;
+    //获取当前设备信息
+    wx.getSystemInfo({
+      success: res => {
+        let bottomLift = res.screenHeight - res.safeArea.bottom;
+        that.setData({
+          bottomLift: bottomLift
+        });
+      },
+      fail(err) {
+        console.log(err);
+      }
+    });
   },
   getYHQ: function () {
     //获取优惠券

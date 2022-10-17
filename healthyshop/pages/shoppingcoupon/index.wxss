@@ -129,7 +129,7 @@ font-weight: 400;
 }
 
 .view_4_1_2_1{
-  width: 1px;
+  width: 2rpx;
   height: 92rpx;
   border-right: 1rpx dashed #FDCDCD;
 }
@@ -138,7 +138,7 @@ font-weight: 400;
   width: 128rpx;
 height: 52rpx;
 border-radius: 28rpx;
-border: 1px solid #F75A5A;
+border: 2rpx solid #F75A5A;
 font-size: 24rpx;
 color: #F54646;
 display: flex;

@@ -86,9 +86,9 @@
 
 <view style="height:30rpx;background: #F3F4F9;"></view>
 
-<view style="height:156rpx;background: #F3F4F9;"></view>
+<view style="height:{{bottomLift > 0 ? '180':'156'}}rpx;background: #F3F4F9;"></view>
 
-<view class="view_10">
+<view class="view_10" style="padding-bottom:{{bottomLift}}px">
 	<view wx:if="{{isGrounding}}" class="view_10_1" bind:tap="clickShoppingSubOrder">立即购买</view>
 	<view wx:else class="view_10_2">商品未上架</view>
 </view>

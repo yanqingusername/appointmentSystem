@@ -19,7 +19,7 @@ page{
   width: 670rpx;
   margin: 30rpx 30rpx 30rpx 6rpx;
   height:auto;
-  /* border-bottom: 1px solid #F9F9F9; */
+  /* border-bottom: 2rpx solid #F9F9F9; */
   /* color: #BBBBBB; */
 }
 .P5_1{
@@ -198,7 +198,7 @@ height: 88rpx;
 background: #E26396;
 border-radius: 44rpx;
 opacity: 0.6;
-border: 1px solid #E06596;
+border: 2rpx solid #E06596;
 font-size: 34rpx;
 font-weight: 500;
 color: #FFFFFF;
@@ -215,7 +215,7 @@ left: 5%;
 height: 88rpx;
 background: #E26396;
 border-radius: 44rpx;
-border: 1px solid #E06596;
+border: 2rpx solid #E06596;
 font-size: 34rpx;
 font-weight: 500;
 color: #FFFFFF;

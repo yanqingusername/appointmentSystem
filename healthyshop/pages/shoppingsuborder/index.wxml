@@ -78,10 +78,10 @@
      
 
     </view>
-    <view style="height:200rpx"></view>
+    <view style="height:{{bottomLift > 0 ? '220':'200'}}rpx"></view>
 
     <!-- 提交按钮 -->
-    <view class="fixed_view">
+    <view class="fixed_view" style="padding-bottom:{{bottomLift}}px">
       <view class="fixed_view_1">
         <view class="fixed_view_1_1">应付：<text class="fixed_view_1_2">¥</text><text class="fixed_view_1_3">{{shop_payment}}</text></view>
         <view class="fixed_view_1_4">已优惠：￥{{coupon_payment}}</view>

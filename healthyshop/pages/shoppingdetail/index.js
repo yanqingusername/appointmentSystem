@@ -26,8 +26,9 @@ Page({
         		oldprice: "399", // 商品原价格
 		freeshipping: "包邮", // 商品标签
 		// shopdetailimg:[‘’,’’,’’],  // 商品详情图
-		isGrounding: true // 商品是否上架
+		isGrounding: true, // 商品是否上架
 
+    bottomLift: 0
   },
   onShow: function () {
     this.setData({
@@ -40,6 +41,23 @@ Page({
       shopid: options.shopid
     });
     this.getbaseData();
+
+    this.getBottomLift();
+  },
+  getBottomLift(){
+    let that = this;
+    //获取当前设备信息
+    wx.getSystemInfo({
+      success: res => {
+        let bottomLift = res.screenHeight - res.safeArea.bottom;
+        that.setData({
+          bottomLift: bottomLift
+        });
+      },
+      fail(err) {
+        console.log(err);
+      }
+    });
   },
   isIphoneX() {
     let info = wx.getSystemInfoSync();
