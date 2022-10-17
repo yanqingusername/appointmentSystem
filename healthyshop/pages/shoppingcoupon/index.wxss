@@ -2,6 +2,13 @@ page{
   background:#FFFFFF;
 }
 
+.title_name{
+  font-size: 34rpx;
+font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
+color: #2F2929;
+}
+
 .empty_view{
   height: 20rpx;
   background: #F3F4F9;
@@ -88,6 +95,8 @@ margin-top: 4rpx;
   color: #F54646;
     font-size: 56rpx;
     padding-left: 30rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
 }
 
 .view_4_1_1_2{
@@ -100,12 +109,16 @@ margin-top: 4rpx;
 .view_4_1_1_2_1{
   font-size: 28rpx;
   color: #F54646;
+  font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
 }
 
 .view_4_1_1_2_2{
   margin-top: 4rpx;
   font-size: 22rpx;
   color: #F54646;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .view_4_1_2{
@@ -132,6 +145,8 @@ display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 20rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
 }
 
 .template_flex{

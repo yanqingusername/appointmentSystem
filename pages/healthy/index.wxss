@@ -2,6 +2,13 @@ page {
   background: #EFEFEF;
 }
 
+.title_name{
+  font-size: 34rpx;
+font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
+color: #2F2929;
+}
+
 .search_border {
   background: #FFFFFF;
   height: 10rpx;
@@ -41,6 +48,8 @@ page {
   font-size: 24rpx;
   margin-left: 12rpx;
   color: #999999;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .swiper {
@@ -167,12 +176,16 @@ color: #666666;
 .view_3_2_1 {
   font-size: 28rpx;
   color: #333333;
+  font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
 }
 
 .view_3_2_2 {
   font-size: 60rpx;
   color: #333333;
   margin-left: 4rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
 }
 
 .view_3_3 {
@@ -186,12 +199,16 @@ color: #666666;
 .view_3_3_1 {
   font-size: 32rpx;
   color: #333333;
+  font-family: PingFangSC-Semibold, PingFang SC;
+font-weight: 600;
 }
 
 .view_3_3_2 {
   font-size: 24rpx;
   color: #999999;
   margin-top: 8rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .view_4 {
@@ -241,6 +258,8 @@ color: #666666;
   line-clamp: 3;
   -webkit-box-orient: vertical;
   color: #333333;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .midouPriceView {
@@ -254,6 +273,8 @@ color: #666666;
   color: #FF0000;
   display: flex;
   align-items: center;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .midouOriginal {
@@ -261,4 +282,6 @@ color: #666666;
   text-decoration: line-through;
   color: #999999;
   margin-left: 10rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }

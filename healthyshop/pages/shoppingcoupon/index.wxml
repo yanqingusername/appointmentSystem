@@ -1,6 +1,6 @@
 <cu-custom isBack="{{true}}" bgColor="bg-white">
   <view slot="backText" bindtap="bindBack"></view>
-  <view slot="content">我的优惠券</view>
+  <view slot="content" class="title_name">我的优惠券</view>
 </cu-custom>
 <view class="empty_view"></view>
 <view class="page">
@@ -19,7 +19,7 @@
     <view class="view_4">
       <view class="view_4_1" wx:for="{{10}}" wx:key="index">
         <view class="view_4_1_1">
-          <view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;">￥</text>20</view>
+          <view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;font-family: PingFangSC-Medium, PingFang SC;font-weight: 500;">￥</text>20</view>
           <view class="view_4_1_1_2">
             <view class="view_4_1_1_2_1">满100使用</view>
             <view class="view_4_1_1_2_2">有效期至2022-10-10</view>

@@ -16,7 +16,7 @@
 
 <view class="view_2">
 	<view class="view_2_1">
-        <view class="view_2_2"><text style="font-size: 32rpx;color: #FF0000;">￥</text>{{price}}</view>
+        <view class="view_2_2"><text style="font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;font-size: 32rpx;color: #FF0000;">￥</text>{{price}}</view>
 		<view class="view_2_3">￥{{oldprice}}</view>
 	</view>
 
@@ -32,7 +32,7 @@
 <view class="view_4">
 	<view class="view_4_1" wx:for="{{4}}" wx:key="index">
 		<view class="view_4_1_1">
-			<view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;">￥</text>20</view>
+			<view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;font-family: PingFangSC-Medium, PingFang SC;font-weight: 500;">￥</text>20</view>
 			<view class="view_4_1_1_2">
 				<view class="view_4_1_1_2_1">满100使用</view>
 				<view class="view_4_1_1_2_2">有效期至2022-10-10</view>

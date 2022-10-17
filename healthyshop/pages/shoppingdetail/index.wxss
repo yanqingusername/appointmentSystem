@@ -76,6 +76,8 @@ page{
   color: #FF0000;
   display: flex;
   align-items: baseline;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
 }
 
 .view_2_3 {
@@ -83,6 +85,8 @@ page{
   text-decoration: line-through;
   color: #999999;
   margin-left: 10rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
 }
 
 .view_2_4 {
@@ -109,6 +113,8 @@ page{
   line-clamp: 3;
   -webkit-box-orient: vertical;
   color: #333333;
+  font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
 }
 
 .view_4 {
@@ -140,6 +146,8 @@ page{
   color: #F54646;
     font-size: 56rpx;
     padding-left: 30rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
 }
 
 .view_4_1_1_2{
@@ -152,12 +160,17 @@ page{
 .view_4_1_1_2_1{
   font-size: 28rpx;
   color: #F54646;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
 }
 
 .view_4_1_1_2_2{
   margin-top: 4rpx;
   font-size: 22rpx;
   color: #F54646;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
+opacity: 0.8;
 }
 
 .view_4_1_2{
@@ -184,6 +197,8 @@ display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 20rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
 }
 
 .view_5 {
@@ -200,6 +215,8 @@ display: flex;
     align-items: center;
   font-size: 24rpx;
   color: #999999;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .view_5_2{
@@ -227,6 +244,8 @@ margin-left: 32rpx;
   font-size: 28rpx;
 color: #333333;
 margin-left: 6rpx;
+font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .view_7{
@@ -259,6 +278,8 @@ margin-left: 6rpx;
   font-size: 28rpx;
   color: #333333;
   margin: 0rpx 12rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 
@@ -308,6 +329,8 @@ margin-left: 6rpx;
   line-clamp: 3;
   -webkit-box-orient: vertical;
   color: #333333;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .midouPriceView {
@@ -321,6 +344,8 @@ margin-left: 6rpx;
   color: #FF0000;
   display: flex;
   align-items: center;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .midouOriginal {
@@ -328,6 +353,8 @@ margin-left: 6rpx;
   text-decoration: line-through;
   color: #999999;
   margin-left: 10rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .view_10{
@@ -351,6 +378,8 @@ background: #FC5A51;
 border-radius: 48rpx;
 color: #FFFFFF;
 font-size: 32rpx;
+font-family: PingFangSC-Semibold, PingFang SC;
+font-weight: 600;
 }
 
 .view_10_2{
@@ -363,6 +392,8 @@ background: #CCCCCC;
 border-radius: 48rpx;
 color: #FFFFFF;
 font-size: 32rpx;
+font-family: PingFangSC-Semibold, PingFang SC;
+font-weight: 600;
 }
 
 .view_11{
@@ -391,4 +422,6 @@ font-size: 32rpx;
   font-size: 22rpx;
   color: #FFFFFF;
   margin-top: 2rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }

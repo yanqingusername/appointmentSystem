@@ -2,7 +2,7 @@
 
 <cu-custom isBack="{{true}}" bgColor="bg-white">
   <view slot="backText" bindtap="bindBack"></view>
-  <view slot="content">提交订单</view>
+  <view slot="content" class="title_name">提交订单</view>
 </cu-custom>
 
 <view class="page">
@@ -32,8 +32,8 @@
           </view>
 
           <view class="midouFour">
-            <view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">{{shopsubtitle}}</text>{{shoptitle}}</view>
-            <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>{{total_payment}}</view>
+            <view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;">{{shopsubtitle}}</text>{{shoptitle}}</view>
+            <view class="midouPrice"><text style="font-size: 24rpx;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;color: #F32222;">￥</text>{{total_payment}}</view>
             <view class="midouBuyView">
               <view class="midouBuyView_1" catchtap="bindReduce">-</view>
               <view class="midouBuyView_2">{{shopnumber}}</view>
@@ -100,7 +100,7 @@
     <view class="btn-box">
       <view class="pick_btn" bindtap="hideModal">取消</view>
       <view class='pick_btn' style="color: #999999"></view>
-      <view class='pick_btn' style="color: #FC5A51" bindtap="onConfirm">确定</view>
+      <view class='pick_btn_sub' style="color: #FC5A51" bindtap="onConfirm">确定</view>
     </view>
 
     <view class="new_view">
@@ -108,7 +108,7 @@
             <block wx:for="{{couponList}}" wx:key="index">
               <view class="mask_4_1" wx:if="{{total_payment >= item.coupon_price}}" catch:tap="clickSelectCoupon" data-couponid="{{item.coupon_id}}" data-couponpayment="{{item.coupon_payment}}" data-coupontitle="{{item.coupon_title}}">
                 <view class="mask_4_1_1">
-                  <view class="mask_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;">￥</text>{{item.coupon_payment}}</view>
+                  <view class="mask_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;font-family: PingFangSC-Medium, PingFang SC;font-weight: 500;">￥</text>{{item.coupon_payment}}</view>
                   <view class="mask_4_1_1_2">
                     <view class="mask_4_1_1_2_1">{{item.coupon_title}}</view>
                     <view class="mask_4_1_1_2_2">{{item.coupon_time}}</view>
@@ -121,7 +121,7 @@
               </view>
               <view class="mask_4_1" wx:else>
                 <view class="mask_4_1_1">
-                  <view class="mask_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;">￥</text>{{item.coupon_payment}}</view>
+                  <view class="mask_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;font-family: PingFangSC-Medium, PingFang SC;font-weight: 500;">￥</text>{{item.coupon_payment}}</view>
                   <view class="mask_4_1_1_2">
                     <view class="mask_4_1_1_2_1">{{item.coupon_title}}</view>
                     <view class="mask_4_1_1_2_2">{{item.coupon_time}}</view>

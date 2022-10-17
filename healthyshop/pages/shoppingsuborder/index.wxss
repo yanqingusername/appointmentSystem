@@ -6,6 +6,13 @@ page{
   width: 100%;
 }
 
+.title_name{
+  font-size: 34rpx;
+font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
+color: #2F2929;
+}
+
 .view_1 {
   display: flex;
     align-items: center;
@@ -135,16 +142,20 @@ border-radius: 12rpx;
   line-clamp: 3;
   -webkit-box-orient: vertical;
   color: #333333;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .midouPrice {
   font-size: 32rpx;
-  color: #FF0000;
   display: flex;
   align-items: center;
   position: absolute;
   bottom: 0rpx;
   left: 18rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
+color: #F32222;
 }
 
 .midouBuyView{
@@ -177,6 +188,12 @@ border-radius: 12rpx;
   background: #FFFFFF;
   border-top: 1px solid #D8D8D8;
   border-bottom: 1px solid #D8D8D8;
+  font-family: PingFangSC-Light, PingFang SC;
+font-weight: 300;
+font-size: 28rpx;
+font-family: PingFangSC-Light, PingFang SC;
+font-weight: 300;
+color: #333333;
 }
 
 .midouBuyView_3{
@@ -332,7 +349,7 @@ margin-left: 2rpx;
 
 .view_5_2_2{
   width: 626rpx;
-  height: 80rpx;
+  height: 70rpx;
   background: #F6F7FA;
   border-radius: 8rpx;
   margin-top: 20rpx;
@@ -346,9 +363,13 @@ margin-left: 2rpx;
     height: 70rpx;
     color: #999999;
     font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 .phcolor{
   color: #999999;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 
@@ -384,6 +405,8 @@ color: #000000;
 .fixed_view_1_2{
   font-size: 32rpx;
 color: #F32222;
+font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 400;
 }
 
 .fixed_view_1_3{
@@ -481,7 +504,17 @@ color: #FFFFFF;
   padding: 7px 15px;
   font-size: 32rpx;
 color: #999999;
+font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
   /* background-color: #159; */
+}
+
+.pick_btn_sub{
+  padding: 7px 15px;
+  font-size: 32rpx;
+color: #999999;
+  font-family: PingFangSC-Semibold, PingFang SC;
+font-weight: 600;
 }
 
 .new_view{
@@ -522,6 +555,8 @@ color: #999999;
   color: #F54646;
     font-size: 56rpx;
     padding-left: 30rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
 }
 
 .mask_4_1_1_2{
@@ -534,12 +569,16 @@ color: #999999;
 .mask_4_1_1_2_1{
   font-size: 28rpx;
   color: #F54646;
+  font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
 }
 
 .mask_4_1_1_2_2{
   margin-top: 4rpx;
   font-size: 22rpx;
   color: #F54646;
+  font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
 }
 
 .mask_4_1_2{
