@@ -28,7 +28,7 @@ Page({
 		// shopdetailimg:[‘’,’’,’’],  // 商品详情图
 		isGrounding: true, // 商品是否上架
 
-    bottomLift: 0
+    bottomLift: 15
   },
   onShow: function () {
     this.setData({
@@ -50,9 +50,11 @@ Page({
     wx.getSystemInfo({
       success: res => {
         let bottomLift = res.screenHeight - res.safeArea.bottom;
-        that.setData({
-          bottomLift: bottomLift
-        });
+        if(bottomLift>0){
+          that.setData({
+            bottomLift: bottomLift
+          });
+        }
       },
       fail(err) {
         console.log(err);

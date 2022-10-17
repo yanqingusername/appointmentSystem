@@ -78,7 +78,7 @@
      
 
     </view>
-    <view style="height:{{bottomLift > 0 ? '220':'200'}}rpx"></view>
+    <view style="height:{{bottomLift > 15 ? '220':'200'}}rpx"></view>
 
     <!-- 提交按钮 -->
     <view class="fixed_view" style="padding-bottom:{{bottomLift}}px">

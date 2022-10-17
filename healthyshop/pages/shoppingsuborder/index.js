@@ -68,7 +68,7 @@ Page({
       }
     ],
 
-    bottomLift: 0
+    bottomLift: 15
   },
   onLoad: function (options) {
     let that = this;
@@ -88,9 +88,11 @@ Page({
     wx.getSystemInfo({
       success: res => {
         let bottomLift = res.screenHeight - res.safeArea.bottom;
-        that.setData({
-          bottomLift: bottomLift
-        });
+        if(bottomLift>0){
+          that.setData({
+            bottomLift: bottomLift
+          });
+        }
       },
       fail(err) {
         console.log(err);
