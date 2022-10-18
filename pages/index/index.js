@@ -564,8 +564,7 @@ Page({
     var data = {
       type:1
     }
-    request.request_get('/activity/getBannerInfo.hn', data, function (res) {
-      console.info('回调', res)
+    request.request_get('/Newacid/getBannerInfo.hn', data, function (res) {
       if (res) {
         if (res.success) {
           console.log(res.msg);

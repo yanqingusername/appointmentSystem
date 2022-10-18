@@ -16,13 +16,12 @@ Page({
     isLogin: false,
     user_id: '',
     userInfo: {},
-    coupon: {
-      coupon_id: "1",
-      coupon_payment: 20,
-      coupon_price: 100,
-      coupon_title: "新人优惠券无门槛",
-      coupon_time: "有效期为领取后3天内",
-    },
+    coupon_code: "",
+    coupon_discount_amount: '', //（优惠金额）
+    coupon_limit_amount: '', //(如果传了就是有门槛的优惠券 没传就是无门槛)
+    coupon_name:'', // "新人优惠券无门槛",
+    coupon_time:'', //"有效期为领取后3天内",
+
     isReceiveCoupon: false,
     shopList:[
       {
@@ -71,7 +70,7 @@ Page({
     });
     this.getBannerList();
 
-    // this.getCoupon();
+    this.getCoupon();
   },
   handlerSearchClick() {
     wx.navigateTo({
@@ -133,10 +132,9 @@ Page({
   getBannerList: function () {
     var that = this;
     var data = {
-      type: 1
+      type: 2
     }
-    request.request_get('/activity/getBannerInfo.hn', data, function (res) {
-      console.info('回调', res)
+    request.request_get('/Newacid/getBannerInfo.hn', data, function (res) {
       if (res) {
         if (res.success) {
           that.setData({
@@ -158,15 +156,17 @@ Page({
    */
    getCoupon: function () {
     let that = this;
-    let data = {
-      type: 1
-    }
-    request.request_get('/activity/getCouponInfo.hn', data, function (res) {
-      console.info('回调', res)
+    let data = {}
+
+    request.request_get('/Newacid/getCouponMainInfo.hn', data, function (res) {
       if (res) {
         if (res.success) {
           that.setData({
-            coupon: res.msg
+            coupon_code: res.coupon_code,
+            coupon_discount_amount: res.discount_amount,
+            coupon_limit_amount: res.limit_amount,
+            coupon_name: res.name,
+            coupon_time: res.time,
           });
         } else {
           //box.showToast(res.msg);

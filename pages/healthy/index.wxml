@@ -46,17 +46,17 @@
 
     <!-- <view class="line_view_3"></view> -->
 
-    <view class="view_3" wx:if="{{coupon}}" bindtap="handlerCouponClick" data-id="{{coupon.coupon_id}}">
+    <view class="view_3" wx:if="{{coupon_code}}" bindtap="handlerCouponClick" data-id="{{coupon_code}}">
       <image wx:if="{{user_id}}" src="../../images/icon_10_08_08.png" class="view_3_1"/>
       <image wx:else src="../../images/icon_10_08_09.png" class="view_3_1"/>
       
       <view class="view_3_2">
         <view class="view_3_2_1">¥</view>
-        <view class="view_3_2_2">{{coupon.coupon_payment}}</view>
+        <view class="view_3_2_2">{{coupon_discount_amount}}</view>
       </view>
       <view class="view_3_3">
-        <view class="view_3_3_1">{{coupon.coupon_title}}</view>
-        <view class="view_3_3_2">{{coupon.coupon_time}}</view>
+        <view class="view_3_3_1">{{coupon_name}}</view>
+        <view class="view_3_3_2">{{coupon_time}}</view>
       </view>
     </view>
 
