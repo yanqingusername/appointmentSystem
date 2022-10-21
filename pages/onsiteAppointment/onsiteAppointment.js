@@ -107,11 +107,14 @@ Page({
     paynotice_url: '',
 
     user_id: '',
-    openid: ''
+    openid: '',
+
+    isH5Show: 1
   },
   onLoad: function (options) {
 
     this.setData({
+      isH5Show: options.isH5Show || '1',
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
       openid: wx.getStorageSync('coyote_userinfo').openid || '',
     });
@@ -1217,7 +1220,7 @@ Page({
                     console.log('complete:' + res);
                     console.log(res);
                     wx.navigateTo({
-                      url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + that.data.appointment_num + '&continueFlag=true' + '&onlineFlagNum=' + that.data.onlineFlagNum + '&dynamicTimeFlag=' + that.data.dynamicTimeFlag,
+                      url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + that.data.appointment_num + '&continueFlag=true' + '&onlineFlagNum=' + that.data.onlineFlagNum + '&dynamicTimeFlag=' + that.data.dynamicTimeFlag +'&isH5Show=' + that.data.isH5Show,
                     })
                   }
                 })
@@ -1279,7 +1282,7 @@ Page({
                 console.log('complete:' + res);
                 console.log(res);
                 wx.navigateTo({
-                  url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + that.data.appointment_num + '&continueFlag=true' + '&onlineFlagNum=' + that.data.onlineFlagNum + '&dynamicTimeFlag=' + that.data.dynamicTimeFlag,
+                  url: '/pages/appointmentRecord/appointmentDetail?appointment_num=' + that.data.appointment_num + '&continueFlag=true' + '&onlineFlagNum=' + that.data.onlineFlagNum + '&dynamicTimeFlag=' + that.data.dynamicTimeFlag +'&isH5Show=' + that.data.isH5Show,
                 })
               }
             })

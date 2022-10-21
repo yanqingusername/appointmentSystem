@@ -506,8 +506,13 @@ bindDetail:function(e){
     this.setData({
       searchText: e.detail.value
     })
-    console.log("input-----"+e.detail.value)
-    this.getChannelList();
+    if(e.detail.value == 457){
+      wx.redirectTo({
+        url: '/pages/NewH5One/index?fix_channel_id=457',
+      });
+    }else{
+      this.getChannelList();
+    }
 
     // var value = e.detail.value;
     // var that = this;

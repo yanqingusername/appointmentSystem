@@ -18,7 +18,7 @@
       <view class="main_title_2" bindtap="bindChooseMap"><view class="main_radius_2"></view><view class="main_text">{{main_type_text}} ></view></view>
     </view>
     <image src="../../images/icon_0701_06.png" class="main_img" /> indicator-dots="true" -->
-    <swiper wx:if="{{movies.length>0}}" class="swiper" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000" style="top:{{CustomBar}}px;">
+    <swiper wx:if="{{movies.length>0}}" class="swiper" indicator-dots="{{isIndicatorDots}}" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000" style="top:{{CustomBar}}px;">
       <block wx:for="{{movies}}" wx:for-index="index">
         <swiper-item class="swiper_item">
           <image src="{{item.href}}" class="slide-image" bindtap="swipclick" mode="widthFix" />
@@ -70,7 +70,7 @@
          </view>
       </view>
 
-      <view class="main_bottom">常用服务</view>
+      <view class="main_bottom" bind:tap="bindNewH5One">常用服务</view>
 
       <view class="main_bottom_view">
         <view class="bottom_view_1" bind:tap="bindTestReport">

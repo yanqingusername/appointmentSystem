@@ -1,0 +1,134 @@
+<wxs src="../../utils/substring.wxs" module="tools" />
+
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+	<view slot="backText" bindtap="bindBack" />
+	<view slot="content">新冠受检人信息采集</view>
+</cu-custom>
+
+<view class="page">
+
+	<view class="medWhite">
+		<view class="sampleSite">
+			<view class="sampleSite_1">本页面仅用于对公合作采样点或特殊情况的人员信息采集</view>
+      <view class="sampleSite_2">您无需选择采样点，添加受检人后提交即可</view>
+		</view>
+  </view>
+
+		<!-- 添加受检人 -->
+      <view class="subject_view" bind:tap="bindAddSubject" wx:if="{{isAddSubject == 0}}">
+        <view class="subject_view_red"></view>
+        <view class="subject_view_white"><image  class="icon_add" src="../../images/icon_add.png"/>添加受检人</view>
+      </view>
+
+      <view class="subject_view" bind:tap="bindSelectSubject" wx:if="{{isAddSubject == 1}}">
+        <!-- <view class="subject_view_red" style="height: 230rpx;"></view> -->
+        <view class="subject_view_bg">
+            <view style="width:90%">
+              <view class="subject_title">{{name ? name : '-'}}</view>
+              <view class="subject_text" style="margin-top:20rpx;">{{card_name}} {{idcard?tools.centerIdCardTrim(idcard):'-'}}</view>
+              <view class="subject_text" style="margin-top:22rpx;">手机号 {{tools.centerPhoneTrim(phone)}}</view>
+            </view>
+            <view style="position:relative;">
+              <image class="right_arrow" src="../../images/rightArrow.png"></image>
+            </view>
+        </view>
+      </view>
+
+  <view class="view_1">
+		<view class="view_2">
+			<view class="view_5">检测类型</view>
+      <view class="view_6">以现场采样为准</view>
+		</view>
+  </view>
+
+  <view class="view_1">
+		<view class="view_2">
+			<view class="view_5">支付方式</view>
+      <view class="view_6">无</view>
+		</view>
+  </view>
+	
+</view>
+
+<!-- <view style="height:{{bottomLift > 15 ? '220':'200'}}rpx"></view> -->
+
+<view class="fixed_view" style="padding-bottom:{{bottomLift}}px;">
+  <view class="view_3" bind:tap="bindSubmit">确认并提交</view>
+</view>
+
+<modalView show="{{showModal_2}}" noCancel="{{true}}" title="流行病学调查" bindcancel="modalCancel" bindconfirm='modalConfirm_2' confirmText='提交' cancelText='自定义取消'>
+  <view class='modal-content'>
+    <scroll-view scroll-y class='main-content'>
+      <view id="modal2_font1">14天内近期概况</view>
+      <form>
+        <radio-group class="block" bindchange="RadioChange1">
+          <view class="modal2_font2">1.{{surveyArr[0].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A1'?'checked':''" :checked="radio=='A1'?true:false" value="A1" data-val="1"></radio>是　　　　　
+            </label>
+            <label>
+              <radio class="pink" :class="radio=='A2'?'checked':''" checked="{{true}}" :checked="radio=='A2'?true:false" value="A2" data-val="0"></radio>否　
+            </label>　　　　
+          </view>
+        </radio-group>
+        <radio-group class="block" bindchange="RadioChange2">
+          <view class="modal2_font2">2.{{surveyArr[1].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A3'?'checked':''" :checked="radio=='A3'?true:false" value="A3" data-val="1"></radio>是　　　　　
+            </label>
+            <label>
+              <radio class="pink" :class="radio=='A4'?'checked':''" checked="{{true}}" :checked="radio=='A4'?true:false" value="A4" data-val="0"></radio>否
+            </label>
+          </view>
+        </radio-group>
+        <radio-group class="block" bindchange="RadioChange3">
+          <view class="modal2_font2">3.{{surveyArr[2].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A5'?'checked':''" :checked="radio=='A5'?true:false" value="A5" data-val="1"></radio>是　　
+            </label>　　　
+            <label>
+              <radio class="pink" :class="radio=='A6'?'checked':''" checked="{{true}}" :checked="radio=='A6'?true:false" value="A6" data-val="0"></radio>否
+            </label>
+          </view>
+        </radio-group>
+        <radio-group class="block" bindchange="RadioChange4">
+          <view class="modal2_font2">4.{{surveyArr[3].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A7'?'checked':''" :checked="radio=='A7'?true:false" value="A7" data-val="1"></radio>是　　
+            </label>　　　
+            <label>
+              <radio class="pink" :class="radio=='A8'?'checked':''" checked="{{true}}" :checked="radio=='A8'?true:false" value="A8" data-val="0"></radio>否
+            </label>
+          </view>
+        </radio-group>
+        <radio-group class="block" bindchange="RadioChange5">
+          <view class="modal2_font2">5.{{surveyArr[4].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A9'?'checked':''" :checked="radio=='A9'?true:false" value="A9" data-val="1"></radio>是　　
+            </label>　　　
+            <label>
+              <radio class="pink" :class="radio=='A10'?'checked':''" checked="{{true}}" :checked="radio=='A10'?true:false" value="A10" data-val="0"></radio>否
+            </label>
+          </view>
+        </radio-group>
+        <radio-group class="block" bindchange="RadioChange6">
+          <view class="modal2_font2">6.{{surveyArr[5].content}}</view>
+          <view class="cu-form-group">
+            <label>
+              <radio class="pink" :class="radio=='A11'?'checked':''" :checked="radio=='A11'?true:false" value="A11" data-val="1"></radio>是　　
+            </label>　　　
+            <label>
+              <radio class="pink" :class="radio=='A12'?'checked':''" checked="{{true}}" :checked="radio=='A12'?true:false" value="A12" data-val="0"></radio>否
+            </label>
+          </view>
+        </radio-group>
+      </form>
+    </scroll-view>
+  </view>
+</modalView>
+

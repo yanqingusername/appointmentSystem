@@ -280,3 +280,28 @@
   color: #E6846C;
   font-size: 24rpx;
 }
+
+.button-bottom_3{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+height: 90rpx;
+width: 100%;
+background: #E06596;
+border-radius: 24px;
+font-size: 34rpx;
+font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
+color: #FFFFFF;
+}
+
+.bottom_white_3{
+  width: 100%;
+  background-color: white;
+  padding: 30rpx;
+  position:fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

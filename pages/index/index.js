@@ -30,6 +30,9 @@ Page({
     numberType: '1',
     movies:[],
     swiperCurrent:0,
+    isIndicatorDots: false,
+
+    count: 1
   },
   onShow:function(){
     var that = this;
@@ -571,6 +574,12 @@ Page({
             that.setData({
               movies:res.msg
             })
+
+            if(that.data.movies.length > 1){
+              that.setData({
+                isIndicatorDots: true
+              });
+            }
         } else {
           //box.showToast(res.msg);
         }
@@ -607,4 +616,18 @@ Page({
       })
     }
   },
+  bindNewH5One(){
+    let count = this.data.count;
+    this.setData({
+      count: count+1
+    });
+    if(count == 4){
+      this.setData({
+        count: 1
+      });
+      wx.navigateTo({
+        url: '/pages/NewH5FreeOne/index'
+      });
+    }
+  }
 })

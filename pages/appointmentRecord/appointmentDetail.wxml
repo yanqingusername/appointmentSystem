@@ -111,7 +111,7 @@
       <view class="P2_1 app_flex">
         <view class="P2_1_3">采样点</view>
         <view class="P2_1_2" style="position:relative;left:10rpx">{{channel_name}}</view>
-        <view data-channelname="{{channel_name}}" data-latitude="{{latitude}}" data-longitude="{{longitude}}" bindtap="openMap" style="margin:10rpx 30rpx 0 0">
+        <view wx:if="{{latitude && longitude}}" data-channelname="{{channel_name}}" data-latitude="{{latitude}}" data-longitude="{{longitude}}" bindtap="openMap" style="margin:10rpx 30rpx 0 0">
           <image id="pink_position" src="../../images/icon_position_red.png"></image>
         </view>
 
@@ -164,23 +164,27 @@
 
     </view>
   </view>
-  <view class="P1" style="margin-bottom:100rpx">
+  <view class="P1" style="margin-bottom:180rpx">
     <view class="P2 app_font" bindtap="toInfo" data-id="{{info.id}}" data-type="{{info.type}}">
       <view class="common_flex">
         <view class="bold_font">
           联系客服
         </view>
-        <view data-phone="{{info.cstn}}" bindtap="phoneCall">
+        <!-- <view data-phone="{{info.cstn}}" bindtap="phoneCall">
           <image id="pink_phone" src="../../images/icon_phone_red.png"></image>
-        </view>
+        </view> -->
       </view>
       <view id="service_hint" class="P2_1 app_flex">
-        如您有任何疑问，敬请您致电客服电话，我们真诚地期待为您提供服务
+        如果您有任何疑问，可以在本小程序“我的”页面，点击联系客服，我们将真诚地为您提供服务。
       </view>
     </view>
   </view>
-  <view wx:if="{{continueFlag}}" class="bottom_white">
+  <view wx:if="{{continueFlag && isH5Show==1}}" class="bottom_white">
     <button class="button-bottom_1" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBackIndex">返回首页</button>
     <button class="button-bottom_2" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBack">继续预约下一人</button>
+  </view>
+
+  <view wx:if="{{isH5Show==2}}" class="bottom_white_3">
+    <view class="button-bottom_3" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBackIndex">返回小程序首页</view>
   </view>
 </view>

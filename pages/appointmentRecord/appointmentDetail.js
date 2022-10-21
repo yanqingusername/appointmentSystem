@@ -37,7 +37,9 @@ Page({
     yysj2:'',
 
     user_id: '',
-    isShowPages: false
+    isShowPages: false,
+
+    isH5Show: 1
   },
 
   onShow:function(){
@@ -59,6 +61,7 @@ onLoad:function(options){
 
   this.setData({
     user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+    isH5Show: options.isH5Show || '1'
   });
 
   var that = this;

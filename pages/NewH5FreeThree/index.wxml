@@ -1,0 +1,68 @@
+<wxs src="../../utils/substring.wxs" module="tools" />
+
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+	<view slot="backText" bindtap="bindBack" />
+	<view slot="content">新冠受检人信息采集</view>
+</cu-custom>
+
+<view class="page" style="background-color:#E8F6FF;" wx:if="{{isShowPages}}">
+  <view class="view_1">
+      <view class="view_1_1"><text style="color:#F32222;">录入护士请注意！</text>本页面仅用于对公合作采样点或特殊情况的人员信息采集。</view>
+    </view>
+
+    <view class="P1" style="padding: 30rpx;">
+      <view class="P1_1" catchtouchmove='true'>
+        <canvas id="barcode2" canvas-id="barcode"></canvas>
+      </view>
+      <view class="P1_2">
+        <view class="P1_2_1">受检人信息码: {{free_num}}</view>
+      </view>
+      <view class="P1_3">
+        <view class="P1_3_1">现场绑定样本时，请向工作人员出示本条码</view>
+      </view>
+
+      <view wx:if="{{name}}" class="P2_1 app_flex">
+        <view class="P2_1_3">姓名</view>
+        <view class="P2_1_2">{{name}}</view>
+      </view>
+      <view wx:if="{{gender}}" class="P2_1 app_flex">
+        <view class="P2_1_3">性别</view>
+        <view class="P2_1_2">{{gender}}</view>
+      </view>
+      <view wx:if="{{age}}" class="P2_1 app_flex">
+        <view class="P2_1_3">年龄</view>
+        <view class="P2_1_2">{{age}}</view>
+      </view>
+      <view wx:if="{{card_type}}" class="P2_1 app_flex">
+        <view class="P2_1_3">证件类型</view>
+        <view class="P2_1_2">{{card_type}}</view>
+      </view>
+      <view wx:if="{{id_card}}" class="P2_1 app_flex">
+        <view class="P2_1_3">证件号</view>
+        <view class="P2_1_2">{{id_card}}</view>
+      </view>
+      <view wx:if="{{phone}}" class="P2_1 app_flex">
+        <view class="P2_1_3">手机号</view>
+        <view class="P2_1_2">{{phone}}</view>
+      </view>
+    </view>
+
+  
+  <view class="P1" style="padding: 30rpx;">
+    <view class="P2 app_font">
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">检测类型</view>
+        <view class="P2_1_2">{{'以现场采样为准'}}</view>
+      </view>
+      <view class="P2_1 app_flex">
+        <view class="P2_1_3">付款金额</view>
+        <view class="P2_1_2">￥0.0</view>
+      </view>
+      <view wx:if="{{time}}" class="P2_1 app_flex">
+        <view class="P2_1_3">上次采样</view>
+        <view class="P2_1_2">{{time}}</view>
+      </view>
+    </view>
+  </view>
+ 
+</view>
