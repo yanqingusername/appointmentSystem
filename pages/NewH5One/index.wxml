@@ -1,0 +1,45 @@
+<cu-custom isBack="{{false}}" bgColor="bg-white" isCustom="{{true}}">
+  <view slot="backText"></view>
+  <view slot="content">新冠检测预约</view>
+</cu-custom>
+
+<view class="page">
+  <view class="medWhite">
+    <view class="sampleSite">
+      <view style="position:relative;">
+        <image class="red_position" src="../../images/icon_position_red.png"></image>
+      </view>
+      <view style="width:80%">
+        <view class="font_1">{{channel_name}}</view>
+        <!-- <view>
+              <view class="font_2"><text hidden="{{hiddenFlag}}">距离您{{channel.distance}}</text></view>
+              <view class="font_2">营业时间 {{channel.sbusiness_time1}} {{channel.xbusiness_time1}}</view>
+            </view> -->
+        <view wx:for="{{channel_list}}" wx:key="index">
+          <view class="font_2">{{item.title}} ￥{{item.money}}</view>
+        </view>
+        <!-- <view class="font_2">{{work_time_remarks}}</view> -->
+        <view style="height:10rpx;"></view>
+      </view>
+      <view style="position:relative;"></view>
+    </view>
+  </view>
+
+  <view class="view_1">现场录信息：</view>
+  <view class="view_2">请点击下面大按钮，按照页面提示完成登录后，登记个人信息，排队采样。</view>
+
+  <view class="view_3" bind:tap="bindNow">马上预约</view>
+
+  <view class="view_4">
+    <view class="view_4_1">
+      <view >
+        <image src="../../images/icon_0701_07.png" class="main_7" />
+      </view>
+      <image src="../../images/icon_0701_08.png" class="main_8" />
+    </view>
+  </view>
+    
+</view>
+
+<loginDialogView show="{{isLogin}}" datas="{{dialogData}}" bind:bindPhoneNumber="bindPhoneNumber" bind:bindShowDialog="bindShowDialog"/>
+ 

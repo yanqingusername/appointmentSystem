@@ -29,6 +29,10 @@
     "pages/xinguanSelfInspection/index",
     "pages/updatePhone/index",
     "pages/nowInvoice/index",
+    "pages/NewH5FreeOne/index",
+    "pages/NewH5FreeTwo/index",
+    "pages/NewH5FreeThree/index",
+    "pages/NewH5One/index",
     "pages/healthy/index"
   ],
   "subpackages": [

@@ -251,6 +251,7 @@ left: 5%;
   margin-left: 20rpx;
   font-size: 28rpx;
   color: #E0694D;
+  width: 90%;
 }
 
 .button_delete{

@@ -21,4 +21,14 @@
 			<view class="sure" bind:tap="dialogSure">{{datas.sure||"确认"}}</view>
 		</view>
 	</view>
+  <view class="concent2" wx:if="{{types == 2}}">
+		<view class="title2">{{datas.title}} </view>
+		<view class="explain2">{{datas.titles}}</view>
+    <view class="explain2">{{datas.title2}}</view>
+    <view class="explain2">{{datas.title3}}</view>
+		<view class="details">
+			<view class="cancel" bind:tap="dialogCancel2">{{datas.cancel||"取消"}}</view>
+			<view class="sure" bind:tap="dialogSure2">{{datas.sure||"确认"}}</view>
+		</view>
+	</view>
 </view>

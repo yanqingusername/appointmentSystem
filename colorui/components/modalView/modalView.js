@@ -71,5 +71,13 @@ Component({
       this.setData({ show: false })
       this.triggerEvent('dialogSure', '')
     },
+    dialogCancel2() {
+      this.setData({ show: false })
+      this.triggerEvent('dialogCancel2', '')
+    },
+    dialogSure2() {
+      this.setData({ show: false })
+      this.triggerEvent('dialogSure2', '')
+    },
   }
 })

@@ -30,7 +30,7 @@
         <image class="right_arrow" src="../../images/rightArrow.png"></image>
       </view>
 
-      <view class="medWhite" bindtap="chooseChannel">
+      <view class="medWhite" bindtap="chooseChannel" wx:if="{{isH5Show == 1}}">
         <view class="sampleSite">
           <view style="position:relative;">
             <image class="red_position" src="../../images/icon_position_red.png"></image>
@@ -56,6 +56,25 @@
           </view>
           <view style="position:relative;">
             <image class="right_arrow" src="../../images/rightArrow.png"></image>
+          </view>
+        </view>
+      </view>
+
+      <view class="medWhite" wx:if="{{isH5Show == 2}}">
+        <view class="sampleSite">
+          <view style="position:relative;">
+            <image class="red_position" src="../../images/icon_position_red.png"></image>
+          </view>
+          <view style="width:85%">
+            <view class="font_1">{{channel.channel_name}}</view>
+
+            <view>
+              <view class="font_2">营业时间 {{channel.sbusiness_time1}} {{channel.xbusiness_time1}}</view>
+            </view>
+            <view class="font_2">{{work_time_remarks}}</view>
+            <view style="height:10rpx;"></view>
+          </view>
+          <view style="position:relative;">
           </view>
         </view>
       </view>
@@ -197,7 +216,7 @@
             </view>
           </view>
         </view>
-        <view bindtap="bindCouponCheck" class="medWhite" wx:if="{{choose_type==0}}">
+        <!-- <view bindtap="bindCouponCheck" class="medWhite" wx:if="{{choose_type==0}}">
           <view class="title_1">
             <view class="title_bold" style="width:30%">优惠券</view>
             <view class="title_view">
@@ -208,7 +227,7 @@
               </view>
             </view>
           </view>
-        </view>
+        </view> -->
         <view class="medWhite">
           <view class="title_1">
             <view class="title_bold" style="width:30%">支付方式</view>

@@ -70,7 +70,7 @@
          </view>
       </view>
 
-      <view class="main_bottom">常用服务</view>
+      <view class="main_bottom" bind:tap="bindNewH5One">常用服务</view>
 
       <view class="main_bottom_view">
         <view class="bottom_view_1" bind:tap="bindTestReport">
