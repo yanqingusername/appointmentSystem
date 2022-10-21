@@ -88,4 +88,12 @@ Page({
       url: `/healthyshop/pages/shoppingdetail/index?shopid=${id}`
     });
   },
+  /**
+   * 预约记录
+   */
+   bindAppointment: function () {
+    wx.navigateTo({
+      url: '/pages/appointmentRecord/appointmentRecord'
+    })
+  },
 })

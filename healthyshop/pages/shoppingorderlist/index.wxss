@@ -335,3 +335,32 @@ font-family: PingFangSC-Regular, PingFang SC;
 font-weight: 400;
 color: #999999;
 }
+
+
+.view10 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0rpx 0rpx 0rpx 0rpx;
+  background: #FFF3EC;
+  flex-direction: column;
+  padding: 0rpx 0rpx;
+  height: 80rpx;
+  width: 100%;
+}
+
+.view10_1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
+color: #666666;
+}
+.view10_1_1{
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FF6E37;
+}

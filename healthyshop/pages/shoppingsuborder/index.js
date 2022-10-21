@@ -68,7 +68,11 @@ Page({
       }
     ],
 
-    bottomLift: 15
+    bottomLift: 15,
+
+    yyxz_show: 1,
+    policyChecked: false,
+    yyxz_url: ''
   },
   onLoad: function (options) {
     let that = this;
@@ -289,10 +293,51 @@ Page({
       remarkText: e.detail.value
     })
   },
+  changePolicy(e) {
+    this.setData({
+      policyChecked: !this.data.policyChecked
+    })
+  },
+  bindYYXZ: utils.throttle(function (e) {
+    var report_temp = this.data.yyxz_url
+    if (report_temp == '' || report_temp == undefined || report_temp == null) {
+      box.showToast('预约须知不存在，请联系客服')
+      return;
+    }
+    wx.downloadFile({
+      url: report_temp, //要预览的PDF的地址
+      filePath: wx.env.USER_DATA_PATH + '/预约须知.pdf',
+      success: function (res) {
+        console.log(res);
+        if (res.statusCode === 200) { //成功
+          var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
+          wx.openDocument({
+            filePath: Path,
+            showMenu: false,
+            success: function (res) {
+              console.log('打开预约须知成功');
+            }
+          })
+        }
+      },
+      fail: function (res) {
+        box.showToast('预约须知不存在，请联系客服')
+        console.log(res); //失败
+      }
+    })
+  }, 2000),
   clickOrderDetail: utils.throttle(function (e) {
+    let that = this;
     // if (this.data.address_id == '') {
     //   box.showToast("请选择收货地址");
     //   return;
+    // }
+
+    // if (that.data.yyxz_show == 1) {
+    //   if (that.data.policyChecked == false) {
+    //     box.showToast("请阅读并勾选预约须知")
+    //     return
+    //   }
     // }
 
     wx.navigateTo({

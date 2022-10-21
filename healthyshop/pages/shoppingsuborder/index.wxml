@@ -75,6 +75,16 @@
         
       </view>
 
+      <view class="div_policy" wx:if="{{yyxz_show==1}}">
+        <checkbox-group bindchange="changePolicy">
+          <checkbox class='round pink' checked="{{policyChecked}}" id="privacy_radio"></checkbox>
+
+          <label for="privacy_radio" id="privacy_policy">
+            已了解并同意 <text class="underline_gray" catchtap="bindYYXZ">《产品知情同意书》</text>
+          </label>
+        </checkbox-group>
+      </view>
+
      
 
     </view>

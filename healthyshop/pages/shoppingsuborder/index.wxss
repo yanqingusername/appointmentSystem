@@ -594,3 +594,23 @@ font-weight: 400;
   width: 48rpx;
   height: 48rpx;
 }
+
+.div_policy{
+  margin: 30rpx 0 40rpx 24rpx;
+  font-size: 26rpx;
+}
+
+#privacy_radio{
+  bottom: 4rpx;
+  left: 6rpx;
+  transform: scale(0.7)
+}
+
+#privacy_policy{
+  color: #7D7D7D;
+  padding: 20rpx 20rpx 20rpx 0; /* 容易点击*/
+}
+
+.underline_gray{
+  text-decoration: underline;
+}
