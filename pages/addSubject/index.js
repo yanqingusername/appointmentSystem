@@ -431,111 +431,117 @@ Page({
 
     // 0-默认从个人预约跳转   1-从选择受检人-添加受检人跳转 2-从选择受检人-编辑受检人跳转
     if(this.data.isAddSub == 0){
-      this.setData({
-        showDialog2: true,
-        dialogData2: {
-          title: "请核对信息以下信息",
-          titles:  "姓名:"+that.data.name,
-          title2:  "手机号:"+that.data.phone,
-          title3:  that.data.card_name+":"+that.data.idcard,
-          cancel: "取消",
-          sure: "确认"
-        }
-      });
-      // request.request_get('/Newacid/addSubject.hn', data, function (res) {
-      //   console.info('回调', res)
-      //   if (res) {
-      //     if (res.success) {
-      //       box.showToast('添加成功','',1000)
+      if(this.data.onlineid == 2){
+        request.request_get('/Newacid/addSubject.hn', data, function (res) {
+          console.info('回调', res)
+          if (res) {
+            if (res.success) {
+              box.showToast('添加成功','',1000)
 
-      //       if(that.data.isMine == 1){
-      //         setTimeout(()=>{
-      //           wx.navigateBack({
-      //             delta: 1,
-      //           })
-      //         },1200);
-      //       }else{
-      //         setTimeout(()=>{
-      //           let pages = getCurrentPages();
-      //           let prevPage = pages[pages.length - 2];
-      //           prevPage.setData({
-      //             isAddSubject: 1,
-      //             userinfo_id: res.person_id,
-      //             gender: that.data.gender,
-      //             age: that.data.age,
-      //             cardIndex: that.data.cardIndex,
-      //             name: that.data.name,
-      //             phone: that.data.phone,
-      //             idcard: that.data.idcard,
-      //             card_name: that.data.card_name,
-      //             onlineFlag: that.data.onlineFlag,
-      //             onlineFlagNum: that.data.onlineFlagNum,
-      //           })
-      //           wx.navigateBack({
-      //             delta: 1,
-      //           })
-      //         },1200);
-      //       }
-      //     } else {
-      //       box.showToast(res.msg);
-      //     }
-      //   }else{
-      //       box.showToast('网络异常，请稍后再试');
-      //   }
-      // })
+              if(that.data.isMine == 1){
+                setTimeout(()=>{
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                },1200);
+              }else{
+                setTimeout(()=>{
+                  let pages = getCurrentPages();
+                  let prevPage = pages[pages.length - 2];
+                  prevPage.setData({
+                    isAddSubject: 1,
+                    userinfo_id: res.person_id,
+                    gender: that.data.gender,
+                    age: that.data.age,
+                    cardIndex: that.data.cardIndex,
+                    name: that.data.name,
+                    phone: that.data.phone,
+                    idcard: that.data.idcard,
+                    card_name: that.data.card_name,
+                    onlineFlag: that.data.onlineFlag,
+                    onlineFlagNum: that.data.onlineFlagNum,
+                  })
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                },1200);
+              }
+            } else {
+              box.showToast(res.msg);
+            }
+          }else{
+              box.showToast('网络异常，请稍后再试');
+          }
+        })
+      }else{
+        this.setData({
+          showDialog2: true,
+          dialogData2: {
+            title: "请核对信息以下信息",
+            titles:  "姓名:"+that.data.name,
+            title2:  "手机号:"+that.data.phone,
+            title3:  that.data.card_name+":"+that.data.idcard,
+            cancel: "取消",
+            sure: "确认"
+          }
+        });
+      }
     } else if(this.data.isAddSub == 1){
-      this.setData({
-        showDialog2: true,
-        dialogData2: {
-          title: "请核对信息以下信息",
-          titles:  "姓名: "+that.data.name,
-          title2:  "手机号: "+that.data.phone,
-          title3:  that.data.card_name+": "+that.data.idcard,
-          cancel: "取消",
-          sure: "确认"
-        }
-      });
-      // request.request_get('/Newacid/addSubject.hn', data, function (res) {
-      //   console.info('回调', res)
-      //   if (res) {
-      //     if (res.success) {
-      //       box.showToast('添加成功','',1000)
+      if(this.data.onlineid == 2){
+        request.request_get('/Newacid/addSubject.hn', data, function (res) {
+          console.info('回调', res)
+          if (res) {
+            if (res.success) {
+              box.showToast('添加成功','',1000)
 
-      //       if(that.data.isMine == 1){
-      //         setTimeout(()=>{
-      //           wx.navigateBack({
-      //             delta: 1,
-      //           })
-      //         },1200);
-      //       }else{
-      //         setTimeout(()=>{
-      //           let pages = getCurrentPages();
-      //           let prevPage = pages[pages.length - 3];
-      //           prevPage.setData({
-      //             isAddSubject: 1,
-      //             userinfo_id: res.person_id,
-      //             gender: that.data.gender,
-      //             age: that.data.age,
-      //             cardIndex: that.data.cardIndex,
-      //             name: that.data.name,
-      //             phone: that.data.phone,
-      //             idcard: that.data.idcard,
-      //             card_name: that.data.card_name,
-      //             onlineFlag: that.data.onlineFlag,
-      //             onlineFlagNum: that.data.onlineFlagNum,
-      //           })
-      //           wx.navigateBack({
-      //             delta: 2,
-      //           })
-      //         },1200);
-      //       }
-      //     } else {
-      //       box.showToast(res.msg);
-      //     }
-      //   }else{
-      //       box.showToast('网络异常，请稍后再试');
-      //   }
-      // })
+              if(that.data.isMine == 1){
+                setTimeout(()=>{
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                },1200);
+              }else{
+                setTimeout(()=>{
+                  let pages = getCurrentPages();
+                  let prevPage = pages[pages.length - 3];
+                  prevPage.setData({
+                    isAddSubject: 1,
+                    userinfo_id: res.person_id,
+                    gender: that.data.gender,
+                    age: that.data.age,
+                    cardIndex: that.data.cardIndex,
+                    name: that.data.name,
+                    phone: that.data.phone,
+                    idcard: that.data.idcard,
+                    card_name: that.data.card_name,
+                    onlineFlag: that.data.onlineFlag,
+                    onlineFlagNum: that.data.onlineFlagNum,
+                  })
+                  wx.navigateBack({
+                    delta: 2,
+                  })
+                },1200);
+              }
+            } else {
+              box.showToast(res.msg);
+            }
+          }else{
+              box.showToast('网络异常，请稍后再试');
+          }
+        })
+      }else{
+        this.setData({
+          showDialog2: true,
+          dialogData2: {
+            title: "请核对信息以下信息",
+            titles:  "姓名: "+that.data.name,
+            title2:  "手机号: "+that.data.phone,
+            title3:  that.data.card_name+": "+that.data.idcard,
+            cancel: "取消",
+            sure: "确认"
+          }
+        });
+      }
     } else if(this.data.isAddSub == 2){
       data.id = that.data.userinfo_id;
       request.request_get('/Newacid/editSubject.hn', data, function (res) {
