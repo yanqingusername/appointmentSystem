@@ -5,10 +5,10 @@
 	<view class='search'>
 		<view class="search_left">
 			<image class="right_arrow" src="../../../images/icon_10_08_03.png" />
-      <input id="search_checked" style="width:80%;" type='text' placeholder='搜索益生菌 自检试剂盒' placeholder-style="color: #999999;" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" ></input>
-      <view class="weui-icon-clear" wx:if="{{searchText}}" bindtap="clearSearchHandle">
-        <image style="width:28rpx;height:28rpx;" src="../../../images/icon_clear.png"></image>
-      </view>
+			<input id="search_checked" style="width:80%;" type='text' placeholder='搜索益生菌 自检试剂盒' placeholder-style="color: #999999;" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" ></input>
+			<view class="weui-icon-clear" wx:if="{{searchText}}" bindtap="clearSearchHandle">
+				<image style="width:28rpx;height:28rpx;" src="../../../images/icon_clear.png"></image>
+			</view>
 		</view>
 	</view>
 </view>
@@ -16,29 +16,29 @@
 <view class="page {{overflowFlag==true?'active':''}}" style="position:absolute;">
 	<view class="P1" style="margin-top:100rpx">
 
-   <view class="view_4" wx:if="{{shopList.length>0}}">
-      <view class="view_4_1" catchtap="handleRouter" wx:for="{{shopList}}" wx:key="index" data-id="{{item.id}}">
+		<view class="view_4" wx:if="{{shopList.length>0}}">
+			<view class="view_4_1" catchtap="handleRouter" wx:for="{{shopList}}" wx:key="index" data-id="{{item.id}}">
 				<view class="midouYizhanShop">
 					<image class="midouYizhanShop-image" lazy-load src="../../../images/icon_0701_06.png"></image>
-			  </view>
+				</view>
 
 				<view class="midouFour">
 					<view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;">{{item.subtitle}}</text>{{item.title}}</view>
 					<view class="midouPriceView">
-            <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>{{item.price}}</view>
+						<view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>{{item.price}}</view>
 						<view class="midouOriginal">￥{{item.oldprice}}</view>
 					</view>
-          <view class="midouBuyView">
-            <view class="midouBuy">购买</view>
-          </view>
+					<view class="midouBuyView">
+						<view class="midouBuy">购买</view>
+					</view>
 				</view>
 			</view>
-    </view>
-	<view class="empty_view" wx:else>
-		<view class="empty_title">没找到合适的商品，请更换关键词试试呢？</view>
-	</view>
+		</view>
+		<view class="empty_view" wx:else>
+			<view class="empty_title">没找到合适的商品，请更换关键词试试呢？</view>
+		</view>
 
-    <view style="height:30rpx;"></view>
+		<view style="height:30rpx;"></view>
 		
 	</view>
 </view>

@@ -46,8 +46,8 @@
 
     <!-- <view class="line_view_3"></view> -->
 
-    <view class="view_3" wx:if="{{coupon_code}}" bindtap="handlerCouponClick" data-id="{{coupon_code}}">
-      <image wx:if="{{user_id}}" src="../../images/icon_10_08_08.png" class="view_3_1"/>
+    <view class="view_3" wx:if="{{user_id && coupon_code && (coupon_status == 0 || coupon_status == 3)}}" bindtap="handlerCouponClick" data-id="{{coupon_code}}" data-couponstatus="{{coupon_status}}">
+      <image wx:if="{{coupon_status == 0}}" src="../../images/icon_10_08_08.png" class="view_3_1"/>
       <image wx:else src="../../images/icon_10_08_09.png" class="view_3_1"/>
       
       <view class="view_3_2">
@@ -65,14 +65,14 @@
     <view class="view_4">
       <view class="midouItem" catchtap="handleRouter" wx:for="{{shopList}}" wx:key="index" data-shopid="{{item.id}}">
 				<view class="midouYizhanShop">
-					<image class="midouYizhanShop-image" lazy-load src="../../images/icon_0701_06.png"></image>
+					<image class="midouYizhanShop-image" lazy-load src="{{item.img}}"></image>
 			  </view>
 
 				<view class="midouFour">
 					<view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;">{{item.subtitle}}</text>{{item.title}}</view>
 					<view class="midouPriceView">
             <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;">￥</text>{{item.price}}</view>
-						<view class="midouOriginal">￥{{item.oldprice}}</view>
+						<view class="midouOriginal" wx:if="{{item.oldprice}}">￥{{item.oldprice}}</view>
 					</view>
 				</view>
 			</view>

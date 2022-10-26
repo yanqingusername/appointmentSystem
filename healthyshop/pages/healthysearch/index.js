@@ -13,6 +13,8 @@ Page({
     class_id: "",
     class_title:"搜索",
     searchText: '',
+    page: 1,
+    limit: 20,
     shopList:[
       {
         id:'1',
@@ -61,20 +63,24 @@ Page({
     });
   },
   onReachBottom: function () {
-    console.log('1111')
+    this.setData({
+      page: 1
+    });
+    this.getSearchShopList();
   },
   //利用js进行模糊查询
   searchChangeHandle: function (e) {
     this.setData({
       searchText: e.detail.value
-    })
+    });
+    this.getSearchShopList();
   },
   // 输入框有文字时，点击X清除
   clearSearchHandle() {
     this.setData({
-      searchText: '',
+      searchText: ''
     });
-    // this.getChannelList();
+    this.getSearchShopList();
   },
   handleRouter(e){
     let id = e.currentTarget.dataset.id;
@@ -85,11 +91,13 @@ Page({
   /**
    * 获取搜索商品列表
    */
-   getShopList: function () {
+   getSearchShopList: function () {
     var that = this;
     var data = {
       class_id: this.data.class_id,
       searchText: this.data.class_id,
+      page: this.data.page,
+      limit: this.data.limit
     }
     request.request_get('/activity/getSearchShopList.hn', data, function (res) {
       console.info('回调', res)
@@ -98,18 +106,18 @@ Page({
           if (that.data.page == 1) {
             that.setData({
               shopList: res.msg,
-              page: (res.data.data && res.data.data.length > 0) ? that.data.page + 1 : that.data.page
-            })
+              page: (res.msg && res.msg.length > 0) ? that.data.page + 1 : that.data.page
+            });
           } else {
             that.setData({
-              shopList: that.data.goodList.concat(res.data.data || []),
-              page: (res.data.data && res.data.data.length > 0) ? that.data.page + 1 : that.data.page,
-            })
+              shopList: that.data.shopList.concat(res.msg || []),
+              page: (res.msg && res.msg.length > 0) ? that.data.page + 1 : that.data.page,
+            });
           }
         } else {
           //box.showToast(res.msg);
         }
       }
-    })
+    });
   },
-})
+});
