@@ -15,52 +15,17 @@ Page({
     searchText: '',
     page: 1,
     limit: 20,
-    shopList:[
-      {
-        id:'1',
-        subtitle:"【满100减20】",
-        title: "卡尤迪肠道菌群检测试剂盒 顺",
-        price: "299",
-        oldprice: '399'
-      },
-      {
-        id:'2',
-        subtitle:"【满100减20】",
-        title: "卡尤迪肠道菌群检测试剂盒 顺",
-        price: "299",
-        oldprice: '399'
-      },
-      {
-        id:'3',
-        subtitle:"【满100减20】",
-        title: "卡尤迪肠道菌群检测试剂盒 顺",
-        price: "299",
-        oldprice: '399'
-      },
-      {
-        id:'4',
-        subtitle:"【满100减20】",
-        title: "卡尤迪肠道菌群检测试剂盒 顺",
-        price: "299",
-        oldprice: '399'
-      },
-      {
-        id:'5',
-        subtitle:"【满100减20】",
-        title: "卡尤迪肠道菌群检测试剂盒 顺",
-        price: "299",
-        oldprice: '399'
-      }
-    ]
+    shopList:[]
   },
   onShow: function () {
 
   },
   onLoad: function (options) {
     this.setData({
-      class_id: options.id,
+      class_id: options.id || '',
       class_title: options.title,
     });
+    this.getSearchShopList();
   },
   onReachBottom: function () {
     this.setData({
@@ -94,12 +59,12 @@ Page({
    getSearchShopList: function () {
     var that = this;
     var data = {
-      class_id: this.data.class_id,
-      searchText: this.data.class_id,
+      product_type: this.data.class_id,
+      product_name: this.data.searchText,
       page: this.data.page,
       limit: this.data.limit
     }
-    request.request_get('/activity/getSearchShopList.hn', data, function (res) {
+    request.request_get('/Newacid/getSearchShopList.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {

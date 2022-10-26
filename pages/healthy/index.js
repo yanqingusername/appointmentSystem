@@ -87,10 +87,11 @@ Page({
    */
   handlerCouponClick: function (e) {
     let couponstatus = e.currentTarget.dataset.couponstatus;
+    let couponname = e.currentTarget.dataset.couponname;
     let id = e.currentTarget.dataset.id;
-    if(id){
+    if(id && couponname){
       if(couponstatus == 3){
-        this.getReceiveCoupon(id);
+        this.getReceiveCoupon(id,couponname);
       }else{
         box.showToast('您已领取过了~');
       }
@@ -165,11 +166,12 @@ Page({
   /**
    * 领取优惠券
    */
-   getReceiveCoupon: function (id) {
+   getReceiveCoupon: function (id,couponname) {
     let that = this;
     let data = {
       coupon_code: id,
-      user_id: this.data.user_id
+      user_id: this.data.user_id,
+      coupon_name: couponname
     }
     request.request_get('/Newacid/getReceiveCoupon.hn', data, function (res) {
       console.info('回调', res)

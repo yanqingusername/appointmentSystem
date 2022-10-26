@@ -46,7 +46,7 @@
 
     <!-- <view class="line_view_3"></view> -->
 
-    <view class="view_3" wx:if="{{user_id && coupon_code && (coupon_status == 0 || coupon_status == 3)}}" bindtap="handlerCouponClick" data-id="{{coupon_code}}" data-couponstatus="{{coupon_status}}">
+    <view class="view_3" wx:if="{{user_id && coupon_code && (coupon_status == 0 || coupon_status == 3)}}" bindtap="handlerCouponClick" data-id="{{coupon_code}}" data-couponstatus="{{coupon_status}}" data-couponname="{{coupon_name}}">
       <image wx:if="{{coupon_status == 0}}" src="../../images/icon_10_08_08.png" class="view_3_1"/>
       <image wx:else src="../../images/icon_10_08_09.png" class="view_3_1"/>
       
@@ -63,7 +63,7 @@
     <!-- <view class="line_view_2"></view> -->
 
     <view class="view_4">
-      <view class="midouItem" catchtap="handleRouter" wx:for="{{shopList}}" wx:key="index" data-shopid="{{item.id}}">
+      <view class="midouItem" catchtap="handleRouter" wx:for="{{shopList}}" wx:key="index" data-shopid="{{item.product_code}}">
 				<view class="midouYizhanShop">
 					<image class="midouYizhanShop-image" lazy-load src="{{item.img}}"></image>
 			  </view>

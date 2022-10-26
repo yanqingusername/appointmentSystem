@@ -17,16 +17,16 @@
 	<view class="P1" style="margin-top:100rpx">
 
 		<view class="view_4" wx:if="{{shopList.length>0}}">
-			<view class="view_4_1" catchtap="handleRouter" wx:for="{{shopList}}" wx:key="index" data-id="{{item.id}}">
+			<view class="view_4_1" catchtap="handleRouter" wx:for="{{shopList}}" wx:key="index" data-id="{{item.product_code}}">
 				<view class="midouYizhanShop">
-					<image class="midouYizhanShop-image" lazy-load src="../../../images/icon_0701_06.png"></image>
+					<image class="midouYizhanShop-image" lazy-load src="{{item.img}}"></image>
 				</view>
 
 				<view class="midouFour">
 					<view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;">{{item.subtitle}}</text>{{item.title}}</view>
 					<view class="midouPriceView">
 						<view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>{{item.price}}</view>
-						<view class="midouOriginal">￥{{item.oldprice}}</view>
+						<view class="midouOriginal" wx:if="{{item.oldprice}}">￥{{item.oldprice}}</view>
 					</view>
 					<view class="midouBuyView">
 						<view class="midouBuy">购买</view>
