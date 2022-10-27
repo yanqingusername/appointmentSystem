@@ -17,12 +17,12 @@
 
   <view wx:if="{{number == 1}}">
     <view class="view_4">
-      <view class="view_4_1" wx:for="{{10}}" wx:key="index">
+      <view class="view_4_1" wx:for="{{mineCouponList}}" wx:key="index">
         <view class="view_4_1_1">
-          <view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;font-family: PingFangSC-Medium, PingFang SC;font-weight: 500;">￥</text>20</view>
+          <view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;font-family: PingFangSC-Medium, PingFang SC;font-weight: 500;">￥</text>{{item.discount_amount}}</view>
           <view class="view_4_1_1_2">
-            <view class="view_4_1_1_2_1">满100使用</view>
-            <view class="view_4_1_1_2_2">有效期至2022-10-10</view>
+            <view class="view_4_1_1_2_1">{{item.name}}</view>
+            <view class="view_4_1_1_2_2">{{item.time}}</view>
           </view>
         </view>
         <view class="view_4_1_2">
@@ -36,9 +36,9 @@
     <view style="margin-top:100rpx">暂无健康商城优惠券</view>
   </view> -->
   
-    <!-- <view wx:if="{{number == 1}}" class="template_flex">
+    <view wx:if="{{mineCouponList.length==0}}" class="template_flex">
       <image class="template_flex_img" src="../../../images/icon_10_08_30.png"></image>
-    </view> -->
+    </view>
   </view>
 
   <view wx:if="{{number == 2}}">
