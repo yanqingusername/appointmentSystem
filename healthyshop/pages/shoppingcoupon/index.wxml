@@ -27,7 +27,7 @@
         </view>
         <view class="view_4_1_2">
           <view class="view_4_1_2_1"></view>
-          <view class="view_4_1_2_2">立即使用</view>
+          <view class="view_4_1_2_2" bind:tap="handlerClickCoupon" data-h5href="{{item.h5_href}}" data-wxhref="{{item.wx_href}}">立即使用</view>
         </view>
       </view>
     </view>

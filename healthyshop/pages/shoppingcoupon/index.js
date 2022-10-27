@@ -137,4 +137,22 @@ Page({
       }
     });
   },
+  /**
+   * 立即使用
+   */
+  handlerClickCoupon(e){
+    let h5href = e.currentTarget.dataset.h5href;
+    let wxhref = e.currentTarget.dataset.wxhref;
+
+    if(wxhref){
+      wx.navigateTo({
+        url: wxhref
+      })
+    }else if(h5href){
+      app.globalData.article = h5href;
+      wx.navigateTo({
+        url: '/pages/index/article?url='+h5href
+      });
+    }
+  }
 })
