@@ -179,9 +179,10 @@
       </view>
     </view>
   </view>
-  <view wx:if="{{continueFlag && isH5Show==1}}" class="bottom_white">
-    <button class="button-bottom_1" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBackIndex">返回首页</button>
-    <button class="button-bottom_2" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBack">继续预约下一人</button>
+  <view wx:if="{{continueFlag && isH5Show==1}}" class="bottom_white_3">
+    <!-- <button class="button-bottom_1" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBackIndex">返回首页</button>
+    <button class="button-bottom_2" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBack">继续预约下一人</button> -->
+    <view class="button-bottom_3" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBackIndex">返回小程序首页</view>
   </view>
 
   <view wx:if="{{isH5Show==2}}" class="bottom_white_3">
