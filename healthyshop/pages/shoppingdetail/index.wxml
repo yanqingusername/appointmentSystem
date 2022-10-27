@@ -1,8 +1,8 @@
 <view style="position:relative;height: 750rpx;">
 	<swiper class="swiper" bindchange="swiperChange" autoplay="true" interval="4000" duration="1000">
-        <block wx:for="{{5}}" wx:for-index="index" wx:key="index">
+        <block wx:for="{{shopimage}}" wx:for-index="index" wx:key="index">
           <swiper-item class="swiper_item">
-            <image src="../../../images/icon_0701_27.png" lazy-load style="height:750rpx;width:100%;" />
+            <image src="{{item}}" lazy-load style="height:750rpx;width:100%;" />
           </swiper-item>
         </block>
       </swiper>
@@ -11,13 +11,13 @@
 		<image src="../../../images/icon_10_08_10.png" lazy-load class="view_1" bind:tap="BackPage"/>
 	</view>
 
-	<view class="mine_view2">{{(swiperCurrent+1)}}/{{5}}</view>
+	<view class="mine_view2">{{(swiperCurrent+1)}}/{{shopimage.length}}</view>
 </view>
 
 <view class="view_2">
 	<view class="view_2_1">
         <view class="view_2_2"><text style="font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;font-size: 32rpx;color: #FF0000;">￥</text>{{price}}</view>
-		<view class="view_2_3">￥{{oldprice}}</view>
+		<view class="view_2_3" wx:if="{{oldprice}}">￥{{oldprice}}</view>
 	</view>
 
 	<view class="view_2_1">
@@ -29,24 +29,24 @@
 	<view class="view_3_1"><text style="font-size: 32rpx;color: #FC5A51;">{{subtitle}}</text>{{title}}</view>
 </view>
 
-<view class="view_4">
-	<view class="view_4_1" wx:for="{{4}}" wx:key="index">
+<view class="view_4" wx:if="{{couponList.length > 0}}">
+	<view class="view_4_1" wx:for="{{couponList}}" wx:key="index">
 		<view class="view_4_1_1">
-			<view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;font-family: PingFangSC-Medium, PingFang SC;font-weight: 500;">￥</text>20</view>
+			<view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;font-family: PingFangSC-Medium, PingFang SC;font-weight: 500;">￥</text>{{item.discount_amount}}</view>
 			<view class="view_4_1_1_2">
-				<view class="view_4_1_1_2_1">满100使用</view>
-				<view class="view_4_1_1_2_2">有效期至2022-10-10</view>
+				<view class="view_4_1_1_2_1">{{item.name}}</view>
+				<view class="view_4_1_1_2_2">{{item.time}}</view>
 			</view>
 		</view>
 		<view class="view_4_1_2">
 			<view class="view_4_1_2_1"></view>
-			<view class="view_4_1_2_2" bind:tap="clickReceiveCoupon">立即领取</view>
+			<view class="view_4_1_2_2" bind:tap="handlerCouponClick" data-id="{{item.coupon_code}}" data-couponname="{{item.name}}">立即领取</view>
 		</view>
 	</view>
 </view>
 
-<view class="view_5" bind:tap="clickMoreCoupon">
-	<view class="view_5_1">展开更多优惠券<image src="../../../images/icon_10_08_11.png" lazy-load class="view_5_2" bind:tap="handlerClickMore"/></view>
+<view class="view_5" bind:tap="handlerClickMore" wx:if="{{couponListOld.length > 2}}">
+	<view class="view_5_1">展开更多优惠券<image src="../../../images/icon_10_08_11.png" wx:if="{{isMoreCoupon}}" lazy-load class="view_5_2"/><image src="../../../images/icon_10_08_12.png" wx:else lazy-load class="view_5_2"/></view>
 </view>
 
 <view style="height:20rpx;background: #F3F4F9;"></view>
@@ -56,11 +56,11 @@
 	<view class="view_6_2">商品详情</view>
 </view>
 
-<view class="view_7" wx:for="{{4}}" wx:key="index">
+<view class="view_7" wx:for="{{shopdetailimg}}" wx:key="index">
 	<image src="../../../images/icon_0701_27.png" lazy-load style="width:100%;" mode="widthFix"/>
 </view>
 
-<view class="view_8">
+<view class="view_8" wx:if="{{moreShopList.length > 0}}">
 	<view class="view_8_1">
 		<view class="view_8_1_1">------</view>
 		<view class="view_8_1_2">更多好物推荐</view>
@@ -68,28 +68,28 @@
 	</view>
 </view>
 
-<view class="view_9">
-      <view class="midouItem" catchtap="handleRouter" wx:for="{{5}}" wx:key="index" data-id="{{index}}">
-				<view class="midouYizhanShop">
-					<image class="midouYizhanShop-image" lazy-load src="../../../images/icon_0701_06.png"></image>
-			  </view>
+<view class="view_9" wx:if="{{moreShopList.length > 0}}">
+    <view class="midouItem" catchtap="handleRouter" wx:for="{{moreShopList}}" wx:key="index" data-shopid="{{item.product_code}}">
+		<view class="midouYizhanShop">
+			<image class="midouYizhanShop-image" lazy-load src="{{item.img}}"></image>
+	  	</view>
 
-				<view class="midouFour">
-					<view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">【满100减20】</text>卡尤迪肠道菌群检测试剂盒 顺</view>
-						<view class="midouPriceView">
-              <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>299</view>
-							<view class="midouOriginal">￥399</view>
-						</view>
-					</view>
-				</view>
-    </view>
+		<view class="midouFour">
+			<view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">{{item.subtitle}}</text>{{item.title}}</view>
+			<view class="midouPriceView">
+                <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>{{item.price}}</view>
+				<view class="midouOriginal" wx:if="{{item.oldprice}}">￥{{item.oldprice}}</view>
+			</view>
+		</view>
+	</view>
+</view>
 
 <view style="height:30rpx;background: #F3F4F9;"></view>
 
 <view style="height:{{bottomLift > 15 ? '180':'156'}}rpx;background: #F3F4F9;"></view>
 
 <view class="view_10" style="padding-bottom:{{bottomLift}}px">
-	<view wx:if="{{isGrounding}}" class="view_10_1" bind:tap="clickShoppingSubOrder">立即购买</view>
+	<view wx:if="{{isGrounding == 0}}" class="view_10_1" bind:tap="clickShoppingSubOrder">立即购买</view>
 	<view wx:else class="view_10_2">商品未上架</view>
 </view>
 

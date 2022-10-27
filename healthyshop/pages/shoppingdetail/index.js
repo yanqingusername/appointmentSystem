@@ -18,15 +18,23 @@ Page({
     userInfo: {},
     dialogData: {},
     swiperCurrent:0,
-    // shopimage:[‘’,’’,’’],  // 商品顶部头图
+    
 		shopid:'', // 商品id
-        		subtitle:"【满100减20】", // 商品副标题
-        		title: "卡尤迪肠道菌群检测试剂盒 顺培怡 益生菌固体饮料 美国进口菌种 12袋/盒", // 商品标题
-        		price: "299", // 商品价格
-        		oldprice: "399", // 商品原价格
-		freeshipping: "包邮", // 商品标签
-		// shopdetailimg:[‘’,’’,’’],  // 商品详情图
-		isGrounding: true, // 商品是否上架
+    shopimage:[],  // 商品顶部头图
+    subtitle:"", // 商品副标题
+    title: "", // 商品标题
+    price: "", // 商品价格
+    oldprice: "", // 商品原价格
+		freeshipping: "", // 商品标签
+		shopdetailimg:[],  // 商品详情图
+		isGrounding: 0, //商品是否上架 0-上架  1-下架
+    product_type: "", //商品种类id
+
+    couponList: [],
+    couponListOld: [],
+    isMoreCoupon: true,
+
+    moreShopList: [],
 
     bottomLift: 15
   },
@@ -34,6 +42,9 @@ Page({
     this.setData({
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
     });
+
+    this.getShopInfo();
+    this.getCouponShopInfo();
   },
   onLoad(options) {
     this.setData({
@@ -92,6 +103,74 @@ Page({
       }
     })
   },
+  /**
+   * 获取商品详情
+   */
+   getShopInfo: function () {
+    let that = this;
+    let data = {
+      product_code: this.data.shopid,
+    }
+    request.request_get('/Newacid/getShopInfo.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res && res.msg){
+            that.setData({
+              shopid: res.msg.product_code, // 商品id
+              shopimage: res.msg.headImg,  // 商品顶部头图
+              subtitle: res.msg.subtitle, // 商品副标题
+              title: res.msg.title, // 商品标题
+              price: res.msg.price, // 商品价格
+              oldprice: res.msg.oldprice, // 商品原价格
+              freeshipping: res.msg.tips, // 商品标签
+              shopdetailimg: res.msg.img,  // 商品详情图
+              isGrounding: res.msg.is_use, // 商品是否上架 0-上架  1-下架
+              product_type: res.msg.product_type // 商品种类id
+            });
+
+            that.getMoreShopList();
+          }
+        } else {
+          box.showToast(res.msg);
+        }
+      }
+    });
+  },
+  /**
+   * 获取商品详情优惠卷
+   */
+   getCouponShopInfo: function () {
+    let that = this;
+    let data = {
+      product_code: this.data.shopid,
+      user_id: this.data.user_id
+    }
+    request.request_get('/Newacid/getCouponShopInfo.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res.msg && res.msg.length > 2){
+            let arr = [];
+            for (let i = 0; i < 2; i++) {
+              arr.push(res.msg[i]);
+            }
+            that.setData({
+              isMoreCoupon: true,
+              couponList: arr,
+              couponListOld: res.msg
+            });
+          }else{
+            that.setData({
+              isMoreCoupon: true,
+              couponList: res.msg,
+              couponListOld: res.msg
+            });
+          }
+        } else {
+          box.showToast(res.msg);
+        }
+      }
+    });
+  },
   // 获取 code
   getCode(success) {
     wx.login({
@@ -111,19 +190,6 @@ Page({
         this.bindGetUserInfo(res);
       },
       fail: (res) => {
-        //用户按了拒绝按钮
-        // wx.showModal({
-        //   title: '警告',
-        //   content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-        //   showCancel: false,
-        //   confirmText: '返回授权',
-        //   success: function (res) {
-        //     // 用户没有授权成功，不需要改变 isHide 的值
-        //     if (res.confirm) {
-        //       console.log('用户点击了“返回授权”');
-        //     }
-        //   }
-        // });
       }
     })
   },
@@ -144,27 +210,11 @@ Page({
         }
       })
     } else {
-      //用户按了拒绝按钮
-      // wx.showModal({
-      //   title: '警告',
-      //   content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-      //   showCancel: false,
-      //   confirmText: '返回授权',
-      //   success: function (res) {
-      //     // 用户没有授权成功，不需要改变 isHide 的值
-      //     if (res.confirm) {
-      //       console.log('用户点击了“返回授权”');
-      //     }
-      //   }
-      // });
+      
     }
   },
   USRE(e) {
     let that = this;
-    // wx.login({
-    //   success: (res) => {
-    //     var code = res.code;
-    //     console.log('---->:',code)
     request.request_get('/Newacid/getUseridAndUserInfo.hn', {
       code: this.data.rs_code,
       encryptedData: e.encryptedData,
@@ -173,7 +223,6 @@ Page({
       //判断为空时的逻辑
       if (res) {
         if (res.success) {
-          console.log("获取的用户信息---->:" + res);
           that.setData({
             isLogin: true,
             userInfo: {
@@ -191,37 +240,6 @@ Page({
         box.showToast("网络不稳定，请重试");
       }
     })
-    //   },
-    //   fail: (res) => {
-    //     box.showToast("请求超时，请检查网络是否连接")
-    //   }
-    // })
-
-
-    // let that = this;
-    // let DATA = {
-    //     // openid: this.data.openid,
-    //     encrypted_data: e.encryptedData,
-    //     iv: e.iv,
-    //     // unionid: this.data.unionid
-    // }
-    // request.request_get('/Newacid/getUserinfo.hn', DATA, function (res) {
-    //   //判断为空时的逻辑
-    //   if (res) {
-    //     if (res.success) {
-    //       console.log('--USRE-->:',res);
-    //       that.setData({
-    //         isLogin: true
-    //       });
-    //       // 本地存储
-    //       // wx.setStorageSync('data',_RES['data']['data']);
-    //     } else {
-    //       box.showToast(res.msg);
-    //     }
-    //   } else {
-    //     box.showToast("网络不稳定，请重试");
-    //   }
-    // })
   },
   bindPhoneNumber(e) {
     let user_info = this.data.userInfo;
@@ -238,18 +256,9 @@ Page({
     // 用户同意授权
     const OK = 'getPhoneNumber:ok'
     if (e.detail.errMsg == OK) {
-      // 判断 session_key 有无到期
-      // wx.checkSession({
-      //     success : res => {
-      //         this.TEL(e);
-      //     },
-      //     fail: res => {
       this.TEL(e)
-      //     }
-      // })
     } else {
       this.setUrl();
-
     }
   },
   TEL(e) {
@@ -340,11 +349,17 @@ Page({
       delta: 1
     });
   },
+  /**
+   * 客服
+   */
   clickShoppingService() {
     wx.navigateTo({
       url: "/healthyshop/pages/shoppingservice/index"
     });
   },
+  /**
+   * 立即购买
+   */
   clickShoppingSubOrder() {
     let that = this;
     if (that.data.user_id) {
@@ -356,10 +371,12 @@ Page({
     }
   },
   handleRouter(e){
-    let id = e.currentTarget.dataset.id;
-    wx.redirectTo({
-      url: `/healthyshop/pages/shoppingdetail/index?shopid=${id}`
-    });
+    let id = e.currentTarget.dataset.shopid;
+    if(id){
+      wx.redirectTo({
+        url: `/healthyshop/pages/shoppingdetail/index?shopid=${id}`
+      });
+    }
   },
   //轮播图的切换事件
   swiperChange: function(e) {
@@ -368,10 +385,75 @@ Page({
       swiperCurrent: e.detail.current
     })
   },
-  clickReceiveCoupon(e){
-
+  /**
+   * 优惠券点击事件
+   */
+   handlerCouponClick: function (e) {
+    let couponname = e.currentTarget.dataset.couponname;
+    let id = e.currentTarget.dataset.id;
+    if(id && couponname){
+      this.getReceiveCoupon(id,couponname);
+    }
   },
-  clickMoreCoupon(){
-
-  }
+  /**
+   * 领取优惠券
+   */
+   getReceiveCoupon: function (id,couponname) {
+    let that = this;
+    let data = {
+      coupon_code: id,
+      user_id: this.data.user_id,
+      coupon_name: couponname
+    }
+    request.request_get('/Newacid/getReceiveCoupon.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          that.getCouponShopInfo();
+        } else {
+          box.showToast(res.msg);
+        }
+      }
+    });
+  },
+  handlerClickMore(){
+    if(this.data.isMoreCoupon){
+      this.setData({
+        isMoreCoupon: false,
+        couponList: this.data.couponListOld,
+      });
+    }else{
+      if(this.data.couponListOld && this.data.couponListOld.length > 2){
+        let arr = [];
+        for (let i = 0; i < 2; i++) {
+          arr.push(this.data.couponListOld[i]);
+        }
+        this.setData({
+          isMoreCoupon: true,
+          couponList: arr,
+        });
+      }
+    }
+  },
+  /**
+   * 获取更多好物推荐
+   */
+   getMoreShopList: function () {
+    let that = this;
+    let data = {
+      product_type: this.data.product_type,
+    }
+    request.request_get('/Newacid/getMoreShopList.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res && res.msg){
+            that.setData({
+              moreShopList: res.msg
+            });
+          }
+        } else {
+          box.showToast(res.msg);
+        }
+      }
+    });
+  },
 })
