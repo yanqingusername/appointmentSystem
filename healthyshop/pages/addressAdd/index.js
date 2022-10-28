@@ -28,10 +28,12 @@ Page({
       sure: "确认"
     },
     submitState: true,
-    isAddAddress: 0,  // 0-默认从vip预约-添加地址跳转   1-从选择地址-添加地址跳转 2-从选择地址-编辑地址跳转
+    isAddAddress: 0,  // 0-默认从商场提交订单页-添加地址跳转   1-从选择地址-添加地址跳转 2-从选择地址-编辑地址跳转
     address_id: '',
     policyChecked: false,
     isMine: 0,
+
+    user_id: ""
   },
   onShow: function () {
   },
@@ -39,7 +41,8 @@ Page({
     this.getbaseData();
     this.setData({
       isAddAddress: options.isAddAddress,
-      isMine: options.isMine
+      isMine: options.isMine,
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
     });
 
     if(options && options.title){
@@ -50,18 +53,19 @@ Page({
 
     if(options && options.jsonItem){
       let jsonItem = JSON.parse(options.jsonItem);
-      let addressregion = jsonItem.province+jsonItem.city+jsonItem.area+"";
+      let addressregion = jsonItem.province+jsonItem.city+jsonItem.region+"";
+
       this.setData({
-        address_person: jsonItem.address_person,
-        address_phone: jsonItem.address_phone,
+        address_person: jsonItem.receive_name,
+        address_phone: jsonItem.phone,
         province: jsonItem.province,
         city: jsonItem.city,
-        area: jsonItem.area,
-        address: jsonItem.address,
+        area: jsonItem.region,
+        address: jsonItem.detail_address,
         addressregion: addressregion,
         address_id: jsonItem.id,
         isShowRegion: 2,
-        region: [jsonItem.province, jsonItem.city, jsonItem.area],
+        region: [jsonItem.province, jsonItem.city, jsonItem.region],
       });
       this.checkSubmitStatus();
     }
@@ -133,7 +137,6 @@ Page({
     var address_phone = that.data.address_phone;
     var addressregion = that.data.addressregion;
     var address = that.data.address;
-    var openid = app.globalData.openid;
     
     if (address_person == '') {
       box.showToast("请填写联系人姓名");
@@ -158,24 +161,21 @@ Page({
     }
 
     var data = {
-      open_id: openid,
-      address_person: that.data.address_person,
-      address_phone: that.data.address_phone,
-      area_info:"",
+      user_id: this.data.user_id,
+      receive_name: that.data.address_person,
+      phone: that.data.address_phone,
       province: that.data.region[0],
       city: that.data.region[1],
-      area: that.data.region[2],
-      address: that.data.address
-
-      // addressregion: that.data.addressregion
+      region: that.data.region[2],
+      detail_address: that.data.address
     }
 
     console.log('---->:', data)
     // return
 
-    // 0-默认从vip预约跳转   1-从选择地址-添加地址跳转 2-从选择地址-编辑地址跳转
+    // 0-默认从商场提交订单页-添加地址跳转   1-从选择地址-添加地址跳转 2-从选择地址-编辑地址跳转
     if(this.data.isAddAddress == 0){
-      request.request_get('/avip/addAppointmentAddress.hn', data, function (res) {
+      request.request_get('/Newacid/addShopAddress.hn', data, function (res) {
         console.info('回调', res)
         if (res) {
           if (res.success) {
@@ -193,7 +193,7 @@ Page({
                 let prevPage = pages[pages.length - 2];
                 prevPage.setData({
                   isAddAddress: 1,
-                  address_id: res.address_id,
+                  address_id: res.msg,
                   address_person: that.data.address_person,
                   address_phone: that.data.address_phone,
                   province: that.data.region[0],
@@ -214,7 +214,7 @@ Page({
         }
       })
     } else if(this.data.isAddAddress == 1){
-      request.request_get('/avip/addAppointmentAddress.hn', data, function (res) {
+      request.request_get('/Newacid/addShopAddress.hn', data, function (res) {
         console.info('回调', res)
         if (res) {
           if (res.success) {
@@ -232,7 +232,7 @@ Page({
                 let prevPage = pages[pages.length - 3];
                 prevPage.setData({
                   isAddAddress: 1,
-                  address_id: res.address_id,
+                  address_id: res.msg,
                   address_person: that.data.address_person,
                   address_phone: that.data.address_phone,
                   province: that.data.region[0],
@@ -253,9 +253,8 @@ Page({
         }
       })
     } else if(this.data.isAddAddress == 2){
-      data.address_id = that.data.address_id;
-      data.status = '0';
-      request.request_get('/avip/updateAppointmentAddress.hn', data, function (res) {
+      data.id = that.data.address_id;
+      request.request_get('/Newacid/updateShopAddress.hn', data, function (res) {
         console.info('回调', res)
         if (res) {
           if (res.success) {
@@ -317,13 +316,11 @@ Page({
    this.deleteCompanyContactInfo();
  },
   deleteCompanyContactInfo(){
-   let openid = app.globalData.openid;
    let params = {
-    address_id: this.data.address_id,
-    open_id: openid,
-    status: '1'
+    id: this.data.address_id,
+    user_id: this.data.user_id,
    }
-   request.request_get('/avip/updateAppointmentAddress.hn', params, function (res) { 
+   request.request_get('/Newacid/deleteShopAddress.hn', params, function (res) { 
      if (res) {
        if (res.success) {
          box.showToast('删除成功','',1000);

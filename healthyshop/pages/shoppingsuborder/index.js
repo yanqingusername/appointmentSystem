@@ -28,63 +28,43 @@ Page({
     area: "",
     address: "",
     remarkText: '',
+
     shopid: '',
-    shopsubtitle: "【满100减20】",
-    shoptitle: "培怡 益生菌固体饮料 美国进口菌种 12袋/盒",
-    shopprice: 299,
+    shopimage: "",
+    shopsubtitle: "",
+    shoptitle: "",
+    shopprice: 0,
     shopnumber: 1,
+    oldprice: 0, // 商品原价格
+    freeshipping: "", // 商品标签
+    isGrounding: "", // 商品是否上架 0-上架  1-下架
+    product_type: "", // 商品种类id
 
     total_payment: 0,
     shop_payment: 0,
 
+    user_id: "",
 
-    couponList: [{
-        coupon_id: 1,
-        coupon_title: "满100使用",
-        coupon_payment: 20,
-        coupon_price: 100,
-        coupon_time: "有效期至2022-10-10"
-      },
-      {
-        coupon_id: 2,
-        coupon_title: "满200使用",
-        coupon_payment: 30,
-        coupon_price: 200,
-        coupon_time: "有效期至2022-10-10"
-      },
-      {
-        coupon_id: 3,
-        coupon_title: "满300使用",
-        coupon_payment: 40,
-        coupon_price: 300,
-        coupon_time: "有效期至2022-10-10"
-      },
-      {
-        coupon_id: 4,
-        coupon_title: "满400使用",
-        coupon_payment: 50,
-        coupon_price: 400,
-        coupon_time: "有效期至2022-10-10"
-      }
-    ],
+    couponList: [],
 
     bottomLift: 15,
 
-    yyxz_show: 1,
     policyChecked: false,
-    yyxz_url: ''
+    shopxz_pdf: ''
   },
   onLoad: function (options) {
     let that = this;
-    //获取优惠券
-    // that.getYHQ();
 
     this.setData({
-      shopid: options.shopid
+      shopid: options.shopid,
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
     });
 
-    this.setPrice();
+    this.getShopInfo();
+    this.getUserInfoOrder();
+    
     this.getBottomLift();
+    
   },
   getBottomLift(){
     let that = this;
@@ -103,26 +83,87 @@ Page({
       }
     });
   },
-  getYHQ: function () {
-    //获取优惠券
-    //通过openid
+  /**
+   * 获取商品用户提交订单信息
+   */
+   getUserInfoOrder: function () {
     let that = this;
     let data = {
-      openid: app.globalData.openid
+      product_code: this.data.shopid,
+      user_id: this.data.user_id
     }
-    request.request_get('/activity/getCouponBest.hn', data, function (res) {
-      if (!res) {
-        return;
+    request.request_get('/Newacid/getUserInfoOrder.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res && res.msg){
+            let address = res.msg.address;
+            if(address && address.length > 0){
+              that.setData({
+                address_id: address.id,
+                address_person: address.receive_name,
+                address_phone: address.phone,
+                province: address.province,
+                city: address.city,
+                area: address.region,
+                address: address.detail_address,
+              });
+            }
+
+            if(that.data.address_id){
+              that.setData({
+                isAllAddress: 1,
+                isAddAddress: 1
+              });
+            }else{
+              that.setData({
+                isAllAddress: 0,
+                isAddAddress: 0
+              });
+            }
+
+            that.setData({
+              couponList: res.msg.coupon,
+              shopxz_pdf: res.msg.pdf
+            });
+          }
+        } else {
+          box.showToast(res.msg);
+        }
       }
-      if (!res.success) {
-        return;
+    });
+  },
+  /**
+   * 获取商品详情
+   */
+   getShopInfo: function () {
+    let that = this;
+    let data = {
+      product_code: this.data.shopid,
+    }
+    request.request_get('/Newacid/getShopInfo.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res && res.msg){
+            that.setData({
+              shopid: res.msg.product_code, // 商品id
+              shopimage: res.msg.headImg[0],  // 商品顶部头图
+              shopsubtitle: res.msg.subtitle, // 商品副标题
+              shoptitle: res.msg.title, // 商品标题
+              shopprice: res.msg.price, // 商品价格
+              oldprice: res.msg.oldprice, // 商品原价格
+              freeshipping: res.msg.tips, // 商品标签
+              shopdetailimg: res.msg.img,  // 商品详情图
+              isGrounding: res.msg.is_use, // 商品是否上架 0-上架  1-下架
+              product_type: res.msg.product_type // 商品种类id
+            });
+
+            that.setPrice();
+          }
+        } else {
+          box.showToast(res.msg);
+        }
       }
-      that.setData({
-        coupon_id: res.msg.coupon_id,
-        coupon_payment: res.msg.coupon_payment,
-        coupon_title: res.msg.coupon_title
-      })
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面显示
@@ -299,14 +340,14 @@ Page({
     })
   },
   bindYYXZ: utils.throttle(function (e) {
-    var report_temp = this.data.yyxz_url
+    var report_temp = this.data.shopxz_pdf
     if (report_temp == '' || report_temp == undefined || report_temp == null) {
-      box.showToast('预约须知不存在，请联系客服')
+      box.showToast('产品知情同意书不存在，请联系客服')
       return;
     }
     wx.downloadFile({
       url: report_temp, //要预览的PDF的地址
-      filePath: wx.env.USER_DATA_PATH + '/预约须知.pdf',
+      filePath: wx.env.USER_DATA_PATH + '/产品知情同意书.pdf',
       success: function (res) {
         console.log(res);
         if (res.statusCode === 200) { //成功
@@ -315,13 +356,13 @@ Page({
             filePath: Path,
             showMenu: false,
             success: function (res) {
-              console.log('打开预约须知成功');
+              console.log('打开产品知情同意书成功');
             }
           })
         }
       },
       fail: function (res) {
-        box.showToast('预约须知不存在，请联系客服')
+        box.showToast('产品知情同意书不存在，请联系客服')
         console.log(res); //失败
       }
     })
@@ -333,16 +374,26 @@ Page({
     //   return;
     // }
 
-    // if (that.data.yyxz_show == 1) {
     //   if (that.data.policyChecked == false) {
     //     box.showToast("请阅读并勾选预约须知")
     //     return
     //   }
-    // }
 
-    wx.navigateTo({
-      url: `/healthyshop/pages/shoppingorderdetail/index?ordernum=123`
-    });
+    let params = {
+      address_id: this.data.address_id,
+      address_person: this.data.address_person,
+      address_phone: this.data.address_phone,
+      province: this.data.province,
+      city: this.data.city,
+      area: this.data.area,
+      address: this.data.address,
+    }
+
+    console.log('---->:',params)
+
+    // wx.navigateTo({
+    //   url: `/healthyshop/pages/shoppingorderdetail/index?ordernum=123`
+    // });
   }, 3000),
   // 提交确认出库信息
   submit: utils.throttle(function (e) {

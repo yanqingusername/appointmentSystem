@@ -44,6 +44,13 @@ color: #2F2929;
   right: 0rpx;
 }
 
+.view_1_4{
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 20rpx;
+}
+
 .view_2 {
   display: flex;
     align-items: center;
@@ -262,7 +269,7 @@ margin-left: 20rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24rpx 0rpx 28rpx 28rpx;
+  padding: 24rpx 32rpx 28rpx 28rpx;
 }
 
 .view_4_2_1{
@@ -613,4 +620,9 @@ font-weight: 400;
 
 .underline_gray{
   text-decoration: underline;
+}
+
+.view_10_1_2{
+  width: 26rpx;
+  height: 26rpx;
 }

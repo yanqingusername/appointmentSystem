@@ -12,27 +12,28 @@ Page({
     title: "选择地址",
     dataList: [],
     isMine: 0,
+    user_id: ""
   },
   onShow: function () {
     this.getAllAddress();
   },
   onLoad: function (options) {
     this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
       isMine: options.isMine
     });
   },
   getAllAddress(){
     let that = this;
-    var openid = app.globalData.openid;
     let data = {
-      open_id: openid
+      user_id: this.data.user_id
     }
-    request.request_get('/avip/getAppointmentAddress.hn', data, function (res) {
+    request.request_get('/Newacid/getShoppingAddress.hn', data, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
           that.setData({
-            dataList: res.result
+            dataList: res.msg
           })
         } else {
           box.showToast(res.msg);
@@ -65,12 +66,12 @@ Page({
         prevPage.setData({
           isAddAddress: 1,
           address_id: item.id,
-          address_person: item.address_person,
-          address_phone: item.address_phone,
+          address_person: item.receive_name,
+          address_phone: item.phone,
           province: item.province,
           city: item.city,
-          area: item.area,
-          address: item.address,
+          area: item.region,
+          address: item.detail_address,
         })
         wx.navigateBack({
           delta: 1, 
