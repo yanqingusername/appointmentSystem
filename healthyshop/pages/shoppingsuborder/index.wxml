@@ -19,8 +19,8 @@
       <view class="view_2" bind:tap="bindSelectAddress" wx:if="{{isAddAddress == 1}}">
         <image class="view_1_1" src="../../../images/icon_10_08_20.png"></image>
         <view class="view_2_2">
-          <view class="view_2_2_1">北京市朝阳区北京市朝阳区东四环中路34号大成国际A2座12A21</view>
-          <view class="view_2_2_2">陈奕迅 {{tools.centerPhoneTrim1('134111121123')}} </view>
+          <view class="view_2_2_1">{{province}}{{city}}{{area}}{{address}}</view>
+          <view class="view_2_2_2">{{address_person}} {{tools.centerPhoneTrim1(address_phone)}} </view>
         </view>
         <!-- <image class="view_1_3" src="../../../images/rightArrow.png"></image> -->
         <image class="view_1_4" src="../../../images/icon_10_08_26.png"></image>

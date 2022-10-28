@@ -387,6 +387,11 @@ Page({
       city: this.data.city,
       area: this.data.area,
       address: this.data.address,
+      coupon_id: this.data.coupon_id,
+      shopid: this.data.shopid,
+      shop_payment: this.data.shop_payment,
+      shopnumber: this.data.shopnumber,
+      remarkText: this.data.remarkText,
     }
 
     console.log('---->:',params)
@@ -403,7 +408,7 @@ Page({
     let coupon_id = that.data.coupon_id;
     let address_id = that.data.address_id;
     let shopid = that.data.shopid;
-    let shop_payment = thiat.data.shop_payment;
+    let shop_payment = that.data.shop_payment;
     let remarkText = that.data.remarkText;
 
     var data = {
