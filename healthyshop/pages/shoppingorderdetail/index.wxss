@@ -22,6 +22,14 @@ color: #2F2929;
   background: #EBF4FF;
 }
 
+.view_1_activity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 218rpx;
+  background: #FFEDE9;
+}
+
 .view_1_1 {
   height: 32rpx;
   width: 32rpx;
@@ -119,7 +127,7 @@ font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 446rpx;
 }
 
 .midouPrice {
@@ -162,6 +170,7 @@ font-weight: 400;
   font-weight: 400;
   color: #333333;
   width: 65%;
+  text-align: end;
 }
 
 .view_6{

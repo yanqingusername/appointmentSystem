@@ -9,7 +9,7 @@
   <form>
     <view>
       <!-- 添加地址 -->
-      <view class="view_1" bind:tap="bindAddAddress" wx:if="{{isAddAddress == 0}}">
+      <view class="view_1" bind:tap="bindSelectAddress" wx:if="{{isAddAddress == 0}}">
         <image class="view_1_1" src="../../../images/icon_10_08_21.png"></image>
         <view class="view_1_2">选择收货地址</view>
         <!-- <image class="view_1_3" src="../../../images/rightArrow.png"></image> -->

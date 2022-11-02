@@ -44,6 +44,7 @@ Page({
     shop_payment: 0,
 
     user_id: "",
+    openid: "",
 
     couponList: [],
 
@@ -58,6 +59,7 @@ Page({
     this.setData({
       shopid: options.shopid,
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      openid: wx.getStorageSync('coyote_userinfo').openid || '',
     });
 
     this.getShopInfo();
@@ -98,14 +100,15 @@ Page({
           if(res && res.msg){
             let address = res.msg.address;
             if(address && address.length > 0){
+              let addressItem = address[0];
               that.setData({
-                address_id: address.id,
-                address_person: address.receive_name,
-                address_phone: address.phone,
-                province: address.province,
-                city: address.city,
-                area: address.region,
-                address: address.detail_address,
+                address_id: addressItem.id,
+                address_person: addressItem.receive_name,
+                address_phone: addressItem.phone,
+                province: addressItem.province,
+                city: addressItem.city,
+                area: addressItem.region,
+                address: addressItem.detail_address,
               });
             }
 
@@ -169,27 +172,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // this.getAllAddress();
-
-    var that = this;
-
-    // if (that.data.coupon_payment == '不使用'||that.data.coupon_payment == '无') {
-    //   that.setData({
-    //     new_payment_amount: that.data.payment_amount
-    //   })
-    // } else {
-    //   let intPaymentAmount = that.data.payment_amount * 100
-    //   let intCouponPayment = that.data.coupon_payment * 100;
-    //   let payment_amount = (parseInt(intPaymentAmount) - parseInt(intCouponPayment))/100;
-    //   if(payment_amount > 0){
-
-    //   }else{
-    //     payment_amount = 0.01;
-    //   }
-    //   that.setData({
-    //     new_payment_amount: payment_amount
-    //   })
-    // }
 
   },
   onUnload() {},
@@ -255,47 +237,6 @@ Page({
     //   box.showToast("请选择优惠券");
     // }
   },
-  getAllAddress() {
-    let that = this;
-    var openid = app.globalData.openid;
-    let data = {
-      open_id: openid
-    }
-    request.request_get('/avip/getAppointmentAddress.hn', data, function (res) {
-      console.info('回调', res)
-      if (res) {
-        if (res.success) {
-          if (res && res.result && res.result.length > 0) {
-            that.setData({
-              isAllAddress: 1
-            })
-
-            let isAddAddressNew = 0;
-            let address_id_new = '';
-            for (let i = 0; i < res.result.length; i++) {
-              if (res.result[i].id == that.data.address_id) {
-                isAddAddressNew = 1;
-                address_id_new = that.data.address_id;
-              }
-            }
-            that.setData({
-              isAddAddress: isAddAddressNew,
-              address_id: address_id_new
-            });
-          } else {
-            that.setData({
-              isAllAddress: 0,
-              isAddAddress: 0
-            })
-          }
-        } else {
-          // box.showToast(res.msg);
-        }
-      } else {
-        box.showToast("网络不稳定，请重试");
-      }
-    })
-  },
   bindReduce: function () {
     let str = this.data.shopnumber;
     if (str > 1) {
@@ -328,11 +269,10 @@ Page({
       shop_payment: shop_payment
     });
   },
-
   searchChangeHandle: function (e) {
     this.setData({
       remarkText: e.detail.value
-    })
+    });
   },
   changePolicy(e) {
     this.setData({
@@ -369,66 +309,49 @@ Page({
   }, 2000),
   clickOrderDetail: utils.throttle(function (e) {
     let that = this;
-    // if (this.data.address_id == '') {
-    //   box.showToast("请选择收货地址");
-    //   return;
-    // }
+    if (this.data.address_id == '') {
+      box.showToast("请选择收货地址");
+      return;
+    }
 
-    //   if (that.data.policyChecked == false) {
-    //     box.showToast("请阅读并勾选预约须知")
-    //     return
-    //   }
+      if (that.data.policyChecked == false) {
+        box.showToast("请阅读并勾选预约须知")
+        return
+      }
 
     let params = {
-      address_id: this.data.address_id,
-      address_person: this.data.address_person,
-      address_phone: this.data.address_phone,
-      province: this.data.province,
-      city: this.data.city,
-      area: this.data.area,
-      address: this.data.address,
-      coupon_id: this.data.coupon_id,
-      shopid: this.data.shopid,
-      shop_payment: this.data.shop_payment,
-      shopnumber: this.data.shopnumber,
-      remarkText: this.data.remarkText,
+      product_code: this.data.shopid, // 商品id
+      product_num: this.data.shopnumber, // 商品数量
+      user_id: this.data.user_id, // user_id
+      coupon_id: this.data.coupon_id, // 优惠券记录id
+      coupon_amount: this.data.coupon_payment, // 优惠金额
+      pay_amount: this.data.shop_payment, // 应付金额
+      // pay_amount: '0.01', // 应付金额
+      address_id: this.data.address_id, // 地址id
+      total_amount: this.data.total_payment, // 实付金额
+      product_name: this.data.shoptitle, // 商品名称
+      delivery_method: this.data.freeshipping, // 配送方式
+      note: this.data.remarkText, // 备注
+      open_id: this.data.openid  // 微信openid
+
+      // address_person: this.data.address_person,
+      // address_phone: this.data.address_phone,
+      // province: this.data.province,
+      // city: this.data.city,
+      // area: this.data.area,
+      // address: this.data.address,
+      
     }
 
     console.log('---->:',params)
+    // return
 
-    // wx.navigateTo({
-    //   url: `/healthyshop/pages/shoppingorderdetail/index?ordernum=123`
-    // });
-  }, 3000),
-  // 提交确认出库信息
-  submit: utils.throttle(function (e) {
-
-    let that = this;
-    let openid = app.globalData.openid;
-    let coupon_id = that.data.coupon_id;
-    let address_id = that.data.address_id;
-    let shopid = that.data.shopid;
-    let shop_payment = that.data.shop_payment;
-    let remarkText = that.data.remarkText;
-
-    var data = {
-      open_id: openid,
-      coupon_id: coupon_id,
-      shopid: shopid,
-      address_id: address_id,
-      shop_payment: shop_payment, //正式
-      // payment_amount: "0.01", //测试
-      remarkText: remarkText
-    }
-
-    console.log('--data1-->:', data)
-
-    request.request_get('/avip/addVIPOnlinePaymentOrder.hn', data, function (res) {
+    request.request_get('/Newacid/SubmitShopOrder.hn', params, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
           that.setData({
-            ordernum: res.ordernum
+            ordernum: res.order_sn
           })
           //------------------小程序前端签名start------------------
           let appId = "wx8d285cecdc37a3b5";
@@ -446,22 +369,20 @@ Page({
             signType: 'MD5',
             success: function (res) {
               wx.requestSubscribeMessage({
-                tmplIds: ['P01rYbqz6L_sbj3JyVz2SfUtU4SWhZ01PQ13j3AoSkE', '-2SRPYWbtWO0xbRC2Rkdpm3j3oiTUbQ-O8HnqilmgOs', 'NNcHm-TIz2xzXQnpnsY-cVNRy2bgMirUg_hiOIJ6vKU'],
+                tmplIds: ['ZFtzFqz1atfEjf-sV6mScLjWYQ13JfksbeFQKqssxJw'],
                 success(res) {
-                  let data = {
-                    openid: app.globalData.openid
-                  }
-                  request.request_get('/a/sendmsg.hn', data, function (res) {
-                    console.info('回调', res)
-                  })
+                  
                 },
                 fail(res) {
                   console.log('fail:' + res);
                 },
                 complete(res) {
-                  wx.navigateTo({
+                  wx.redirectTo({
                     url: `/healthyshop/pages/shoppingorderdetail/index?ordernum=${that.data.ordernum}`
                   })
+                  // wx.navigateTo({
+                  //   url: `/healthyshop/pages/shoppingorderdetail/index?ordernum=123`
+                  // });
                 }
               })
             },

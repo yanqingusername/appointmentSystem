@@ -7,21 +7,21 @@
 
 <view class="page">
     <view>
-      <view class="view_1">
+      <view class="view_1" wx:if="{{orderstatus == 4}}">
         <image class="view_1_1" src="../../../images/icon_10_08_24.png"></image>
         <view class="view_1_2">已退款</view>
       </view>
 
-      <!-- <view class="view_1">
+      <view class="view_1_activity" wx:else>
         <image class="view_1_1" src="../../../images/icon_10_08_23.png"></image>
         <view class="view_1_2" style="color:#FC5A51;">订单提交成功</view>
-      </view> -->
+      </view>
 
       <view class="view_3">
         <view class="view_3_1">卡尤迪大蓝健康旗舰店</view>
         <view class="view_3_2" catchtap="handleRouter" data-id="{{shopid}}">
           <view class="midouYizhanShop">
-            <image class="midouYizhanShop-image" lazy-load src="../../../images/icon_0701_06.png"></image>
+            <image class="midouYizhanShop-image" lazy-load src="{{shopimage}}"></image>
           </view>
 
           <view class="midouFour">
@@ -46,7 +46,7 @@
 
         <view class="view_7">
           <view class="view_7_1">订单编号</view>
-          <view class="view_7_2">{{ordernumber}}<text class="view_7_3"></text><view class="view_7_4" bindtap="bindCopy" data-number="{{ordernumber}}">复制</view></view>
+          <view class="view_7_2">{{ordernum}}<text class="view_7_3"></text><view class="view_7_4" bindtap="bindCopy" data-number="{{ordernum}}">复制</view></view>
         </view>
 
         <view class="view_7">
@@ -59,12 +59,12 @@
           <view class="view_7_5">￥{{order_payment}}</view>
         </view>
 
-        <view class="view_7">
+        <view class="view_7" wx:if="{{order_time}}">
           <view class="view_7_1">成交时间</view>
           <view class="view_7_2">{{order_time}}</view>
         </view>
 
-        <view class="view_7">
+        <view class="view_7" wx:if="{{return_time}}">
           <view class="view_7_1">退款时间</view>
           <view class="view_7_2">{{return_time}}</view>
         </view>
@@ -79,11 +79,11 @@
           <view class="view_8_1"></view>
           <view class="view_8_2">
             <view class="view_8_2_2" bind:tap="handleRouter" data-id="{{shopid}}">再次购买</view>
-            <view class="view_8_2_1" bind:tap="clickSubmit" data-ordernum="{{ordernum}}">确认收货</view>
+            <view class="view_8_2_1" wx:if="{{orderstatus == 2}}" bind:tap="clickSubmit">确认收货</view>
           </view>
         </view>
 
-        <view class="view_8" style="padding: 0rpx 0rpx 0rpx 0rpx;">
+        <view class="view_8" style="padding: 0rpx 0rpx 0rpx 0rpx;" wx:if="{{delivery_time}}">
           <view class="view_8_1"></view>
           <view class="view_8_2">
             <view class="view_8_2_3">{{time}}</view>
@@ -107,25 +107,29 @@
         </view>
       </view>
 
-
-
-
       <view class="view_10">
-        <view class="view_10_1" bind:tap="clickOther">
-          <view class="view_10_1_1">益生菌使用小贴士</view>
-          <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
-        </view>
-        <view class="view_line_10"></view>
-        <view class="view_10_1" bind:tap="clickOther">
-          <view class="view_10_1_1">家庭自检试剂盒操作手册</view>
-          <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
-        </view>
-        <view class="view_line_10"></view>
-        <view class="view_10_1" bind:tap="clickOther">
-          <view class="view_10_1_1">在家自行采样注意事项</view>
-          <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
-        </view>
-        
+        <block wx:for="{{productDescriptionList}}" wx:key="index">
+          <view class="view_10_1" bind:tap="clickOther" data-itemobj="{{item}}">
+            <view class="view_10_1_1">{{item.description}}</view>
+            <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
+          </view>
+          <view class="view_line_10" wx:if="{{index != (productDescriptionList.length-1)}}"></view>
+        </block>
+
+          <!-- <view class="view_10_1" bind:tap="clickOther">
+            <view class="view_10_1_1">益生菌使用小贴士</view>
+            <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
+          </view>
+          <view class="view_line_10"></view>
+          <view class="view_10_1" bind:tap="clickOther">
+            <view class="view_10_1_1">家庭自检试剂盒操作手册</view>
+            <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
+          </view>
+          <view class="view_line_10"></view>
+          <view class="view_10_1" bind:tap="clickOther">
+            <view class="view_10_1_1">在家自行采样注意事项</view>
+            <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
+          </view> -->
       </view>
 
     </view>

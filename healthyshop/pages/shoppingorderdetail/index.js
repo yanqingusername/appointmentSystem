@@ -15,26 +15,30 @@ Page({
    */
   data: {
     ordernum: "",
+
     orderstatus: '1',
     shopid: '',
-    shopsubtitle: "【满100减20】",
-    shoptitle: "培怡 益生菌固体饮料 美国进口菌种 12袋/盒",
-    shopprice: 299,
+    shopimage: "",
+    shopsubtitle: "",
+    shoptitle: "",
+    shopprice: 0,
     shopnumber: 1,
-    address_person: "某某某",
-    address_phone: "13781234717",
-    province: "北京",
-    city: "朝阳区",
-    area: "呼家楼花苑小区",
-    address: "甲28号",
+    address_person: "",
+    address_phone: "",
+    province: "",
+    city: "",
+    area: "",
+    address: "",
     remarkText: "无",
-    ordernumber: "3901221123314489",
     coupon_payment: "0",
-    order_payment: "299",
-    order_time: "2022-09-16 23:44:09",
-    return_time: "2022-09-16 23:44:09",
-    courier_name: "申通快递",
-    courier_number: "ST882761729",
+    order_payment: "0",
+    order_time: "",
+    return_time: "",
+    courier_name: "",
+    courier_number: "",
+    remainingTime: "", // 剩余时间
+    // total_amount
+    delivery_time: "",
 
     showDialog: false,
     dialogData: {
@@ -44,40 +48,122 @@ Page({
       sure: "确认"
     },
 
-    time:""
+    time:"",
+    user_id: "",
+    openid: "",
+
+    productDescriptionList: []
   },
   onLoad: function (options) {
     this.setData({
-      ordernum: options.ordernum
+      ordernum: options.ordernum,
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      openid: wx.getStorageSync('coyote_userinfo').openid || '',
     });
 
-    // let timestamp = Date.parse(new Date());
-    // timestamp=timestamp/1000;
-    // console.log(timestamp)
-
-    this.countDown(23445, 2);
+    this.getOrderInfo();
+    this.getProductDescription();
   },
-  getYHQ:function(){
-    //获取优惠券
-    //通过openid
+  /**
+   * 获取订单详情接口
+   */
+  getOrderInfo:function(){
     let that = this;
     let data = {
-      openid:app.globalData.openid
+      user_id: this.data.user_id,
+      order_sn: this.data.ordernum
     }
-    request.request_get('/activity/getCouponBest.hn', data, function (res) {
-      if (!res) {
-        return;
+    request.request_get('/Newacid/getOrderInfo.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res && res.msg && res.msg.length > 0){
+            let orderItem = res.msg[0];
+
+            that.setData({
+              orderstatus: orderItem.status,
+              shopid: orderItem.product_code,
+              address_person: orderItem.receiver_name,
+              address_phone: orderItem.receiver_phone,
+              province: orderItem.receiver_province,
+              city: orderItem.receiver_city,
+              area: orderItem.receiver_region,
+              address: orderItem.receiver_detail_address,
+              remarkText: orderItem.note,
+              coupon_payment: orderItem.coupon_amount,
+              order_payment: orderItem.pay_amount,
+              order_time: orderItem.payment_time,
+              return_time: orderItem.refund_time,
+              courier_name: orderItem.delivery_company,
+              courier_number: orderItem.delivery_sn,
+              shopnumber: orderItem.product_num,
+              remainingTime: orderItem.remainingTime, // 剩余时间
+              // total_amount
+              delivery_time: orderItem.delivery_time,
+            });
+
+            that.getShopInfo();
+
+            if(that.data.delivery_time){
+              that.countDown(that.data.remainingTime, 2);
+            }
+          }
+        } else {
+          box.showToast(res.msg);
+        }
       }
-      if (!res.success) {
-        return;
+    });
+  },
+  /**
+   * 获取商品详情
+   */
+   getShopInfo: function () {
+    let that = this;
+    let data = {
+      product_code: this.data.shopid,
+    }
+    request.request_get('/Newacid/getShopInfo.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res && res.msg){
+            that.setData({
+              shopid: res.msg.product_code, // 商品id
+              shopimage: res.msg.headImg[0],  // 商品顶部头图
+              shopsubtitle: res.msg.subtitle, // 商品副标题
+              shoptitle: res.msg.title, // 商品标题
+              shopprice: res.msg.price, // 商品价格
+              oldprice: res.msg.oldprice, // 商品原价格
+              freeshipping: res.msg.tips, // 商品标签
+              shopdetailimg: res.msg.img,  // 商品详情图
+              isGrounding: res.msg.is_use, // 商品是否上架 0-上架  1-下架
+              product_type: res.msg.product_type // 商品种类id
+            });
+          }
+        } else {
+          box.showToast(res.msg);
+        }
       }
-      // TODO
-      that.setData({
-        coupon_id:res.msg.coupon_id,
-        coupon_payment:res.msg.coupon_payment,
-        best_coupon:1
-      })
-    })
+    });
+  },
+  /**
+   * 获取产品使用说明
+   */
+   getProductDescription: function () {
+    let that = this;
+    let data = {
+    }
+    request.request_get('/Newacid/productDescription.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res && res.msg){
+            that.setData({
+              productDescriptionList: res.msg
+            });
+          }
+        } else {
+          box.showToast(res.msg);
+        }
+      }
+    });
   },
   /**
    * 生命周期函数--监听页面显示
@@ -102,7 +188,7 @@ Page({
       });
     }
   },
-  clickSubmit(e){
+  clickSubmit(){
     // let ordernum = e.currentTarget.dataset.ordernum;
     // if(ordernum){
       this.setData({
@@ -119,20 +205,21 @@ Page({
     this.setData({
      showDialog: false
     });
-    // this.deleteCompanyContactInfo();
+    this.confirmReceipt();
   },
-   deleteCompanyContactInfo(){
+  confirmReceipt(){
     let params = {
-     id: this.data.userinfo_id
+      user_id: this.data.user_id,
+      order_sn: this.data.ordernum
     }
-    request.request_get('/Newacid/deleteSubject.hn', params, function (res) { 
+    request.request_get('/Newacid/confirmReceipt.hn', params, function (res) { 
       if (res) {
         if (res.success) {
-          box.showToast('删除成功','',1000);
+          box.showToast('确认收货成功','',1000);
           setTimeout(()=>{
            wx.navigateBack({
              delta: 1
-           })
+           });
           },1200);
         } else {
           box.showToast(res.msg)
@@ -144,35 +231,38 @@ Page({
       }
     });
    },
-  clickOther: utils.throttle(function (e) {
-    var report_temp = this.data.yszz_url;
-    if (report_temp == '' || report_temp == undefined || report_temp == null) {
-      box.showToast('隐私政策不存在，请联系客服')
-      return;
-    }
-    wx.downloadFile({
-      url: report_temp, //要预览的PDF的地址
-      filePath: wx.env.USER_DATA_PATH + '/隐私政策.pdf',
-      success: function (res) {
-        console.log(res);
-        if (res.statusCode === 200) { //成功
-          var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
+  clickOther(e){
+    let itemobj = e.currentTarget.dataset.itemobj;
+    let description = itemobj.description;
+    let report_temp = itemobj.href;
 
-          wx.openDocument({
-            filePath: Path,
-            showMenu: false,
-            success: function (res) {
-              console.log('打开用户服务协议成功');
-            }
-          })
+    if(description && report_temp){
+      wx.downloadFile({
+        url: report_temp, //要预览的PDF的地址
+        filePath: wx.env.USER_DATA_PATH + '/' + description + '.pdf',
+        success: function (res) {
+          console.log(res);
+          if (res.statusCode === 200) { //成功
+            var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
+
+            wx.openDocument({
+              filePath: Path,
+              showMenu: false,
+              success: function (res) {
+                console.log('打开'+description+'成功');
+              }
+            })
+          }
+        },
+        fail: function (res) {
+          box.showToast('产品使用说明不存在，请联系客服')
+          console.log(res); //失败
         }
-      },
-      fail: function (res) {
-        box.showToast('隐私政策不存在，请联系客服')
-        console.log(res); //失败
-      }
-    })
-  }, 2000),
+      })
+    } else {
+      box.showToast(description+'产品使用说明不存在，请联系客服')
+    }
+  },
   bindCopy: function(e){
     let number = e.currentTarget.dataset.number;
     if(number){

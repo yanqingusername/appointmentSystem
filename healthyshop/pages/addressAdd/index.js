@@ -228,21 +228,24 @@ Page({
               },1200);
             }else{
               setTimeout(()=>{
-                let pages = getCurrentPages();
-                let prevPage = pages[pages.length - 3];
-                prevPage.setData({
-                  isAddAddress: 1,
-                  address_id: res.msg,
-                  address_person: that.data.address_person,
-                  address_phone: that.data.address_phone,
-                  province: that.data.region[0],
-                  city: that.data.region[1],
-                  area: that.data.region[2],
-                  address: that.data.address,
-                })
+                // let pages = getCurrentPages();
+                // let prevPage = pages[pages.length - 3];
+                // prevPage.setData({
+                //   isAddAddress: 1,
+                //   address_id: res.msg,
+                //   address_person: that.data.address_person,
+                //   address_phone: that.data.address_phone,
+                //   province: that.data.region[0],
+                //   city: that.data.region[1],
+                //   area: that.data.region[2],
+                //   address: that.data.address,
+                // })
+                // wx.navigateBack({
+                //   delta: 2,
+                // })
                 wx.navigateBack({
-                  delta: 2,
-                })
+                  delta: 1,
+                });
               },1200);
             }
           } else {
@@ -268,21 +271,24 @@ Page({
               },1200);
             }else{
               setTimeout(()=>{
-                let pages = getCurrentPages();
-                let prevPage = pages[pages.length - 3];
-                prevPage.setData({
-                  isAddAddress: 1,
-                  address_id: that.data.address_id,
-                  address_person: that.data.address_person,
-                  address_phone: that.data.address_phone,
-                  province: that.data.region[0],
-                  city: that.data.region[1],
-                  area: that.data.region[2],
-                  address: that.data.address,
-                })
+                // let pages = getCurrentPages();
+                // let prevPage = pages[pages.length - 3];
+                // prevPage.setData({
+                //   isAddAddress: 1,
+                //   address_id: that.data.address_id,
+                //   address_person: that.data.address_person,
+                //   address_phone: that.data.address_phone,
+                //   province: that.data.region[0],
+                //   city: that.data.region[1],
+                //   area: that.data.region[2],
+                //   address: that.data.address,
+                // })
+                // wx.navigateBack({
+                //   delta: 2,
+                // })
                 wx.navigateBack({
-                  delta: 2,
-                })
+                  delta: 1,
+                });
               },1200);
             }
           } else {

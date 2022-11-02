@@ -5,17 +5,17 @@
 <view class="search_border">
 	<view class='search'>
 		<view class="view_1">
+      <view class="view_1_1" bind:tap="clickTab" data-typeid="0">
+        <view class="view_1_1_1 {{typeid == 0 ? 'view_1_1_1_active':''}}">全部订单</view>
+        <view class="view_1_1_2 {{typeid == 0 ? 'view_1_1_2_active':''}}"></view>
+      </view>
       <view class="view_1_1" bind:tap="clickTab" data-typeid="1">
-        <view class="view_1_1_1 {{typeid == 1 ? 'view_1_1_1_active':''}}">全部订单</view>
+        <view class="view_1_1_1 {{typeid == 1 ? 'view_1_1_1_active':''}}">待收货</view>
         <view class="view_1_1_2 {{typeid == 1 ? 'view_1_1_2_active':''}}"></view>
       </view>
       <view class="view_1_1" bind:tap="clickTab" data-typeid="2">
-        <view class="view_1_1_1 {{typeid == 2 ? 'view_1_1_1_active':''}}">待收货</view>
+        <view class="view_1_1_1 {{typeid == 2 ? 'view_1_1_1_active':''}}">已收货</view>
         <view class="view_1_1_2 {{typeid == 2 ? 'view_1_1_2_active':''}}"></view>
-      </view>
-      <view class="view_1_1" bind:tap="clickTab" data-typeid="3">
-        <view class="view_1_1_1 {{typeid == 3 ? 'view_1_1_1_active':''}}">已收货</view>
-        <view class="view_1_1_2 {{typeid == 3 ? 'view_1_1_2_active':''}}"></view>
       </view>
     </view>
 	</view>
@@ -28,45 +28,45 @@
     <view class="view10_1">新冠肺炎核酸检测预约记录，<view class="view10_1_1" bind:tap="bindAppointment">点此查看 >></view></view>
   </view>
 
-	<view class="view_3" wx:for="{{6}}" wx:key="index">
+	<view class="view_3" wx:for="{{orderList}}" wx:key="index" bind:tap="bindShoppingorderdetail" data-ordernum="{{item.order_sn}}">
         <view class="view_5">
-          <view class="view_3_1">订单号：3901221123314489</view>
-          <view class="view_3_2_2" wx:if="{{index == 1}}">支付成功</view>
-          <view class="view_3_2_2" style="color: #999999;" wx:else>已退款</view>
+          <view class="view_3_1">订单号：{{item.order_sn}}</view>
+          <view class="view_3_2_2" style="color: #999999;" wx:if="{{item.status == 4}}">已退款</view>
+          <view class="view_3_2_2" wx:else>支付成功</view>
         </view>
 
         <view class="view_line"></view>
 
-        <view class="view_3_2_3">2022-09-16 23:44:09</view>
+        <view class="view_3_2_3">{{item.payment_time}}</view>
         
-        <view class="view_3_2" catchtap="handleRouter" data-id="{{index}}">
+        <view class="view_3_2" catchtap="handleRouter" data-id="{{item.product_code}}">
           <view class="midouYizhanShop">
-            <image class="midouYizhanShop-image" lazy-load src="../../../images/icon_0701_06.png"></image>
+            <image class="midouYizhanShop-image" lazy-load src="{{item.img}}"></image>
           </view>
 
           <view class="midouFour">
-            <view class="midouTitle">【满100减20】培怡 益生菌固体饮料 美国进口菌种 12袋/盒</view>
+            <view class="midouTitle">{{item.subtitle}}{{item.product_name}}</view>
             <view class="midouBuyView">
-              <view class="midouNumber">x1</view>
-              <view class="midouPrice"><text style="font-size: 22rpx;color: #999999;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;">实付： </text><text style="font-size: 24rpx;color: #FF0000;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;">￥</text>299</view>
+              <view class="midouNumber">X{{item.product_num}}</view>
+              <view class="midouPrice"><text style="font-size: 22rpx;color: #999999;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;">实付： </text><text style="font-size: 24rpx;color: #FF0000;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;">￥</text>{{item.pay_amount}}</view>
             </view>
           </view>
         </view>
 
         <view class="view_7">
           <view class="view_7_1">
-            <image class="view_7_1_1" wx:if="{{index == 1}}" lazy-load src="../../../images/icon_10_08_28.png"></image>
-            <image class="view_7_1_1" wx:else lazy-load src="../../../images/icon_10_08_27.png"></image>
-            <view class="view_7_1_2">已发货</view>
+            <image class="view_7_1_1" wx:if="{{item.status == 2}}" lazy-load src="../../../images/icon_10_08_28.png"></image>
+            <image class="view_7_1_1" wx:if="{{item.status == 3}}" lazy-load src="../../../images/icon_10_08_27.png"></image>
+            <view class="view_7_1_2">{{item.status == 2 ? '已发货' : item.status == 3 ? '已收货' : item.status == 4 ? '已退款' : '待发货'}}</view>
           </view>
-          <view class="view_7_2">某某某 13781234717  北京朝阳区呼家楼花苑小区甲28号</view>
+          <view class="view_7_2">{{item.receiver_name}} {{item.receiver_phone}}  {{item.receiver_province}}{{item.receiver_city}}{{item.receiver_region}}{{item.receiver_detail_address}}</view>
         </view>
 
         <view class="view_8">
           <view class="view_8_1"></view>
           <view class="view_8_2">
-            <view class="view_8_2_2" catchtap="handleRouter" data-id="{{index}}" wx:if="{{index == 1}}">再次购买</view>
-            <view class="view_8_2_1" catch:tap="clickSubmit">确认收货</view>
+            <view class="view_8_2_2" catchtap="handleRouter" data-id="{{item.product_code}}">再次购买</view>
+            <view class="view_8_2_1" wx:if="{{item.status == 2}}" catch:tap="clickSubmit" data-ordernum="{{item.order_sn}}">确认收货</view>
           </view>
         </view>
       </view>

@@ -18,7 +18,7 @@ const formatNumber = n => {
 const down = (totalSecond,type)=> {
   // let totalSecond = time - Date.parse(new Date())/1000;
     // 秒数
-    let second = totalSecond;
+    let second = totalSecond/1000;
 
     // 天数位
     let day = Math.floor(second / 3600 / 24);

@@ -168,7 +168,7 @@ color: #666666;
 }
 
 .midouFour {
-  padding-left: 18rpx;
+  /* padding-left: 18rpx; */
   height: 160rpx;
   position: relative;
 }

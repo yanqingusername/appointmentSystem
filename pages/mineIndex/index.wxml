@@ -51,15 +51,15 @@
   <view class="mine_11">
     <view class="mine_11_1">我的订单</view>
     <view class="view_2">
-      <view class="view_2_1" bindtap="handlerClassClick" data-id="1">
+      <view class="view_2_1" bindtap="handlerClassClick" data-id="0">
         <image class="view_2_1_1" src="../../images/icon_10_08_14.png" />
         <view class="view_2_1_2">全部订单</view>
       </view>
-      <view class="view_2_1" bindtap="handlerClassClick" data-id="2">
+      <view class="view_2_1" bindtap="handlerClassClick" data-id="1">
         <image class="view_2_1_1" src="../../images/icon_10_08_15.png" />
         <view class="view_2_1_2">待收货</view>
       </view>
-      <view class="view_2_1" bindtap="handlerClassClick" data-id="3">
+      <view class="view_2_1" bindtap="handlerClassClick" data-id="2">
         <image class="view_2_1_1" src="../../images/icon_10_08_16.png" />
         <view class="view_2_1_2">已收货</view>
       </view>

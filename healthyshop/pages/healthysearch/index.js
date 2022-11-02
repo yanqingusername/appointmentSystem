@@ -28,22 +28,24 @@ Page({
     this.getSearchShopList();
   },
   onReachBottom: function () {
-    this.setData({
-      page: 1
-    });
+    // this.setData({
+    //   page: 1
+    // });
     this.getSearchShopList();
   },
   //利用js进行模糊查询
   searchChangeHandle: function (e) {
     this.setData({
-      searchText: e.detail.value
+      searchText: e.detail.value,
+      page: 1
     });
     this.getSearchShopList();
   },
   // 输入框有文字时，点击X清除
   clearSearchHandle() {
     this.setData({
-      searchText: ''
+      searchText: '',
+      page: 1
     });
     this.getSearchShopList();
   },
