@@ -80,7 +80,7 @@ Page({
             let orderItem = res.msg[0];
 
             that.setData({
-              orderstatus: orderItem.status,
+              orderstatus: orderItem.status || '1',
               shopid: orderItem.product_code,
               address_person: orderItem.receiver_name,
               address_phone: orderItem.receiver_phone,
@@ -88,14 +88,14 @@ Page({
               city: orderItem.receiver_city,
               area: orderItem.receiver_region,
               address: orderItem.receiver_detail_address,
-              remarkText: orderItem.note,
-              coupon_payment: orderItem.coupon_amount,
-              order_payment: orderItem.pay_amount,
+              remarkText: orderItem.note || '无',
+              coupon_payment: orderItem.coupon_amount || "0",
+              order_payment: orderItem.pay_amount || "0",
               order_time: orderItem.payment_time,
               return_time: orderItem.refund_time,
               courier_name: orderItem.delivery_company,
               courier_number: orderItem.delivery_sn,
-              shopnumber: orderItem.product_num,
+              shopnumber: orderItem.product_num || 1,
               remainingTime: orderItem.remainingTime, // 剩余时间
               // total_amount
               delivery_time: orderItem.delivery_time,
@@ -130,7 +130,7 @@ Page({
               shopimage: res.msg.headImg[0],  // 商品顶部头图
               shopsubtitle: res.msg.subtitle, // 商品副标题
               shoptitle: res.msg.title, // 商品标题
-              shopprice: res.msg.price, // 商品价格
+              shopprice: res.msg.price || 0, // 商品价格
               oldprice: res.msg.oldprice, // 商品原价格
               freeshipping: res.msg.tips, // 商品标签
               shopdetailimg: res.msg.img,  // 商品详情图

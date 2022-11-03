@@ -51,7 +51,7 @@
 
         <view class="view_7">
           <view class="view_7_1">优惠金额</view>
-          <view class="view_7_2">{{coupon_payment}}</view>
+          <view class="view_7_2">-￥{{coupon_payment}}</view>
         </view>
 
         <view class="view_7">
