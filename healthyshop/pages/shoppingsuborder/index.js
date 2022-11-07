@@ -260,10 +260,11 @@ Page({
     let that = this;
 
     let shopnumber = parseInt(that.data.shopnumber);
-    let shopprice = parseInt(that.data.shopprice);
-    let coupon_payment = parseInt(that.data.coupon_payment);
-    let total_payment = shopnumber * shopprice;
-    let shop_payment = (parseInt(total_payment) - coupon_payment);
+    let shopprice = that.data.shopprice * 100;
+    let coupon_payment = that.data.coupon_payment * 100;
+    let totalPayment = shopnumber * shopprice;
+    let total_payment = (parseInt(shopnumber * shopprice))/100;
+    var shop_payment = (parseInt(totalPayment) - parseInt(coupon_payment))/100;
     that.setData({
       total_payment: total_payment,
       shop_payment: shop_payment
