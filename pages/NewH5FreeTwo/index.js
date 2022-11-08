@@ -1,6 +1,7 @@
 const app = getApp()
 const box = require('../../utils/box.js')
 const request = require('../../utils/request.js')
+const utils = require('../../utils/utils.js')
 "use strict";
 
 Page({
@@ -67,7 +68,7 @@ Page({
   /**
    * 
    */
-  bindSubmit: function () {
+  bindSubmit: utils.throttle(function (e) {
     let that = this;
     if (this.data.idcard && this.data.userinfo_id) {
       let params = {
@@ -117,7 +118,7 @@ Page({
         showCancel: false
       })
     }
-  },
+  }, 1500),
   /**
    * 流调
    */
