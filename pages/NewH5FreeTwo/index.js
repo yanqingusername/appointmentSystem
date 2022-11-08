@@ -85,13 +85,13 @@ Page({
               wx.requestSubscribeMessage({
                 tmplIds: ['-2SRPYWbtWO0xbRC2Rkdpm3j3oiTUbQ-O8HnqilmgOs','NNcHm-TIz2xzXQnpnsY-cVNRy2bgMirUg_hiOIJ6vKU'],
                 success(res) {
-                  let data = {
-                    openid: that.data.openid,
-                    user_id: that.data.user_id
-                  }
-                  request.request_get('/Newacid/sendmsg.hn', data, function (res) {
-                    console.info('回调', res)
-                  })
+                  // let data = {
+                  //   openid: that.data.openid,
+                  //   user_id: that.data.user_id
+                  // }
+                  // request.request_get('/Newacid/sendmsg.hn', data, function (res) {
+                  //   console.info('回调', res)
+                  // })
                 },
                 fail(res) {
                   console.log('fail:' + res);
