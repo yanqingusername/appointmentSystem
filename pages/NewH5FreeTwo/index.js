@@ -73,7 +73,7 @@ Page({
   bindSubmit: utils.throttle(function (e) {
     let that = this;
     this.setData({
-      isRequest: true
+      isRequest: !this.data.isRequest
     });
 
     if(this.data.isRequest){
@@ -112,23 +112,27 @@ Page({
                 });
 
                 that.setData({
-                  isRequest: false
+                  isRequest: !that.data.isRequest
                 });
 
                 wx.navigateTo({
                   url: '/pages/NewH5FreeThree/index?free_num='+ free_num
                 });
+              }else{
+                that.setData({
+                  isRequest: !that.data.isRequest
+                });
               }
             } else {
               box.showToast(res.msg);
               that.setData({
-                isRequest: false
+                isRequest: !that.data.isRequest
               });
             }
           } else {
             box.showToast("网络不稳定，请重试");
             that.setData({
-              isRequest: false
+              isRequest: !that.data.isRequest
             });
           }
         })
@@ -143,7 +147,7 @@ Page({
         })
       }
     }
-  }, 3000),
+  }, 5000),
   /**
    * 流调
    */
