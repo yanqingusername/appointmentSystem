@@ -33,7 +33,9 @@ Page({
     onlineFlag: true,
     onlineFlagNum: 0,
 
-    bottomLift: 15
+    bottomLift: 15,
+
+    isRequest: false
   },
   onLoad: function (options) {
 
@@ -70,55 +72,77 @@ Page({
    */
   bindSubmit: utils.throttle(function (e) {
     let that = this;
-    if (this.data.idcard && this.data.userinfo_id) {
-      let params = {
-        person_id: this.data.userinfo_id,
-        user_id: this.data.user_id,
-      }
-      request.request_get('/Newacid/freeSubject.hn', params, function (res) {
-        console.info('回调', res)
-        if (res) {
-          if (res.success) {
-            let free_num = res.msg;
-            if(free_num){
+    this.setData({
+      isRequest: true
+    });
 
-              wx.requestSubscribeMessage({
-                tmplIds: ['-2SRPYWbtWO0xbRC2Rkdpm3j3oiTUbQ-O8HnqilmgOs','NNcHm-TIz2xzXQnpnsY-cVNRy2bgMirUg_hiOIJ6vKU'],
-                success(res) {
-                  // let data = {
-                  //   openid: that.data.openid,
-                  //   user_id: that.data.user_id
-                  // }
-                  // request.request_get('/Newacid/sendmsg.hn', data, function (res) {
-                  //   console.info('回调', res)
-                  // })
-                },
-                fail(res) {
-                  console.log('fail:' + res);
-                  console.log(res);
-                },
-                complete(res) {
-                  wx.navigateTo({
-                    url: '/pages/NewH5FreeThree/index?free_num='+ free_num
-                  });
-                }
+    if(this.data.isRequest){
+      if (this.data.idcard && this.data.userinfo_id) {
+        let params = {
+          person_id: this.data.userinfo_id,
+          user_id: this.data.user_id,
+        }
+        request.request_get('/Newacid/freeSubject.hn', params, function (res) {
+          console.info('回调', res)
+          if (res) {
+            if (res.success) {
+              let free_num = res.msg;
+              if(free_num){
+  
+                wx.requestSubscribeMessage({
+                  tmplIds: ['-2SRPYWbtWO0xbRC2Rkdpm3j3oiTUbQ-O8HnqilmgOs','NNcHm-TIz2xzXQnpnsY-cVNRy2bgMirUg_hiOIJ6vKU'],
+                  success(res) {
+                    // let data = {
+                    //   openid: that.data.openid,
+                    //   user_id: that.data.user_id
+                    // }
+                    // request.request_get('/Newacid/sendmsg.hn', data, function (res) {
+                    //   console.info('回调', res)
+                    // })
+                  },
+                  fail(res) {
+                    console.log('fail:' + res);
+                  },
+                  complete(res) {
+                    // wx.navigateTo({
+                    //   url: '/pages/NewH5FreeThree/index?free_num='+ free_num
+                    // });
+                  }
+                });
+
+                that.setData({
+                  isRequest: false
+                });
+
+                wx.navigateTo({
+                  url: '/pages/NewH5FreeThree/index?free_num='+ free_num
+                });
+              }
+            } else {
+              box.showToast(res.msg);
+              that.setData({
+                isRequest: false
               });
             }
           } else {
-            box.showToast(res.msg);
+            box.showToast("网络不稳定，请重试");
+            that.setData({
+              isRequest: false
+            });
           }
-        } else {
-          box.showToast("网络不稳定，请重试");
-        }
-      })
-    }else{
-      wx.showModal({
-        title: '温馨提示',
-        content: '专用信息采集页下，当前受检人必须要有证件信息才能提交',
-        showCancel: false
-      })
+        })
+      }else{
+        this.setData({
+          isRequest: false
+        });
+        wx.showModal({
+          title: '温馨提示',
+          content: '专用信息采集页下，当前受检人必须要有证件信息才能提交',
+          showCancel: false
+        })
+      }
     }
-  }, 1500),
+  }, 3000),
   /**
    * 流调
    */
