@@ -81,6 +81,7 @@ Page({
         let params = {
           person_id: this.data.userinfo_id,
           user_id: this.data.user_id,
+          openid: this.data.openid,
         }
         request.request_get('/Newacid/freeSubject.hn', params, function (res) {
           console.info('回调', res)
