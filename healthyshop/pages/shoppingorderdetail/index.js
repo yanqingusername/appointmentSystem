@@ -1,9 +1,6 @@
 const app = getApp()
 const box = require('../../../utils/box.js')
 const request = require('../../../utils/request.js')
-const utils = require('../../../utils/utils.js')
-const time = require('../../../utils/time.js')
-const utilMd5 = require('../../../utils/md5.js');
 const util = require('../../../utils/util.js')
 "use strict";
 

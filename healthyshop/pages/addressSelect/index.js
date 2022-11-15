@@ -59,7 +59,6 @@ Page({
 
     }else{
       let item = e.currentTarget.dataset.item;
-      console.log('--item-->:',item)
       if(item){
         let pages = getCurrentPages(); 
         let prevPage = pages[pages.length - 2];
@@ -85,7 +84,6 @@ Page({
   bindEditAddress(e){
     let item = e.currentTarget.dataset.item;
     let jsonItem = JSON.stringify(item);
-    console.log('--item-->:',item)
     if(item){
       wx.navigateTo({
         url:`/healthyshop/pages/addressAdd/index?isAddAddress=2&title=编辑地址&jsonItem=${jsonItem}&isMine=${this.data.isMine}`

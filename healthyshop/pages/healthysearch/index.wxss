@@ -1,40 +1,41 @@
-page{
+page {
   background: #F3F4F9;
 }
 
-.title_name{
+.title_name {
   font-size: 34rpx;
-font-family: PingFangSC-Medium, PingFang SC;
-font-weight: 500;
-color: #2F2929;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #2F2929;
 }
 
-.search_border{
+.search_border {
   background: #FFFFFF;
   height: 10rpx;
   padding-top: 1rpx;
   padding-bottom: 100rpx;
-  position:fixed;
+  position: fixed;
   width: 100%;
   z-index: 500;
 }
 
-.search{
+.search {
   display: flex;
   flex-direction: row;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
-  width:100%;
-  height:70rpx;
+  width: 100%;
+  height: 70rpx;
   margin-top: 10rpx;
 }
 
-.right_arrow{
+.right_arrow {
   height: 32rpx;
   width: 32rpx;
   margin-left: 24rpx;
 }
-.search_left{
+
+.search_left {
   display: flex;
   align-items: center;
   width: 686rpx;
@@ -42,91 +43,94 @@ color: #2F2929;
   background: #F3F4F9;
   border-radius: 34rpx;
 }
-#district_font{
+
+#district_font {
   font-size: 24rpx;
   margin-left: 12rpx;
   color: #999999;
 }
 
-.search_font{
+.search_font {
   position: absolute;
   margin-left: 650rpx;
   color: #E26B9B;
 }
-#search_checked{
+
+#search_checked {
   width: 80%;
-    text-align: initial;
-    /* background: #63A7FF; */
-    margin-left: 10rpx;
-    height: 70rpx;
-    color: #333333;
-    /* opacity: 0.8; */
-    font-family: PingFangSC-Regular, PingFang SC;
-font-weight: 400;
-font-size: 24rpx;
+  text-align: initial;
+  /* background: #63A7FF; */
+  margin-left: 10rpx;
+  height: 70rpx;
+  color: #333333;
+  /* opacity: 0.8; */
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
 }
-.phcolor{
+
+.phcolor {
   font-size: 24rpx;
   color: #999999;
   font-family: PingFangSC-Regular, PingFang SC;
-font-weight: 400;
+  font-weight: 400;
 }
 
-.weui-icon-clear{
+.weui-icon-clear {
   /* position: absolute; */
   /* right: 30rpx;
   top: 30rpx;
   z-index: 100; */
   padding: 0rpx 20rpx;
-    height: 70rpx;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.page{
-  width:100%;
-  overflow-x:hidden;
+.page {
+  width: 100%;
+  overflow-x: hidden;
   background-color: #F3F4F9;
   /* height: 100%; */
   /* background-color: #F5F5F5; */
   /* background: linear-gradient(#FFFFFF, #EFEFEF); */
 }
-.page.active{
-  width:100%;
-  overflow-x:hidden;
-  overflow-y:hidden;
+
+.page.active {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
   /* height: 100%; */
   background-color: #F3F4F9;
 }
 
-.P1{
+.P1 {
   /* width: 686rpx;
   margin: 32rpx; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 /* 搜索框提示文字样式 */
-.search input
-{
-  font-size:24rpx;
+.search input {
+  font-size: 24rpx;
   font-family: PingFangSC-Regular, PingFang SC;
-font-weight: 400;
+  font-weight: 400;
   /* padding-left:30rpx;  */
 }
 
-.view_4{
+.view_4 {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.view_4_1{
+.view_4_1 {
   display: flex;
   align-items: end;
   justify-content: space-between;
@@ -144,8 +148,8 @@ font-weight: 400;
   position: relative;
   width: 240rpx;
   height: 240rpx;
-background: #E4E8EF;
-border-radius: 12rpx;
+  background: #E4E8EF;
+  border-radius: 12rpx;
 
 }
 
@@ -153,7 +157,7 @@ border-radius: 12rpx;
   width: 240rpx;
   height: 240rpx;
   background: #E4E8EF;
-border-radius: 12rpx;
+  border-radius: 12rpx;
 }
 
 .midouFour {
@@ -174,7 +178,7 @@ border-radius: 12rpx;
   -webkit-box-orient: vertical;
   color: #333333;
   font-family: PingFangSC-Regular, PingFang SC;
-font-weight: 400;
+  font-weight: 400;
 }
 
 .midouPriceView {
@@ -185,11 +189,11 @@ font-weight: 400;
 
 .midouPrice {
   font-size: 32rpx;
-color: #F32222;
+  color: #F32222;
   display: flex;
   align-items: center;
   font-family: PingFangSC-Regular, PingFang SC;
-font-weight: 400;
+  font-weight: 400;
 }
 
 .midouOriginal {
@@ -198,38 +202,36 @@ font-weight: 400;
   color: #999999;
   margin-left: 10rpx;
   font-family: PingFangSC-Regular, PingFang SC;
-font-weight: 400;
+  font-weight: 400;
 }
 
-.midouBuyView{
-  
-}
+.midouBuyView {}
 
-.midouBuy{
+.midouBuy {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 120rpx;
-height: 56rpx;
-background: #FC5A51;
-border-radius: 28rpx;
-font-size: 24rpx;
-color: #FFFFFF;
-position: absolute;
-bottom: 0rpx;
-right: 0rpx;
-font-family: PingFangSC-Semibold, PingFang SC;
-font-weight: 600;
+  height: 56rpx;
+  background: #FC5A51;
+  border-radius: 28rpx;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  position: absolute;
+  bottom: 0rpx;
+  right: 0rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
 }
 
-.empty_view{
+.empty_view {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 50rpx;
 }
 
-.empty_title{
+.empty_title {
   font-size: 28rpx;
   padding: 30rpx;
   color: #999999;
