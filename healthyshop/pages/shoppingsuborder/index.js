@@ -326,8 +326,8 @@ Page({
       user_id: this.data.user_id, // user_id
       coupon_id: this.data.coupon_id, // 优惠券记录id
       coupon_amount: this.data.coupon_payment, // 优惠金额
-      // pay_amount: this.data.shop_payment, // 应付金额
-      pay_amount: '0.01', // 应付金额
+      pay_amount: this.data.shop_payment, // 应付金额
+      // pay_amount: '0.01', // 应付金额
       address_id: this.data.address_id, // 地址id
       total_amount: this.data.total_payment, // 实付金额
       product_name: this.data.shoptitle, // 商品名称
