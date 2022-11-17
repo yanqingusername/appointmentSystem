@@ -78,7 +78,7 @@
         
       </view>
 
-      <view class="div_policy">
+      <view class="div_policy" wx:if="{{shopxz_pdf}}">
         <checkbox-group bindchange="changePolicy">
           <checkbox class='round pink' checked="{{policyChecked}}" id="privacy_radio"></checkbox>
 

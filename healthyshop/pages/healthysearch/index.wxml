@@ -19,7 +19,7 @@
 		<view class="view_4" wx:if="{{shopList.length>0}}">
 			<view class="view_4_1" catchtap="handleRouter" wx:for="{{shopList}}" wx:key="index" data-id="{{item.product_code}}">
 				<view class="midouYizhanShop">
-					<image class="midouYizhanShop-image" lazy-load src="{{item.img}}"></image>
+					<image class="midouYizhanShop-image" lazy-load src="{{item.img}}" mode="aspectFill"></image>
 				</view>
 
 				<view class="midouFour">

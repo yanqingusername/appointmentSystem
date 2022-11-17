@@ -25,7 +25,9 @@ Page({
       class_id: options.id || '',
       class_title: options.title,
     });
-    this.getSearchShopList();
+    if(this.data.class_id){
+      this.getSearchShopList();
+    }
   },
   onReachBottom: function () {
     // this.setData({

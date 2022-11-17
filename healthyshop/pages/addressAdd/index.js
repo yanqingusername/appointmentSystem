@@ -155,10 +155,10 @@ Page({
       return
     }
 
-    if (that.data.policyChecked == false) {
-      box.showToast("请阅读并勾选协议")
-      return
-    }
+    // if (that.data.policyChecked == false) {
+    //   box.showToast("请阅读并勾选协议")
+    //   return
+    // }
 
     var data = {
       user_id: this.data.user_id,

@@ -18,7 +18,7 @@ Page({
 
     coupon_id: '',
     coupon_payment: '0',
-    coupon_title: '无',
+    coupon_title: '请选择',
     // 新增
     address_id: '',
     address_person: "",
@@ -50,7 +50,7 @@ Page({
 
     bottomLift: 15,
 
-    policyChecked: false,
+    policyChecked: true,
     shopxz_pdf: ''
   },
   onLoad: function (options) {
@@ -219,7 +219,7 @@ Page({
       this.setData({
         select_coupon_id: '',
         select_coupon_payment: 0,
-        select_coupon_title: '无',
+        select_coupon_title: '请选择',
       });
     }
   },
@@ -315,10 +315,12 @@ Page({
       return;
     }
 
+    if(that.data.shopxz_pdf){
       if (that.data.policyChecked == false) {
         box.showToast("请阅读并勾选预约须知")
         return
       }
+    }
 
     let params = {
       product_code: this.data.shopid, // 商品id
@@ -411,7 +413,7 @@ Page({
       this.setData({
         select_coupon_id: '',
         select_coupon_payment: 0,
-        select_coupon_title: '无',
+        select_coupon_title: '请选择',
       });
     } else {
       this.setData({

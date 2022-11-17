@@ -71,7 +71,7 @@
 <view class="view_9" wx:if="{{moreShopList.length > 0}}">
     <view class="midouItem" catchtap="handleRouter" wx:for="{{moreShopList}}" wx:key="index" data-shopid="{{item.product_code}}">
 		<view class="midouYizhanShop">
-			<image class="midouYizhanShop-image" lazy-load src="{{item.img}}"></image>
+			<image class="midouYizhanShop-image" lazy-load src="{{item.img}}" mode="aspectFill"></image>
 	  	</view>
 
 		<view class="midouFour">
