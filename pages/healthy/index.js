@@ -93,7 +93,8 @@ Page({
       if(couponstatus == 3){
         this.getReceiveCoupon(id,couponname);
       }else{
-        box.showToast('您已领取过了~');
+        // box.showToast('您已领取过了~');
+        box.showToast("请在本页选择商品使用");
       }
     }
   },
@@ -177,7 +178,6 @@ Page({
       console.info('回调', res)
       if (res) {
         if (res.success) {
-          box.showToast("请在本页选择商品使用");
           that.setData({
             coupon_status: 0
           });

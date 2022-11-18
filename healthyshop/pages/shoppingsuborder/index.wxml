@@ -55,7 +55,7 @@
         <view class="view_4_2" bind:tap="clickCoupon">
           <view class="view_4_2_1">优惠券</view>
           <view class="view_4_2_2">
-            <view class="view_4_2_2_1">{{coupon_title}}</view>
+            <view class="{{coupon_title == '请选择' ? 'view_4_2_2_1_default' : 'view_4_2_2_1'}}">{{coupon_title}}</view>
             <!-- <image class="view_4_2_2_2" src="../../../images/rightArrow.png"></image> -->
             <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
           </view>

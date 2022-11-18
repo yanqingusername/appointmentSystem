@@ -287,6 +287,13 @@ page {
   justify-content: center;
 }
 
+.view_4_2_2_1_default{
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+}
+
 .view_4_2_2_1 {
   font-size: 24rpx;
   font-family: PingFangSC-Regular, PingFang SC;

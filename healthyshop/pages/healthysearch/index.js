@@ -15,7 +15,8 @@ Page({
     searchText: '',
     page: 1,
     limit: 20,
-    shopList:[]
+    shopList:[],
+    isSearch: false
   },
   onShow: function () {
 
@@ -81,6 +82,12 @@ Page({
             that.setData({
               shopList: that.data.shopList.concat(res.msg || []),
               page: (res.msg && res.msg.length > 0) ? that.data.page + 1 : that.data.page,
+            });
+          }
+
+          if(that.data.shopList.length == 0){
+            that.setData({
+              isSearch: true
             });
           }
         } else {

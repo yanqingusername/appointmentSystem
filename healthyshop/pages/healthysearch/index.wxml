@@ -34,7 +34,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="empty_view" wx:else>
+		<view class="empty_view" wx:if="{{shopList.length == 0 && isSearch}}">
 			<view class="empty_title">没找到合适的商品，请更换关键词试试呢？</view>
 		</view>
 
