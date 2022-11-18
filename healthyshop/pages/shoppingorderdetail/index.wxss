@@ -385,3 +385,9 @@ page {
   background: #F1F1F1;
   margin: 0rpx 30rpx;
 }
+
+.view_5_1_2_1 {
+  width: 40rpx;
+  height: 36rpx;
+  margin-right: 8rpx;
+}

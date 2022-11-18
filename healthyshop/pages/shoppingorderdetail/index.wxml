@@ -12,9 +12,10 @@
         <view class="view_1_2">已退款</view>
       </view>
 
-      <view class="view_1_activity" wx:else>
-        <image class="view_1_1" src="../../../images/icon_10_08_23.png"></image>
-        <view class="view_1_2" style="color:#FC5A51;">订单提交成功</view>
+      <view class="view_1" wx:else>
+        <image class="view_5_1_2_1" src="../../../images/icon_wechat_new.png"></image>
+        <!-- <image class="view_1_1" src="../../../images/icon_10_08_23.png"></image> -->
+        <view class="view_1_2" style="color:#42B133;">订单提交成功</view>
       </view>
 
       <view class="view_3">

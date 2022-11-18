@@ -39,7 +39,8 @@
 
         <view class="view_3_2_3">{{item.payment_time}}</view>
         
-        <view class="view_3_2" catchtap="handleRouter" data-id="{{item.product_code}}">
+        <!-- <view class="view_3_2" catchtap="handleRouter" data-id="{{item.product_code}}"> -->
+        <view class="view_3_2">
           <view class="midouYizhanShop">
             <image class="midouYizhanShop-image" lazy-load src="{{item.img}}"></image>
           </view>
