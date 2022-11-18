@@ -63,7 +63,7 @@ Page({
     }else if(open_way==1){
       let h5_href= this.data.movies[this.data.swiperCurrent].h5_href
       wx.navigateTo({
-        url: `/healthyshop/pages/mainH5/index?url=${h5_href}`,
+        url: `/healthyshop/pages/mainH5/index?url=${h5_href}`
       })
     }else{
       
