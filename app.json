@@ -56,7 +56,8 @@
         "pages/shoppingsuborder/index",
         "pages/shoppingorderdetail/index",
         "pages/shoppingcoupon/index",
-        "pages/shoppingorderlist/index"
+        "pages/shoppingorderlist/index",
+        "pages/mainH5/index"
       ]
     }
   ],

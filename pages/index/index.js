@@ -564,7 +564,7 @@ Page({
   getBannerList: function () {
     var that = this;
     var data = {
-      type:1
+      type: 0
     }
     request.request_get('/Newacid/getBannerInfo.hn', data, function (res) {
       if (res) {
@@ -598,21 +598,17 @@ Page({
     console.log(this.data.swiperCurrent);
     console.log(this.data.links);
     let open_way= this.data.movies[this.data.swiperCurrent].open_way
-    let icon= this.data.movies[this.data.swiperCurrent].icon
     if(open_way==0){
+      let wx_href= this.data.movies[this.data.swiperCurrent].wx_href
       wx.navigateTo({
-        url: icon
+        url: wx_href
       })
     }else if(open_way==1){
-      app.globalData.article = icon
+      let h5_href= this.data.movies[this.data.swiperCurrent].h5_href
       wx.navigateTo({
-        url: '/pages/index/article?url='+icon
+        url: `/healthyshop/pages/mainH5/index?url=${h5_href}`,
       })
     }else{
-      app.globalData.article = icon
-      wx.navigateTo({
-        url: '/pages/index/article'
-      })
     }
   },
   bindNewH5One(){

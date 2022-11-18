@@ -53,23 +53,20 @@ Page({
     });
   },
   //点击图片触发事件 
-  swipclick: function (e) {
-    let open_way = this.data.movies[this.data.swiperCurrent].open_way;
-    let icon = this.data.movies[this.data.swiperCurrent].icon;
-    if (open_way == 0) {
+  swipclick: function(e) {
+    let open_way= this.data.movies[this.data.swiperCurrent].open_way
+    if(open_way==0){
+      let wx_href= this.data.movies[this.data.swiperCurrent].wx_href
       wx.navigateTo({
-        url: icon
-      });
-    } else if (open_way == 1) {
-      app.globalData.article = icon;
+        url: wx_href
+      })
+    }else if(open_way==1){
+      let h5_href= this.data.movies[this.data.swiperCurrent].h5_href
       wx.navigateTo({
-        url: '/pages/index/article?url=' + icon
-      });
-    } else {
-      app.globalData.article = icon;
-      wx.navigateTo({
-        url: '/pages/index/article'
-      });
+        url: `/healthyshop/pages/mainH5/index?url=${h5_href}`,
+      })
+    }else{
+      
     }
   },
   /**
@@ -116,7 +113,7 @@ Page({
   getBannerList: function () {
     let that = this;
     let data = {
-      type: 2
+      type: 1
     }
     request.request_get('/Newacid/getBannerInfo.hn', data, function (res) {
       if (res) {
