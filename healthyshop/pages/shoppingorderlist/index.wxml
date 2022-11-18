@@ -75,7 +75,7 @@
 	</view>
 
   <view class="empty_view" wx:if="{{orderList.length == 0}}">
-		<view class="empty_title" wx:if="{{typeid == 0}}">暂无订单,请在商场下单</view>
+		<view class="empty_title" wx:if="{{typeid == 0}}">暂无订单，请在商场下单</view>
     <view class="empty_title" wx:if="{{typeid == 1}}">暂时还没有待收货的订单</view>
     <view class="empty_title" wx:if="{{typeid == 2}}">暂时还没有已收货的订单</view>
 	</view>
