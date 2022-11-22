@@ -372,7 +372,7 @@ Page({
             signType: 'MD5',
             success: function (res) {
               wx.requestSubscribeMessage({
-                tmplIds: ['ZFtzFqz1atfEjf-sV6mScLjWYQ13JfksbeFQKqssxJw'],
+                tmplIds: ['ZFtzFqz1atfEjf-sV6mScLjWYQ13JfksbeFQKqssxJw','pVWWETvfhG3-3vMDwr48GRuccAdL0n61xw_xEyAW_T4'],
                 success(res) {
                   
                 },
