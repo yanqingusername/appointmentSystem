@@ -637,3 +637,9 @@ page {
   width: 26rpx;
   height: 26rpx;
 }
+
+.empty_title {
+  font-size: 28rpx;
+  padding: 30rpx;
+  color: #999999;
+}
