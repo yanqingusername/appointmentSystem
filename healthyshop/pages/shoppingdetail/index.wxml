@@ -2,7 +2,7 @@
 	<swiper class="swiper" bindchange="swiperChange" autoplay="true" interval="4000" duration="1000">
         <block wx:for="{{shopimage}}" wx:for-index="index" wx:key="index">
           <swiper-item class="swiper_item">
-            <image src="{{item}}" lazy-load style="height:750rpx;width:100%;" mode="aspectFill"/>
+            <image src="{{item.imgurl}}" lazy-load style="height:750rpx;width:100%;" mode="aspectFill"/>
           </swiper-item>
         </block>
       </swiper>
@@ -57,7 +57,7 @@
 </view>
 
 <view class="view_7" wx:for="{{shopdetailimg}}" wx:key="index">
-	<image src="../../../images/icon_0701_27.png" lazy-load style="width:100%;" mode="widthFix"/>
+	<image src="{{item.imgurl}}" lazy-load style="width:100%;" mode="widthFix"/>
 </view>
 
 <view class="view_8" wx:if="{{moreShopList.length > 0}}">
