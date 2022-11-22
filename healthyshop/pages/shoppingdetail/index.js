@@ -36,15 +36,16 @@ Page({
 
     moreShopList: [],
 
-    bottomLift: 15
+    bottomLift: 15,
+    numberType: '1',
   },
   onShow: function () {
-    this.setData({
-      user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
-    });
+    // this.setData({
+    //   user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+    // });
 
-    this.getShopInfo();
-    this.getCouponShopInfo();
+    // this.getShopInfo();
+    // this.getCouponShopInfo();
   },
   onLoad(options) {
     this.setData({
@@ -54,6 +55,9 @@ Page({
     this.getbaseData();
 
     this.getBottomLift();
+
+    this.getShopInfo();
+    this.getCouponShopInfo();
   },
   getBottomLift(){
     let that = this;
@@ -252,6 +256,9 @@ Page({
 
     this.getNewUserinfo();
 
+    this.getShopInfo();
+    this.getCouponShopInfo();
+
     e = e.detail;
     // 用户同意授权
     const OK = 'getPhoneNumber:ok'
@@ -340,9 +347,11 @@ Page({
     return false
   },
   setUrl() {
-    wx.navigateTo({
-      url: `/healthyshop/pages/shoppingsuborder/index?shopid=${this.data.shopid}`
-    });
+    if(this.data.numberType == 2){
+      wx.navigateTo({
+        url: `/healthyshop/pages/shoppingsuborder/index?shopid=${this.data.shopid}`
+      });
+    }
   },
   BackPage() {
     wx.navigateBack({
@@ -367,6 +376,9 @@ Page({
         url: `/healthyshop/pages/shoppingsuborder/index?shopid=${this.data.shopid}`
       });
     } else {
+      that.setData({
+        numberType: 2
+      });
       that.getUserProfile();
     }
   },
@@ -389,10 +401,18 @@ Page({
    * 优惠券点击事件
    */
    handlerCouponClick: function (e) {
-    let couponname = e.currentTarget.dataset.couponname;
-    let id = e.currentTarget.dataset.id;
-    if(id && couponname){
-      this.getReceiveCoupon(id,couponname);
+    let that = this;
+    if (that.data.user_id) {
+      let couponname = e.currentTarget.dataset.couponname;
+      let id = e.currentTarget.dataset.id;
+      if(id && couponname){
+        this.getReceiveCoupon(id,couponname);
+      }
+    } else {
+      that.setData({
+        numberType: 3
+      });
+      that.getUserProfile();
     }
   },
   /**
