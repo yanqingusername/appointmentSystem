@@ -147,9 +147,15 @@ Page({
       if (res) {
         if (res.success) {
           if(res && res.msg){
+            let headImg = res.msg.headImg || [];
+            if(headImg.length > 0){
+              that.setData({
+                shopimage: headImg[0].imgurl,  // 商品顶部头图
+              });
+            }
             that.setData({
               shopid: res.msg.product_code, // 商品id
-              shopimage: res.msg.headImg[0],  // 商品顶部头图
+              // shopimage: res.msg.headImg[0],  // 商品顶部头图
               shopsubtitle: res.msg.subtitle, // 商品副标题
               shoptitle: res.msg.title, // 商品标题
               shopprice: res.msg.price, // 商品价格
