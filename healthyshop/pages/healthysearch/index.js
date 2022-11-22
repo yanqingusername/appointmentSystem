@@ -42,15 +42,45 @@ Page({
       searchText: e.detail.value,
       page: 1
     });
-    this.getSearchShopList();
+    // this.getSearchShopList();
+
+    if(this.data.class_id){
+      this.getSearchShopList();
+    }else{
+      if(e.detail.value){
+        this.getSearchShopList();
+      }else{
+        this.setData({
+          searchText: '',
+          page: 1,
+          shopList: [],
+          isSearch: false
+        });
+      }
+    }
   },
   // 输入框有文字时，点击X清除
   clearSearchHandle() {
-    this.setData({
-      searchText: '',
-      page: 1
-    });
-    this.getSearchShopList();
+    // this.setData({
+    //   searchText: '',
+    //   page: 1
+    // });
+    // this.getSearchShopList();
+
+    if(this.data.class_id){
+      this.setData({
+        searchText: '',
+        page: 1
+      });
+      this.getSearchShopList();
+    }else{
+      this.setData({
+        searchText: '',
+        page: 1,
+        shopList: [],
+        isSearch: false
+      });
+    }
   },
   handleRouter(e){
     let id = e.currentTarget.dataset.id;
