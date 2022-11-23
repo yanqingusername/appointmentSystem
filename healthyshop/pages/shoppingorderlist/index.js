@@ -87,7 +87,8 @@ Page({
     let ordernum = e.currentTarget.dataset.ordernum;
     if(ordernum){
       this.setData({
-        showDialog: true
+        showDialog: true,
+        ordernum: ordernum
       });
     }
   },
