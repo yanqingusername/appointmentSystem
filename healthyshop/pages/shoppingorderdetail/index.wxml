@@ -73,7 +73,7 @@
         <view class="view_7">
           <view class="view_7_1">物流信息</view>
           <view wx:if="{{courier_name && courier_number}}" class="view_7_2">{{courier_name}}  {{courier_number}}<text class="view_7_3"></text><view class="view_7_4" bindtap="bindCopy" data-number="{{courier_number}}">复制</view></view>
-          <view wx:else class="view_7_2">待发货，发货后快递单号将展示在这里</view>
+          <view wx:else class="view_7_2" style="color: #999999;">待发货，之后快递单号会显示在这</view>
         </view>
 
         <view class="view_8">

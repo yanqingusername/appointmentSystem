@@ -5,7 +5,7 @@
 	<view class='search'>
 		<view class="search_left">
 			<image class="right_arrow" src="../../../images/icon_10_08_03.png" />
-			<input id="search_checked" style="width:80%;" type='text' placeholder='搜索益生菌 自检试剂盒' placeholder-style="color: #999999;" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" ></input>
+			<input id="search_checked" style="width:80%;" type='text' placeholder='搜索益生菌 自检试剂盒' placeholder-style="color: #999999;" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" focus="{{isfocus}}"></input>
 			<view class="weui-icon-clear" wx:if="{{searchText}}" bindtap="clearSearchHandle">
 				<image style="width:28rpx;height:28rpx;" src="../../../images/icon_clear.png"></image>
 			</view>

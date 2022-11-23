@@ -111,6 +111,10 @@ Page({
       wx.navigateTo({
         url: '/pages/index/article?url='+h5href
       });
+    }else{
+      wx.reLaunch({
+        url: '/pages/healthy/index',
+      })
     }
   }
 })

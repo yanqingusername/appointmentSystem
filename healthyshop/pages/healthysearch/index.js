@@ -16,7 +16,8 @@ Page({
     page: 1,
     limit: 20,
     shopList:[],
-    isSearch: false
+    isSearch: false,
+    isfocus: false
   },
   onShow: function () {
 
@@ -28,6 +29,10 @@ Page({
     });
     if(this.data.class_id){
       this.getSearchShopList();
+    }else{
+      this.setData({
+        isfocus: true
+      });
     }
   },
   onReachBottom: function () {

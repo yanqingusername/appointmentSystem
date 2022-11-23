@@ -28,7 +28,10 @@ Page({
     
   },
   onShow: function () {
-
+    this.setData({
+      page: 1
+    });
+    this.getOrderList();
   },
   onLoad: function (options) {
     this.setData({
@@ -36,7 +39,7 @@ Page({
       typeid: options.typeid
     });
 
-    this.getOrderList();
+    // this.getOrderList();
   },
   onReachBottom: function () {
     // this.setData({

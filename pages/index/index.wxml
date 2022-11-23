@@ -21,7 +21,7 @@
     <swiper wx:if="{{movies.length>0}}" class="swiper" indicator-dots="{{isIndicatorDots}}" bindchange="swiperChange" autoplay="true" interval="3000" duration="1000" style="top:{{CustomBar}}px;">
       <block wx:for="{{movies}}" wx:for-index="index" wx:key="index">
         <swiper-item class="swiper_item">
-          <image src="{{item.icon}}" class="slide-image" bindtap="swipclick" mode="widthFix" />
+          <image src="{{item.icon}}" class="slide-image" bindtap="swipclick" mode="aspectFill" />
         </swiper-item>
       </block>
     </swiper>
