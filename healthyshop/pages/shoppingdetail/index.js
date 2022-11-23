@@ -490,6 +490,7 @@ Page({
     let that = this;
     let data = {
       product_type: this.data.product_type,
+      product_code: this.data.shopid,
     }
     request.request_get('/Newacid/getMoreShopList.hn', data, function (res) {
       if (res) {
