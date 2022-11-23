@@ -40,7 +40,7 @@
 		</view>
 		<view class="view_4_1_2">
 			<view class="view_4_1_2_1"></view>
-			<view class="view_4_1_2_2" bind:tap="handlerCouponClick" data-id="{{item.coupon_code}}" data-couponname="{{item.name}}">立即领取</view>
+			<view class="view_4_1_2_2" bind:tap="handlerCouponClick" data-id="{{item.coupon_code}}" data-couponname="{{item.name}}" data-cpindex="{{index}}">立即领取</view>
 		</view>
 	</view>
 </view>

@@ -48,9 +48,27 @@ Page({
     // this.getCouponShopInfo();
   },
   onLoad(options) {
+    let that = this;
+    if (options.scene) {
+      var scene = decodeURIComponent(options.scene)
+      // if (scene) {
+      //   let _id = scene.split("&")[0];
+      // }
+      if(scene.indexOf('shopid') != -1){  //查到
+        var shopid = scene.substr((scene.indexOf('=')+1));
+        that.setData({
+          shopid:shopid
+        });
+      }
+    } else {
+      this.setData({
+        shopid: options.shopid
+      });
+    }
+
     this.setData({
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
-      shopid: options.shopid
+      // shopid: options.shopid
     });
     this.getbaseData();
 
@@ -369,7 +387,7 @@ Page({
   /**
    * 立即购买
    */
-  clickShoppingSubOrder() {
+  clickShoppingSubOrder: utils.throttle(function (e) {
     let that = this;
     if (that.data.user_id) {
       wx.navigateTo({
@@ -381,7 +399,7 @@ Page({
       });
       that.getUserProfile();
     }
-  },
+  },3000),
   handleRouter(e){
     let id = e.currentTarget.dataset.shopid;
     if(id){
@@ -405,8 +423,9 @@ Page({
     if (that.data.user_id) {
       let couponname = e.currentTarget.dataset.couponname;
       let id = e.currentTarget.dataset.id;
+      let cpindex = e.currentTarget.dataset.cpindex;
       if(id && couponname){
-        this.getReceiveCoupon(id,couponname);
+        this.getReceiveCoupon(id,couponname,cpindex);
       }
     } else {
       that.setData({
@@ -418,7 +437,7 @@ Page({
   /**
    * 领取优惠券
    */
-   getReceiveCoupon: function (id,couponname) {
+   getReceiveCoupon: function (id,couponname,cpindex) {
     let that = this;
     let data = {
       coupon_code: id,
@@ -428,7 +447,17 @@ Page({
     request.request_get('/Newacid/getReceiveCoupon.hn', data, function (res) {
       if (res) {
         if (res.success) {
-          that.getCouponShopInfo();
+          // that.getCouponShopInfo();
+          let couponList = that.data.couponList || [];
+          couponList.splice(cpindex, 1);
+
+          let couponListOld = that.data.couponListOld || [];
+          couponListOld.splice(cpindex, 1);
+
+          that.setData({
+            couponList: couponList,
+            couponListOld: couponListOld
+          });
         } else {
           box.showToast(res.msg);
         }
