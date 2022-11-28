@@ -448,11 +448,19 @@ Page({
       if (res) {
         if (res.success) {
           // that.getCouponShopInfo();
-          let couponList = that.data.couponList || [];
-          couponList.splice(cpindex, 1);
+          let couponList = that.data.couponList;
+          for (let i = 0; i < couponList.length; i++) {
+            if(couponList[i].coupon_code == id){
+              couponList.splice(i, 1);
+            }
+          }
 
-          let couponListOld = that.data.couponListOld || [];
-          couponListOld.splice(cpindex, 1);
+          let couponListOld = that.data.couponListOld;
+          for (let i = 0; i < couponListOld.length; i++) {
+            if(couponListOld[i].coupon_code == id){
+              couponListOld.splice(i, 1);
+            }
+          }
 
           that.setData({
             couponList: couponList,
