@@ -555,7 +555,7 @@ page {
   background: #FFFFFF;
   padding: 0rpx 40rpx 50rpx 40rpx;
   flex-direction: column;
-  height: 450rpx;
+  height: 580rpx;
 }
 
 .mask_4_1 {
