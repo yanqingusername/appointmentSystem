@@ -190,8 +190,15 @@ page {
 
 .midouPriceView {
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   margin-top: 20rpx;
+}
+
+.midouPriceText{
+  font-size: 24rpx;
+  color: #FF0000;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
 }
 
 .midouPrice {
@@ -199,7 +206,7 @@ page {
   color: #F32222;
   display: flex;
   align-items: center;
-  /* font-family: PingFangSC-Regular, PingFang SC; */
+  font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
 }
 
@@ -210,6 +217,7 @@ page {
   margin-left: 10rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
+  /* margin-top: 6rpx; */
 }
 
 .midouBuyView {}

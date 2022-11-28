@@ -71,8 +71,9 @@
 				<view class="midouFour">
 					<view class="midouTitle"><text class="midouSubTitle">{{item.subtitle}}</text>{{item.title}}</view>
 					<view class="midouPriceView">
-            <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;">￥</text>{{item.price}}</view>
-						<view class="midouOriginal" wx:if="{{item.oldprice}}">￥{{item.oldprice}}</view>
+            <!-- <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;">￥</text>{{item.price}}</view>
+						<view class="midouOriginal" wx:if="{{item.oldprice}}">￥{{item.oldprice}}</view> -->
+            <text class="midouPriceText">￥</text><text class="midouPrice">{{item.price}}</text><text class="midouOriginal" wx:if="{{item.oldprice}}">￥{{item.oldprice}}</text>
 					</view>
 				</view>
 			</view>
