@@ -159,7 +159,7 @@ page {
   font-size: 28rpx;
   color: #333333;
   font-family: PingFangSC-Medium, PingFang SC;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .midouPrice {
