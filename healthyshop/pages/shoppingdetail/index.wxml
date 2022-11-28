@@ -26,13 +26,13 @@
 </view>
 
 <view class="view_3">
-	<view class="view_3_1"><text style="font-size: 32rpx;color: #FC5A51;">{{subtitle}}</text>{{title}}</view>
+	<view class="view_3_1"><text class="view_3_1_1">{{subtitle}}</text>{{title}}</view>
 </view>
 
 <view class="view_4" wx:if="{{couponList.length > 0}}">
 	<view class="view_4_1" wx:for="{{couponList}}" wx:key="index">
 		<view class="view_4_1_1">
-			<view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #F54646;margin-right: 4rpx;font-family: PingFangSC-Medium, PingFang SC;font-weight: 500;">￥</text>{{item.discount_amount}}</view>
+			<view class="view_4_1_1_1"><text style="font-size: 32rpx;color: #834C30;margin-right: 4rpx;font-family: PingFangSC-Medium, PingFang SC;font-weight: 500;">￥</text>{{item.discount_amount}}</view>
 			<view class="view_4_1_1_2">
 				<view class="view_4_1_1_2_1">{{item.name}}</view>
 				<view class="view_4_1_1_2_2">{{item.time}}</view>
@@ -75,7 +75,7 @@
 	  	</view>
 
 		<view class="midouFour">
-			<view class="midouTitle"><text style="font-size: 28rpx;color: #FC5A51;">{{item.subtitle}}</text>{{item.title}}</view>
+			<view class="midouTitle"><text class="midouSubTitle">{{item.subtitle}}</text>{{item.title}}</view>
 			<view class="midouPriceView">
                 <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>{{item.price}}</view>
 				<view class="midouOriginal" wx:if="{{item.oldprice}}">￥{{item.oldprice}}</view>

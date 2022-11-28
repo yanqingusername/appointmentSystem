@@ -255,14 +255,37 @@ Page({
         shopnumber: str
       });
     }
-    this.setData({
-      select_coupon_id: '',
-      select_coupon_payment: 0,
-      select_coupon_title: '请选择',
-      coupon_id: '',
-      coupon_payment: '0',
-      coupon_title: '请选择',
-    });
+    // this.setData({
+    //   select_coupon_id: '',
+    //   select_coupon_payment: 0,
+    //   select_coupon_title: '请选择',
+    //   coupon_id: '',
+    //   coupon_payment: '0',
+    //   coupon_title: '请选择',
+    // });
+    // this.setPrice();
+
+    let that = this;
+
+    let shopnumber = parseInt(that.data.shopnumber);
+    let shopprice = parseInt(that.data.shopprice * 100);
+    let coupon_payment = parseInt(that.data.coupon_payment * 100);
+    let totalPayment = shopnumber * shopprice;
+    var shop_payment = (parseInt(totalPayment) - parseInt(coupon_payment))/100;
+    
+    if(shop_payment > 0){
+
+    }else{
+      this.setData({
+        select_coupon_id: '',
+        select_coupon_payment: 0,
+        select_coupon_title: '请选择',
+        coupon_id: '',
+        coupon_payment: '0',
+        coupon_title: '请选择',
+      });
+    }
+
     this.setPrice();
   },
   bindAdd: function () {
@@ -272,14 +295,14 @@ Page({
       shopnumber: str
     });
 
-    this.setData({
-      select_coupon_id: '',
-      select_coupon_payment: 0,
-      select_coupon_title: '请选择',
-      coupon_id: '',
-      coupon_payment: '0',
-      coupon_title: '请选择',
-    });
+    // this.setData({
+    //   select_coupon_id: '',
+    //   select_coupon_payment: 0,
+    //   select_coupon_title: '请选择',
+    //   coupon_id: '',
+    //   coupon_payment: '0',
+    //   coupon_title: '请选择',
+    // });
 
     this.setPrice();
   },

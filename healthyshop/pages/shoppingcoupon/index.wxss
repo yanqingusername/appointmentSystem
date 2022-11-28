@@ -61,7 +61,7 @@ page {
 .view_1_1_2_active {
   width: 40rpx;
   height: 6rpx;
-  background: #FF2D3C;
+  background: #006FFF;
   border-radius: 4rpx;
   margin-top: 4rpx;
 }
@@ -79,7 +79,7 @@ page {
   align-items: center;
   width: 670rpx;
   height: 160rpx;
-  background: #FFF3EC;
+  background: linear-gradient(270deg, #FFFADF 0%, #FEEABA 100%);
   border-radius: 16rpx;
   margin-bottom: 16rpx;
   position: relative;
@@ -92,7 +92,7 @@ page {
 }
 
 .view_4_1_1_1 {
-  color: #F54646;
+  color: #834C30;
   font-size: 56rpx;
   padding-left: 30rpx;
   font-family: PingFangSC-Medium, PingFang SC;
@@ -108,7 +108,7 @@ page {
 
 .view_4_1_1_2_1 {
   font-size: 28rpx;
-  color: #F54646;
+  color: #8C4929;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
 }
@@ -116,7 +116,7 @@ page {
 .view_4_1_1_2_2 {
   margin-top: 4rpx;
   font-size: 22rpx;
-  color: #F54646;
+  color: #8C4929;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
 }
@@ -131,16 +131,16 @@ page {
 .view_4_1_2_1 {
   width: 2rpx;
   height: 92rpx;
-  border-right: 2rpx dashed #FDCDCD;
+  border-right: 2rpx dashed #D2BE81;
 }
 
 .view_4_1_2_2 {
   width: 128rpx;
   height: 52rpx;
   border-radius: 28rpx;
-  border: 2rpx solid #F75A5A;
+  border: 2rpx solid #D3AC9A;
   font-size: 24rpx;
-  color: #F54646;
+  color: #8C4929;
   display: flex;
   align-items: center;
   justify-content: center;
