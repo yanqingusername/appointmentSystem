@@ -22,6 +22,7 @@ Page({
     coupon_name:'', // "新人优惠券无门槛",
     coupon_time:'', //"有效期为领取后3天内",
     coupon_status: 3, //0未使用，1已使用，2已过期，3未领取
+    use_status: 1, //0是领了  1是没领
 
     shopList:[],
     page: 1,
@@ -32,6 +33,7 @@ Page({
       page: 1
     });
     this.getMainShopList();
+    this.getCoupon();
   },
   onLoad: function () {
     this.setData({
@@ -87,7 +89,7 @@ Page({
     let couponname = e.currentTarget.dataset.couponname;
     let id = e.currentTarget.dataset.id;
     if(id && couponname){
-      if(couponstatus == 3){
+      if(couponstatus == 1){
         this.getReceiveCoupon(id,couponname);
       }else{
         // box.showToast('您已领取过了~');
@@ -152,7 +154,7 @@ Page({
               coupon_limit_amount: coupon_info.limit_amount,
               coupon_name: coupon_info.name,
               coupon_time: coupon_info.time,
-              coupon_status: coupon_info.status,
+              use_status: coupon_info.status,
             });
           }
         } else {
@@ -176,7 +178,7 @@ Page({
       if (res) {
         if (res.success) {
           that.setData({
-            coupon_status: 0
+            use_status: 0
           });
         } else {
           //box.showToast(res.msg);
