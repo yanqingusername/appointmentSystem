@@ -188,7 +188,7 @@ page {
   font-weight: 500;
 }
 
-.midouSubTitle{
+.midouSubTitle {
   font-size: 28rpx;
   color: #333333;
   font-family: PingFangSC-Medium, PingFang SC;

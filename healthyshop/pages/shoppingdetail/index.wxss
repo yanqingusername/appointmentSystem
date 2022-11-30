@@ -117,7 +117,7 @@ page {
   font-weight: 500;
 }
 
-.view_3_1_1{
+.view_3_1_1 {
   font-size: 32rpx;
   color: #333333;
   font-family: PingFangSC-Medium, PingFang SC;
@@ -340,7 +340,7 @@ page {
   font-weight: 500;
 }
 
-.midouSubTitle{
+.midouSubTitle {
   font-size: 28rpx;
   color: #333333;
   font-family: PingFangSC-Medium, PingFang SC;
@@ -353,7 +353,7 @@ page {
   margin-top: 4rpx;
 }
 
-.midouPriceText{
+.midouPriceText {
   font-size: 24rpx;
   color: #FF0000;
   font-family: PingFangSC-Regular, PingFang SC;

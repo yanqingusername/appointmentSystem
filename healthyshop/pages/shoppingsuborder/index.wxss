@@ -155,7 +155,7 @@ page {
   font-weight: 500;
 }
 
-.midouSubTitle{
+.midouSubTitle {
   font-size: 28rpx;
   color: #333333;
   font-family: PingFangSC-Medium, PingFang SC;
@@ -294,7 +294,7 @@ page {
   justify-content: center;
 }
 
-.view_4_2_2_1_default{
+.view_4_2_2_1_default {
   font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;

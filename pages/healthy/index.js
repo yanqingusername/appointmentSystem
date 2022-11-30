@@ -174,7 +174,6 @@ Page({
       coupon_name: couponname
     }
     request.request_get('/Newacid/getReceiveCoupon.hn', data, function (res) {
-      console.info('回调', res)
       if (res) {
         if (res.success) {
           that.setData({
