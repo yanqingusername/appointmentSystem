@@ -154,7 +154,7 @@ Page({
               coupon_limit_amount: coupon_info.limit_amount,
               coupon_name: coupon_info.name,
               coupon_time: coupon_info.time,
-              use_status: coupon_info.status,
+              use_status: coupon_info.use_status,
             });
           }
         } else {
