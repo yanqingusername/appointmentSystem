@@ -20,8 +20,7 @@
 
       <view class="view_3">
         <view class="view_3_1">卡尤迪大蓝健康旗舰店</view>
-        <!-- <view class="view_3_2" catchtap="handleRouter" data-id="{{shopid}}"> -->
-        <view class="view_3_2">
+        <view class="view_3_2" catchtap="handleRouter" data-id="{{shopid}}">
           <view class="midouYizhanShop">
             <image class="midouYizhanShop-image" lazy-load src="{{shopimage}}"></image>
           </view>
