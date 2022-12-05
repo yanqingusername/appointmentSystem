@@ -40,6 +40,7 @@ page {
   font-family: PingFangSC-Semibold, PingFang SC;
   font-weight: 600;
   color: #AEB6C0;
+  font-size: 36rpx;
 }
 
 
