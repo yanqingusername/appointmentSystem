@@ -384,7 +384,7 @@ page {
   text-align: initial;
   padding-left: 26rpx;
   height: 70rpx;
-  color: #999999;
+  color: #333333;
   font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;

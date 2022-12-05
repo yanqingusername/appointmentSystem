@@ -311,7 +311,7 @@ page {
 }
 
 .view_4_1_2 {
-  font-size: 24rpx;
+  font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: #999999;
@@ -319,11 +319,12 @@ page {
 }
 
 .view_4_1_3 {
-  font-size: 24rpx;
+  font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: #666666;
   margin-left: 20rpx;
+  text-decoration: underline;
 }
 
 .view_9 {
