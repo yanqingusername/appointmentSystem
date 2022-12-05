@@ -125,7 +125,7 @@
       <image src="../../images/icon_0701_21.png" class="mine_6_2_img"/>
     </view>
   </view>
-  <view class="mine_6" bind:tap="phoneCall">
+  <!-- <view class="mine_6" bind:tap="phoneCall">
     <view class="mine_6_1">
       <image src="../../images/icon_0701_20.png" class="mine_6_1_img"/>
       <view class="mine_6_1_text">联系客服</view>
@@ -134,7 +134,7 @@
       <view class="mine_6_2_text">24小时热线电话</view>
       <image src="../../images/icon_0701_21.png" class="mine_6_2_img"/>
     </view>
-  </view>
+  </view> -->
 </view>
 </view>
 <!-- <view class="mine_10">

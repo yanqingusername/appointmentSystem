@@ -165,19 +165,16 @@
     </view>
   </view>
   <view class="P1" style="margin-bottom:180rpx">
-    <view class="P2 app_font" bindtap="toInfo" data-id="{{info.id}}" data-type="{{info.type}}">
+    <!-- <view class="P2 app_font" bindtap="toInfo" data-id="{{info.id}}" data-type="{{info.type}}">
       <view class="common_flex">
         <view class="bold_font">
           联系客服
         </view>
-        <!-- <view data-phone="{{info.cstn}}" bindtap="phoneCall">
-          <image id="pink_phone" src="../../images/icon_phone_red.png"></image>
-        </view> -->
       </view>
       <view id="service_hint" class="P2_1 app_flex">
         如果您有任何疑问，可以在本小程序“我的”页面，点击联系客服，我们将真诚地为您提供服务。
       </view>
-    </view>
+    </view> -->
   </view>
   <view wx:if="{{continueFlag && isH5Show==1}}" class="bottom_white_3">
     <!-- <button class="button-bottom_1" style="margin-bottom:{{isIphoneX?40:0}}rpx" bindtap="bindBackIndex">返回首页</button>
