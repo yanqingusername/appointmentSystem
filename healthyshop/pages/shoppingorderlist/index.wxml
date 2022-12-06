@@ -32,7 +32,7 @@
         <view class="view_5">
           <view class="view_3_1">订单号：{{item.order_sn}}</view>
           <view class="view_3_2_2" style="color: #999999;" wx:if="{{item.refund_status == 1}}">已退款</view>
-          <view class="view_3_2_2" wx:if="{{item.status == 1}}">支付成功</view>
+          <view class="view_3_2_2" wx:else>支付成功</view>
         </view>
 
         <view class="view_line"></view>
