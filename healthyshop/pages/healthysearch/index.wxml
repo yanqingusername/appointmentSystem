@@ -23,7 +23,7 @@
 				</view>
 
 				<view class="midouFour">
-					<view class="midouTitle"><text class="midouSubTitle">{{item.subtitle}}</text>{{item.title}}</view>
+					<view class="midouTitle"><text class="midouSubTitle" wx:if="{{item.subtitle}}">{{item.subtitle}}</text>{{item.title}}</view>
 					<view class="midouPriceView">
 						<!-- <view class="midouPrice"><text style="font-size: 24rpx;color: #FF0000;">￥</text>{{item.price}}</view>
 						<view class="midouOriginal" wx:if="{{item.oldprice}}">￥{{item.oldprice}}</view> -->
