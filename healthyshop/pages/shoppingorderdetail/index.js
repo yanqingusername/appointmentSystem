@@ -12,7 +12,8 @@ Page({
    */
   data: {
     ordernum: "",
-
+    confirm_status: '2',
+    refund_status: '2',
     orderstatus: '1',
     shopid: '',
     shopimage: "",
@@ -77,6 +78,8 @@ Page({
             let orderItem = res.msg[0];
 
             that.setData({
+              refund_status: orderItem.refund_status,
+              confirm_status: orderItem.confirm_status,
               orderstatus: orderItem.status || '1',
               shopid: orderItem.product_code,
               address_person: orderItem.receiver_name,
@@ -182,6 +185,14 @@ Page({
         console.log("成功拨打电话")
       },
     })
+  },
+  /**
+   * 客服
+   */
+   clickShoppingService() {
+    wx.navigateTo({
+      url: "/healthyshop/pages/shoppingservice/index"
+    });
   },
   handleRouter(e){
     let shopid = e.currentTarget.dataset.id;

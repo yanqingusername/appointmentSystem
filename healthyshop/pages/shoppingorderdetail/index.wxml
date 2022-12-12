@@ -7,7 +7,7 @@
 
 <view class="page">
     <view>
-      <view class="view_1" wx:if="{{orderstatus == 4}}">
+      <view class="view_1" wx:if="{{refund_status == 1}}">
         <image class="view_1_1" src="../../../images/icon_10_08_24.png"></image>
         <view class="view_1_2">已退款</view>
       </view>
@@ -80,7 +80,7 @@
           <view class="view_8_1"></view>
           <view class="view_8_2">
             <view class="view_8_2_2" bind:tap="handleRouter" data-id="{{shopid}}">再次购买</view>
-            <view class="view_8_2_1" wx:if="{{orderstatus == 2}}" bind:tap="clickSubmit">确认收货</view>
+            <view class="view_8_2_1" wx:if="{{confirm_status == 1}}" bind:tap="clickSubmit">确认收货</view>
           </view>
         </view>
 
@@ -97,7 +97,7 @@
         <view class="view_4_1">
           <image class="view_1_1" src="../../../images/icon_10_08_25.png"></image>
           <view class="view_4_1_2">订单遇到问题？ </view>
-          <view class="view_4_1_3" bindtap="phoneCall">点击联系客服</view>
+          <view class="view_4_1_3" bindtap="clickShoppingService">点击联系客服</view>
         </view>
       </view>
 
