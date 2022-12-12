@@ -257,6 +257,8 @@ page {
 
 .view_7 {
   display: flex;
+  padding: 0rpx 40rpx;
+  background: #FFFFFF;
 }
 
 .view_8 {
