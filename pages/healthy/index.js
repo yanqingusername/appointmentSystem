@@ -32,7 +32,7 @@ Page({
     this.setData({
       page: 1
     });
-    this.getMainShopList();
+    // this.getMainShopList();
     this.getCoupon();
 
     this.getBannerList();
@@ -44,6 +44,8 @@ Page({
     this.getBannerList();
 
     this.getCoupon();
+
+    this.getMainShopList();
   },
   handlerSearchClick: function () {
     wx.navigateTo({
