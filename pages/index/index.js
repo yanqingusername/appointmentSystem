@@ -61,6 +61,8 @@ Page({
           this.getNewUserinfo();
           this.getNoticeNew();
         }
+
+        this.getBannerList()
   },
   onLoad(query) {
     var that =this

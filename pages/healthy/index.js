@@ -34,6 +34,8 @@ Page({
     });
     this.getMainShopList();
     this.getCoupon();
+
+    this.getBannerList();
   },
   onLoad: function () {
     this.setData({
