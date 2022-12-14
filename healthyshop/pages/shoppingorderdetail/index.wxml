@@ -7,15 +7,19 @@
 
 <view class="page">
     <view>
-      <view class="view_1" wx:if="{{refund_status == 1}}">
+      <!-- <view class="view_1" wx:if="{{refund_status == 1}}">
         <image class="view_1_1" src="../../../images/icon_10_08_24.png"></image>
         <view class="view_1_2">已退款</view>
       </view>
 
       <view class="view_1" wx:if="{{refund_status == 0}}">
         <image class="view_5_1_2_1" src="../../../images/icon_wechat_new.png"></image>
-        <!-- <image class="view_1_1" src="../../../images/icon_10_08_23.png"></image> -->
         <view class="view_1_2" style="color:#42B133;">订单提交成功</view>
+      </view> -->
+
+      <view class="view_1">
+        <image class="view_1_1" src="{{refund_status == 1 ? '../../../images/icon_10_08_24.png' : refund_status == 0 ? '../../../images/icon_wechat_new.png' : ''}}"></image>
+        <view class="view_1_2" style="color: {{refund_status == 1 ? '#AEB6C0;' : '#42B133;'}}">{{refund_status == 1 ? '已退款': refund_status == 0 ? '订单提交成功' : ''}}</view>
       </view>
 
       <view class="view_3">
