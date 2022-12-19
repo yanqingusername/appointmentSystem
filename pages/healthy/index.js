@@ -26,7 +26,8 @@ Page({
 
     shopList:[],
     page: 1,
-    limit: 20
+    limit: 20,
+    isFisrt: false
   },
   onShow: function () {
     this.setData({
@@ -94,7 +95,12 @@ Page({
     let id = e.currentTarget.dataset.id;
     if(id && couponname){
       if(couponstatus == 1){
-        this.getReceiveCoupon(id,couponname);
+        this.setData({
+          isFisrt: !this.data.isFisrt
+        });
+        if(this.data.isFisrt){
+          this.getReceiveCoupon(id,couponname);
+        }
       }else{
         // box.showToast('您已领取过了~');
         box.showToast("请在本页选择商品使用");
@@ -181,9 +187,13 @@ Page({
       if (res) {
         if (res.success) {
           that.setData({
-            use_status: 0
+            use_status: 0,
+            isFisrt: false
           });
         } else {
+          that.setData({
+            isFisrt: false
+          });
           //box.showToast(res.msg);
         }
       }

@@ -42,7 +42,7 @@
   </view>
 
   <view wx:if="{{number == 2}}">
-    <view wx:for="{{couponArr}}">
+    <view wx:for="{{couponArr}}" wx:key="index">
       <view class="medWhite" >
       <view class="sampleSite">
         <view class="coupon_left">

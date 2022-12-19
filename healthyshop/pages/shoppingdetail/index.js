@@ -38,6 +38,7 @@ Page({
 
     bottomLift: 15,
     numberType: '1',
+    isFisrt: false
   },
   onShow: function () {
     // this.setData({
@@ -425,7 +426,12 @@ Page({
       let id = e.currentTarget.dataset.id;
       let cpindex = e.currentTarget.dataset.cpindex;
       if(id && couponname){
-        this.getReceiveCoupon(id,couponname,cpindex);
+        this.setData({
+          isFisrt: !this.data.isFisrt
+        });
+        if(this.data.isFisrt){
+          this.getReceiveCoupon(id,couponname,cpindex);
+        }
       }
     } else {
       that.setData({
@@ -464,9 +470,13 @@ Page({
 
           that.setData({
             couponList: couponList,
-            couponListOld: couponListOld
+            couponListOld: couponListOld,
+            isFisrt: false
           });
         } else {
+          that.setData({
+            isFisrt: false
+          });
           box.showToast(res.msg);
         }
       }
