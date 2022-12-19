@@ -31,6 +31,10 @@ Page({
   },
   onShow: function () {
     this.setData({
+      user_id: wx.getStorageSync('coyote_userinfo').user_id || ''
+    });
+    
+    this.setData({
       page: 1
     });
     // this.getMainShopList();

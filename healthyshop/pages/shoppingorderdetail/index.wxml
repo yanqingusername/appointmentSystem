@@ -88,7 +88,7 @@
           </view>
         </view>
 
-        <view class="view_8" style="padding: 0rpx 0rpx 0rpx 0rpx;" wx:if="{{delivery_time}}">
+        <view class="view_8" style="padding: 0rpx 0rpx 0rpx 0rpx;" wx:if="{{confirm_status == 1 && delivery_time}}">
           <view class="view_8_1"></view>
           <view class="view_8_2">
             <view class="view_8_2_3">{{time}}</view>
