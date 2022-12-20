@@ -419,7 +419,7 @@ Page({
   /**
    * 优惠券点击事件
    */
-   handlerCouponClick: function (e) {
+   handlerCouponClick: utils.newthrottle(function (e) {
     let that = this;
     if (that.data.user_id) {
       let couponname = e.currentTarget.dataset.couponname;
@@ -439,12 +439,17 @@ Page({
       });
       that.getUserProfile();
     }
-  },
+  },2000),
   /**
    * 领取优惠券
    */
    getReceiveCoupon: function (id,couponname,cpindex) {
     let that = this;
+
+    that.setData({
+      isFisrt: true
+    });
+
     let data = {
       coupon_code: id,
       user_id: this.data.user_id,

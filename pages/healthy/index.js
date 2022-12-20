@@ -93,7 +93,7 @@ Page({
   /**
    * 优惠券点击事件
    */
-  handlerCouponClick: function (e) {
+  handlerCouponClick: utils.newthrottle(function (e) {
     let couponstatus = e.currentTarget.dataset.couponstatus;
     let couponname = e.currentTarget.dataset.couponname;
     let id = e.currentTarget.dataset.id;
@@ -110,7 +110,7 @@ Page({
         box.showToast("请在本页选择商品使用");
       }
     }
-  },
+  },2000),
   /**
    * 商品详情页 跳转 点击事件
    */
@@ -182,6 +182,11 @@ Page({
    */
    getReceiveCoupon: function (id,couponname) {
     let that = this;
+
+    that.setData({
+      isFisrt: true
+    });
+    
     let data = {
       coupon_code: id,
       user_id: this.data.user_id,

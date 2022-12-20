@@ -438,6 +438,27 @@ function trim(str) {
     return false
  }
  }
+
+ /*
+  handle:函数
+  wait:规定在1.5秒钟内只能执行一次
+ */
+const newthrottle = (fn, gapTime) =>{
+  if (gapTime == null || gapTime == undefined) {
+      gapTime = 1500
+  }
+
+  let _lastTime = null
+
+  // 返回新的函数
+  return function () {
+      let _nowTime = + new Date()
+      if (_nowTime - _lastTime > gapTime || !_lastTime) {
+          fn.apply(this, arguments)   //将this和参数传给原函数
+          _lastTime = _nowTime
+      }
+  }
+}
 module.exports = {
     checkPhone: checkPhone,
     checkContact: checkContact,
@@ -459,5 +480,6 @@ module.exports = {
     checkAuditTime:checkAuditTime,
     checkAuditTime_before30min:checkAuditTime_before30min,
     formatNumber:formatNumber,
-    compareTime:compareTime
+    compareTime:compareTime,
+    newthrottle: newthrottle
 }
