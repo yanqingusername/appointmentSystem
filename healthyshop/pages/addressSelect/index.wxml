@@ -16,8 +16,12 @@
                 <view class="subject_title">{{item.receive_name}} {{tools.centerPhoneTrim1(item.phone)}}</view>
                 <view class="subject_text" style="margin-top:22rpx;">{{item.province}}{{item.city}}{{item.region}} {{item.detail_address}}</view>
               </view>
-              <view style="position:relative;width:60rpx;height:60rpx;display: flex;align-items: center;justify-content: center;" catch:tap="bindEditAddress" data-item="{{item}}">
+              <!-- <view style="position:relative;width:60rpx;height:60rpx;display: flex;align-items: center;justify-content: center;" catch:tap="bindEditAddress" data-item="{{item}}">
                 <image class="right_arrow" src="../../../images/icon_detail_edit_gray.png"></image>
+              </view> -->
+              <view style="position:relative;display: flex;align-items: center;justify-content: center;flex-direction: column;" catch:tap="bindEditAddress" data-item="{{item}}">
+                <image class="right_arrow" src="../../../images/icon_detail_edit_gray.png"></image>
+                <view style="font-size: 24rpx;color: #E06596;margin-top: 6rpx;">修改</view>
               </view>
           </view>
         </view>
