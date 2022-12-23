@@ -3,6 +3,7 @@ const box = require('../../../utils/box.js')
 const request = require('../../../utils/request.js')
 const util = require('../../../utils/util.js')
 "use strict";
+let burstTimeKey = ''; // 记录秒杀倒计时 由于组件在detached时会重置内部所有数据, 无法进行清除计时器操作
 
 
 Page({
@@ -103,7 +104,7 @@ Page({
 
             that.getShopInfo();
 
-            if(that.data.delivery_time){
+            if(that.data.delivery_time && that.data.confirm_status == 1){
               that.countDown(that.data.remainingTime, 2);
             }
           }
@@ -175,8 +176,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  },
-  onUnload() {
   },
   phoneCall: function () {
     wx.makePhoneCall({
@@ -296,28 +295,56 @@ Page({
     }
   },
   countDown(val, val1) { //---倒计时
-    setTimeout(() => {
-      val--;
+    if (burstTimeKey) {
+      clearInterval(burstTimeKey);
+    }
+
+    let that = this;
+    burstTimeKey = setInterval(() => {
+      val -= 1000;
       let down = util.down(val);
 
       if (val < 0) {
-        this.setData({
+        that.setData({
           time: ""
         });
+        clearInterval(burstTimeKey);
+        that.getOrderInfo();
       } else {
-        if (val1 == 1) {
-          this.setData({
-            time: "剩余" + down.minStr + ":" + down.secStr + "自动关闭"
+        // if (val1 == 1) {
+        //   this.setData({
+        //     time: "剩余" + down.minStr + ":" + down.secStr + "自动关闭"
+        //   });
+        // } else if (val1 == 2) {
+        //   this.setData({
+        //     time: "剩余" + down.dayStr + "天" + down.hrStr + "小时后自动确认收货"
+        //   });
+        // }
+        if(down.dayStr > 0 || down.hrStr > 0){
+          that.setData({
+            time: "剩余" + down.dayStr + "天" + down.hrStr + "小时后自动确认收货"
           });
-        } else if (val1 == 2) {
-          this.setData({
-            time: "剩余" + down.dayStr + "天" + down.hrStr + "小时自动确认收货"
+        } else {
+          that.setData({
+            time: "剩余" + down.minStr + ":" + down.secStr + "后自动确认收货"
           });
-          // 剩余12天19小时
         }
 
-        this.countDown(val, val1);
+        that.countDown(val, val1);
       }
     }, 1000)
   },
+  /**
+     * 生命周期函数--监听页面隐藏
+     */
+   onHide: function () {
+    clearInterval(burstTimeKey)
+},
+
+/**
+ * 生命周期函数--监听页面卸载
+ */
+onUnload: function () {
+    clearInterval(burstTimeKey)
+},
 })

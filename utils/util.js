@@ -39,6 +39,7 @@ const down = (totalSecond,type)=> {
 
     // 秒位
     var sec = second - day * 3600 * 24 - hr * 3600 - min*60;
+    sec = parseInt(sec)
     var secStr = sec.toString();
     if (secStr.length == 1) secStr = '0' + secStr;
 

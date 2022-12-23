@@ -33,7 +33,8 @@ Page({
     policyChecked: false,
     isMine: 0,
 
-    user_id: ""
+    user_id: "",
+    oldaddid: ""
   },
   onShow: function () {
   },
@@ -43,6 +44,7 @@ Page({
       isAddAddress: options.isAddAddress,
       isMine: options.isMine,
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      oldaddid: options.oldaddid || ""
     });
 
     if(options && options.title){
@@ -271,6 +273,20 @@ Page({
               },1200);
             }else{
               setTimeout(()=>{
+                if(that.data.oldaddid == that.data.address_id){
+                  let pages = getCurrentPages();
+                  let prevPage = pages[pages.length - 3];
+                  prevPage.setData({
+                    isAddAddress: 1,
+                    address_id: that.data.address_id,
+                    address_person: that.data.address_person,
+                    address_phone: that.data.address_phone,
+                    province: that.data.region[0],
+                    city: that.data.region[1],
+                    area: that.data.region[2],
+                    address: that.data.address,
+                  })
+                }
                 // let pages = getCurrentPages();
                 // let prevPage = pages[pages.length - 3];
                 // prevPage.setData({
@@ -322,6 +338,7 @@ Page({
    this.deleteCompanyContactInfo();
  },
   deleteCompanyContactInfo(){
+    let that = this;
    let params = {
     id: this.data.address_id,
     user_id: this.data.user_id,
@@ -331,6 +348,13 @@ Page({
        if (res.success) {
          box.showToast('删除成功','',1000);
          setTimeout(()=>{
+          if(that.data.oldaddid == that.data.address_id){
+            let pages = getCurrentPages();
+            let prevPage = pages[pages.length - 3];
+            prevPage.setData({
+              isBindBackFlag: true
+            })
+          }
           wx.navigateBack({
             delta: 1
           })

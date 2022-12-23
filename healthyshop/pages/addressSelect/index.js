@@ -12,7 +12,8 @@ Page({
     title: "选择地址",
     dataList: [],
     isMine: 0,
-    user_id: ""
+    user_id: "",
+    oldaddid: ""
   },
   onShow: function () {
     this.getAllAddress();
@@ -20,7 +21,8 @@ Page({
   onLoad: function (options) {
     this.setData({
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
-      isMine: options.isMine
+      isMine: options.isMine,
+      oldaddid: options.oldaddid || ""
     });
   },
   getAllAddress(){
@@ -71,6 +73,7 @@ Page({
           city: item.city,
           area: item.region,
           address: item.detail_address,
+          isBindBackFlag: false
         })
         wx.navigateBack({
           delta: 1, 
@@ -86,7 +89,7 @@ Page({
     let jsonItem = JSON.stringify(item);
     if(item){
       wx.navigateTo({
-        url:`/healthyshop/pages/addressAdd/index?isAddAddress=2&title=编辑地址&jsonItem=${jsonItem}&isMine=${this.data.isMine}`
+        url:`/healthyshop/pages/addressAdd/index?isAddAddress=2&title=编辑地址&jsonItem=${jsonItem}&isMine=${this.data.isMine}&oldaddid=${this.data.oldaddid}`
       });
     }
   }

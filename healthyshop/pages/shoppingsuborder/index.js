@@ -56,6 +56,7 @@ Page({
     select_coupon_id: '',
     select_coupon_payment: 0,
     select_coupon_title: '请选择',
+    isBindBackFlag: true,
   },
   onLoad: function (options) {
     let that = this;
@@ -182,7 +183,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this;
+    if (that.data.isBindBackFlag == true) {
+      that.getUserInfoOrderAddress();
+      // that.setData({
+      //   isBindBackFlag: false
+      // })
+    }
   },
   onUnload() {},
   /**
@@ -200,8 +207,9 @@ Page({
     }
   },
   bindSelectAddress() {
+    let oldaddid = this.data.address_id ? this.data.address_id : '';
     wx.navigateTo({
-      url: '/healthyshop/pages/addressSelect/index'
+      url: `/healthyshop/pages/addressSelect/index?oldaddid=${oldaddid}`
     });
   },
   handleRouter(e) {
@@ -479,5 +487,60 @@ Page({
         select_coupon_title: coupontitle,
       });
     }
-  }
+  },
+  /**
+   * 获取商品用户地址信息
+   */
+   getUserInfoOrderAddress: function () {
+    let that = this;
+    let data = {
+      product_code: this.data.shopid,
+      user_id: this.data.user_id
+    }
+    request.request_get('/Newacid/getUserInfoOrder.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res && res.msg){
+            let address = res.msg.address;
+            if(address && address.length > 0){
+              let addressItem = address[0];
+              that.setData({
+                address_id: addressItem.id,
+                address_person: addressItem.receive_name,
+                address_phone: addressItem.phone,
+                province: addressItem.province,
+                city: addressItem.city,
+                area: addressItem.region,
+                address: addressItem.detail_address,
+              });
+            }else{
+              that.setData({
+                address_id: "",
+                address_person: "",
+                address_phone: "",
+                province: "",
+                city: "",
+                area: "",
+                address: "",
+              });
+            }
+
+            if(that.data.address_id){
+              that.setData({
+                isAllAddress: 1,
+                isAddAddress: 1
+              });
+            }else{
+              that.setData({
+                isAllAddress: 0,
+                isAddAddress: 0
+              });
+            }
+          }
+        } else {
+          // box.showToast(res.msg);
+        }
+      }
+    });
+  },
 })
