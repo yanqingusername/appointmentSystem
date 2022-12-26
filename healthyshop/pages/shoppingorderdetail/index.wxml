@@ -1,6 +1,6 @@
 <wxs src="../../../utils/substring.wxs" module="tools" />
 
-<cu-custom isBack="{{true}}" bgColor="bg-white">
+<cu-custom isBack="{{false}}" isCustom="{{true}}" bgColor="bg-white">
   <view slot="backText" bindtap="bindBack"></view>
   <view slot="content" class="title_name">订单详情页</view>
 </cu-custom>

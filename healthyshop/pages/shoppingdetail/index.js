@@ -529,4 +529,9 @@ Page({
       }
     });
   },
+  toHome(){
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
+  }
 })

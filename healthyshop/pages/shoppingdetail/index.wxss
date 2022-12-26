@@ -29,6 +29,17 @@ page {
   z-index: 222;
 }
 
+.view_home{
+  height: 54rpx;
+  width: 54rpx;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 100rpx;
+  z-index: 222;
+}
+
 .mine_view1 {
   display: flex;
   align-items: center;
