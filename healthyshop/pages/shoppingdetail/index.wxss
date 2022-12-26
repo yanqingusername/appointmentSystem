@@ -462,3 +462,44 @@ page {
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
 }
+
+.mine_new_view{
+  width: 162rpx;
+height: 60rpx;
+background: rgba(0,0,0,0.15);
+border-radius: 30rpx;
+position: fixed;
+display: flex;
+align-items: center;
+justify-content: center;
+left: 30rpx;
+z-index: 222;
+}
+
+.mine_new_view_1_view{
+  width: 80rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mine_new_view_1{
+  width: 20rpx;
+  height: 34rpx;
+  /* margin: 12rpx 26rpx 14rpx 26rpx; */
+}
+
+.mine_new_view_line{
+  width: 2rpx;
+height: 32rpx;
+opacity: 0.5;
+background: #EBEBEB;
+}
+
+.mine_new_view_2{
+  width: 28rpx;
+  height: 30rpx;
+  margin-top: -2rpx;
+  /* margin: 14rpx 26rpx 16rpx 26rpx; */
+}

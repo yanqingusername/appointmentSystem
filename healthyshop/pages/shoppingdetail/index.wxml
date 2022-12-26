@@ -8,9 +8,21 @@
       </swiper>
 	
 	<view class="mine_view1" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-		<image src="../../../images/icon_10_08_10.png" lazy-load class="view_1" bind:tap="BackPage"/>
 
-		<text class="cuIcon-homefill view_home" bindtap="toHome"></text>
+		<view class="mine_new_view">
+			<view class="mine_new_view_1_view" catch:tap="BackPage">
+				<image src="../../../images/icon_12_26_01.png" lazy-load class="mine_new_view_1"/>
+			</view>
+			
+			<view class="mine_new_view_line"></view>
+
+			<view class="mine_new_view_1_view" catch:tap="toHome">
+				<image src="../../../images/icon_12_26_02.png" lazy-load class="mine_new_view_2"/>
+			</view>
+		</view>
+		<!-- <image src="../../../images/icon_10_08_10.png" lazy-load class="view_1" bind:tap="BackPage"/>
+
+		<text class="cuIcon-homefill view_home" bindtap="toHome"></text> -->
 	</view>
 
 	<view class="mine_view2">{{(swiperCurrent+1)}}/{{shopimage.length}}</view>
