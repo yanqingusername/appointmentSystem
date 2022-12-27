@@ -36,11 +36,13 @@
 
           <view class="midouFour">
             <view class="midouTitle"><text class="midouSubTitle">{{shopsubtitle}}</text>{{shoptitle}}</view>
-            <view class="midouPrice"><text style="font-size: 24rpx;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;color: #F32222;">￥</text>{{total_payment}}</view>
-            <view class="midouBuyView">
-              <view class="midouBuyView_1" catchtap="bindReduce">-</view>
-              <view class="midouBuyView_2">{{shopnumber}}</view>
-              <view class="midouBuyView_3" catchtap="bindAdd">+</view>
+            <view class="midouBottom">
+              <view class="midouPrice"><text style="font-size: 24rpx;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;color: #F32222;">￥</text>{{total_payment}}</view>
+              <view class="midouBuyView">
+                <view class="midouBuyView_1" catchtap="bindReduce">-</view>
+                <view class="midouBuyView_2">{{shopnumber}}</view>
+                <view class="midouBuyView_3" catchtap="bindAdd">+</view>
+              </view>
             </view>
           </view>
         </view>

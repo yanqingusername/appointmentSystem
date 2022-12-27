@@ -110,7 +110,7 @@ page {
 
 .view_3_2 {
   display: flex;
-  align-items: end;
+  /* align-items: end; */
   justify-content: space-between;
   background-color: #fff;
   margin-top: 28rpx;
@@ -136,8 +136,12 @@ page {
 
 .midouFour {
   padding-left: 18rpx;
-  height: 160rpx;
-  position: relative;
+  /* height: 160rpx; */
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  align-items: normal;
+  justify-content: inherit;
 }
 
 .midouTitle {
@@ -163,22 +167,30 @@ page {
   font-weight: bold;
 }
 
+.midouBottom{
+  /* position: relative;
+  bottom: 0rpx; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .midouPrice {
   font-size: 32rpx;
   display: flex;
   align-items: center;
-  position: absolute;
+   /* position: absolute;
   bottom: 0rpx;
-  left: 18rpx;
+  left: 18rpx; */
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: #F32222;
 }
 
 .midouBuyView {
-  position: absolute;
+   /* position: absolute;
   bottom: 0rpx;
-  right: 0rpx;
+  right: 0rpx; */
   display: flex;
   align-items: center;
   justify-content: center;
