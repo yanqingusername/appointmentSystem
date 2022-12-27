@@ -382,7 +382,7 @@ Page({
 
     if(that.data.shopxz_pdf){
       if (that.data.policyChecked == false) {
-        box.showToast("请阅读并勾选商品须知")
+        box.showToast("请阅读并勾选知情同意书")
         return
       }
     }
