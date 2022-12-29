@@ -56,6 +56,7 @@ Page({
         });
     
         this.getNoticeList();
+        this.getBannerList();
 
         if(this.data.user_id){
           this.getNewUserinfo();
