@@ -113,7 +113,7 @@ Page({
   that.getLocationAuth();
   console.log('成功onshow+++++++++++') 
 },
-onLoad:function(){
+onLoad:function(options){
   var that = this;
   const res = wx.getSystemInfoSync()
   console.log(res)
@@ -124,6 +124,10 @@ onLoad:function(){
   console.log(res.version)
   console.log(res.platform)
   // that.getChannelList();
+
+  that.setData({
+    lableid: options.lableid || ""
+  });
 
   that.gettagList();
 },
@@ -151,6 +155,10 @@ gettagList: function (e) {
         that.setData({
           lableList: list
         });
+
+        if(that.data.lableid){
+          that.setLableId();
+        }
       } else {
         box.showToast(res.msg);
       }
@@ -1338,5 +1346,58 @@ bindDetail:function(e){
       wx.redirectTo({
         url: `/pages/onsiteAppointment/onsiteAppointment?choMap=1&channel=${jsonItem}&choose_type=0&fix_channel_id=-1&typeid=${typeid}`,
       })
-  }
+  },
+  setLableId(){
+    let lableid = this.data.lableid;
+    let lableidList = this.data.lableidList;
+    if(lableid){
+      for(let i = 0; i < this.data.lableList.length; i++){
+        if(lableid == this.data.lableList[i].id){
+          if(this.data.lableList[i].isSelect){
+            this.data.lableidList.splice(this.data.lableidList.findIndex( index => index == lableid), 1)
+            this.data.lableList[i].isSelect = false;
+          }else{
+            lableidList.push(lableid);
+            this.data.lableList[i].isSelect = true;
+          }
+        }
+      }
+    }
+    this.setData({
+      lableList: this.data.lableList,
+      lableidList: lableidList,
+      // lableid: this.data.lableidList.join(',')
+    });
+    
+    let yingyeParams = 1;
+    let isbigscreenParams = 2;
+    if(this.data.lableidList.indexOf(yingyeParams) != -1 || this.data.lableidList.indexOf(isbigscreenParams) != -1){
+      let arrSp = [];
+      let yingye = '';
+      let isbigscreen = '';
+      for(let i = 0; i < this.data.lableidList.length; i++){
+        if(this.data.lableidList[i] == yingyeParams){
+          yingye = 1;
+        }else if(this.data.lableidList[i] == isbigscreenParams){
+          isbigscreen = 1;
+        }else{
+          arrSp.push(this.data.lableidList[i]);
+        }
+      }
+
+      this.setData({
+        isbigscreen: isbigscreen,
+        yingye: yingye,
+        lableid: arrSp.join(',')
+      });
+    }else{
+      this.setData({
+        isbigscreen: '',
+        yingye: '',
+        lableid: this.data.lableidList.join(',')
+      });
+      
+    }
+    this.getChannelList();
+  },
 })
