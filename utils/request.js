@@ -6,7 +6,7 @@
 
 // 参数配置
 // var apiurl = 'http://xmr.coyotebio-lab.com/lis_appointment'    // 测试服务器
-// var apiurl = 'https://cloud.coyotebio-lab.com:8443/lis_appointment'    // 服务器
+// var apiurl = 'https://cloud.coyotebio-lab.com:8443/lis_appointment'    // 正式服务器
 // var apiurl = "https://scldev.coyotebio-lab.com:8443/lis_appointment"//测试服务器
 
 var apiurl = "https://store.coyotebio-lab.com:8443/lis_appointment"//测试服务器
