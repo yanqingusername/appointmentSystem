@@ -171,7 +171,14 @@ Page({
     request.request_get('/Newacid/getCouponShopInfo.hn', data, function (res) {
       if (res) {
         if (res.success) {
-          if(res.msg && res.msg.length > 2){
+          let listCoupon = res.msg;
+          if(listCoupon && listCoupon.length > 0){
+            for(let i = 0; i< listCoupon.length; i++){
+              listCoupon[i].isSelect = false;
+            }
+          }
+          
+          if(listCoupon && listCoupon.length > 2){
             let arr = [];
             for (let i = 0; i < 2; i++) {
               arr.push(res.msg[i]);
@@ -179,13 +186,13 @@ Page({
             that.setData({
               isMoreCoupon: true,
               couponList: arr,
-              couponListOld: res.msg
+              couponListOld: listCoupon
             });
           }else{
             that.setData({
               isMoreCoupon: true,
-              couponList: res.msg,
-              couponListOld: res.msg
+              couponList: listCoupon,
+              couponListOld: listCoupon
             });
           }
         } else {
@@ -425,12 +432,17 @@ Page({
       let couponname = e.currentTarget.dataset.couponname;
       let id = e.currentTarget.dataset.id;
       let cpindex = e.currentTarget.dataset.cpindex;
+      let isselect = e.currentTarget.dataset.isselect;
       if(id && couponname){
-        this.setData({
-          isFisrt: !this.data.isFisrt
-        });
-        if(this.data.isFisrt){
-          this.getReceiveCoupon(id,couponname,cpindex);
+        if(isselect){
+        
+        }else{
+          this.setData({
+            isFisrt: !this.data.isFisrt
+          });
+          if(this.data.isFisrt){
+            this.getReceiveCoupon(id,couponname,cpindex);
+          }
         }
       }
     } else {
@@ -458,20 +470,23 @@ Page({
     request.request_get('/Newacid/getReceiveCoupon.hn', data, function (res) {
       if (res) {
         if (res.success) {
+          box.showToast(res.msg);
           // that.getCouponShopInfo();
           let couponList = that.data.couponList;
-          for (let i = 0; i < couponList.length; i++) {
-            if(couponList[i].coupon_code == id){
-              couponList.splice(i, 1);
-            }
-          }
+          couponList[cpindex].isSelect = true
+          // for (let i = 0; i < couponList.length; i++) {
+          //   if(couponList[i].coupon_code == id){
+          //     couponList.splice(i, 1);
+          //   }
+          // }
 
           let couponListOld = that.data.couponListOld;
-          for (let i = 0; i < couponListOld.length; i++) {
-            if(couponListOld[i].coupon_code == id){
-              couponListOld.splice(i, 1);
-            }
-          }
+          couponListOld[cpindex].isSelect = true
+          // for (let i = 0; i < couponListOld.length; i++) {
+          //   if(couponListOld[i].coupon_code == id){
+          //     couponListOld.splice(i, 1);
+          //   }
+          // }
 
           that.setData({
             couponList: couponList,
