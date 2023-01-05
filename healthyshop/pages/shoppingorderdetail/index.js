@@ -250,28 +250,34 @@ Page({
     let report_temp = itemobj.href;
 
     if(description && report_temp){
-      wx.downloadFile({
-        url: report_temp, //要预览的PDF的地址
-        filePath: wx.env.USER_DATA_PATH + '/' + description + '.pdf',
-        success: function (res) {
-          console.log(res);
-          if (res.statusCode === 200) { //成功
-            var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
+      if(report_temp.indexOf('.pdf')!=-1){
+        wx.downloadFile({
+          url: report_temp, //要预览的PDF的地址
+          filePath: wx.env.USER_DATA_PATH + '/' + description + '.pdf',
+          success: function (res) {
+            console.log(res);
+            if (res.statusCode === 200) { //成功
+              var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
 
-            wx.openDocument({
-              filePath: Path,
-              showMenu: false,
-              success: function (res) {
-                console.log('打开'+description+'成功');
-              }
-            })
+              wx.openDocument({
+                filePath: Path,
+                showMenu: false,
+                success: function (res) {
+                  console.log('打开'+description+'成功');
+                }
+              })
+            }
+          },
+          fail: function (res) {
+            box.showToast('产品使用说明不存在，请联系客服')
+            console.log(res); //失败
           }
-        },
-        fail: function (res) {
-          box.showToast('产品使用说明不存在，请联系客服')
-          console.log(res); //失败
-        }
-      })
+        })
+      }else{
+        wx.navigateTo({
+          url: `/healthyshop/pages/mainH5/index?url=${report_temp}`
+        })
+      }
     } else {
       box.showToast(description+'产品使用说明不存在，请联系客服')
     }
