@@ -258,7 +258,6 @@ Page({
             console.log(res);
             if (res.statusCode === 200) { //成功
               var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
-
               wx.openDocument({
                 filePath: Path,
                 showMenu: false,
