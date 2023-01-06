@@ -5,7 +5,7 @@
 	<view class='search'>
 		<view class="search_left" bindtap="handlerSearchClick">
 			<image class="right_arrow" src="../../images/icon_10_08_03.png" />
-      <text id="district_font">搜索益生菌 自检试剂盒</text>
+      <text id="district_font">搜索肠道健康 自检试剂盒</text>
 		</view>
 	</view>
 </view>
@@ -26,7 +26,7 @@
     <!-- <view class="line_view_2"></view> -->
 
     <view class="view_2">
-      <view class="view_2_1" bindtap="handlerClassClick" data-id="1" data-title="益生菌">
+      <view class="view_2_1" bindtap="handlerClassClick" data-id="1" data-title="肠道健康">
         <image class="view_2_1_1" src="../../images/icon_10_08_04.png" />
         <view class="view_2_1_2">肠道健康</view>
       </view>
