@@ -28,7 +28,7 @@
     <view class="view_2">
       <view class="view_2_1" bindtap="handlerClassClick" data-id="1" data-title="益生菌">
         <image class="view_2_1_1" src="../../images/icon_10_08_04.png" />
-        <view class="view_2_1_2">益生菌</view>
+        <view class="view_2_1_2">肠道健康</view>
       </view>
       <view class="view_2_1" bindtap="handlerClassClick" data-id="2" data-title="菌群检测">
         <image class="view_2_1_1" src="../../images/icon_10_08_05.png" />
