@@ -125,7 +125,7 @@
         <!-- <view class="app_flex">
           <view class="bold_font" style="width: 95%;margin-left:30rpx;">{{item.channel_name}}</view>
         </view> -->
-        <view class="new_title">{{item.channel_name}}</view>
+        <view class="new_title" style="padding-right:{{(hiddenFlag==false && index == 0 && channelList.length > 1) ? '130' : '20'}}rpx;">{{item.channel_name}}</view>
 
         <view class="map_view">
           <view class="map_view_title"><text style="color:#0072FF;" wx:if="{{hiddenFlag==false}}">{{item.distance}}</text> |  {{item.site_description}}</view>
