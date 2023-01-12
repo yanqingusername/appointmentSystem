@@ -21,7 +21,7 @@ Page({
     checkbox_arr: [],
     phoneCode: ["", ""], //正确的 手机号 和 验证码
     showModal: false, // 显示modal弹窗
-    showModal_2: true,
+    showModal_2: false, //流调弹框
     showModal_3: false,
     dynamicTimeFlag: 0,
     survey_flag: true, //流调是否通过

@@ -10,7 +10,7 @@ Page({
     openid: '',
 
     surveyArr: [],
-    showModal_2: true,
+    showModal_2: false, //流调弹框
     survey_flag: true, //流调是否通过
     fever: 0,
     return_home: 0,
