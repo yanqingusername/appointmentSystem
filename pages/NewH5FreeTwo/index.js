@@ -44,7 +44,7 @@ Page({
       openid: wx.getStorageSync('coyote_userinfo').openid || '',
     });
 
-    this.showSurvey();
+    // this.showSurvey();
     this.getBottomLift();
   },
   onShow: function () {

@@ -122,7 +122,7 @@ Page({
     var that = this;
     // console.log(utils.checkAuditTime('09:00-12:00'));
     // console.log(utils.checkAuditTime('09:00-01:00'));
-    that.showSurvey();
+    // that.showSurvey();
     that.getLocationAuth();
     that.getBannerList();
     //获取优惠券
