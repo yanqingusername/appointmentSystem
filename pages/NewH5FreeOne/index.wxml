@@ -5,7 +5,7 @@
 
 <view class="page">
   <view class="view_1">温馨提示：</view>
-  <view class="view_2">1. 请点击下面大按钮，按照页面提示完成登录与流调，进入填写信息页。</view>
+  <view class="view_2">1. 请点击下面大按钮，按照页面提示完成登录，进入填写信息页。</view>
   <view class="view_2">2. 需正确填写受检人真实信息，如填写错误将造成检测结果报告无法生成。</view>
   <view class="view_2">3. 填写信息并完成采样后，我们会尽快为您出报告，您可在小程序首页【查询报告】中凭手机号查到。</view>
 
