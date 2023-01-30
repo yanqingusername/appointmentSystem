@@ -12,6 +12,12 @@ Page({
 
     user_id: ''
   },
+  onShow(){
+    this.setData({
+      sample_number: wx.getStorageSync('gzhou_snumber') || '',
+      sample_phone: wx.getStorageSync('gzhou_sphone') || '',
+    });
+  },
   onLoad: function (options) {
     this.setData({
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
@@ -46,6 +52,9 @@ Page({
       box.showToast("手机号码格式不正确");
       return;
     }
+
+    wx.setStorageSync('gzhou_snumber', this.data.sample_number);
+    wx.setStorageSync('gzhou_sphone', this.data.sample_phone);
 
     wx.navigateTo({
       url: `/pages/mineTestReportResult/index?isreport=3&snumber=${this.data.sample_number}&sphone=${this.data.sample_phone}`
