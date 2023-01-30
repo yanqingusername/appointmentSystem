@@ -76,6 +76,8 @@
         <view class="bottom_view_1" bind:tap="bindTestReport">
           <image class="bottom_view_1_img" src="../../images/icon_0701_12.png"></image>
           <view class="bottom_view_1_text">查询报告</view>
+          <!-- 2.1.4.2 暂时注释 -->
+          <!-- <view class="bottom_view_1_text">北京核酸报告</view> -->
 
           <image wx:if="{{isNew == 0}}" class="main_15" src="../../images/icon_0701_15.png"></image>
         </view>
@@ -83,6 +85,11 @@
           <image class="bottom_view_1_img" src="../../images/icon_0701_13.png"></image>
           <view class="bottom_view_1_text">防疫政策</view>
         </view>
+        <!-- 2.1.4.2 暂时注释 -->
+        <!-- <view class="bottom_view_1" bind:tap="bindGZHouReport">
+          <image class="bottom_view_1_img" src="../../images/icon_0701_12.png"></image>
+          <view class="bottom_view_1_text">广州报告查询</view>
+        </view> -->
         <view class="bottom_view_1" bind:tap="bindXinguanSelfInspection">
           <image class="bottom_view_1_img" src="../../images/icon_0701_14.png"></image>
           <view class="bottom_view_1_text">新冠自检</view>

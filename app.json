@@ -33,7 +33,8 @@
     "pages/NewH5FreeTwo/index",
     "pages/NewH5FreeThree/index",
     "pages/NewH5One/index",
-    "pages/healthy/index"
+    "pages/healthy/index",
+    "pages/mineTestReportSelectGZhou/index"
   ],
   "subpackages": [
     {

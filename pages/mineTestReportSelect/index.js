@@ -192,4 +192,12 @@ Page({
       });
     }
   },
+  /**
+   * 广州报告查询
+   */
+   bindGZHouReport: function () {
+    wx.navigateTo({
+      url: "/pages/mineTestReportSelectGZhou/index"
+    })
+  },
 })

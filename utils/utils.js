@@ -237,6 +237,19 @@ function throttle(fn, interval) {
         }
         return age;
       }
+
+    if (num == 4) {
+        var yearList = UUserCard.split('-')
+          //获取年龄
+          var myDate = new Date();
+          var month = myDate.getMonth() + 1;
+          var day = myDate.getDate();
+          var age = myDate.getFullYear() - yearList[0] - 1;
+          if (yearList[1] < month || yearList[1] == month && yearList[2] <= day) {
+            age++;
+          }
+          return age;
+        }
     }
     // util.js页面，封装的公共方法
 

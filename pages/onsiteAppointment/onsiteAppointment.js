@@ -15,6 +15,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //<!-- 2.1.4.2 暂时注释 -->
+    sampletypeList: ['口咽拭子', '鼻咽拭子'],
+    sampletypeIndex: 0,
+    sampletype: '口咽拭子',
+
     num: '0',
     bindBackFlag: false,
     // forbiddenFlag:false,//禁止进入选择采样点页面
@@ -109,7 +114,18 @@ Page({
     user_id: '',
     openid: '',
 
-    isH5Show: 1
+    isH5Show: 1,
+    birth: ''
+  },
+  bindPickerChangeSampleType: function (e) {
+    var that = this;
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      sampletypeIndex: e.detail.value,
+      sampletypeList: that.data.sampletypeList,
+      sampletype: that.data.sampletypeList[e.detail.value]
+    })
+    console.log('picker发送选择改变，携带值为', that.data.sampletypeIndex)
   },
   onLoad: function (options) {
 
@@ -1235,7 +1251,25 @@ Page({
             })
           } else {
             console.log(res.msg);
-            box.showToast(res.msg);
+            // box.showToast(res.msg);
+            let statusString = res.status;
+            console.log(statusString)
+            if(statusString){
+              box.showToast(res.msg);
+            }else{
+              wx.showModal({
+                title: '温馨提示',
+                content: res.msg,
+                showCancel: false,
+                confirmText: '我知道了',
+                confirmColor: '#E06596',
+                success(res) {
+                  if (res.confirm) {
+                    
+                  }
+                }
+              })
+            }
           }
           // box.hideLoading();
         } else {

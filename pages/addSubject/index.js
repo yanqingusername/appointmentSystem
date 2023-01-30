@@ -60,11 +60,18 @@ Page({
       cancel: "取消",
       sure: "确认"
     },
+
+    yearmouthday: "",
+    timestamp: new Date().getTime(),
+    birthDate: "1990-01-01",
+    isShowbirth: 1,
+    birth: ''
   },
   onShow: function () {
     // this.bindHistoryInfo();
   },
   onLoad: function (options) {
+    this.currentTime();
     this.getbaseData();
     
     this.setData({
@@ -128,7 +135,9 @@ Page({
 
         if (jsonItem.card_type != 0) {
           this.setData({
-            age: jsonItem.age
+            age: jsonItem.age,
+            birth: jsonItem.birth || "",
+            isShowbirth: jsonItem.birth ? 2 : 1
           });
           if (jsonItem.gender == '男') {
             this.setData({
@@ -173,7 +182,7 @@ Page({
     }else{
       if(this.data.cardIndex != 0){
         // if(this.data.name != '' && this.data.phone != '' && this.data.age != '' && this.data.code != '' && this.data.idcard != ''){
-        if(this.data.name != '' && this.data.phone != '' && this.data.age != '' && this.data.idcard != ''){
+        if(this.data.name != '' && this.data.phone != '' && this.data.birth != '' && this.data.idcard != ''){
           this.setData({
             submitState: false
           })
@@ -334,6 +343,8 @@ Page({
     var phoneCode = that.data.phoneCode;
     var onlineFlag = that.data.onlineFlag;
     var cardIndex = that.data.cardIndex;
+
+    var birth = that.data.birth;
     console.log(id_card)
     console.log(openid)
     if (onlineFlag == false) { //线下
@@ -343,8 +354,8 @@ Page({
           box.showToast("请填写与证件一致的姓名");
           return
         }
-        if (age == '') {
-          box.showToast("请填写年龄");
+        if (birth == '') {
+          box.showToast("请选择出生日期");
           return
         } else if (id_card == '') {
           box.showToast("请填写正确的证件号码")
@@ -393,10 +404,16 @@ Page({
         gender: '',
         age: '',
         name: '', //
-        onlineFlagNum: 1
+        onlineFlagNum: 1,
+        birth: '',
+        isShowbirth: 1
       })
     } else { //线上
       if (cardIndex != 0) { //其他身份证件
+        var age = utils.IdCard(birth, 4);
+        that.setData({
+          age: age
+        })
       } else { //线上 且选择身份证
         var age = utils.IdCard(id_card, 3);
         var gender = utils.IdCard(id_card, 2);
@@ -426,6 +443,7 @@ Page({
       phone: phone,
       // code: code,
       onlineFlag: that.data.onlineFlagNum,
+      birth: that.data.birth
     }
 
 
@@ -460,6 +478,7 @@ Page({
                     card_name: that.data.card_name,
                     onlineFlag: that.data.onlineFlag,
                     onlineFlagNum: that.data.onlineFlagNum,
+                    birth: that.data.birth
                   })
                   wx.navigateBack({
                     delta: 1,
@@ -516,6 +535,7 @@ Page({
                     card_name: that.data.card_name,
                     onlineFlag: that.data.onlineFlag,
                     onlineFlagNum: that.data.onlineFlagNum,
+                    birth: that.data.birth
                   })
                   wx.navigateBack({
                     delta: 2,
@@ -572,6 +592,7 @@ Page({
                   card_name: that.data.card_name,
                   onlineFlag: that.data.onlineFlag,
                   onlineFlagNum: that.data.onlineFlagNum,
+                  birth: that.data.birth
                 })
                 wx.navigateBack({
                   delta: 2,
@@ -898,6 +919,7 @@ Page({
       phone: that.data.phone,
       // code: code,
       onlineFlag: that.data.onlineFlagNum,
+      birth: that.data.birth
     }
 
     // 0-默认从个人预约跳转   1-从选择受检人-添加受检人跳转 2-从选择受检人-编辑受检人跳转
@@ -930,6 +952,7 @@ Page({
                   card_name: that.data.card_name,
                   onlineFlag: that.data.onlineFlag,
                   onlineFlagNum: that.data.onlineFlagNum,
+                  birth: that.data.birth
                 })
                 wx.navigateBack({
                   delta: 1,
@@ -972,6 +995,7 @@ Page({
                   card_name: that.data.card_name,
                   onlineFlag: that.data.onlineFlag,
                   onlineFlagNum: that.data.onlineFlagNum,
+                  birth: that.data.birth
                 })
                 wx.navigateBack({
                   delta: 2,
@@ -986,5 +1010,35 @@ Page({
         }
       })
     }
+  },
+  /**
+   * 当前日期
+   */
+   currentTime() {
+    let tempTime = new Date(this.data.timestamp);
+    let month = tempTime.getMonth() + 1;
+    let day = tempTime.getDate();
+    if (month < 10) {
+      month = "0" + month
+    }
+    if (day < 10) {
+      day = "0" + day
+    }
+    // let curtime = tempTime.getFullYear() + "年" + (month) + "月" + day + "日";
+    let curDate = tempTime.getFullYear() + "-" + (month) + "-" + day;
+    this.setData({
+      yearmouthday: curDate,
+      // birthDate: curDate,
+    })
+  },
+  bindDateChange: function (e) {
+    let datestring = e.detail.value;
+    if (datestring) {
+      this.setData({
+        birth: datestring,
+        isShowbirth: 2
+      });
+    }
+    this.checkSubmitStatus();
   },
 })

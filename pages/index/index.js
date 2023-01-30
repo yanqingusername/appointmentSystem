@@ -626,5 +626,13 @@ Page({
         url: '/pages/NewH5FreeOne/index'
       });
     }
-  }
+  },
+  /**<!-- 2.1.4.2 暂时注释 -->
+   * 广州报告查询
+   */
+   bindGZHouReport: function () {
+    wx.navigateTo({
+      url: "/pages/mineTestReportSelectGZhou/index"
+    })
+  },
 })

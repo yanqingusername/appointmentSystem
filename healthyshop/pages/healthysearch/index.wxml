@@ -1,4 +1,4 @@
-<cu-custom bgColor="bg-white" isBack="{{true}}">
+<cu-custom bgColor="bg-white" isBack="{{false}}" isCustom="{{true}}">
 	<view slot="content" class="title_name">{{class_title}}</view>
 </cu-custom>
 <view class="search_border">

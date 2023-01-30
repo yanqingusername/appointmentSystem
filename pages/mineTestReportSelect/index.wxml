@@ -81,5 +81,10 @@
       <view class="btn_view" wx:else>查询</view>
     </view>
 	</view>
+
+  <!-- 2.1.4.2 暂时注释 -->
+  <!-- <view class="bottom_view" bind:tap="bindGZHouReport">
+    <view class="bottom_view_1">如需查询广州核酸检测报告，请点击此处</view>
+  </view> -->
 </view>
 

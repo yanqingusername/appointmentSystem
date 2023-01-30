@@ -228,6 +228,22 @@
             </view>
           </view>
         </view> -->
+
+        <!-- 2.1.4.2 暂时注释 -->
+        <!-- <view class="medWhite">
+          <view class="title_1" style="align-items: center;">
+            <view class="title_bold" style="width:30%">样本类型</view>
+            <view style="align-self:center;width:60%;direction:rtl;height:84rpx;">
+              <picker style="height:100%;margin-top:0rpx;align-items: center;dispaly:flex;" bindchange="bindPickerChangeSampleType" value="{{sampletypeIndex}}" range="{{sampletypeList}}">
+                <view class="picker" style="height:84rpx;display: flex;align-items: center;">{{sampletypeList[sampletypeIndex]}}</view>
+              </picker>
+            </view>
+            <view style="margin-right:0rpx;margin-top:10rpx;">
+              <image class="right_arrow" src="../../images/rightArrow.png"></image>
+            </view>
+          </view>
+        </view> -->
+
         <view class="medWhite">
           <view class="title_1">
             <view class="title_bold" style="width:30%">支付方式</view>

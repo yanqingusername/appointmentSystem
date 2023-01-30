@@ -548,5 +548,15 @@ Page({
     wx.reLaunch({
       url: '/pages/index/index',
     })
-  }
+  },
+  onShareAppMessage() {
+    let title = this.data.title;
+    // let imageUrl = this.data.share_image;
+    let path = `/healthyshop/pages/shoppingdetail/index?shopid=${this.data.shopid}`;
+    return {
+        title: "【卡尤迪】" + title,
+        path: path,
+        // imageUrl: imageUrl
+    }
+  },
 })

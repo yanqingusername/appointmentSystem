@@ -64,24 +64,31 @@
 
         <view wx:if="{{cardIndex!=0&&onlineFlag==true}}" class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">性别</view>
-          <view class="section" style="width: 70%;height:84rpx;margin-left:18rpx;font-size:30rpx">
+          <view class="section" style="width: 70%;height:84rpx;margin-left:12rpx;font-size:30rpx">
             <picker style="height:100%;margin-top:20rpx" bindchange="bindPickerChangeGender" value="{{genderIndex}}" range="{{genderList}}">
               <view class="picker">
                 {{genderList[genderIndex]}}
               </view>
             </picker>
           </view>
-          <view style="margin-right:26rpx">
+          <view style="margin-right:0rpx">
             <image class="right_arrow" src="../../images/rightArrow.png"></image>
           </view>
         </view>
         <view wx:if="{{cardIndex!=0&&onlineFlag==true}}" style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
         <view wx:if="{{cardIndex!=0&&onlineFlag==true}}" class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
-          <view class="P5_1 app_font" style="width:20%">年龄</view>
+          <!-- <view class="P5_1 app_font" style="width:20%">年龄</view>
           <input class="P5_2 " style="position:relative;right:-14rpx" type="number" placeholder="请输入年龄" placeholder-class="place_style" bindinput="bindAge" maxlength="3" value="{{age}}"></input>
           <view style="padding:8rpx">
-            <!-- <image class="icon_clear" src="../../images/icon_clear.png"></image> -->
+          </view> -->
+
+          <view class="P5_1 app_font">生日</view>
+          <view class="section" style="width: 70%;height:84rpx;margin-left:0rpx;font-size:30rpx">
+            <picker mode="date" style="height:100%;margin-top:20rpx" value="{{birthDate}}" start="1900-01-01" end="{{yearmouthday}}" bindchange="bindDateChange">
+              <view class="picker" wx:if="{{isShowbirth == 2}}">{{birth}}</view>
+              <view class="picker" style="color: #B1B1B1;" wx:else>请选择出生日期</view>
+            </picker>
           </view>
         </view>
         <view wx:if="{{cardIndex!=0&&onlineFlag==true}}" style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>

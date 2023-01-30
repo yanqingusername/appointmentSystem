@@ -131,4 +131,15 @@ Page({
       }
     });
   },
+  onShareAppMessage() {
+    let title = this.data.class_title;
+    // let imageUrl = this.data.share_image;
+    let path = `/healthyshop/pages/healthysearch/index?id=${this.data.class_id}&title=${this.data.class_title}`;
+
+    return {
+      title: "【卡尤迪】" +title+"好物推荐",
+      path: path,
+      // imageUrl: imageUrl
+    }
+  },
 });

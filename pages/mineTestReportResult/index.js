@@ -9,7 +9,7 @@ Page({
   data: {
     overflowFlag: false,
     tip: "",
-    isreport: 1, // 1--样本编号/手机号查询   2--手机号查询
+    isreport: 1, // 1--样本编号/手机号查询   2--手机号查询  3--广州核酸检测报告查询
     snumber: '',
     sphone: '',
     appointmentList: []
@@ -29,7 +29,10 @@ Page({
       sphone: sphone
     });
 
-    if(this.data.isreport == 1){
+    if(this.data.isreport == 3){
+      //广州核酸检测报告查询 2.1.4.2
+      
+    }else if(this.data.isreport == 1){
       this.getSelectTestRecordsBySampleId();
     }else{
       this.getSelectTestRecordsByPhone();

@@ -1,0 +1,45 @@
+<cu-custom isBack="{{true}}" bgColor="bg-white">
+	<view slot="backText" bindtap="bindBack" />
+	<view slot="content">查询报告</view>
+</cu-custom>
+
+<view class="page">
+  
+	<view class="page_view">
+		<view >
+			<view style="padding: 100rpx 0rpx 50rpx;color: #E787AC;">广州核酸检测报告查询</view>
+		</view>
+
+		<view class="page_view" >
+      <view class="input_view">
+        <input
+        id="search_checked"
+        type='number'
+        placeholder='请输入受检人手机号'
+        placeholder-class="ph_class"
+        value="{{sample_phone}}"
+        maxlength="11"
+        bindinput='input2'
+        />
+      </view>
+
+
+      <view class="input_view">
+        <input
+        id="search_checked"
+        placeholder='请输入受检人证件号'
+        placeholder-class="ph_class"
+        value="{{sample_number}}"
+        bindinput='input1'
+        />
+      </view>
+
+      <view class="btn_view_active" wx:if="{{submitState}}" bind:tap="bindSelectResult1">查询</view>
+      <view class="btn_view" wx:else>查询</view>
+      
+    </view>
+
+    
+	</view>
+</view>
+

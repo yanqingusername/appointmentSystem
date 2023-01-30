@@ -1,5 +1,5 @@
 page{
-  background: #FFFFFF;
+  background: #EEEEEE;
 }
 .page{
   width:100%;
@@ -71,7 +71,7 @@ page{
 #search_checked{
   width:690rpx;
   text-align: initial;
-  background-color: #F5F5F5;
+  background-color: #FFFFFF;
   height: 80rpx;
   /* padding-top: 12rpx; */
   padding-left: 24rpx;
@@ -92,7 +92,7 @@ page{
 #search_code{
   width:480rpx;
   text-align: initial;
-  background-color: #F5F5F5;
+  background-color: #FFFFFF;
   height: 80rpx;
   /* padding-top: 12rpx; */
   padding-left: 24rpx;

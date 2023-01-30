@@ -80,7 +80,8 @@ Page({
           phone: item.phone,
           onlineFlagNum: item.onlineFlag,
           onlineFlag: item.onlineFlag == 1 ? false : true,
-          card_name: item.card_type == 1 ? '护照' : item.card_type == 2 ? '港澳台通行证' : '身份证'
+          card_name: item.card_type == 1 ? '护照' : item.card_type == 2 ? '港澳台通行证' : '身份证',
+          birth: item.birth
         })
         wx.navigateBack({
           delta: 1, 
