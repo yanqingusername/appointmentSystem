@@ -230,7 +230,7 @@
         </view> -->
 
         <!-- 2.1.4.2 暂时注释 -->
-        <view class="medWhite">
+        <!-- <view class="medWhite">
           <view class="title_1" style="align-items: center;">
             <view class="title_bold" style="width:30%">样本类型</view>
             <view style="align-self:center;width:60%;direction:rtl;height:84rpx;">
@@ -242,7 +242,7 @@
               <image class="right_arrow" src="../../images/rightArrow.png"></image>
             </view>
           </view>
-        </view>
+        </view> -->
 
         <view class="medWhite">
           <view class="title_1">
