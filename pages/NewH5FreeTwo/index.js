@@ -35,7 +35,8 @@ Page({
 
     bottomLift: 15,
 
-    isRequest: false
+    isRequest: false,
+    birth: ''
   },
   onLoad: function (options) {
 
@@ -124,7 +125,25 @@ Page({
                 });
               }
             } else {
-              box.showToast(res.msg);
+              // box.showToast(res.msg);
+              let statusString = res.status;
+              console.log(statusString)
+              if(statusString){
+                box.showToast(res.msg);
+              }else{
+                wx.showModal({
+                  title: '温馨提示',
+                  content: res.msg,
+                  showCancel: false,
+                  confirmText: '我知道了',
+                  confirmColor: '#E06596',
+                  success(res) {
+                    if (res.confirm) {
+                      
+                    }
+                  }
+                })
+              }
               that.setData({
                 isRequest: !that.data.isRequest
               });
