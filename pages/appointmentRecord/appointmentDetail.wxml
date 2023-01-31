@@ -22,6 +22,9 @@
 
     <!-- 2.1.4.2 暂时注释 鼻拭子样本在信息码处额外有特殊显示。咽拭子不需要。 -->
     <!-- <image style="width:100rpx;height:96rpx;position: absolute;left: 30rpx;top: 160rpx;" mode="aspectFit" src="../../images/used@3x.png"></image> -->
+    <!-- <view style="position: absolute;left: 30rpx;top: 210rpx;">
+      <view class="sample_type_view">鼻咽拭子</view>
+    </view> -->
     
     <view class="hr"></view>
     <view class="template_flex">

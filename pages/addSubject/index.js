@@ -563,6 +563,10 @@ Page({
         });
       }
     } else if(this.data.isAddSub == 2){
+      // 2.1.4.2 暂时注释
+      // if(this.data.onlineid == 1){
+      //   data.birth = that.data.birth;
+      // }
       data.id = that.data.userinfo_id;
       request.request_get('/Newacid/editSubject.hn', data, function (res) {
         console.info('回调', res)

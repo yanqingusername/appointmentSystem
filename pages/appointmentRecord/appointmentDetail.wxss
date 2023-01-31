@@ -305,3 +305,11 @@ color: #FFFFFF;
   align-items: center;
   justify-content: center;
 }
+
+.sample_type_view{
+  color: #E06596;
+  font-size: 28rpx;
+  border: 2px dashed #E06596;
+  padding: 8rpx;
+  transform: rotate(-20deg);
+}
