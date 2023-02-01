@@ -263,7 +263,8 @@ color: #000000;
     height: 44rpx;
     width: 84rpx;
     position: absolute;
-    right: -50rpx;
+    /* right: -50rpx; */
+    right: 0rpx;
 }
 
 .empty_view{
