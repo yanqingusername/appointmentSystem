@@ -31,7 +31,7 @@ Page({
 
     if(this.data.isreport == 3){
       //广州核酸检测报告查询 2.1.4.2
-      
+      this.getSelectJinShaZhouReportQuery();
     }else if(this.data.isreport == 1){
       this.getSelectTestRecordsBySampleId();
     }else{
@@ -124,6 +124,31 @@ Page({
       fail: function (res) {
         box.showToast('报告不存在，请联系客服')
         console.log(res); //失败
+      }
+    })
+  },
+  getSelectJinShaZhouReportQuery: function () {
+    var that = this;
+    var data = {
+      idCard:  that.data.snumber, //证件号
+      phone: that.data.sphone, //手机号
+    }
+    request.request_get('/Newacid/JinShaZhouReportQuery.hn', data, function (res) {
+      console.info('回调', res)
+      if (res) {
+        if (res.success) {
+          that.setData({
+            appointmentList: res.res
+          });
+          if (that.data.appointmentList.length == 0) {
+            that.setData({
+              tip: '该用户暂时还没有报告，请稍后再查询',
+              overflowFlag: true
+            });
+          }
+        } else {
+          box.showToast(res.msg);
+        }
       }
     })
   },

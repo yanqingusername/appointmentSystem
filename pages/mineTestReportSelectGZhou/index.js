@@ -17,6 +17,7 @@ Page({
       sample_number: wx.getStorageSync('gzhou_snumber') || '',
       sample_phone: wx.getStorageSync('gzhou_sphone') || '',
     });
+    this.setisSubmit();
   },
   onLoad: function (options) {
     this.setData({
@@ -40,10 +41,7 @@ Page({
   },
   bindSelectResult1(){
     let phone = this.data.sample_phone;
-    if(this.data.sample_number == ''){
-      box.showToast('请输入受检人证件号');
-      return;
-    }
+    
     if(this.data.sample_phone == ''){
       box.showToast('请输入受检人手机号');
       return;
@@ -53,12 +51,12 @@ Page({
       return;
     }
 
-    wx.setStorageSync('gzhou_snumber', this.data.sample_number);
-    wx.setStorageSync('gzhou_sphone', this.data.sample_phone);
+    if(this.data.sample_number == ''){
+      box.showToast('请输入受检人证件号');
+      return;
+    }
 
-    wx.navigateTo({
-      url: `/pages/mineTestReportResult/index?isreport=3&snumber=${this.data.sample_number}&sphone=${this.data.sample_phone}`
-    });
+    this.getCheckValidByPhoneAndIdCard();
   },
   setisSubmit(){
     if(this.data.sample_number != '' && this.data.sample_phone != ''){
@@ -70,5 +68,27 @@ Page({
         submitState: false
       });
     }
+  },
+  getCheckValidByPhoneAndIdCard: function () {
+    var that = this;
+    var data = {
+      idCard:  that.data.sample_number, //证件号
+      phone: that.data.sample_phone, //手机号
+    }
+    request.request_get('/Newacid/checkValidByPhoneAndIdCard.hn', data, function (res) {
+      console.info('回调', res)
+      if (res) {
+        if (res.success) {
+          wx.setStorageSync('gzhou_snumber', that.data.sample_number);
+          wx.setStorageSync('gzhou_sphone', that.data.sample_phone);
+
+          wx.navigateTo({
+            url: `/pages/mineTestReportResult/index?isreport=3&snumber=${that.data.sample_number}&sphone=${that.data.sample_phone}`
+          });
+        } else {
+          box.showToast(res.msg);
+        }
+      }
+    })
   },
 })

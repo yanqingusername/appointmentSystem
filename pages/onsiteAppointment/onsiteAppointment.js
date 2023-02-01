@@ -1183,7 +1183,7 @@ Page({
       appointment_date: appointment_date,
       id: this.data.userinfo_id,
       user_id: this.data.user_id,
-      // sample_type: this.data.sampletype  // 2.1.4.2 需求 暂时注释
+      sample_type: this.data.sampletype  // 2.1.4.2 需求 暂时注释
       // pay_channel: this.data.pay_channel //支付渠道
     }
 

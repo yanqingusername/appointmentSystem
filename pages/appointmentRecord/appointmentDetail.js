@@ -39,7 +39,8 @@ Page({
     user_id: '',
     isShowPages: false,
 
-    isH5Show: 1
+    isH5Show: 1,
+    sample_type: ''
   },
 
   onShow:function(){
@@ -180,7 +181,8 @@ getAppointmentInfo: function () {
           yysj2:info.yysj2,
           verification_code: info.verification_code,
           payment_type: info.payment_type,
-          status: info.status
+          status: info.status,
+          sample_type: info.sample_type
         })
         console.log('creator_id' + that.data.creator_id)
         console.log('app.globalData.userInfo.id' + app.globalData.userInfo.id)
