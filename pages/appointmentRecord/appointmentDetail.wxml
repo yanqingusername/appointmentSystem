@@ -115,7 +115,7 @@
       <!-- 2.1.4.2 暂时注释 -->
       <view class="P2_1 app_flex" wx:if="{{sample_type}}">
         <view class="P2_1_3">样本类型</view>
-        <view class="P2_1_2">{{sample_type}}</view>
+        <view class="P2_1_2">{{sample_type == '咽拭子' ? '口咽拭子' : sample_type}}</view>
       </view>
       
       <view class="P2_1 app_flex" hidden="{{yysj2==''?'hidden':''}}">
