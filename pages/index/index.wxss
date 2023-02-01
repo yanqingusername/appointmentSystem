@@ -231,7 +231,7 @@ color: #000000;
 .main_bottom_view {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   background: #FFFFFF;
   border-radius: 10px;
   margin: 32rpx 30rpx 0rpx 30rpx;
