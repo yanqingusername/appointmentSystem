@@ -96,6 +96,9 @@
               <view class="picker" style="color: #B1B1B1;" wx:else>请选择出生日期</view>
             </picker>
           </view>
+          <view style="margin-right:0rpx">
+            <image class="right_arrow" src="../../images/rightArrow.png"></image>
+          </view>
         </view>
         <view wx:if="{{cardIndex!=0&&onlineFlag==true}}" style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 

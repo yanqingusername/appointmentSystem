@@ -507,7 +507,7 @@ Page({
           showDialog2: true,
           dialogData2: {
             title: "请核对信息以下信息",
-            titles:  "姓名:"+that.data.name,
+            titles:  "姓名:"+ (that.data.englishName ? (that.data.name + ' ' + that.data.englishName) : that.data.name),
             title2:  "手机号:"+that.data.phone,
             title3:  that.data.card_name+":"+that.data.idcard,
             cancel: "取消",
@@ -564,7 +564,7 @@ Page({
           showDialog2: true,
           dialogData2: {
             title: "请核对信息以下信息",
-            titles:  "姓名: "+that.data.name,
+            titles:  "姓名: "+ (that.data.englishName ? (that.data.name + ' ' + that.data.englishName) : that.data.name),
             title2:  "手机号: "+that.data.phone,
             title3:  that.data.card_name+": "+that.data.idcard,
             cancel: "取消",
