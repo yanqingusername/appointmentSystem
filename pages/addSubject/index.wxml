@@ -36,6 +36,12 @@
         </view>
         <view wx:if="{{onlineFlag==true}}" style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
+        <view wx:if="{{cardIndex!=0&&onlineFlag==true&&isAddSub!=2}}" class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">英文名</view>
+          <input class="P5_2 app_font" placeholder='出入境请填写英文名,如"LI,NING"' placeholder-class="place_style" bindinput="bindEnglishName" style="position:relative;right:20rpx;width:70%;" maxlength="50" value="{{englishName}}"></input>
+        </view>
+        <view wx:if="{{cardIndex!=0&&onlineFlag==true&&isAddSub!=2}}" style="height: 1px;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
         <view wx:if="{{onlineFlag==true}}" class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">证件类型</view>
           <view class="section" style="width: 70%;height:84rpx;margin-left:12rpx;font-size:30rpx">

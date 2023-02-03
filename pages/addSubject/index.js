@@ -65,7 +65,8 @@ Page({
     timestamp: new Date().getTime(),
     birthDate: "1990-01-01",
     isShowbirth: 1,
-    birth: ''
+    birth: '',
+    englishName: ''
   },
   onShow: function () {
     // this.bindHistoryInfo();
@@ -261,6 +262,14 @@ Page({
 
     this.checkSubmitStatus();
   },
+  bindEnglishName: function (e) {
+    console.log(e.detail.value)
+    var str = e.detail.value;
+    str = utils.checkInput_2(str);
+    this.setData({
+      englishName: str
+    })
+  },
   bindPhone: function (e) {
     console.log(e.detail.value)
     var str = e.detail.value;
@@ -406,7 +415,8 @@ Page({
         name: '', //
         onlineFlagNum: 1,
         birth: '',
-        isShowbirth: 1
+        isShowbirth: 1,
+        englishName: ''
       })
     } else { //线上
       if (cardIndex != 0) { //其他身份证件
@@ -435,7 +445,7 @@ Page({
     var data = {
       open_id: openid,
       user_id: that.data.user_id,
-      name: that.data.name,
+      name: that.data.englishName ? (that.data.name + ' ' + that.data.englishName) : that.data.name,
       gender: that.data.gender,
       age: that.data.age,
       card_type: that.data.cardIndex,
@@ -472,7 +482,7 @@ Page({
                     gender: that.data.gender,
                     age: that.data.age,
                     cardIndex: that.data.cardIndex,
-                    name: that.data.name,
+                    name: that.data.englishName ? (that.data.name + ' ' + that.data.englishName) : that.data.name,
                     phone: that.data.phone,
                     idcard: that.data.idcard,
                     card_name: that.data.card_name,
@@ -529,7 +539,7 @@ Page({
                     gender: that.data.gender,
                     age: that.data.age,
                     cardIndex: that.data.cardIndex,
-                    name: that.data.name,
+                    name: that.data.englishName ? (that.data.name + ' ' + that.data.englishName) : that.data.name,
                     phone: that.data.phone,
                     idcard: that.data.idcard,
                     card_name: that.data.card_name,
@@ -590,7 +600,7 @@ Page({
                   gender: that.data.gender,
                   age: that.data.age,
                   cardIndex: that.data.cardIndex,
-                  name: that.data.name,
+                  name: that.data.englishName ? (that.data.name + ' ' + that.data.englishName) : that.data.name,
                   phone: that.data.phone,
                   idcard: that.data.idcard,
                   card_name: that.data.card_name,
@@ -915,7 +925,7 @@ Page({
     let data = {
       open_id: that.data.openid,
       user_id: that.data.user_id,
-      name: that.data.name,
+      name: that.data.englishName ? (that.data.name + ' ' + that.data.englishName) : that.data.name,
       gender: that.data.gender,
       age: that.data.age,
       card_type: that.data.cardIndex,
@@ -950,7 +960,7 @@ Page({
                   gender: that.data.gender,
                   age: that.data.age,
                   cardIndex: that.data.cardIndex,
-                  name: that.data.name,
+                  name: that.data.englishName ? (that.data.name + ' ' + that.data.englishName) : that.data.name,
                   phone: that.data.phone,
                   idcard: that.data.idcard,
                   card_name: that.data.card_name,
@@ -993,7 +1003,7 @@ Page({
                   gender: that.data.gender,
                   age: that.data.age,
                   cardIndex: that.data.cardIndex,
-                  name: that.data.name,
+                  name: that.data.englishName ? (that.data.name + ' ' + that.data.englishName) : that.data.name,
                   phone: that.data.phone,
                   idcard: that.data.idcard,
                   card_name: that.data.card_name,
