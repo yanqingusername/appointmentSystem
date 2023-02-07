@@ -4,6 +4,8 @@ page{
 .page{
   width:100%;
   overflow-x:hidden;
+  position: relative;
+  height: 100vh;
   /* height: 100%; */
   /* background-color: #F5F5F5; */
 }
@@ -143,8 +145,11 @@ page{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 240rpx;
+  margin-top: 0rpx;
   padding: 30rpx;
+  position: absolute;
+  bottom: 80rpx;
+  width: 100%;
 }
 
 .bottom_view_1{

@@ -7,7 +7,7 @@
   
 	<view class="page_view">
 		<view >
-			<view style="padding: 100rpx 0rpx 50rpx;color: #E787AC;">广州核酸检测报告查询</view>
+			<view style="padding: 140rpx 0rpx 100rpx;color: #E787AC;font-size: 46rpx;font-weight: bold;">广州核酸检测报告查询</view>
 		</view>
 
 		<view class="page_view" >

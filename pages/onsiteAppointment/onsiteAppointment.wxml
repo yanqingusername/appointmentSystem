@@ -230,12 +230,12 @@
         </view> -->
 
         <!-- 2.1.4.2 暂时注释 -->
-        <view class="medWhite">
+        <view class="medWhite" wx:if="{{isH5Show != 2}}">
           <view class="title_1" style="align-items: center;">
             <view class="title_bold" style="width:30%">样本类型</view>
             <view style="align-self:center;width:60%;direction:rtl;height:84rpx;">
               <picker style="height:100%;margin-top:0rpx;align-items: center;dispaly:flex;" bindchange="bindPickerChangeSampleType" value="{{sampletypeIndex}}" range="{{sampletypeList}}">
-                <view class="picker" style="height:84rpx;display: flex;align-items: center;font-size:26rpx;color:#555555;">{{sampletypeList[sampletypeIndex]}}</view>
+                <view class="picker" style="height:84rpx;display: flex;align-items: center;font-size:32rpx;color:#555555;">{{sampletypeList[sampletypeIndex]}}</view>
               </picker>
             </view>
             <view style="margin-right:0rpx;margin-top:10rpx;">
