@@ -154,34 +154,47 @@ Page({
     }
   },
   bindDownloadReport: function (e) {
-    var report_temp = e.currentTarget.dataset.report
+    let that = this
+    // var report_temp = 'http://report1.coyotebio-lab.com/data/lis1/202302031/test01111162_15568429280_1.pdf';
+    var report_temp = e.currentTarget.dataset.report;
+    var sample_id = e.currentTarget.dataset.sampleid;
     if (report_temp == '' || report_temp == undefined || report_temp == null) {
-      box.showToast('报告不存在，请联系客服')
-      return;
-    }
-    report_temp = report_temp.replace('http://', 'https://');
-    wx.downloadFile({
-      url: report_temp, //要预览的PDF的地址
-      filePath: wx.env.USER_DATA_PATH + '/卡尤迪核酸检测报告.pdf',
-      success: function (res) {
-        console.log(res);
-        if (res.statusCode === 200) { //成功
-          var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
-          wx.openDocument({
-            filePath: Path,
-            showMenu: true,
-            //要打开的文件路径
-            success: function (res) {
-              console.log('打开PDF成功');
-            }
-          })
-        }
-      },
-      fail: function (res) {
-        box.showToast('报告不存在，请联系客服')
-        console.log(res); //失败
+      if(sample_id){
+        that.getBatchConfirmation(sample_id);
       }
-    })
+      // box.showToast('报告不存在，请联系客服')
+      // return;
+    }else{
+      report_temp = report_temp.replace('http://', 'https://');
+      wx.downloadFile({
+        url: report_temp, //要预览的PDF的地址
+        filePath: wx.env.USER_DATA_PATH + '/卡尤迪核酸检测报告.pdf',
+        success: function (res) {
+          console.log(res);
+          if (res.statusCode === 200) { //成功
+            var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
+            wx.openDocument({
+              filePath: Path,
+              showMenu: true,
+              //要打开的文件路径
+              success: function (res) {
+                console.log('打开PDF成功');
+              }
+            })
+          } else {
+            that.getBatchConfirmation(sample_id);
+          }
+        },
+        fail: function (res) {
+          // box.showToast('报告不存在，请联系客服')
+          console.log(res); //失败
+
+          if(sample_id){
+            that.getBatchConfirmation(sample_id);
+          }
+        }
+      })
+    }
   },
   catchSelectHandle: function (e) {
     wx.navigateTo({
@@ -428,6 +441,46 @@ Page({
           that.setData({
             fwxy_url: msg.fwxy_url,
             yszz_url: msg.yszz_url,
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 获取用户报告
+   */
+   getBatchConfirmation: function (sample_id) {
+    let that = this;
+    let data = {
+      sampleId: sample_id
+    };
+    request.request_get('/Newacid/batchConfirmation.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          let report_temp = res.pdf
+          report_temp = report_temp.replace('http://', 'https://');
+          wx.downloadFile({
+            url: report_temp, //要预览的PDF的地址
+            filePath: wx.env.USER_DATA_PATH + '/卡尤迪核酸检测报告.pdf',
+            success: function (res) {
+              console.log(res);
+              if (res.statusCode === 200) { //成功
+                var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
+                wx.openDocument({
+                  filePath: Path,
+                  showMenu: true,
+                  //要打开的文件路径
+                  success: function (res) {
+                    console.log('打开PDF成功');
+                  }
+                })
+              }
+            },
+            fail: function (res) {
+              // box.showToast('报告不存在，请联系客服')
+              console.log(res); //失败
+              that.getBatchConfirmation(sample_id);
+            }
           })
         }
       }
