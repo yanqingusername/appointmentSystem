@@ -10,14 +10,17 @@ Page({
     sample_number: '',
     sample_phone: '',
 
-    user_id: ''
+    user_id: '',
+    isReport: false
   },
   onShow(){
-    this.setData({
-      sample_number: wx.getStorageSync('gzhou_snumber') || '',
-      sample_phone: wx.getStorageSync('gzhou_sphone') || '',
-    });
-    this.setisSubmit();
+    if(this.data.isReport){
+      this.setData({
+        sample_number: wx.getStorageSync('gzhou_snumber') || '',
+        sample_phone: wx.getStorageSync('gzhou_sphone') || '',
+      });
+      this.setisSubmit();
+    }
   },
   onLoad: function (options) {
     this.setData({

@@ -32,6 +32,12 @@ Page({
     if(this.data.isreport == 3){
       //广州核酸检测报告查询 2.1.4.2
       this.getSelectJinShaZhouReportQuery();
+      
+      let pages = getCurrentPages();
+      let prevPage = pages[pages.length - 2];
+      prevPage.setData({
+        isReport: true
+      });
     }else if(this.data.isreport == 1){
       this.getSelectTestRecordsBySampleId();
     }else{
@@ -200,6 +206,8 @@ Page({
                 that.getBatchConfirmation(sample_id);
               }
             })
+          } else {
+            box.showToast(res.msg)
           }
         }
       })

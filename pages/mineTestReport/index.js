@@ -482,6 +482,8 @@ Page({
               that.getBatchConfirmation(sample_id);
             }
           })
+        } else {
+          box.showToast(res.msg)
         }
       }
     })
