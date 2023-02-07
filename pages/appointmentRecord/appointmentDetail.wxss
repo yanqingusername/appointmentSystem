@@ -308,8 +308,9 @@ color: #FFFFFF;
 
 .sample_type_view{
   color: #E06596;
-  font-size: 32rpx;
-  border: 4px dashed #E06596;
+  font-size: 38rpx;
+  border: 3px dashed #E06596;
   padding: 8rpx;
   transform: rotate(-20deg);
+  font-weight: bold;
 }
