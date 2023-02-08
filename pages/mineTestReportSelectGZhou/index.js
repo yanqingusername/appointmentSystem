@@ -25,7 +25,10 @@ Page({
   onLoad: function (options) {
     this.setData({
       user_id: wx.getStorageSync('coyote_userinfo').user_id || '',
+      sample_number: wx.getStorageSync('gzhou_snumber') || '',
+      sample_phone: wx.getStorageSync('gzhou_sphone') || '',
     });
+    this.setisSubmit();
   },
   input1(e){
     this.setData({

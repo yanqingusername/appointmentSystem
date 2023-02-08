@@ -35,6 +35,33 @@ function request_get(controller, data, cb) {
         }
     })
 }
+
+var apiurlJinshazhou = 'https://cloud.coyotebio-lab.com/Jinshazhou/api'    // 正式服务器
+
+// var apiurlJinshazhou = 'http://syrdev.coyotebio-lab.com:8080/Jinshazhou/api'    // 测试服务器
+
+function request_getJinshazhou(controller, data, cb) {
+    var urlJinshazhou = apiurlJinshazhou + controller;
+    wx.request({
+        url: urlJinshazhou,
+        data: data,
+        method: 'GET',
+        success: function (res) {
+            //console.log(cb(res.data))
+            return typeof cb == "function" && cb(res.data)
+        },
+        fail: function (res) {
+            console.log('request networkTimeout')
+            wx.showModal({
+                title: "提示",
+                showCancel: false,
+                content: '请求超时,请检查网络！'
+            })
+            return typeof cb == "function" && cb(false)
+        }
+    })
+}
 module.exports = {
-    request_get: request_get
+    request_get: request_get,
+    request_getJinshazhou: request_getJinshazhou
 }

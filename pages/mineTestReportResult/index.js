@@ -105,12 +105,23 @@ Page({
   },
   bindDownloadReport: function (e) {
     let that = this
-    var report_temp = e.currentTarget.dataset.report;
+    var report_temp = "";
     var sample_id = e.currentTarget.dataset.sampleid;
+
+    var id = e.currentTarget.dataset.id;
+
     if (report_temp == '' || report_temp == undefined || report_temp == null) {
-      if(sample_id){
-        that.getBatchConfirmation(sample_id);
+
+      if(that.data.isreport == 3){
+        if(id){
+          that.getRequestExcelFilePath(id);
+        }
+      } else{
+        if(sample_id){
+          that.getBatchConfirmation(sample_id);
+        }
       }
+      
       // box.showToast('报告不存在，请联系客服')
       // return;
     }else{
@@ -131,15 +142,25 @@ Page({
               }
             })
           } else {
-            that.getBatchConfirmation(sample_id);
+            if(that.data.isreport == 3){
+                that.getRequestExcelFilePath(id);
+            } else{
+                that.getBatchConfirmation(sample_id);
+            }
           }
         },
         fail: function (res) {
           // box.showToast('报告不存在，请联系客服')
           console.log(res); //失败
 
-          if(sample_id){
-            that.getBatchConfirmation(sample_id);
+          if(that.data.isreport == 3){
+            if(id){
+              that.getRequestExcelFilePath(id);
+            }
+          } else{
+            if(sample_id){
+              that.getBatchConfirmation(sample_id);
+            }
           }
         }
       })
@@ -204,6 +225,49 @@ Page({
                 // box.showToast('报告不存在，请联系客服')
                 console.log(res); //失败
                 that.getBatchConfirmation(sample_id);
+              }
+            })
+          } else {
+            box.showToast(res.msg)
+          }
+        }
+      })
+    },
+    /**
+   *  金沙洲获取用户报告
+   * https://cloud.coyotebio-lab.com/Jinshazhou/api/requestExcelFilePath.hn?id=14198900
+   */
+     getRequestExcelFilePath: function (id) {
+      let that = this;
+      let data = {
+        id: id
+      };
+      request.request_getJinshazhou('/requestExcelFilePath.hn', data, function (res) {
+        if (res) {
+          if (res.success) {
+            let report_temp = res.reportUrl
+            report_temp = report_temp.replace('http://', 'https://');
+            wx.downloadFile({
+              url: report_temp, //要预览的PDF的地址
+              filePath: wx.env.USER_DATA_PATH + '/卡尤迪核酸检测报告.pdf',
+              success: function (res) {
+                console.log(res);
+                if (res.statusCode === 200) { //成功
+                  var Path = res.filePath //返回的文件临时地址，用于后面打开本地预览所用
+                  wx.openDocument({
+                    filePath: Path,
+                    showMenu: true,
+                    //要打开的文件路径
+                    success: function (res) {
+                      console.log('打开PDF成功');
+                    }
+                  })
+                }
+              },
+              fail: function (res) {
+                // box.showToast('报告不存在，请联系客服')
+                console.log(res); //失败
+                that.getRequestExcelFilePath(id);
               }
             })
           } else {
