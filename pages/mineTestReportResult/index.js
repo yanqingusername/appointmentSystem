@@ -105,7 +105,7 @@ Page({
   },
   bindDownloadReport: function (e) {
     let that = this
-    var report_temp = "";
+    var report_temp = e.currentTarget.dataset.report;
     var sample_id = e.currentTarget.dataset.sampleid;
 
     var id = e.currentTarget.dataset.id;
