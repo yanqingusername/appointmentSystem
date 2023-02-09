@@ -110,6 +110,8 @@ Page({
 
     var id = e.currentTarget.dataset.id;
 
+    box.showLoading("加载中...");
+
     if (report_temp == '' || report_temp == undefined || report_temp == null) {
 
       if(that.data.isreport == 3){
@@ -125,6 +127,7 @@ Page({
       // box.showToast('报告不存在，请联系客服')
       // return;
     }else{
+      // box.showLoading("加载中...");
       report_temp = report_temp.replace('http://', 'https://');
       wx.downloadFile({
         url: report_temp, //要预览的PDF的地址
@@ -139,9 +142,14 @@ Page({
               //要打开的文件路径
               success: function (res) {
                 console.log('打开PDF成功');
+              },
+              complete:function(){
+                box.hideLoading();
               }
             })
           } else {
+            // box.hideLoading();
+
             if(that.data.isreport == 3){
                 that.getRequestExcelFilePath(id);
             } else{
@@ -152,6 +160,7 @@ Page({
         fail: function (res) {
           // box.showToast('报告不存在，请联系客服')
           console.log(res); //失败
+          // box.hideLoading();
 
           if(that.data.isreport == 3){
             if(id){
@@ -204,6 +213,9 @@ Page({
           if (res.success) {
             let report_temp = res.pdf
             report_temp = report_temp.replace('http://', 'https://');
+
+            // box.showLoading("加载中...");
+
             wx.downloadFile({
               url: report_temp, //要预览的PDF的地址
               filePath: wx.env.USER_DATA_PATH + '/卡尤迪核酸检测报告.pdf',
@@ -217,17 +229,25 @@ Page({
                     //要打开的文件路径
                     success: function (res) {
                       console.log('打开PDF成功');
+                    },
+                    complete:function(){
+                      box.hideLoading();
                     }
                   })
+                }else{
+                  box.hideLoading();
                 }
               },
               fail: function (res) {
+                // box.hideLoading();
                 // box.showToast('报告不存在，请联系客服')
                 console.log(res); //失败
                 that.getBatchConfirmation(sample_id);
               }
             })
           } else {
+            box.hideLoading();
+
             box.showToast(res.msg)
           }
         }
@@ -247,6 +267,9 @@ Page({
           if (res.success) {
             let report_temp = res.reportUrl
             report_temp = report_temp.replace('http://', 'https://');
+            
+            // box.showLoading("加载中...");
+
             wx.downloadFile({
               url: report_temp, //要预览的PDF的地址
               filePath: wx.env.USER_DATA_PATH + '/卡尤迪核酸检测报告.pdf',
@@ -260,17 +283,25 @@ Page({
                     //要打开的文件路径
                     success: function (res) {
                       console.log('打开PDF成功');
+                    },
+                    complete:function(){
+                      box.hideLoading();
                     }
                   })
+                }else{
+                  box.hideLoading();
                 }
               },
               fail: function (res) {
+                // box.hideLoading();
                 // box.showToast('报告不存在，请联系客服')
                 console.log(res); //失败
                 that.getRequestExcelFilePath(id);
               }
             })
           } else {
+            box.hideLoading();
+
             box.showToast(res.msg)
           }
         }

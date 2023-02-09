@@ -45,7 +45,7 @@ Page({
     
     this.setisSubmit();
   },
-  bindSelectResult1(){
+  bindSelectResult1: utils.newthrottle(function (e) {
     let phone = this.data.sample_phone;
     
     if(this.data.sample_phone == ''){
@@ -63,7 +63,7 @@ Page({
     }
 
     this.getCheckValidByPhoneAndIdCard();
-  },
+  },2000),
   setisSubmit(){
     if(this.data.sample_number != '' && this.data.sample_phone != ''){
       this.setData({

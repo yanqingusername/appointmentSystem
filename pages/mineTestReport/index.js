@@ -158,6 +158,8 @@ Page({
     // var report_temp = 'http://report1.coyotebio-lab.com/data/lis1/202302031/test01111162_15568429280_1.pdf';
     var report_temp = e.currentTarget.dataset.report;
     var sample_id = e.currentTarget.dataset.sampleid;
+    box.showLoading("加载中...");
+
     if (report_temp == '' || report_temp == undefined || report_temp == null) {
       if(sample_id){
         that.getBatchConfirmation(sample_id);
@@ -165,6 +167,8 @@ Page({
       // box.showToast('报告不存在，请联系客服')
       // return;
     }else{
+      // box.showLoading("加载中...");
+
       report_temp = report_temp.replace('http://', 'https://');
       wx.downloadFile({
         url: report_temp, //要预览的PDF的地址
@@ -179,16 +183,21 @@ Page({
               //要打开的文件路径
               success: function (res) {
                 console.log('打开PDF成功');
+              },
+              complete:function(){
+                box.hideLoading();
               }
             })
           } else {
+            // box.hideLoading();
+
             that.getBatchConfirmation(sample_id);
           }
         },
         fail: function (res) {
           // box.showToast('报告不存在，请联系客服')
           console.log(res); //失败
-
+          // box.hideLoading();
           if(sample_id){
             that.getBatchConfirmation(sample_id);
           }
@@ -459,6 +468,9 @@ Page({
         if (res.success) {
           let report_temp = res.pdf
           report_temp = report_temp.replace('http://', 'https://');
+
+          // box.showLoading("加载中...");
+
           wx.downloadFile({
             url: report_temp, //要预览的PDF的地址
             filePath: wx.env.USER_DATA_PATH + '/卡尤迪核酸检测报告.pdf',
@@ -472,17 +484,25 @@ Page({
                   //要打开的文件路径
                   success: function (res) {
                     console.log('打开PDF成功');
+                  },
+                  complete:function(){
+                    box.hideLoading();
                   }
                 })
+              }else{
+                box.hideLoading();
               }
             },
             fail: function (res) {
+              // box.hideLoading();
               // box.showToast('报告不存在，请联系客服')
               console.log(res); //失败
               that.getBatchConfirmation(sample_id);
             }
           })
         } else {
+          box.hideLoading();
+
           box.showToast(res.msg)
         }
       }
