@@ -12,7 +12,7 @@
   <view class="view_2">
     <button class="view_2_1" open-type="contact">
 			<view class="view_2_1_1"><image class="view_2_1_1_1" src="../../../images/icon_10_08_19.png"  mode=""></image></view>
-			<view class="view_2_1_2">商城客服</view>
+			<view class="view_2_1_2">商城线上客服</view>
 		</button>
   </view>
 
