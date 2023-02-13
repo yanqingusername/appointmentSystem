@@ -471,4 +471,12 @@ Page({
         url: "/pages/nowInvoice/index"
       });
   },
+  /**
+   * 客服
+   */
+  clickShoppingService() {
+    wx.navigateTo({
+      url: "/healthyshop/pages/shoppingservice/index"
+    });
+  },
 })

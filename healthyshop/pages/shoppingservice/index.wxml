@@ -5,8 +5,8 @@
 
 <view class="page">
   <view class="view_1">
-    <view class="view_1_1">亲爱的用户，我们是电商客服，您可以点击下面按钮，将对商品的问题留言给我，我们会在工作日9-18点尽快回复。</view>
-    <!-- <view class="view_1_2"><text style="color: #35373E;font-size: 28rpx;" >新冠检测报告相关问题，</text>请您致电新冠检测24小时热线<text style="color: #006FFF;font-size: 28rpx;" bindtap="phoneCall">400-869-3888</text>。</view> -->
+    <view class="view_1_1">亲爱的用户，我们是电商客服，您可以点击下面按钮，将对商品的问题留言给我，我们会在每天9:00-18:00尽快回复。</view>
+    <view class="view_1_2">您也可以选择客服热线<text style="color: #006FFF;font-size: 28rpx;" bindtap="phoneCall">400-869-3888</text>与我们联系，工作时间同为每天9:00-18:00。</view>
   </view>
 
   <view class="view_2">

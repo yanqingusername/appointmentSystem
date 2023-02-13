@@ -135,6 +135,15 @@
       <image src="../../images/icon_0701_21.png" class="mine_6_2_img"/>
     </view>
   </view> -->
+  <view class="mine_6" bind:tap="clickShoppingService">
+    <view class="mine_6_1">
+      <image src="../../images/icon_0701_20.png" class="mine_6_1_img"/>
+      <view class="mine_6_1_text">联系客服</view>
+    </view>
+    <view class="mine_6_2">
+      <image src="../../images/icon_0701_21.png" class="mine_6_2_img"/>
+    </view>
+  </view>
 </view>
 </view>
 <!-- <view class="mine_10">
