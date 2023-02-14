@@ -17,7 +17,6 @@
 
   <view class="mine_new_view">
 
-  
   <view class="mine_center" wx:if="{{user_id}}">
     <view class="mine_center_left">
       <image wx:if="{{avatarUrl}}" src="{{avatarUrl}}" style="width:130rpx;height:130rpx;" />
