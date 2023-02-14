@@ -94,7 +94,9 @@ button{
   height: 60rpx;
 }
 .app_flex{
-  justify-content: end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 .bold_font_2{
   color: #E787AC;
