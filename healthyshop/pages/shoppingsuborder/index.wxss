@@ -663,3 +663,26 @@ page {
   padding: 30rpx;
   color: #999999;
 }
+
+.coupon_view{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60rpx;
+    background: linear-gradient(270deg, #FFF9E4 0%, #FFF2D9 100%);
+    border-radius: 20rpx;
+    padding: 0rpx 12rpx;
+}
+
+.coupon_view_img{
+  width: 32rpx;
+  height: 30rpx;
+  margin-right: 12rpx;
+}
+
+.coupon_view_title{
+font-size: 24rpx;
+font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
+color: #806525;
+}

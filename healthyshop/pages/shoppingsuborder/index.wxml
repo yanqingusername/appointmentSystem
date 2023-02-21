@@ -55,11 +55,29 @@
         </view>
         <view class="view_line"></view>
 
-        <view class="view_4_2" bind:tap="clickCoupon">
+        <view class="view_4_2" wx:if="{{couponList.length == 0}}">
           <view class="view_4_2_1">优惠券</view>
           <view class="view_4_2_2">
+            <view class="view_4_2_2_1_default">{{'暂无可用'}}</view>
+            <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
+          </view>
+        </view>
+
+        <view class="view_4_2" bind:tap="clickCoupon" wx:if="{{couponList.length > 0}}">
+          <view class="view_4_2_1">优惠券</view>
+          <!-- <view class="view_4_2_2">
             <view class="{{coupon_title == '请选择' ? 'view_4_2_2_1_default' : 'view_4_2_2_1'}}">{{coupon_title}}</view>
-            <!-- <image class="view_4_2_2_2" src="../../../images/rightArrow.png"></image> -->
+            <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
+          </view> -->
+
+          <view class="coupon_view" wx:if="{{coupon_title == '请选择'}}">
+            <image class="coupon_view_img" src="../../../images/icon_2023_02_20_01.png"></image>
+            <view class="coupon_view_title">未选，最高{{maxNumber}}元可用</view>
+            <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
+          </view>
+
+          <view class="view_4_2_2" wx:else>
+            <view class="view_4_2_2_1">{{coupon_title}}</view>
             <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
           </view>
         </view>

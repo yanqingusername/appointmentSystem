@@ -57,6 +57,7 @@ Page({
     select_coupon_payment: 0,
     select_coupon_title: '请选择',
     isBindBackFlag: true,
+    maxNumber: 0
   },
   onLoad: function (options) {
     let that = this;
@@ -130,7 +131,7 @@ Page({
             }
 
             that.setData({
-              couponList: res.msg.coupon,
+              // couponList: res.msg.coupon,
               shopxz_pdf: res.msg.pdf
             });
           }
@@ -190,6 +191,7 @@ Page({
       //   isBindBackFlag: false
       // })
     }
+    this.getCouponList();
   },
   onUnload() {},
   /**
@@ -536,6 +538,40 @@ Page({
                 isAddAddress: 0
               });
             }
+          }
+        } else {
+          // box.showToast(res.msg);
+        }
+      }
+    });
+  },
+  /**
+   * 获取优惠券
+   */
+  getCouponList: function () {
+    let that = this;
+    let data = {
+      product_code: this.data.shopid,
+      user_id: this.data.user_id
+    }
+    request.request_get('/Newacid/getUserInfoOrder.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res && res.msg){
+            that.setData({
+              couponList: res.msg.coupon
+            });
+
+            if(that.data.couponList.length > 0){
+              let maxNumberList = []
+              for(let i = 0; i < that.data.couponList.length; i++){
+                maxNumberList.push(that.data.couponList[i].discount_amount);
+              }
+              that.setData({
+                maxNumber: Math.max(...maxNumberList)
+              });
+            }
+            
           }
         } else {
           // box.showToast(res.msg);

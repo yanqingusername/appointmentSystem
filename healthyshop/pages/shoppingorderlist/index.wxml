@@ -54,7 +54,8 @@
           </view>
         </view>
 
-        <view class="view_7">
+        <view class="view_7_empty" wx:if="{{item.refund_status == 1 && item.confirm_status == 0}}"></view>
+        <view class="view_7" wx:else>
           <view class="view_7_1">
             <image class="view_7_1_1" wx:if="{{item.confirm_status == 1}}" lazy-load src="../../../images/icon_10_08_28.png"></image>
             <image class="view_7_1_1" wx:if="{{item.confirm_status == 2}}" lazy-load src="../../../images/icon_10_08_27.png"></image>

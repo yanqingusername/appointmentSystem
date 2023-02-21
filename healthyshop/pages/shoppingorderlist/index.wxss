@@ -387,3 +387,7 @@ page {
   padding: 30rpx;
   color: #999999;
 }
+
+.view_7_empty{
+  
+}
