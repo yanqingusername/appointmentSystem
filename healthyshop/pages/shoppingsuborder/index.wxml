@@ -58,7 +58,7 @@
         <view class="view_4_2" wx:if="{{couponList.length == 0}}">
           <view class="view_4_2_1">优惠券</view>
           <view class="view_4_2_2">
-            <view class="view_4_2_2_1_default">{{'暂无可用'}}</view>
+            <view class="view_4_2_2_1_default">{{isShowtitle ? '暂无可用' : ''}}</view>
             <image class="view_10_1_2" src="../../../images/icon_10_08_26.png"></image>
           </view>
         </view>

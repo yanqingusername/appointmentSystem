@@ -57,7 +57,8 @@ Page({
     select_coupon_payment: 0,
     select_coupon_title: '请选择',
     isBindBackFlag: true,
-    maxNumber: 0
+    maxNumber: 0,
+    isShowtitle: false
   },
   onLoad: function (options) {
     let that = this;
@@ -561,6 +562,12 @@ Page({
             that.setData({
               couponList: res.msg.coupon
             });
+
+            if(that.data.couponList.length == 0){
+              that.setData({
+                isShowtitle: true
+              });
+            }
 
             if(that.data.couponList.length > 0){
               let maxNumberList = []
