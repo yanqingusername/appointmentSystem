@@ -61,6 +61,7 @@ function request_getJinshazhou(controller, data, cb) {
         }
     })
 }
+
 module.exports = {
     request_get: request_get,
     request_getJinshazhou: request_getJinshazhou
